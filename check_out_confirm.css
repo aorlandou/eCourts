@@ -5,6 +5,10 @@
     margin-bottom: 20px;
     margin-left: 10%;
     margin-right: 10%;
+    
+    
+
+    
 
   }
   .stepper-item {
@@ -57,13 +61,13 @@
   }
   
   .stepper-item.completed .step-counter {
-    background-color:#fd7e14;
+    background-color: #4bb543;
   }
   
   .stepper-item.completed::after {
     position: absolute;
     content: "";
-    border-bottom: 2px solid #fd7e14;
+    border-bottom: 2px solid #4bb543;
     width: 100%;
     top: 20px;
     left: 50%;
@@ -77,7 +81,35 @@
     content: none;
   }
 
-  
+  .row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0 -16px;
+}
+
+.row2 {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 100px;
+}
+
+.col-25 {
+ 
+  flex: 50%;
+}
+
+
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
 
 .container {
   background-color: #f2f2f2;
@@ -86,8 +118,18 @@
   border-radius: 3px;
 }
 
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
 
-
+label {
+  margin-bottom: 10px;
+  display: block;
+}
 
 .icon-container {
   margin-bottom: 20px;
@@ -103,6 +145,15 @@ span.price {
   color: grey;
 }
 
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
 
 h2.bd{
     text-align: center;
@@ -120,7 +171,13 @@ h2.bd{
     resize: vertical;
   }
   
-   /* Style the submit button */
+  /* Style the label to display next to the inputs */
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+  
+  /* Style the submit button */
   input[type=submit] {
     background-color: #04AA6D;
     color: white;
@@ -142,11 +199,38 @@ h2.bd{
     
   }
   
+  /* Floating column for labels: 25% width */
+  
+  .col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+    margin-left: 10px;
+  }
+  
+  
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  } 
+
+
 
   button {
-    border-radius: 10px;
-    border: 1px solid  #fd7e14;
-    background-color:  #fd7e14;
+    border-radius: 20px;
+    border: 1px solid #2b52ff;
+    background-color: #3377f7;
     color: #FFFFFF;
     font-size: 12px;
     font-weight: bold;
@@ -165,15 +249,7 @@ h2.bd{
     outline: none;
   }
   
- 
-  .row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-  
-  .col {
-    flex: 50%;
-  }
-  
+  button.ghost {
+    background-color: transparent;
+    border-color: #FFFFFF;
+  } 
