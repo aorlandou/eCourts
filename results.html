@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>eCourts - Reserve your next court</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="css/animate.css">
+	
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+	
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/style.css">
+
+
+    <style>
+        .ftco-section{
+            background-color: #f3f3f3;
+        }
+        /*.ftco-navbar-light {
+            background: #fff;
+            background-color: #fff;
+        }
+        .ftco-navbar-light .container {
+            background: #fff;
+            width: 100%;
+        }
+        body{
+            margin: 0px;
+        } */
+
+
+        .ftco-navbar-light {
+  background-color: rgba(255, 255, 255, 0.05);
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  z-index: 3; }
+  @media (max-width: 991.98px) {
+    .ftco-navbar-light {
+      background: #212529 !important;
+      position: relative;
+      top: 0;
+      padding-top: 0;
+      padding-bottom: 0; } }
+  .ftco-navbar-light .container {
+    width: 1110px;
+    margin: 0 auto;
+    padding: 0; }
+  .ftco-navbar-light .navbar-brand {
+    color: #fff;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem; }
+    @media (max-width: 991.98px) {
+      .ftco-navbar-light .navbar-brand {
+        color: #fff;
+        padding-top: 1rem;
+        padding-bottom: 1rem; } }
+  .ftco-navbar-light .navbar-nav {
+    margin-right: 1em; }
+    @media (max-width: 991.98px) {
+      .ftco-navbar-light .navbar-nav {
+        padding-bottom: 20px;
+        margin-right: 0; } }
+    .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+      font-size: 15px;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      padding-left: 20px;
+      padding-right: 20px;
+      color: #fff; 
+      font-weight: 500;
+      opacity: 1 !important; }
+      .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover, .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:focus {
+        color: #fff; }
+      @media (max-width: 991.98px) {
+        .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+          padding-left: 0;
+          padding-right: 0;
+          padding-bottom: 0;
+          color: #fff; } }
+    .ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu {
+      border: none;
+      background: #fff;
+      -webkit-box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41);
+      -moz-box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41);
+      box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41); }
+    .ftco-navbar-light .navbar-nav > .nav-item.ftco-seperator {
+      position: relative;
+      margin-left: 20px;
+      padding-left: 20px; }
+      @media (max-width: 991.98px) {
+        .ftco-navbar-light .navbar-nav > .nav-item.ftco-seperator {
+          padding-left: 0;
+          margin-left: 0; } }
+      .ftco-navbar-light .navbar-nav > .nav-item.ftco-seperator:before {
+        position: absolute;
+        content: "";
+        top: 10px;
+        bottom: 10px;
+        left: 0;
+        width: 2px;
+        background: rgba(255, 255, 255, 0.05); }
+        @media (max-width: 991.98px) {
+          .ftco-navbar-light .navbar-nav > .nav-item.ftco-seperator:before {
+            display: none; } }
+
+    .ftco-navbar-light .navbar-nav > .nav-item.cta > a {
+      color: #fff;
+      border: 1px solid #f15d30;
+      padding-top: .8rem;
+      padding-bottom: .8rem;
+      padding-left: 18px;
+      padding-right: 18px;
+      background: #f15d30;
+      margin-top: .5rem;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      border-radius: 2px; }
+      .ftco-navbar-light .navbar-nav > .nav-item.cta > a span {
+        display: inline-block;
+        color: #fff; }
+      .ftco-navbar-light .navbar-nav > .nav-item.cta > a:hover {
+        background: #f15d30;
+        border: 1px solid #f15d30; }
+    .ftco-navbar-light .navbar-nav > .nav-item.cta.cta-colored a {
+      border: 1px solid #040e26;
+      background: #040e26 !important; }
+    .ftco-navbar-light .navbar-nav > .nav-item.active > a {
+      color: #f15d30; }
+    @media (max-width: 991.98px) {
+      .ftco-navbar-light .navbar-nav > .nav-item.active > a {
+        color: #f15d30; } }
+  .ftco-navbar-light .navbar-toggler {
+    border: none;
+    color: rgba(255, 255, 255, 0.5) !important;
+    cursor: pointer;
+    padding-right: 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: .1em; }
+    .ftco-navbar-light .navbar-toggler:hover, .ftco-navbar-light .navbar-toggler:focus {
+      text-decoration: none;
+      color: #f15d30;
+      outline: none !important; }
+  .ftco-navbar-light.scrolled {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    margin-top: -130px;
+    
+
+    
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); }
+    @media (max-width: 991.98px) {
+      .ftco-navbar-light.scrolled .nav-item > .nav-link {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important; } }
+    .ftco-navbar-light.scrolled .nav-item.active > a {
+      color: #f15d30 !important; }
+    .ftco-navbar-light.scrolled .nav-item.cta > a {
+      color: #fff !important;
+      background: #f15d30;
+      border: none !important;
+      padding-top: 0.5rem !important;
+      padding-bottom: .5rem !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      margin-top: 6px !important;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      border-radius: 5px; }
+      .ftco-navbar-light.scrolled .nav-item.cta > a span {
+        display: inline-block;
+        color: #fff !important; }
+    .ftco-navbar-light.scrolled .nav-item.cta.cta-colored span {
+      border-color: #f15d30; }
+    @media (max-width: 991.98px) {
+      .ftco-navbar-light.scrolled .navbar-nav {
+        background: none;
+        border-radius: 0px;
+        margin-left: 0 !important; } }
+    .ftco-navbar-light.scrolled .navbar-toggler {
+      border: none;
+      color: rgba(0, 0, 0, 0.5) !important;
+      border-color: rgba(0, 0, 0, 0.5) !important;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 16px;
+      letter-spacing: .1em; }
+    .ftco-navbar-light.scrolled .nav-link {
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+      color: white !important; }
+      .ftco-navbar-light.scrolled .nav-link.active {
+        color: #f15d30 !important; }
+    .ftco-navbar-light.scrolled.awake {
+      margin-top: 0px;
+      -webkit-transition: .3s all ease-out;
+      -o-transition: .3s all ease-out;
+      transition: .3s all ease-out; }
+    .ftco-navbar-light.scrolled.sleep {
+      -webkit-transition: .3s all ease-out;
+      -o-transition: .3s all ease-out;
+      transition: .3s all ease-out; }
+    .ftco-navbar-light.scrolled .navbar-brand {
+      color: white;
+      padding-top: 1rem;
+      padding-bottom: 1rem; }
+
+        /* for login */
+        .navbar .dropdown-menu {
+	color: #999;
+	font-weight: normal;
+	border-radius: 1px;
+	border-color: #e5e5e5;
+	box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .navbar a, .navbar a:active {
+        color: #888;
+        padding: 8px 20px;
+        background: transparent;
+        line-height: normal;
+    }
+    .navbar .navbar-form {
+        border: none;
+    }
+    .navbar .action-form {
+        width: 280px;
+        padding: 20px;
+        left: auto;
+        right: 0;
+        font-size: 10px;
+    }
+    .navbar .action-form .hint-text {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 13px;
+    }	
+    
+    .navbar .social-btn .btn, .navbar .social-btn .btn:hover {
+        color: #fff;
+        margin: 0;
+        padding: 0 !important;
+        font-size: 13px;
+        border: none;
+        transition: all 0.4s;
+        text-align: center;
+        line-height: 34px;
+        width: 47%;
+        text-decoration: none;
+    }
+    .navbar .social-btn .facebook-btn {
+        background: #507cc0;
+    }
+    .navbar .social-btn .facebook-btn:hover {
+        background: #4676bd;
+    }
+    .navbar .social-btn .twitter-btn {
+        background: #64ccf1;
+    }
+    .navbar .social-btn .twitter-btn:hover {
+        background: #4ec7ef;
+    }
+    .navbar .social-btn .btn i {
+        margin-right: 5px;
+        font-size: 16px;
+        position: relative;
+        top: 2px;
+    }
+    .or-seperator b {
+        color: #666;
+        padding: 0 8px;
+        width: 30px;
+        height: 30px;
+        font-size: 13px;
+        text-align: center;
+        line-height: 26px;
+        background: #fff;
+        display: inline-block;
+        border: 1px solid #e0e0e0;
+        border-radius: 50%;
+        position: relative;
+        top: -15px;
+        z-index: 1;
+    }
+
+    
+    
+    .navbar .action-buttons .dropdown-toggle::after {
+        display: none;
+    }
+    </style>
+</head>
+
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
+		<div class="container" style="background-color: #fff;">
+			<a class="navbar-brand" href="home.html"><img src="images/LOGO2-01.png" style="height: fit-content; width: 140px;"> </a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+
+			<div class="collapse navbar-collapse" id="ftco-nav" style="background-color: #fff;">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+				
+                <div class="navbar-nav ml-auto action-buttons">
+                    <div class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle mr-5">Login</a>
+                        <div class="dropdown-menu action-form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Email or Phone" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password" required="required">
+                                </div>
+                                <input type="submit" class="btn btn-primary btn-block" value="Login">
+                                <div class="text-center mt-2">
+                                    <a href="#">Don't have an account? Register here.</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+                <!-- if logged in -->
+                <!-- <div class="nav-item dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> Antonio Moreno <b class="caret"></b></a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+                        <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
+                        <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                        <div class="divider dropdown-divider"></div>
+                        <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                    </div>
+                </div> -->
+                
+			</div>
+		</div>
+	</nav>
+	<!-- END nav -->
+
+
+    <section class="ftco-section ftco-no-pb">
+        <div class="container">
+           <div class="row">
+            <div class="col-md-12">
+               <div class="search-wrap-1 ftco-animate">
+                  <form action="#" class="search-property-1">
+                     <div class="row no-gutters">
+                        <div class="col-lg d-flex">
+                           <div class="form-group p-4 border-0">
+                              <label for="#">Municipality</label>
+                              <div class="form-field">
+                                <div class="icon"><span class="fa fa-search"></span></div>
+                                <input type="text" class="form-control" placeholder="Search place">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg d-flex">
+                       <div class="form-group p-4">
+                        <label for="#">Choose Sport</label>
+                        <div class="form-field">
+                            <div class="select-wrap">
+                                <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                <select name="" id="" class="form-control">
+                                    <option value="">Tennis</option>
+                                    <option value="">Padel</option>
+                                    <option value="">Football</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg d-flex">
+                   <div class="form-group p-4">
+                    <label for="#">Date</label>
+                    <div class="form-field">
+                        <div class="icon"><span class="fa fa-calendar"></span></div>
+                        <input type="text" class="form-control checkin_date" placeholder="Choose Date">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg d-flex">
+                <div class="form-group p-4">
+                    <label for="appt">Select a time:</label>
+                    <input type="time" id="appt" name="appt">
+                </div>
+            </div>
+     <div class="col-lg d-flex">
+       <div class="form-group d-flex w-100 border-0">
+          <div class="form-field w-100 align-items-center d-flex">
+             <input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary">
+         </div>
+     </div>
+     </div>
+     </div>
+     </form>
+     </div>
+     </div>
+     </div>
+     </div>
+     </section>
+
+     <section class="ftco-section">
+        <div class="container">
+         <div class="row">
+            <div class="col-md-4 ftco-animate">
+               <div class="project-wrap">
+                  <a href="#" class="img" style="background-image: url(images/tennis3.jpg);">
+                     <span class="price">15€/hour</span>
+                 </a>
+                 <div class="text p-4">
+                     <span class="days">Tennis</span>
+                     <h3><a href="#">Ekali Tennis Club</a></h3>
+                     <p class="location"><span class="fa fa-map-marker"></span> Lofou 15, Ekali</p>
+                     <ul>
+                        <li><span class="fa fa-calendar" style="width: fit-content;"></span>15/11/2021</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                            width="24" height="24"
+                            viewBox="0 0 172 172"
+                            style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                            12:00</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                            width="24" height="24"
+                            viewBox="0 0 172 172"
+                            style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                            Grass Court</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 ftco-animate">
+           <div class="project-wrap">
+              <a href="#" class="img" style="background-image: url(images/tennis4.jpg);">
+                 <span class="price">13€/hour</span>
+             </a>
+             <div class="text p-4">
+                <span class="days">Tennis</span>
+                <h3><a href="#">Tennis Square</a></h3>
+                <p class="location"><span class="fa fa-map-marker"></span> Odos Pentelis 69, Marousi</p>
+                <ul>
+                   <li><span class="fa fa-calendar" style="width: fit-content;"></span>15/11/2021</li>
+                   <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                       width="24" height="24"
+                       viewBox="0 0 172 172"
+                       style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                       12:00</li>
+                   <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                       width="24" height="24"
+                       viewBox="0 0 172 172"
+                       style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                       Grass Court</li>
+                </ul>
+            </div>
+        </div>
+     </div>
+     <div class="col-md-4 ftco-animate">
+       <div class="project-wrap">
+          <a href="#" class="img" style="background-image: url(images/tennis5.jpg);">
+             <span class="price">17€/hour</span>
+         </a>
+         <div class="text p-4">
+            <span class="days">Tennis</span>
+            <h3><a href="#">Ekali Tennis Club</a></h3>
+            <p class="location"><span class="fa fa-map-marker"></span> Lofou 15, Ekali</p>
+            <ul>
+               <li><span class="fa fa-calendar" style="width: fit-content;"></span>15/11/2021</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                   12:00</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                   Clay Court</li>
+            </ul>
+        </div>
+     </div>
+     </div>
+     
+     <div class="col-md-4 ftco-animate">
+       <div class="project-wrap">
+          <a href="#" class="img" style="background-image: url(images/tennis6.jpg);">
+             <span class="price">15€/hour</span>
+         </a>
+         <div class="text p-4">
+            <span class="days">Tennis</span>
+            <h3><a href="#">Vrilissia Tennis Club</a></h3>
+            <p class="location"><span class="fa fa-map-marker"></span> Olympou 9, Vrilissia</p>
+            <ul>
+               <li><span class="fa fa-calendar" style="width: fit-content;"></span>15/11/2021</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                   12:00</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                   Artificial Grass Court</li>
+            </ul>
+        </div>
+     </div>
+     </div>
+     <div class="col-md-4 ftco-animate">
+       <div class="project-wrap">
+          <a href="#" class="img" style="background-image: url(images/tennis7.jpg);">
+             <span class="price">15€/hour</span>
+         </a>
+         <div class="text p-4">
+            <span class="days">Tennis</span>
+            <h3><a href="#">Ekali Tennis Club</a></h3>
+            <p class="location"><span class="fa fa-map-marker"></span> Lofou 15, Ekali</p>
+            <ul>
+               <li><span class="fa fa-calendar" style="width: fit-content;"></span>15/11/2021</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                   12:00</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                   Hard Court</li>
+            </ul>
+        </div>
+     </div>
+     </div>
+     <div class="col-md-4 ftco-animate">
+       <div class="project-wrap">
+          <a href="#" class="img" style="background-image: url(images/img_tenniscourt.jpg);">
+             <span class="price">15€/hour</span>
+         </a>
+         <div class="text p-4">
+            <span class="days">Tennis</span>
+            <h3><a href="#">Ekali Tennis Club</a></h3>
+            <p class="location"><span class="fa fa-map-marker"></span> Lofou 15, Ekali</p>
+            <ul>
+               <li><span class="fa fa-calendar" style="width: fit-content;"></span>15/11/2021</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                   12:00</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                   Clay Court</li>
+            </ul>
+        </div>
+     </div>
+     </div>
+     <div class="col-md-4 ftco-animate">
+       <div class="project-wrap">
+          <a href="#" class="img" style="background-image: url(images/tennis8.jpg);">
+             <span class="price">15€/hour</span>
+         </a>
+         <div class="text p-4">
+            <span class="days">Tennis</span>
+            <h3><a href="#">Tennis Square</a></h3>
+            <p class="location"><span class="fa fa-map-marker"></span> Odos Pentelis 69, Marousi</p>
+            <ul>
+               <li><span class="fa fa-calendar" style="width: fit-content;"></span>15/11/2021</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                   12:00</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                   Grass Court</li>
+            </ul>
+        </div>
+     </div>
+     </div>
+     <div class="col-md-4 ftco-animate">
+       <div class="project-wrap">
+          <a href="#" class="img" style="background-image: url(images/tennis3.jpg);">
+             <span class="price">15€/hour</span>
+         </a>
+         <div class="text p-4">
+            <span class="days">Tennis</span>
+            <h3><a href="#">Marousi Tennis Club</a></h3>
+            <p class="location"><span class="fa fa-map-marker"></span> Sismanogleiou 74, Marousi</p>
+            <ul>
+               <li><span class="fa fa-calendar" style="width: fit-content;"></span>15/11/2021</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                   12:00</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                   Grass Court</li>
+            </ul>
+        </div>
+     </div>
+     </div>
+     <div class="col-md-4 ftco-animate">
+       <div class="project-wrap">
+          <a href="#" class="img" style="background-image: url(images/tennis5.jpg);">
+             <span class="price">15€/hour</span>
+         </a>
+         <div class="text p-4">
+            <span class="days">Tennis</span>
+            <h3><a href="#">Ekali Tennis Club</a></h3>
+            <p class="location"><span class="fa fa-map-marker"></span> Lofou 15, Ekali</p>
+            <ul>
+               <li><span class="fa fa-calendar" style="width: fit-content;"></span>15/11/2021</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                   12:00</li>
+               <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                   width="24" height="24"
+                   viewBox="0 0 172 172"
+                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                   Grass Court</li>
+            </ul>
+        </div>
+     </div>
+     </div>
+     </div>
+     <div class="row mt-5">
+       <div class="col text-center">
+         <div class="block-27">
+           <ul>
+             <li><a href="#">&lt;</a></li>
+             <li class="active"><span>1</span></li>
+             <li><a href="#">2</a></li>
+             <li><a href="#">3</a></li>
+             <li><a href="#">4</a></li>
+             <li><a href="#">5</a></li>
+             <li><a href="#">&gt;</a></li>
+         </ul>
+     </div>
+     </div>
+     </div>
+     </div>
+     </section>
+
+     <!-- footer -->
+        <footer class="ftco-footer bg-bottom ftco-no-pt" style="background-image: url(images/bg_3.jpg);">
+			<div class="container">
+				<div class="row mb-5">
+					<div class="col-md pt-5">
+						<div class="ftco-footer-widget pt-md-5 mb-4">
+							<h2 class="ftco-heading-2">About</h2>
+							<p>Hustle free sport court booking! With eCourts you will forget the multiple phone calls to diferrent sportsclubs. Choose your favorite sport and leave the rest to us.</p>
+							<ul class="ftco-footer-social list-unstyled float-md-left float-lft">
+								<li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
+								<li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
+								<li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md pt-5 border-left">
+						<div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
+							<h2 class="ftco-heading-2">Infromation</h2>
+							<ul class="list-unstyled">
+								<li><a href="#" class="py-2 d-block">Online Enquiry</a></li>
+								<li><a href="#" class="py-2 d-block">General Enquiries</a></li>
+								<li><a href="#" class="py-2 d-block">Booking Conditions</a></li>
+								<li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
+								<li><a href="#" class="py-2 d-block">Refund Policy</a></li>
+								<li><a href="#" class="py-2 d-block">Call Us</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md pt-5 border-left">
+						<div class="ftco-footer-widget pt-md-5 mb-4">
+							<h2 class="ftco-heading-2">Experience</h2>
+							<ul class="list-unstyled">
+								<li><a href="#" class="py-2 d-block">Adventure</a></li>
+								<li><a href="#" class="py-2 d-block">Hotel and Restaurant</a></li>
+								<li><a href="#" class="py-2 d-block">Beach</a></li>
+								<li><a href="#" class="py-2 d-block">Nature</a></li>
+								<li><a href="#" class="py-2 d-block">Camping</a></li>
+								<li><a href="#" class="py-2 d-block">Party</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md pt-5 border-left">
+						<div class="ftco-footer-widget pt-md-5 mb-4">
+							<h2 class="ftco-heading-2">Have any Questions?</h2>
+							<div class="block-23 mb-3">
+								<ul>
+									<li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+									<li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+30 2137839241</span></a></li>
+									<li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@ecourts.gr</span></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 text-center">
+
+						<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+						</div>
+					</div>
+				</div>
+			</footer>
+			
+			
+
+			<!-- loader -->
+			<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+			<script src="js/jquery.min.js"></script>
+			<script src="js/jquery-migrate-3.0.1.min.js"></script>
+			<script src="js/popper.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
+			<script src="js/jquery.easing.1.3.js"></script>
+			<script src="js/jquery.waypoints.min.js"></script>
+			<script src="js/jquery.stellar.min.js"></script>
+			<script src="js/owl.carousel.min.js"></script>
+			<script src="js/jquery.magnific-popup.min.js"></script>
+			<script src="js/jquery.animateNumber.min.js"></script>
+			<script src="js/bootstrap-datepicker.js"></script>
+			<script src="js/scrollax.min.js"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+			<script src="js/google-map.js"></script>
+			<script src="js/main.js"></script>
+			
+	</body>
+</html>
