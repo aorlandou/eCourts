@@ -1,19 +1,14 @@
    
-
-
-
-
 .container-first {
-    font-family: 'Montserrat', sans-serif;
-    max-width: 1000px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
+    max-width: 1000px;    
     font-size: 13px;
     margin: 0 auto;
 }
 .container-second {
   
   max-width: 640px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   font-size: 13px;
   margin: 0 auto;
 }
