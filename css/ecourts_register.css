@@ -1,6 +1,8 @@
 body {
 	margin:  0;
 }
+
+
 .page-content {
 	width: 100%;
 	margin:  0 auto;
@@ -389,6 +391,8 @@ body {
 	.form-v10-content .form-detail .form-right .register{
 		margin-left: 4%;
 	}
+
+	
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1200px)  
