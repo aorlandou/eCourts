@@ -23,6 +23,10 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/style.css">
 
+	
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
     <style>
             
         .navbar img {
@@ -47,135 +51,56 @@
             background: transparent !important;
         }
         
-        /* for login */
-        .navbar .dropdown-menu {
-	color: #999;
-	font-weight: normal;
-	border-radius: 1px;
-	border-color: #e5e5e5;
-	box-shadow: 0 2px 8px rgba(0,0,0,.05);
-    }
-    .navbar a, .navbar a:active {
-        color: #888;
-        padding: 8px 20px;
-        background: transparent;
-        line-height: normal;
-    }
-    .navbar .navbar-form {
-        border: none;
-    }
-    .navbar .action-form {
-        width: 280px;
-        padding: 20px;
-        left: auto;
-        right: 0;
-        font-size: 10px;
-    }
-    .navbar .action-form .hint-text {
-        text-align: center;
-        margin-bottom: 15px;
-        font-size: 13px;
-    }	
-    
-    .navbar .social-btn .btn, .navbar .social-btn .btn:hover {
-        color: #fff;
-        margin: 0;
-        padding: 0 !important;
-        font-size: 13px;
-        border: none;
-        transition: all 0.4s;
-        text-align: center;
-        line-height: 34px;
-        width: 47%;
-        text-decoration: none;
-    }
-    .navbar .social-btn .facebook-btn {
-        background: #507cc0;
-    }
-    .navbar .social-btn .facebook-btn:hover {
-        background: #4676bd;
-    }
-    .navbar .social-btn .twitter-btn {
-        background: #64ccf1;
-    }
-    .navbar .social-btn .twitter-btn:hover {
-        background: #4ec7ef;
-    }
-    .navbar .social-btn .btn i {
-        margin-right: 5px;
-        font-size: 16px;
-        position: relative;
-        top: 2px;
-    }
-    .or-seperator b {
-        color: #666;
-        padding: 0 8px;
-        width: 30px;
-        height: 30px;
-        font-size: 13px;
-        text-align: center;
-        line-height: 26px;
-        background: #fff;
-        display: inline-block;
-        border: 1px solid #e0e0e0;
-        border-radius: 50%;
-        position: relative;
-        top: -15px;
-        z-index: 1;
-    }
-
-    .or-seperator {
-        margin-top: 32px;
-        text-align: center;
-        border-top: 1px solid #e0e0e0;
-    }
-    
-    .navbar .action-buttons .dropdown-toggle::after {
-        display: none;
-    }
+	
+	.stylish-input-group .input-group-addon{
+		background: rgb(197, 196, 196) !important; 
+	}
+	.stylish-input-group .form-control{
+		width: 270px;
+		height: 40px !important;
+		font-size: 13px;
+		border-radius: 0.30rem;
+		border: 30px; 
+		box-shadow:0 0 0; 
+		border-color:#ccc;
+	}
+	.stylish-input-group button{
+		border:0;
+		background:transparent;
+	}
+	
     
     </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
 		<div class="container">
-			<a class="navbar-brand" href="home.html">Pacific<span>Travel Agency</span></a>
+			<a class="navbar-brand" href="home.html"><img src="images/LOGO2-01.png" style="height: fit-content; width: 140px;"> </a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+					<li class="nav-item active"><a href="home.html" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-				
-                <div class="navbar-nav ml-auto action-buttons">
-                    <div class="nav-item dropdown">
-                        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle mr-5">Login</a>
-                        <div class="dropdown-menu action-form">
-                            <form action="/examples/actions/confirmation.php" method="post">
-                                <p class="hint-text">Sign in with your social media account</p>
-                                <div class="form-group social-btn clearfix">
-                                    <a href="#" class="btn btn-secondary facebook-btn float-left"><i class="fa fa-facebook"></i> Facebook</a>
-                                    <a href="#" class="btn btn-secondary twitter-btn float-right"><i class="fa fa-twitter"></i> Twitter</a>
-                                </div>
-                                <div class="or-seperator"><b>or</b></div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Username" required="required">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password" required="required">
-                                </div>
-                                <input type="submit" class="btn btn-primary btn-block" value="Login">
-                                <div class="text-center mt-2">
-                                    <a href="#">Forgot Your password?</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+					<div class="navbar-nav ml-auto action-buttons">	
+						<form action="#" class="search-property-1">
+							
+								
+									<div class="form-group p-4 border-0">
+										<div class="form-field">
+											<div class="icon"><span class="fa fa-search"></span></div>
+											<input type="text" class="form-control" placeholder="Search Sportsclub" style="text-align: left; color: #fff; width: 170px;">
+										</div>
+									</div>
+								
+								
+						</form>
+					</div>
+				<li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
             </ul>
                 <!-- if logged in -->
                 <!-- <div class="nav-item dropdown">
@@ -203,9 +128,6 @@
 					<h1 class="mb-4">Book your next sport activity with ease!</h1>
 					<p class="caps"></p>
 				</div>
-				<a href="https://vimeo.com/45830194" class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
-					<span class="fa fa-play"></span>
-				</a>
 			</div>
 		</div>
 	</div>
@@ -273,7 +195,7 @@
 												<div class="col-md d-flex">
 													<div class="form-group d-flex w-100 border-0">
 														<div class="form-field w-100 align-items-center d-flex">
-															<input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary">
+															<input type="button" value="Search" class="align-self-stretch form-control btn btn-primary" onclick="location.href='results.html';"> 
 														</div>
 													</div>
 												</div>
@@ -297,8 +219,8 @@
 			</div>
 		</div>
 		</section>
-
-        <section class="ftco-section img ftco-select-destination" style="background-image: url(images/bg_3.jpg);">
+		
+        <section class="ftco-section img ftco-select-destination" style="background-color:#f3f3f3 ;">
 			<div class="container">
 				<div class="row justify-content-center pb-4">
 					<div class="col-md-12 heading-section text-center ftco-animate">
@@ -366,14 +288,14 @@
 				</div>
 			</div>
 		</section>
-
-		<footer class="ftco-footer bg-bottom ftco-no-pt" style="background-image: url(images/bg_3.jpg);">
+<!-- footer -->
+		<footer class="ftco-footer bg-bottom ftco-no-pt" style="background-color: #e6c5bb;">
 			<div class="container">
-				<div class="row mb-5">
+				<div class="row mb-2">
 					<div class="col-md pt-5">
 						<div class="ftco-footer-widget pt-md-5 mb-4">
 							<h2 class="ftco-heading-2">About</h2>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<p>Hustle free sport court booking! With eCourts you will forget the multiple phone calls to diferrent sportsclubs. Just choose your favorite sport and leave the rest to us.</p>
 							<ul class="ftco-footer-social list-unstyled float-md-left float-lft">
 								<li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
 								<li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
@@ -381,7 +303,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md pt-5 border-left">
+					<div class="col-md pt-5 ">
 						<div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
 							<h2 class="ftco-heading-2">Infromation</h2>
 							<ul class="list-unstyled">
@@ -394,25 +316,13 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md pt-5 border-left">
-						<div class="ftco-footer-widget pt-md-5 mb-4">
-							<h2 class="ftco-heading-2">Experience</h2>
-							<ul class="list-unstyled">
-								<li><a href="#" class="py-2 d-block">Adventure</a></li>
-								<li><a href="#" class="py-2 d-block">Hotel and Restaurant</a></li>
-								<li><a href="#" class="py-2 d-block">Beach</a></li>
-								<li><a href="#" class="py-2 d-block">Nature</a></li>
-								<li><a href="#" class="py-2 d-block">Camping</a></li>
-								<li><a href="#" class="py-2 d-block">Party</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md pt-5 border-left">
+					
+					<div class="col-md pt-5">
 						<div class="ftco-footer-widget pt-md-5 mb-4">
 							<h2 class="ftco-heading-2">Have any Questions?</h2>
 							<div class="block-23 mb-3">
 								<ul>
-									<li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+									<li><span class="icon fa fa-map-marker"></span><span class="text">Leoforos Kifisias 679, Psychiko, Athens, Greece</span></li>
 									<li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+30 2137839241</span></a></li>
 									<li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@ecourts.gr</span></a></li>
 								</ul>
@@ -424,7 +334,7 @@
 					<div class="col-md-12 text-center">
 
 						<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> / <a href="https://colorlib.com" target="_blank"> Colorlib</a>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 						</div>
 					</div>
