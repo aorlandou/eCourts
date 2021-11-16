@@ -34,13 +34,25 @@ body {
   .login-card form {
     max-width: 326px; }
   .login-card .form-control {
+    background: transparent;
+    appearance: unset;
+    -moz-appearance: unset;
+    -webkit-appearance: unset;
+    -o-appearance: unset;
+    -ms-appearance: unset;
+    outline: none;
+    -moz-outline: none;
+    -webkit-outline: none;
+    -o-outline: none;
+    -ms-outline: none;
     border: 1px solid #d5dae2;
     padding: 15px 25px;
     margin-bottom: 20px;
     min-height: 45px;
     font-size: 13px;
     line-height: 15;
-    font-weight: normal; }
+    font-weight: normal;
+    } 
     .login-card .form-control::-webkit-input-placeholder {
       color: #919aa3; }
     .login-card .form-control::-moz-placeholder {
