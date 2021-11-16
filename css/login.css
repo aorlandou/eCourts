@@ -33,24 +33,33 @@ body {
     margin-bottom: 23px; }
   .login-card form {
     max-width: 326px; }
-  .login-card .form-control {
-    border: 1px solid #d5dae2;
-    padding: 15px 25px;
-    margin-bottom: 20px;
-    min-height: 45px;
-    font-size: 13px;
-    line-height: 15;
-    font-weight: normal; }
-    .login-card .form-control::-webkit-input-placeholder {
-      color: #919aa3; }
-    .login-card .form-control::-moz-placeholder {
-      color: #919aa3; }
-    .login-card .form-control:-ms-input-placeholder {
-      color: #919aa3; }
-    .login-card .form-control::-ms-input-placeholder {
-      color: #919aa3; }
-    .login-card .form-control::placeholder {
-      color: #919aa3; }
+  .login-card .form-control {    
+    padding: 11.5px 15px 15px 15px;
+    border: 1px solid transparent;
+    background: transparent;
+    appearance: unset;
+    -moz-appearance: unset;
+    -webkit-appearance: unset;
+    -o-appearance: unset;
+    -ms-appearance: unset;
+    outline: none;
+    -moz-outline: none;
+    -webkit-outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    color: #000;
+    border-bottom: 1px solid #ccc;
+   }
+   
+    
+   
   .login-card .login-btn {
     padding: 13px 20px 12px;
     background-color: #000;
