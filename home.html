@@ -28,13 +28,21 @@
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <style>
-            
-        .navbar img {
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            margin-right: 10px;
-        }
+        
+		
+		@media screen and (max-width: 770px ) {
+			img.logo{
+			width: 70px;
+			height: 50px;
+			}
+      	}
+		@media all and (min-width: 770px) {
+			img.logo {
+				width: 120px;
+				height: 60px;
+			}
+      	}
+
         .navbar .dropdown-menu {
             border-radius: 1px;
             border-color: #e5e5e5;
@@ -75,7 +83,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
 		<div class="container">
-			<a class="navbar-brand" href="home.html"><img src="images/LOGO2-01.png" style="height: fit-content; width: 140px;"> </a>
+			<a class="navbar-brand" href="home.html"><img class="logo" src="images/LOGO2-01.png" > </a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
@@ -86,21 +94,8 @@
 					<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 					<li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-					<div class="navbar-nav ml-auto action-buttons">	
-						<form action="#" class="search-property-1">
-							
-								
-									<div class="form-group p-4 border-0">
-										<div class="form-field">
-											<div class="icon"><span class="fa fa-search"></span></div>
-											<input type="text" class="form-control" placeholder="Search Sportsclub" style="text-align: left; color: #fff; width: 170px;">
-										</div>
-									</div>
-								
-								
-						</form>
-					</div>
-				<li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
+					
+				<li class="nav-item"><a href="login_form.html" class="nav-link">Login</a></li>
             </ul>
                 <!-- if logged in -->
                 <!-- <div class="nav-item dropdown">
@@ -119,7 +114,7 @@
 	</nav>
 	<!-- END nav -->
 	
-	<div class="hero-wrap js-fullheight" style="background-image: url('images/img_bg_tennis.jpg');">
+	<div class="hero-image js-fullheight" style="background-image: url('images/img_bg_tennis.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
@@ -220,6 +215,28 @@
 		</div>
 		</section>
 		
+
+		<section class="ftco-section img ftco-select-destination" style="background-color:#f3f3f3 ;">
+			<div class="container">
+				<div class="row justify-content-center pb-4">
+					<div class="col-md-12 heading-section text-center ftco-animate">
+						<h3 class="mb-4">Want to search for a Sportsclub?</h3>
+						<form action="#" class="search-property-1">
+							<div class="row no-gutters">
+								<div class="col-md-12 d-flex">
+									<div class="form-group p-4 border-0">
+										<div class="form-field">
+											<div class="icon"><span class="fa fa-search"></span></div>
+											<input type="text" class="form-control" placeholder="Search place">
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>	
         <section class="ftco-section img ftco-select-destination" style="background-color:#f3f3f3 ;">
 			<div class="container">
 				<div class="row justify-content-center pb-4">
