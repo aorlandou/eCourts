@@ -29,9 +29,19 @@
         .ftco-section{
             background-color: #f3f3f3;
         }
-       
+        @media screen and (max-width: 770px ) {
+			img.logo{
+			width: 70px;
+			height: 50px;
+			}
+      	}
+		@media all and (min-width: 770px) {
+			img.logo {
+				width: 120px;
+				height: 60px;
+			}
+      	}
 
-        
     </style>
 </head>
 
@@ -39,7 +49,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
 		<div class="container">
-			<a class="navbar-brand" href="home.html"><img src="images/LOGO2-01.png" style="height: fit-content; width: 140px;"> </a>
+			<a class="navbar-brand" href="home.html"><img class="logo" src="images/LOGO2-01.png" > </a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
@@ -68,7 +78,7 @@
 	</nav>
 	<!-- END nav -->
 
-  <div class="hero-wrap js-fullheight" style="background-image: url('images/tennis8.jpg');">
+  <div class="hero-image js-fullheight" style="background-image: url('images/tennis8.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">

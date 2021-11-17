@@ -44,7 +44,8 @@ body {
 
   
 
-  .login-card .form-login {    
+  .login-card .form-login {
+    width: 300px;
     padding: 11.5px 15px 15px 15px;
     border: 1px solid transparent;
     background: transparent;
