@@ -1,0 +1,91 @@
+
+.container-search {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.btn-search {
+  display: inline-block;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  -webkit-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+  cursor: pointer;
+}
+
+.btn-search--primary {
+  background: #f17929;
+  color: #fff;
+  -webkit-box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  padding: 12px 36px;
+}
+
+.btn-search--primary:hover {
+  background: #dda066;
+}
+
+.btn-search--primary:active {
+  background: #dda066;
+  -webkit-box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-search--inside {
+  margin-left: -96px;
+}
+
+.form-search__field {
+  width: 360px;
+  background: #fff;
+  color: rgb(126, 94, 94);
+  font: inherit;
+  -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  border: 0;
+  outline: 0;
+  padding: 22px 18px;
+  margin: -34px;
+  border-radius: 50px;
+}
+@media (min-width: 576px) {  
+  .form-search__field{
+    width: 360px;
+  }
+}
+@media (max-width: 769px) {
+  .form-search__field{
+    width: 300px;
+  }
+}
+/* @media (max-width: 400px) {
+  .form-search__field{
+    width: 210px;
+  }
+} */
+
+@media (max-width: 330px) {
+  .form-search__field{
+    position:bottom;
+  }
+}
+
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+  .form-search__field{
+    width: 380px;}
+  
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+/*# sourceMappingURL=search.css.map */

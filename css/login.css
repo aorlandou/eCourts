@@ -28,7 +28,7 @@ body {
         padding: 35px 24px; } }
   .login-card-description {
     font-size: 25px;
-    color: #000;
+    color: #f17929;
     font-weight: normal;
     margin-bottom: 23px; }
   .login-card form {
@@ -99,13 +99,13 @@ body {
     margin-bottom: 12px; }
   .login-card-footer-text {
     font-size: 16px;
-    color: #29be3d;
+    color: #919aa3;
     margin-bottom: 60px; }
     @media (max-width: 767px) {
       .login-card-footer-text {
         margin-bottom: 24px; } }
   .login-card-footer-nav a {
     font-size: 14px;
-    color: #919aa3; }
+    color: #919aa3a6; }
 
 /*# sourceMappingURL=login.css.map */
