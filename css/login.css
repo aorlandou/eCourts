@@ -1,6 +1,6 @@
 body {
-  font-family: "Karla", sans-serif;
-  background-color: #d0d0ce;
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: #f3f3f3;
   min-height: 100vh; }
 
 .brand-wrapper {
@@ -50,7 +50,7 @@ body {
     -webkit-outline: none;
     -o-outline: none;
     -ms-outline: none;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Poppins", Arial, sans-serif;
     font-size: 16px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -82,7 +82,13 @@ body {
     font-weight: bold;
     line-height: 20px;
     color: #fff;
-    margin-bottom: 24px; }
+    margin-bottom: 24px; 
+    box-shadow: 0px 6px 17px 0px rgba(0, 0, 0, 0.15);
+	-o-box-shadow: 0px 6px 17px 0px rgba(0, 0, 0, 0.15);
+	-ms-box-shadow: 0px 6px 17px 0px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 6px 17px 0px rgba(0, 0, 0, 0.15);
+	-webkit-box-shadow: 0px 6px 17px 0px rgba(0, 0, 0, 0.15);
+  }
     .login-card .login-btn:hover {
       border: 1px solid #000;
       background-color: transparent;
@@ -93,7 +99,7 @@ body {
     margin-bottom: 12px; }
   .login-card-footer-text {
     font-size: 16px;
-    color: #0d2366;
+    color: #29be3d;
     margin-bottom: 60px; }
     @media (max-width: 767px) {
       .login-card-footer-text {
