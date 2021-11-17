@@ -7,7 +7,15 @@ body {
   margin-bottom: 10px;
   margin-top: -20px; }
   .brand-wrapper .logo {
-    height: 37px; }
+    height: fit-content;
+    width: 130px;
+   }
+@media (max-width: 400px) {
+  .brand-wrapper .logo {
+    width: 130px;
+    height: 70px;
+  }
+}
 
 .login-card {
   border: 0;
