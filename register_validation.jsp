@@ -1,3 +1,25 @@
+<%@ page import ="java.util.ArrayList"%>
+<%@ page import ="java.util.List"%>
+
+<%      String name=request.getParameter("name"); 
+        String surname=request.getParameter("surname"); 
+        String username=request.getParameter("username"); 
+        String birth_date=request.getParameter("birth"); 
+        String password=request.getParameter("password"); 
+		String confirm=request.getParameter("confirm"); 
+        String street=request.getParameter("street"); 
+        String zip=request.getParameter("zip"); 
+        String town=request.getParameter("town");
+        String phone=request.getParameter("phone"); 
+		String email=request.getParameter("email");		
+		 
+		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+		java.util.regex.Matcher m = p.matcher(email);
+%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>

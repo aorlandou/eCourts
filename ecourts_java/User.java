@@ -9,12 +9,12 @@ class User{
     String street;
     String town;
     int street_number;
-    int zip_code;
+    String zip_code;
     String password;
     String register_date;
 
 
-    public User(int user_id, String name, String surname, String email, String phone, String street, String town, int street_number, int zip_code, String password, String register_date) {
+    public User(int user_id, String name, String surname, String email, String phone, String street, String town, int street_number, String zip_code, String password, String register_date) {
         this.user_id = user_id;
         this.name = name;
         this.surname = surname;
@@ -94,11 +94,11 @@ class User{
         this.street_number = street_number;
     }
 
-    public int getZip_code() {
+    public String getZip_code() {
         return this.zip_code;
     }
 
-    public void setZip_code(int zip_code) {
+    public void setZip_code(String zip_code) {
         this.zip_code = zip_code;
     }
 
