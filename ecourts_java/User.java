@@ -1,21 +1,21 @@
 package ecourts_java;
 
 class User{
-    int user_id;
-    String name;
-    String surname;
-    String email;
-    String phone;
-    String street;
-    String town;
-    int street_number;
-    String zip_code;
-    String password;
-    String register_date;
+    private static int user_id=0;
+    private String name;
+    private String surname;
+    private String email;
+    private String phone;
+    private String street;
+    private String town;
+    private int street_number;
+    private String zip_code;
+    private String password;
+    private String register_date;
 
 
-    public User(int user_id, String name, String surname, String email, String phone, String street, String town, int street_number, String zip_code, String password, String register_date) {
-        this.user_id = user_id;
+    public User(String name, String surname, String email, String phone, String street, String town, int street_number, String zip_code, String password, String register_date) {
+        
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -26,17 +26,16 @@ class User{
         this.zip_code = zip_code;
         this.password = password;
         this.register_date = register_date;
+        user_id=user_id +1;
     }
     
     
 
-    public int getUser_id() {
-        return this.user_id;
+    public  int getUser_id() {
+        return user_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
+ 
 
     public String getName() {
         return this.name;
