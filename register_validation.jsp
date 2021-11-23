@@ -12,12 +12,11 @@
         String zip=request.getParameter("zip"); 
         String town=request.getParameter("town");
         String phone=request.getParameter("phone"); 
-		String email=request.getParameter("email");		
-		 
-		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-		java.util.regex.Matcher m = p.matcher(email);
-		Customer customer= new Customer(name,surname,)
+		String email=request.getParameter("email");		 
+
+		String register_date=String(java.time.LocalDate.now());
+		Customer customer= new Customer(name,surname,email,phone,street,
+		town,street_number,zip_code,password,register_date,birth_date);
 		
 %>
 
