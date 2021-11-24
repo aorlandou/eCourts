@@ -52,11 +52,15 @@
 					
 				</div>
 				<div class="form-right">
-					<h2>Contact Details</h2>
-					<div class="form-row">
-						<input type="text" name="street" class="street" id="street" placeholder="Street + Number" required>
-					</div>
-					
+					<h2>Contact Details</h2>					
+					<div class="form-group">
+						<div class="form-row form-row-1">
+							<input type="text" name="street" class="street" id="street" placeholder="Street" required>
+						</div>
+						<div class="form-row form-row-2">
+							<input type="text" name="street_number" class="street_number" id="street_number" placeholder="Number" required>
+						</div>
+					</div>	
 					<div class="form-group">
 						<div class="form-row form-row-1">
 							<input type="text" name="zip" class="zip" id="zip" placeholder="Zip Code" required>

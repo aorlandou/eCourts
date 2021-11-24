@@ -8,13 +8,13 @@ class User{
     private String phone;
     private String street;
     private String town;
-    private int street_number;
+    private String street_number;
     private String zip_code;
     private String password;
     private String register_date;
 
 
-    public User(String name, String surname, String email, String phone, String street, String town, int street_number, String zip_code, String password, String register_date) {
+    public User(String name, String surname, String email, String phone, String street, String town, String street_number, String zip_code, String password, String register_date) {
         
         this.name = name;
         this.surname = surname;
@@ -85,11 +85,11 @@ class User{
         this.town = town;
     }
 
-    public int getStreet_number() {
+    public String getStreet_number() {
         return this.street_number;
     }
 
-    public void setStreet_number(int street_number) {
+    public void setStreet_number(String street_number) {
         this.street_number = street_number;
     }
 

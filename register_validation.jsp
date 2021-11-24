@@ -1,6 +1,9 @@
 <%@ page import ="java.util.ArrayList"%>
 <%@ page import ="java.util.List"%>
 <%@ page import ="ecourts_java.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.ParseException"%>
+<%@page import="java.util.Date"%>
 
 <%      String name=request.getParameter("name"); 
         String surname=request.getParameter("surname"); 
@@ -9,14 +12,17 @@
         String password=request.getParameter("password"); 
 		String confirm=request.getParameter("confirm"); 
         String street=request.getParameter("street"); 
+		String street_number=request.getParameter("street_number"); 
         String zip=request.getParameter("zip"); 
         String town=request.getParameter("town");
         String phone=request.getParameter("phone"); 
 		String email=request.getParameter("email");		 
 
-		String register_date=String(java.time.LocalDate.now());
+		Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        String register_date = formatter.format(date);
 		Customer customer= new Customer(name,surname,email,phone,street,
-		town,street_number,zip_code,password,register_date,birth_date);
+		town,street_number,zip,password,register_date,birth_date);
 		
 %>
 

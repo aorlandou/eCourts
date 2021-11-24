@@ -5,7 +5,7 @@ public class Customer extends User{
 
 
     public Customer(String name, String surname, String email, String phone, 
-    String street, String town, int street_number, String zip_code, String password, 
+    String street, String town, String street_number, String zip_code, String password, 
     String register_date, String date_birth) {
         super(name, surname, email, phone, street, town, street_number, zip_code, password, register_date);
         this.date_birth = date_birth;
