@@ -115,7 +115,23 @@
 						 { 							
 							event.preventDefault();
 						} 
-					}					
+					}
+					
+					function valemail(){
+						var javaImports = new JavaImporter(java.lang, java.util,java.sql.DriverManager,java.sql.ResultSet,
+						java.sql.Statement,java.sql.Connection);
+						with (javaImports) {
+							String driver = "com.mysql.jdbc.Driver";
+                            String connectionUrl = "jdbc:mysql://195.251.249.131:3306/";
+                            String database = "ismgroup7";
+                            String userid = "ismgroup7";
+                            String password = "he2kt6";
+
+  
+                         }						
+						
+					    
+					}
 				</script>
 			</form>
 			
