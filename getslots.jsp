@@ -11,17 +11,23 @@
 
 <%
 int sport;
+String date;
 
 try {
     sport = Integer.parseInt(request.getParameter("sport"));
+    date = request.getParameter("date");
+    
  }
  catch (NumberFormatException e)
  {
-    sport = 0;
+    sport = 1;
+    date = null;
  }
+ 
+
 
 Slot slot = new Slot();
-List<Slot> slot_list = slot.getSlots(sport);
+List<Slot> slot_list = slot.getSlots(sport,date);
 
     for(Slot slot1 : slot_list) {
 

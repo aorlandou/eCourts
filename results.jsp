@@ -48,13 +48,15 @@
         function getSlots() {
         
         var sport= $('#sport').val();
+        var date= $('#date').val();
         console.log("I've been called");
+        
   
   
         $.ajax({
         url: "getslots.jsp",
         type: 'POST',
-        data: {sport: sport},
+        data: {sport: sport, date: date},
         success: function(data) {
         
         document.getElementById("res").innerHTML = data;
@@ -144,7 +146,7 @@
                         <label for="#">Date</label>
                         <div class="form-field">
                             <div class="icon"><span class="fa fa-calendar"></span></div>
-                            <input type="text" class="form-control checkin_date" placeholder="Choose Date" value="11/15/2021">
+                            <input type="date" id = "date" class="form-control " placeholder="Choose Date" value="" onchange="getSlots()">
                         </div>
                     </div>
                 </div>

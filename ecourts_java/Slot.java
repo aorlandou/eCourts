@@ -67,7 +67,7 @@ public class Slot {
     }
 
 
-    public List<Slot> getSlots(int sport) {
+    public List<Slot> getSlots(int sport, String date) {
         
 
             List<Slot> slot_list = new ArrayList<Slot>();
@@ -79,9 +79,16 @@ public class Slot {
             
     
             PreparedStatement pstmt=null; //create statement
+
+
             
-            pstmt=con.prepareStatement("select slot.slot_id, slot.date, slot.time_start, slot.price, court.name as court_name, sport.name as sport_name, surface.name as surface_name, sportsclub.name as club_name, sportsclub.street, sportsclub.town from slot, court, sportsclub, sport, surface where slot.court_id = court.court_id and court.sportsclub_id = sportsclub.sportsclub_id and court.surface_id = surface.surface_id  and court.sport_id = sport.sport_id and court.sport_id = ? "); //sql select query 
+                
+
+
+            
+            pstmt=con.prepareStatement("select slot.slot_id, slot.date, slot.time_start, slot.price, court.name as court_name, sport.name as sport_name, surface.name as surface_name, sportsclub.name as club_name, sportsclub.street, sportsclub.town from slot, court, sportsclub, sport, surface where slot.court_id = court.court_id and court.sportsclub_id = sportsclub.sportsclub_id and court.surface_id = surface.surface_id  and court.sport_id = sport.sport_id and court.sport_id = ? and slot.date = ? "); //sql select query 
             pstmt.setInt(1,sport);
+            pstmt.setString(2,date);
         
             
             ResultSet rs=pstmt.executeQuery(); //execute query and store in resultset object rs.
@@ -93,7 +100,7 @@ public class Slot {
                 
     
                 int slot_id =rs.getInt("slot_id");
-                Date date = rs.getDate("date");
+                Date date_slot = rs.getDate("date");
                 Time time = rs.getTime("time_start");
                 Double price = rs.getDouble("price");
                 String court_name = rs.getString("court_name");
@@ -107,7 +114,7 @@ public class Slot {
                 SportsClub club = new SportsClub(club_name,street,town);
                 Court court = new Court(court_name, sport_name,surface_name,club);
 
-                Slot slot = new Slot(slot_id,date,time,price,court);
+                Slot slot = new Slot(slot_id,date_slot,time,price,court);
     
                 
     
