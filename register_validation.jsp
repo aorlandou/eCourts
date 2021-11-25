@@ -22,6 +22,7 @@
         String register_date = formatter.format(date);
 		Customer customer= new Customer(name,surname,username,email,phone,street,
 		town,street_number,zip,password,register_date,birth_date);
+
 		
 %>
 
@@ -75,32 +76,32 @@
 					<h2>General Infomation </h2>					
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="name" id="name" pattern=".{2,}"
+							<input type="text" name="name" value="<%=name%>" id="name" pattern=".{2,}"
 							title="Name should contain more than 2 characters." class="input-text" placeholder="Name" required>							
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="surname" pattern=".{2,}"
+							<input type="text" value="<%=surname%>" name="surname" pattern=".{2,}"
 							title="Surname should contain more than 2 characters." id="surname" class="input-text" placeholder="Surname" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="username" id="username" pattern=".{4,}"
+							<input type="text" name="username" value="<%=username%>" id="username" pattern=".{4,}"
 							title="Username should contain more than 4 characters." class="input-text" placeholder="Userame" required>							
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="birth" id="birth" placeholder="Birth date"
+							<input type="text" name="birth" id="birth" value="<%=birth_date%>" placeholder="Birth date"
 							onfocus="(this.type='date')">
 						</div>
 					</div>
 					
 					
 					<div class="form-row">
-						<input type="password" name="password" onkeyup='check();' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+						<input type="password" name="password" value="<%=password%>" onkeyup='check();' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
 						title="Password must contain at least one number and one uppercase and lowercase letter, and at least 6 characters." class="password" id="password" placeholder="Password" required>
 					</div>
 					<div class="form-row">
-						<input type="password" name="confirm" onkeyup='check();' class="confirm" id="confirm" placeholder="Confirm password" required>		
+						<input type="password" name="confirm" value="<%=password%>" onkeyup='check();' class="confirm" id="confirm" placeholder="Confirm password" required>		
 						<span id='message'></span>				
 					</div>
 					<div class="form-row">
@@ -112,32 +113,31 @@
 					<h2>Contact Details</h2>					
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="street" class="street" id="street" placeholder="Street" required>
+							<input type="text" name="street" value="<%=street%>" class="street" id="street" placeholder="Street" required>
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="street_number" class="street_number" id="street_number" placeholder="Number" required>
+							<input type="text" name="street_number" value="<%=street_number%>" class="street_number" id="street_number" placeholder="Number" required>
 						</div>
 					</div>	
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="zip" pattern=".{4,}" title="Zip code must be 4 characters long." class="zip" id="zip" placeholder="Zip Code" required>
+							<input type="text" name="zip" value="<%=zip%>" pattern=".{4,}" title="Zip code must be 4 characters long." class="zip" id="zip" placeholder="Zip Code" required>
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="town" class="town" id="town" placeholder="Town" required>
+							<input type="text" name="town" value="<%=town%>" class="town" id="town" placeholder="Town" required>
 						</div>
 					</div>					
-					<div class="form-group">
-						<div class="form-row form-row-1">
-							<input type="text" name="code"  class="code" id="code" placeholder="Code +" required>
-						</div>
-						<div class="form-row form-row-2">
-							<input type="text" name="phone" pattern="^\d{10}$" title="Phone must be 10 characters." class="phone" id="phone" placeholder="Phone Number" required>
-						</div>
+					<div class="form-row">						
+						<input type="text" name="phone" value="<%=phone%>" pattern="^\d{10}$" title="Phone must be 10 characters." class="phone" id="phone" placeholder="Phone Number" required>
+						
 					</div>
 					<div class="form-row">
-						<input type="email" name="email" id="email"  class="input-text" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}
+						<input type="email" name="email" id="email" value="<%=email%>" class="input-text" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}
 						\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$" placeholder="Your Email" >						
 					</div>
+					<% if (!customer.checkEmail(email)){ %>
+						<p -danger>An acount with this email already exists.</p>
+					<%}%>
 					
 					<div class="form-row-last">
 						<input type="submit" name="register" class="register" id="register"  onclick="val()" value="Register">

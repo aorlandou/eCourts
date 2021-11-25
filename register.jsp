@@ -97,13 +97,9 @@
 							<input type="text" name="town" class="town" id="town" placeholder="Town" required>
 						</div>
 					</div>					
-					<div class="form-group">
-						<div class="form-row form-row-1">
-							<input type="text" name="code"  class="code" id="code" placeholder="Code +" required>
-						</div>
-						<div class="form-row form-row-2">
-							<input type="text" name="phone" pattern="^\d{10}$" title="Phone must be 10 characters." class="phone" id="phone" placeholder="Phone Number" required>
-						</div>
+					<div class="form-row">						
+						<input type="text" name="phone" pattern="^\d{10}$" title="Phone must be 10 characters." class="phone" id="phone" placeholder="Phone Number" required>
+						
 					</div>
 					<div class="form-row">
 						<input type="email" name="email" id="email"  class="input-text" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}
