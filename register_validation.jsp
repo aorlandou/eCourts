@@ -131,13 +131,20 @@
 						<input type="text" name="phone" value="<%=phone%>" pattern="^\d{10}$" title="Phone must be 10 characters." class="phone" id="phone" placeholder="Phone Number" required>
 						
 					</div>
-					<div class="form-row">
-						<input type="email" name="email" id="email" value="<%=email%>" class="input-text" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}
-						\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$" placeholder="Your Email" >						
+					<div class="form-row">						
+							<input type="email" name="email" id="email" value="<%=email%>" class="input-text" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}
+							\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$" placeholder="Your Email" >
+												
 					</div>
-					<% if (!customer.checkEmail(email)){ %>
-						<p -danger>An acount with this email already exists.</p>
-					<%}%>
+					
+						
+					
+						<% if (!customer.checkEmail(email) || !customer.checkPhone(phone)){ %>
+							<div class="form-row">
+								<p style="color: #FF0000;">User already exists.</p>
+							</div>
+							<%}%>
+					
 					
 					<div class="form-row-last">
 						<input type="submit" name="register" class="register" id="register"  onclick="val()" value="Register">
