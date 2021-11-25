@@ -1,7 +1,8 @@
 package ecourts_java;
 
 public class Customer extends User{
-    String date_birth;
+    private String date_birth;
+    private String surname;
 
 
     public Customer(String name, String surname, String email, String phone, 

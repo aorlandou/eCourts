@@ -52,7 +52,7 @@
   
   
         $.ajax({
-        url: "getdata.jsp",
+        url: "getslots.jsp",
         type: 'POST',
         data: {sport: sport},
         success: function(data) {
@@ -131,8 +131,9 @@
                                     <div class="icon"><span class="fa fa-chevron-down"></span></div>
                                     <select name="" id="sport" class="form-control" onchange="getSlots()">
                                         <option value="1">Tennis</option>
-                                        <option value="2">Padel</option>
-                                        <option value="3">Football</option>
+                                        <option value="2">Football</option>
+                                        <option value="3">Padel</option>
+                                        
                                     </select>
                                 </div>
                             </div>
