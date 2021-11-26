@@ -67,7 +67,7 @@ public class Slot {
     }
 
 
-    public List<Slot> getSlots(int sport, String date) {
+    public List<Slot> getSlots(int sport, String date, int municipality) {
         
 
             List<Slot> slot_list = new ArrayList<Slot>();
@@ -82,7 +82,7 @@ public class Slot {
 
 
             
-            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, court.name as court_name, sport.name as sport_name, surface.name as surface_name, sportsclub.name as club_name, sportsclub.street, sportsclub.town from slot, court, sportsclub, sport, surface where slot.court_id = court.court_id and court.sportsclub_id = sportsclub.sportsclub_id and court.surface_id = surface.surface_id  and court.sport_id = sport.sport_id ";
+            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, court.name as court_name, sport.name as sport_name, surface.name as surface_name, sportsclub.name as club_name, sportsclub.street, municipality.mun_name from slot, court, sportsclub, sport, surface, municipality where slot.court_id = court.court_id and court.sportsclub_id = sportsclub.sportsclub_id and court.surface_id = surface.surface_id and sportsclub.municipality_id = municipality.mun_id and court.sport_id = sport.sport_id ";
 
             if(sport != 0){
                 query = query + "and court.sport_id = ?";
@@ -91,14 +91,26 @@ public class Slot {
             if (date != ""){
                 query = query + " and slot.date = ?";
             }
+            if (municipality != 0){
+                query = query + " and sportsclub.municipality_id  = ?";
+            }
             System.out.println(query);
 
 
             
             pstmt=con.prepareStatement(query); //sql select query 
-            pstmt.setInt(1,sport);
+            
+            int param_num = 1;
+            if(sport != 0){
+                pstmt.setInt(param_num,sport);
+                param_num = param_num +1;
+            }
             if (date !=""){
-                pstmt.setString(2,date);
+                pstmt.setString(param_num,date);
+                param_num = param_num +1;
+            }
+            if (municipality != 0){
+                pstmt.setInt(param_num,municipality);
             }
             
         
@@ -120,7 +132,7 @@ public class Slot {
                 String surface_name = rs.getString("surface_name");
                 String club_name = rs.getString("club_name");
                 String street = rs.getString("street");
-                String town = rs.getString("town");
+                String town = rs.getString("mun_name");
 
                 //Construct the club object first
                 SportsClub club = new SportsClub(club_name,street,town);
@@ -165,6 +177,8 @@ public class Slot {
             return slot_list;
     
         }
+
+        
 
        
     
