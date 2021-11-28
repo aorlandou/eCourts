@@ -28,6 +28,10 @@ public class Customer extends User{
         return this.username;
     }
 
+    public int getId() {
+        return super.getUser_id();
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -87,6 +91,35 @@ public class Customer extends User{
         return false;
     }
     
+
+    public void register(Customer customer){
+        try
+        {   
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+            PreparedStatement pstmt=null;    
+            pstmt=con.prepareStatement("INSERT INTO users('idusers','email','phone','password','name','street','town','zipcode','date_registered','type') VALUES (?,?,?,?,?,?,?,?,?,?);");
+            pstmt.setString(1,"006");  
+            pstmt.setString(2,"kona@gmail.com");  
+            pstmt.setString(3,"6956302432");  
+            pstmt.setString(4,"123456");  
+            pstmt.setString(5,"Konstantina");  
+            pstmt.setString(6,"Makedonwn");    
+            pstmt.setString(7,"Athens"); 
+            pstmt.setString(8,"12345"); 
+            pstmt.setString(9,"10-1-2022");    
+            pstmt.setString(1,"customer");    
+            pstmt.executeUpdate();
+                           
+            con.close();         
+        }
+        catch(Exception e)
+        {
+        System.out.println(e.getMessage());
+        
+        }
+       
+    }
     
 
 }
