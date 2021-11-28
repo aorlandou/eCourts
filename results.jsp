@@ -48,13 +48,16 @@
         function getSlots() {
         
         var sport= $('#sport').val();
+        var date= $('#date').val();
+        var municipality= $('#municipality').val();
         console.log("I've been called");
+        
   
   
         $.ajax({
         url: "getslots.jsp",
         type: 'POST',
-        data: {sport: sport},
+        data: {sport: sport, date: date, municipality: municipality},
         success: function(data) {
         
         document.getElementById("res").innerHTML = data;
@@ -114,15 +117,23 @@
                    <div class="search-wrap-1 ftco-animate">
                       <form action="#" class="search-property-1">
                          <div class="row no-gutters">
-                            <div class="col-lg d-flex">
-                               <div class="form-group p-4 border-0">
-                                  <label for="#">Municipality</label>
-                                  <div class="form-field">
-                                    <div class="icon"><span class="fa fa-search"></span></div>
-                                    <input type="text" class="form-control" placeholder="Search Place" value="Voreia Proasteia">
-                                </div>
-                            </div>
-                        </div>
+                            
+                        <div class="col-lg d-flex">
+                            <div class="form-group p-4">
+                             <label for="#">Municipality</label>
+                             <div class="form-field">
+                                 <div class="select-wrap">
+                                     <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                     <select name="" id="municipality" class="form-control" onchange="getSlots()">
+                                         <option value="1">Ekali</option>
+                                         <option value="2">Pallini</option>
+                                         
+                                         
+                                     </select>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
                         <div class="col-lg d-flex">
                            <div class="form-group p-4">
                             <label for="#">Choose Sport</label>
@@ -144,7 +155,7 @@
                         <label for="#">Date</label>
                         <div class="form-field">
                             <div class="icon"><span class="fa fa-calendar"></span></div>
-                            <input type="text" class="form-control checkin_date" placeholder="Choose Date" value="11/15/2021">
+                            <input type="date" id = "date" class="form-control " placeholder="Choose Date" value="" onchange="getSlots()">
                         </div>
                     </div>
                 </div>
