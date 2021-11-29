@@ -8798,7 +8798,8 @@ h1, h2, h3, h4, h5,
   @media (max-width: 767.98px) {
     .search-property-1 .form-group {
       margin-bottom: 0;
-      border: none; } }
+      border: none;
+      position: relative } }
   .search-property-1 .form-group label {
     font-weight: 700;
     font-size: 14px;
@@ -8859,9 +8860,7 @@ h1, h2, h3, h4, h5,
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     color: rgba(0, 0, 0, 0.1); }
-    @media (max-width: 767.98px) {
-      .search-property-1 .form-group .icon {
-        right: 10px; } }
+    
 
 .bg-light {
   background: #f9fafb !important; }
