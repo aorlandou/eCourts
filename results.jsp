@@ -45,19 +45,20 @@
     </style>
 
     <script>
-        function getSlots() {
+        function getSlots(page_num) {
         
         var sport= $('#sport').val();
         var date= $('#date').val();
         var municipality= $('#municipality').val();
         console.log("I've been called");
+        console.log(page_num);
         
   
   
         $.ajax({
         url: "getslots.jsp",
         type: 'POST',
-        data: {sport: sport, date: date, municipality: municipality},
+        data: {sport: sport, date: date, municipality: municipality, p:page_num},
         success: function(data) {
         
         document.getElementById("res").innerHTML = data;
@@ -124,7 +125,7 @@
                              <div class="form-field">
                                  <div class="select-wrap">
                                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                     <select name="" id="municipality" class="form-control" onchange="getSlots()">
+                                     <select name="" id="municipality" class="form-control" onchange="getSlots(1)">
                                          <option value="1">Ekali</option>
                                          <option value="2">Pallini</option>
                                          
@@ -140,7 +141,7 @@
                             <div class="form-field">
                                 <div class="select-wrap">
                                     <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                    <select name="" id="sport" class="form-control" onchange="getSlots()">
+                                    <select name="" id="sport" class="form-control" onchange="getSlots(1)">
                                         <option value="1">Tennis</option>
                                         <option value="2">Football</option>
                                         <option value="3">Padel</option>
@@ -150,12 +151,13 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-lg d-flex">
                        <div class="form-group p-4">
                         <label for="#">Date</label>
                         <div class="form-field">
                             <div class="icon"><span class="fa fa-calendar"></span></div>
-                            <input type="date" id = "date" class="form-control " placeholder="Choose Date" value="" onchange="getSlots()">
+                            <input type="date" id = "date" class="form-control " placeholder="Choose Date" value="" onchange="getSlots(1)">
                         </div>
                     </div>
                 </div>
@@ -185,32 +187,14 @@
 	</div>
 
     
+<div id = "here"></div>
 
-     <section class="ftco-section" >
-        <div class="container">
-         <div class="row" id = "res">
-             
-            Results will be displayed here          
-       
-
-     </div>
+     <section class="ftco-section" id = "">
+        <div class="container" id = "res">
+         
      
-     <div class="row mt-5">
-       <div class="col text-center">
-         <div class="block-27">
-           <ul>
-             <li><a href="#">&lt;</a></li>
-             <li class="active"><span>1</span></li>
-             <li><a href="#">2</a></li>
-             <li><a href="#">3</a></li>
-             <li><a href="#">4</a></li>
-             <li><a href="#">5</a></li>
-             <li><a href="#">&gt;</a></li>
-         </ul>
-     </div>
-     </div>
-     </div>
-     </div>
+            
+        </div>
      </section>
 
      <!-- footer -->
