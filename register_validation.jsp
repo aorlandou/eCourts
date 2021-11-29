@@ -22,6 +22,9 @@
         String register_date = formatter.format(date);
 		Customer customer= new Customer(name,surname,username,email,phone,street,
 		town,street_number,zip,password,register_date,birth_date);
+		if (customer.checkEmail(email) && customer.checkPhone(phone)){
+			customer.register(customer);
+		}
 
 		
 %>
@@ -139,7 +142,7 @@
 					
 						
 					
-						<% if (!customer.checkEmail(email) || !customer.checkPhone(phone)){ %>
+						<% if ((!customer.checkEmail(email)) || (!customer.checkPhone(phone))){ %>
 							<div class="form-row">
 								<p style="color: #FF0000;">User already exists.</p>
 							</div>
