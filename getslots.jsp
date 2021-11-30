@@ -96,7 +96,7 @@ if (slot_list.size()!= 0 ){
         <div class="col-md-4 ">
             <div class="project-wrap">
                <a href="pre_booking.html" class="img" style="background-image: url(<%=photo_path%>);">
-                  <span class="price"><%= slt.getPrice()+ " €/hour" %></span>
+                  <span class="price"><%= slt.getPrice().intValue()+ " €/hour" %></span>
               </a>
               <div class="text p-4">
                  <span class="days"><%=slt.getCourt().getSport()%></span>

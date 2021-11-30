@@ -1,14 +1,15 @@
 package ecourts_java;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Slot {
     private int slot_id;
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
     private Double price;
     private Court court;
     
@@ -21,19 +22,19 @@ public class Slot {
         this.slot_id = slot_id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -55,7 +56,7 @@ public class Slot {
 
     
 
-    public Slot(int slot_id, Date date, Time time, Double price, Court court) {
+    public Slot(int slot_id, String date, String time, Double price, Court court) {
         this.slot_id = slot_id;
         this.date = date;
         this.time = time;
@@ -134,11 +135,20 @@ public class Slot {
                 String street = rs.getString("street");
                 String town = rs.getString("mun_name");
 
+                //format the date and time variables
+                String pattern = "MM-dd-yyyy";
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+                String date_as_string = simpleDateFormat.format(date_slot);
+                
+                
+                String new_time = time.toString().substring(0,5);
+
+
                 //Construct the club object first
                 SportsClub club = new SportsClub(club_name,street,town);
                 Court court = new Court(court_name, sport_name,surface_name,club);
 
-                Slot slot = new Slot(slot_id,date_slot,time,price,court);
+                Slot slot = new Slot(slot_id,date_as_string,new_time,price,court);
     
                 
     
