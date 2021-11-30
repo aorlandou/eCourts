@@ -1,7 +1,3 @@
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
 <%@page import="java.util.*"%>
 <%@page import="ecourts_java.*"%>
 <%@page import="java.lang.*"%>
@@ -60,7 +56,7 @@ try {
 
 
 Slot slot = new Slot();
-List<Slot> slot_list = slot.getSlots(sport,date, municipality);
+List<Slot> slot_list = slot.getSlots(sport,date, municipality,0);
 
 int start;
 int stop;
@@ -95,12 +91,12 @@ if (slot_list.size()!= 0 ){
 %>
         <div class="col-md-4 ">
             <div class="project-wrap">
-               <a href="pre_booking.html" class="img" style="background-image: url(<%=photo_path%>);">
+               <a href="pre_booking.jsp?slot=<%=slt.getSlot_id()%>" class="img" style="background-image: url(<%=photo_path%>);">
                   <span class="price"><%= slt.getPrice().intValue()+ " €/hour" %></span>
               </a>
               <div class="text p-4">
                  <span class="days"><%=slt.getCourt().getSport()%></span>
-                 <h3><a href="pre_booking.html"><%=slt.getCourt().getClub().getName()%></a></h3>
+                 <h3><a href="pre_booking.jsp?slot=<%=slt.getSlot_id()%>"><%=slt.getCourt().getClub().getName()%></a></h3>
                  <p class="location"><span class="fa fa-map-marker"></span> <%=slt.getCourt().getClub().getStreet() + ", " +slt.getCourt().getClub().getTown() %></p>
                  <ul>
                     <li><span class="fa fa-calendar" style="width: fit-content;"></span><%=slt.getDate()%></li>

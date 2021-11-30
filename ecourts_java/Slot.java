@@ -68,7 +68,7 @@ public class Slot {
     }
 
 
-    public List<Slot> getSlots(int sport, String date, int municipality) {
+    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param) {
         
 
             List<Slot> slot_list = new ArrayList<Slot>();
@@ -95,6 +95,9 @@ public class Slot {
             if (municipality != 0){
                 query = query + " and sportsclub.municipality_id  = ?";
             }
+            if (slot_id_param != 0){
+                query = query + " and slot.slot_id  = ?";
+            }
             System.out.println(query);
 
 
@@ -112,6 +115,10 @@ public class Slot {
             }
             if (municipality != 0){
                 pstmt.setInt(param_num,municipality);
+                param_num = param_num +1;
+            }
+            if (slot_id_param != 0){
+                pstmt.setInt(param_num,slot_id_param);
             }
             
         
@@ -136,7 +143,7 @@ public class Slot {
                 String town = rs.getString("mun_name");
 
                 //format the date and time variables
-                String pattern = "MM-dd-yyyy";
+                String pattern = "dd-MM-yyyy";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 String date_as_string = simpleDateFormat.format(date_slot);
                 

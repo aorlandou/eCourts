@@ -1,3 +1,41 @@
+<%@page import="java.util.*"%>
+<%@page import="java.lang.*"%>
+<%@page import="ecourts_java.*"%>
+
+
+<%
+
+
+int slot_id;
+
+try {
+    
+    slot_id = Integer.parseInt(request.getParameter("slot"));    
+ }
+ catch (NumberFormatException e)
+ {
+    %>
+    <jsp:forward page="results.jsp" />
+    <%
+ }
+
+Slot slt = new Slot();
+List<Slot> slot_list = slt.getSlots(0, "",0,slot_id);
+Slot slot = slot_list.get(0);
+// call a get_details method from the Club class 
+
+
+
+
+
+%>
+
+
+
+
+
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -327,21 +365,21 @@
     <div class="p-5 mb-4 bg-light rounded-3" >
         <div class="container-fluid py-5">
           
-          <h1 class="display-5 fw-bold"><span class="text-muted">Court 3 Outdoors</span></h1>
+          <h1 class="display-5 fw-bold"><span class="text-muted"><%=slot.getCourt().getName()%> Outdoors</span></h1>
           <p class="col-md-8 fs-5" style="margin-bottom: 0; margin-top: 2%;"></p>
           
-          <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-calendar"></span> 17/11/2021   </p>
-          <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-clock-o"></span> 11:00,  2 hours</p>
+          <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-calendar" style="color: #f15d30;;" ></span> <%=slot.getDate()%>  </p>
+          <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-clock-o" style="color: #f15d30;;"></span> <%=slot.getTime()%>,  2 hours</p>
           
 
            <p class="col-md-8 fs-5"> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             width="24" height="24"
             viewBox="0 0 172 172"
             style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
-            Artificial Grass </p>
+            <%=slot.getCourt().getSurface() + " Court"%> </p>
 
 
-            
+
 
 
 
