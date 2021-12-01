@@ -85,28 +85,28 @@ public class Customer extends User{
         }
 
 
-        public void register(Customer customer){
+        public void register(){
             try
             {   
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
                 PreparedStatement pstmt=null;    
                 pstmt=con.prepareStatement("INSERT INTO users(email,phone,password,name,street,munic_id,zipcode,date_registered,type)VALUES(?,?,?,?,?,?,?,?,?);");
-                pstmt.setString(1,"kk@gmail.com");  
-                pstmt.setString(2,"6955300532");  
-                pstmt.setString(3,"123456wW");  
-                pstmt.setString(4,"Konstantina");  
-                pstmt.setString(5,"Aristeidou");  
+                pstmt.setString(1,super.getEmail());  
+                pstmt.setString(2,super.getPhone());  
+                pstmt.setString(3,super.getPassword());  
+                pstmt.setString(4,super.getName());  
+                pstmt.setString(5,super.getStreet());  
                 pstmt.setInt(6,1);    
-                pstmt.setString(7,"15234"); 
-                pstmt.setString(8,"1-12-2021");                 
+                pstmt.setString(7,super.getZip_code()); 
+                pstmt.setString(8,super.getRegister_date());                 
                 pstmt.setInt(9,0);    
                 pstmt.executeUpdate();                               
                 con.close();         
             }
             catch(Exception e)
             {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage());            
             }
         }
    
