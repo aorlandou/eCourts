@@ -16,6 +16,7 @@
     try{
         int id = 2;
         curClub = allclubs.findClub(id);
+        String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
     
 %>
     
@@ -249,7 +250,7 @@
 		</div>
 	</nav>
     <!-- END nav -->
-	<div class="hero-image " style="background-image: url('photos/ace_main.jpg');">
+	<div class="hero-image " style="background-image: url('images/sportsclub/<%=curClub.getUser_id()%>/background.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
@@ -257,7 +258,7 @@
 					
                 
 					<h1 class="mb-4" style="margin-left: 5%;"><%=curClub.getName()%> </h1>
-                    <h2 class="mb-4" style="margin-left: 5%; color: #fff ;font-family: Poppins, Arial, sans-serif;"><%=curClub.getStreet()%> </h2>
+                    <h2 class="mb-4" style="margin-left: 5%; color: #fff ;font-family: Poppins, Arial, sans-serif;"><%=munName%> </h2>
 					<p class="caps"></p>
 				</div>
 				
@@ -305,9 +306,9 @@
         <p style="font-size: large; margin-top: 5%;" >  <%=curClub.getAbout()%></p>
         
         <ul style="margin-top: 10%;">
-          <li>Location: Anthousas 9, Pallini </li>
-          <li>Email: info@ace.gr</li>
-          <li>Phone: 2106666725   </li>
+          <li><b>Location:</b> <%=curClub.getStreet()%>, <%=munName%> </li>
+          <li><b>Email:</b> <%=curClub.getEmail()%></li>
+          <li><b>Phone:</b> <%=curClub.getLinephone()%>  </li>
         </ul>
       </div>
       
@@ -337,14 +338,14 @@
 
           <div class="carousel-item active">
             <svg  class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-                <img src= "photos/Ace Sports Club/main.jpg" > style= "max-width: 500px" >
+                <img src= "images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery1.jpg" > style= "max-width: 500px" >
             <div class="container">
               
             </div>
           </div>
           <div class="carousel-item">
             <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            <img src= "photos/Ace Sports Club/2.jpg" >
+            <img src= "images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery2.jpg" >
             <div class="container">
               
             </div>
@@ -670,7 +671,7 @@
 
     </div>
 </div><!-- /.container -->
-    %>
+    
 
 
     <%

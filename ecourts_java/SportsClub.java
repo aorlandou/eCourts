@@ -1,5 +1,8 @@
 package ecourts_java;
 import java.sql.Connection;
+
+import javax.xml.crypto.dsig.spec.ExcC14NParameterSpec;
+
 import java.sql.*;
 
 public class SportsClub extends User{
@@ -92,9 +95,6 @@ public class SportsClub extends User{
             rs.getString("street"), rs.getInt("munic_id"), rs.getString("zipcode"), rs.getInt("num_courts"), rs.getString("line_phone"), 
             rs.getString("about"));
 
-            // User usr = new User( rs.getInt("idusers"), rs.getString("email"), rs.getString("phone"), rs.getString("name"),
-            // rs.getString("street"), rs.getInt("munic_id"), rs.getString("zipcode") );
-
             rs.close(); //closing ResultSet
             stmt.close(); //closing PreparedStatement
             data.closeConnection(); //closing Connection
@@ -116,6 +116,51 @@ public class SportsClub extends User{
         }
 		
 	}
+
+    public String getMunicipalityName(int munic_id) throws Exception{
+        DB data = new DB();
+		Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT mun_name FROM municipality WHERE mun_id=?";
+
+		try {
+            
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);
+
+            // setting parameter
+            stmt.setInt(1, munic_id);
+
+            rs = stmt.executeQuery();
+
+            if ( !rs.next() ) {
+                rs.close(); //closing ResultSet
+                stmt.close(); //closing PreparedStatement
+				return null;
+            }
+
+            String munName = rs.getString("mun_name");
+            rs.close(); //closing ResultSet
+            stmt.close(); //closing PreparedStatement
+            data.closeConnection(); //closing Connection
+
+            return munName;
+
+        } catch (Exception e) {
+
+            throw new Exception(e.getMessage());
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
+    }
 
 
 
