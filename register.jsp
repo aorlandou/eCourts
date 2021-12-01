@@ -37,8 +37,8 @@
 	
   }
 }else{
-	document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'Password must contain at least one number and one uppercase and lowercase letter, and at least 6 characters';
+	document.getElementById('message_pass1').style.color = 'red';
+    document.getElementById('message_pass1').innerHTML = 'Password must contain at least one number and one uppercase and lowercase letter, and at least 6 characters';
 	document.getElementById("register").disabled = true;
 
 }  
@@ -194,24 +194,24 @@
 					<h2>General Infomation </h2>					
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="name" onkeyup='check2();' id="name" 
+							<input type="text" name="name" oninput='check2();' id="name" 
 							class="input-text" placeholder="Name" >	
 							<span id='message_name'></span>							
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="surname" onkeyup='check3();'
+							<input type="text" name="surname" oninput='check3();'
 							 id="surname" class="input-text" placeholder="Surname" >
 							<span id='message_surname'></span>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="username" onkeyup='check4();' id="username" 
+							<input type="text" name="username" oninput='check4();' id="username" 
 							 class="input-text" placeholder="Userame" >
 							<span id='message_username'></span>							
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="birth" oninput='check5();' id="birth" placeholder="Birth date"
+							<input type="text" name="birth"  id="birth" placeholder="Birth date"
 							onfocus="(this.type='date')">
 							<span id='message_birth'></span>	
 						</div>
@@ -219,8 +219,8 @@
 					
 					
 					<div class="form-row">
-						<input type="password" name="password" onkeyup='check();' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-						title="Password must contain at least one number and one uppercase and lowercase letter, and at least 6 characters." class="password" id="password" placeholder="Password" >
+						<input type="password" name="password" onkeyup='check();' 
+						 class="password" id="password" placeholder="Password" >
 						<span id='message_pass1'></span>	
 					</div>
 					<div class="form-row">
@@ -246,7 +246,7 @@
 					</div>	
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="zip" onkeyup='check6();'  class="zip" id="zip" placeholder="Zip Code">
+							<input type="text" name="zip" oninput='check6();'  class="zip" id="zip" placeholder="Zip Code">
 							<span id='message_zip'></span>
 						</div>
 						<div class="form-row form-row-2">
@@ -255,11 +255,11 @@
 						</div>
 					</div>					
 					<div class="form-row">						
-						<input type="text" name="phone" onkeyup='check7();' class="phone" id="phone" placeholder="Phone Number">
+						<input type="text" name="phone" oninput='check7();' class="phone" id="phone" placeholder="Phone Number">
 						<span id='message_phone'></span>
 					</div>
 					<div class="form-row">
-						<input type="email" name="email" onkeyup='check8();' id="email"  class="input-text" placeholder="Your Email" >		
+						<input type="email" name="email" oninput='check8();' id="email"  class="input-text" placeholder="Your Email" >		
 						 <span id='message_email'></span>				
 					</div>
 					
