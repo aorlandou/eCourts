@@ -264,7 +264,7 @@
 					</div>
 					
 					<div class="form-row-last">
-						<input type="submit" name="register" class="register" id="register"  onclick="val()" value="Register">
+						<input type="submit" name="register" class="register" id="register"   value="Register">
 					</div>
 				</div>
 				
