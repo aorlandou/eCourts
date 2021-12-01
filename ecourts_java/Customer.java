@@ -36,7 +36,7 @@ public class Customer extends User{
 
             PreparedStatement pstmt=null;
     
-            pstmt=con.prepareStatement("select idusers from users where email=? ");
+            pstmt=con.prepareStatement("select idusers from users where email=? ;");
             pstmt.setString(1,email);    
             rs=pstmt.executeQuery();
             int i=0;
@@ -63,7 +63,7 @@ public class Customer extends User{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
             PreparedStatement pstmt=null;    
-            pstmt=con.prepareStatement("select idusers from users where phone=? ");
+            pstmt=con.prepareStatement("select idusers from users where phone=? ;");
             pstmt.setString(1,phone);    
             rs=pstmt.executeQuery();
             int i=0;
