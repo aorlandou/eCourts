@@ -21,6 +21,7 @@ public class Customer extends User{
     public String getDate_birth() {
         return this.date_birth;
     }
+   
 
     public void setDate_birth(String date_birth) {
         this.date_birth = date_birth;
@@ -90,16 +91,16 @@ public class Customer extends User{
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
                 PreparedStatement pstmt=null;    
-                pstmt=con.prepareStatement("INSERT INTO users(email,phone,password,name,street,munic_id,zipcode,date_registered,type) VALUES (?,?,?,?,?,?,?,?,?);");
-                pstmt.setString(1,customer.getEmail());  
-                pstmt.setString(2,customer.getPhone());  
-                pstmt.setString(3,customer.getPassword());  
-                pstmt.setString(4,customer.getName());  
-                pstmt.setString(5,customer.getStreet());  
+                pstmt=con.prepareStatement("INSERT INTO users(email,phone,password,name,street,munic_id,zipcode,date_registered,type)VALUES(?,?,?,?,?,?,?,?,?);");
+                pstmt.setString(1,"kk@gmail.com");  
+                pstmt.setString(2,"6955300532");  
+                pstmt.setString(3,"123456wW");  
+                pstmt.setString(4,"Konstantina");  
+                pstmt.setString(5,"Aristeidou");  
                 pstmt.setInt(6,1);    
-                pstmt.setString(7,customer.getZip_code()); 
-                pstmt.setString(8,customer.getRegister_date());                 
-                pstmt.setInt(1,0);    
+                pstmt.setString(7,"15234"); 
+                pstmt.setString(8,"1-12-2021");                 
+                pstmt.setInt(9,0);    
                 pstmt.executeUpdate();                               
                 con.close();         
             }

@@ -1,3 +1,19 @@
+<%@ page import ="java.util.ArrayList"%>
+<%@ page import ="java.util.List"%>
+<%@ page import ="ecourts_java.*"%>
+
+<%String email=request.getParameter("email");
+String password=request.getParameter("password");
+%>
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,16 +41,18 @@
                 <img src="images/LOGO2-01.png" alt="logo" class="logo" style="display: block;margin-left: 0px; margin-top: -25px;margin-bottom: auto; margin-right: auto;margin-bottom: -10px;width: 130px; height: 70px;">
               </div>
               <p class="login-card-description">Sign into your account</p>
-              <form action="#!">
+              <form action="login_validation.jsp" method="post" onsubmit="valthisform()">
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
                     <input type="email" name="email" id="email" class="form-login" placeholder="Email or Phone">
+                    <span id='message_email'></span>	
                   </div>
                   <div class="form-group mb-4">
                     <label for="password" class="sr-only">Password</label>
                     <input type="password" name="password" id="password" class="form-login" placeholder="Password">
+                    <span id='message_pass1'></span>	
                   </div>
-                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login" onclick="location.href='home.html'";>
+                  <input name="login" id="login"  class="btn btn-block login-btn mb-4" type="button" value="Login" onclick="location.href='home.html'";>
                 </form>
                 
                 <p class="login-card-footer-text">Don't have an account? <a href="register.html" class="text-reset">Register here</a></p>
@@ -42,6 +60,26 @@
                   <a href="#!">Terms of use.</a>
                   <a href="#!">Privacy policy</a>
                 </nav>
+
+                <script>					
+                  function valthisform() {                   
+                    var email=document.getElementById('email').value;
+                    var password=document.getElementById('password').value;
+                    
+                     if (password.length==0) {		
+                                  document.getElementById('message_pass1').style.color = 'red';
+                                  document.getElementById('message_pass1').innerHTML = 'Please fill out this field';
+                                event.preventDefault();	
+                                 }                   
+                     if (email.length==0) {		
+                                   document.getElementById('message_email').style.color = 'red';
+                                   document.getElementById('message_email').innerHTML = 'Please fill out this field';
+                                 event.preventDefault();
+            
+                                }  
+                     
+                  }					
+                </script>
             </div>
           </div>
         </div>
