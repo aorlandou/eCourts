@@ -2,8 +2,7 @@ package ecourts_java;
 
 class User{
     private static int user_id=0;
-    private String name;
-    private String surname;
+    private String name;   
     private String email;
     private String phone;
     private String street;
@@ -14,10 +13,10 @@ class User{
     private String register_date;
 
 
-    public User(String name, String surname, String email, String phone, String street, String town, String street_number, String zip_code, String password, String register_date) {
+    public User(String name,  String email, String phone, String street, String town, String street_number, String zip_code, String password, String register_date) {
         
         this.name = name;
-        this.surname = surname;
+     
         this.email = email;
         this.phone = phone;
         this.street = street;
@@ -45,13 +44,7 @@ class User{
         this.name = name;
     }
 
-    public String getSurname() {
-        return this.surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+  
 
     public String getEmail() {
         return this.email;
