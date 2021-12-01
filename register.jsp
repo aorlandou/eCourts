@@ -19,15 +19,15 @@
   const button = document.querySelector('register');
   var pass=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (document.getElementById('password').value.match(pass)){
+	document.getElementById('message_pass1').innerHTML = ''; 
   if (document.getElementById('password').value ==
     document.getElementById('confirm').value) {
 		if (document.getElementById('password').value=="" && document.getElementById('confirm').value==""){
 		document.getElementById('message').innerHTML = '';
 		document.getElementById("register").disabled = false;
 	
-	}else{
-    document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = 'matching';
+	}else{    
+    document.getElementById('message').innerHTML = '';
 	document.getElementById("register").disabled = false;
 	}
   } else {	

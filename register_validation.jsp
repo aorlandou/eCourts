@@ -20,9 +20,10 @@
 		Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
         String register_date = formatter.format(date);
-		Customer customer= new Customer(name,surname,username,email,phone,street,
+		Customer customer= new Customer(name,username,surname,email,phone,street,
 		town,street_number,zip,password,register_date,birth_date);
 		if (customer.checkEmail(email) && customer.checkPhone(phone)){ %>
+			customer.register(customer);
 			<jsp:forward page="confirm_register.jsp" /> 
 			
 		<%}
@@ -52,15 +53,15 @@
   const button = document.querySelector('register');
   var pass=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (document.getElementById('password').value.match(pass)){
+	document.getElementById('message_pass1').innerHTML = ''; 
   if (document.getElementById('password').value ==
     document.getElementById('confirm').value) {
 		if (document.getElementById('password').value=="" && document.getElementById('confirm').value==""){
 		document.getElementById('message').innerHTML = '';
 		document.getElementById("register").disabled = false;
 	
-	}else{
-    document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = 'matching';
+	}else{    
+    document.getElementById('message').innerHTML = '';
 	document.getElementById("register").disabled = false;
 	}
   } else {	
