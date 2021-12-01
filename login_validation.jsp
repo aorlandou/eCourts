@@ -13,7 +13,6 @@ String password=request.getParameter("password");
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +26,41 @@ String password=request.getParameter("password");
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/login.css">
 </head>
+
+<script>
+var check = function() {
+  const button = document.querySelector('register');
+  const email=document.getElementById('email').value;
+  if (email.length!=0) {		
+  document.getElementById('message_email').innerHTML = '';
+     if(document.getElementById('password').value!=""){
+      document.getElementById("login").disabled = false;
+
+     }
+	
+  }   
+
+}
+</script>
+
+<script>
+  var check2 = function() {
+    const button = document.querySelector('register');
+    const password=document.getElementById('password').value;  
+    if (password.length!=0) {		
+    document.getElementById('message_pass1').innerHTML = '';
+    if(document.getElementById('email').value!=""){
+      document.getElementById("login").disabled = false;
+
+     }
+   	
+    }   
+  
+  }
+  </script>
+
+
+
 <body>
   <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
     <div class="container">
@@ -44,15 +78,37 @@ String password=request.getParameter("password");
               <form action="login_validation.jsp" method="post" onsubmit="valthisform()">
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
-                    <input type="email" name="email" id="email" class="form-login" placeholder="Email or Phone">
+                    <input type="text" name="email" id="email" oninput="check()" value="<%=email%>" class="form-login" placeholder="Email or Phone">
                     <span id='message_email'></span>	
                   </div>
                   <div class="form-group mb-4">
                     <label for="password" class="sr-only">Password</label>
-                    <input type="password" name="password" id="password" class="form-login" placeholder="Password">
+                    <input type="password" name="password" id="password" value="<%=password%>" oninput="check2()" class="form-login" placeholder="Password">
                     <span id='message_pass1'></span>	
                   </div>
-                  <input name="login" id="login"  class="btn btn-block login-btn mb-4" type="button" value="Login" onclick="location.href='home.html'";>
+                  <input name="login"  id="login"  class="btn btn-block login-btn mb-4" type="submit" value="Login" >
+
+                  <script>					
+                    function valthisform() {                   
+                      var email=document.getElementById('email').value;
+                      var password=document.getElementById('password').value;
+                      const button = document.querySelector('login');
+                      
+                       if (password.length==0) {		
+                                    document.getElementById('message_pass1').style.color = 'red';
+                                    document.getElementById('message_pass1').innerHTML = 'Please fill out this field';
+                                    event.preventDefault();
+                                   }                   
+                       if (email.length==0) {		
+                                     document.getElementById('message_email').style.color = 'red';
+                                     document.getElementById('message_email').innerHTML = 'Please fill out this field';
+                                     event.preventDefault();
+                                     
+              
+                                  }                    
+                       
+                    }					
+                  </script>
                 </form>
                 
                 <p class="login-card-footer-text">Don't have an account? <a href="register.html" class="text-reset">Register here</a></p>
@@ -61,25 +117,7 @@ String password=request.getParameter("password");
                   <a href="#!">Privacy policy</a>
                 </nav>
 
-                <script>					
-                  function valthisform() {                   
-                    var email=document.getElementById('email').value;
-                    var password=document.getElementById('password').value;
-                    
-                     if (password.length==0) {		
-                                  document.getElementById('message_pass1').style.color = 'red';
-                                  document.getElementById('message_pass1').innerHTML = 'Please fill out this field';
-                                event.preventDefault();	
-                                 }                   
-                     if (email.length==0) {		
-                                   document.getElementById('message_email').style.color = 'red';
-                                   document.getElementById('message_email').innerHTML = 'Please fill out this field';
-                                 event.preventDefault();
-            
-                                }  
-                     
-                  }					
-                </script>
+                
             </div>
           </div>
         </div>
