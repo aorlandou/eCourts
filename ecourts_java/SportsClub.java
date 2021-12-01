@@ -1,32 +1,27 @@
 package ecourts_java;
+import java.sql.Connection;
+import java.sql.*;
 
-public class SportsClub {
+public class SportsClub extends User{
     
-    private int club_id;
-    private String name;
     private String owners_name;
-    private String street;
-    private String town;
-    private int zip_code;
-    private String email;
-    private String phone;
-    private String mobile;
+    private int numofcourts;
+    private String linephone;
     private String about;
-
-    public int getClub_id() {
-        return club_id;
+    public int getNumofcourts() {
+        return numofcourts;
     }
 
-    public void setClub_id(int club_id) {
-        this.club_id = club_id;
+    public void setNumofcourts(int numofcourts) {
+        this.numofcourts = numofcourts;
     }
 
-    public String getName() {
-        return name;
+    public String getLinephone() {
+        return linephone;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLinephone(String linephone) {
+        this.linephone = linephone;
     }
 
     public String getOwners_name() {
@@ -37,54 +32,6 @@ public class SportsClub {
         this.owners_name = owners_name;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getTown() {
-        return town;
-    }
-
-    public void setTown(String town) {
-        this.town = town;
-    }
-
-    public int getZip_code() {
-        return zip_code;
-    }
-
-    public void setZip_code(int zip_code) {
-        this.zip_code = zip_code;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
     public String getAbout() {
         return about;
     }
@@ -93,27 +40,82 @@ public class SportsClub {
         this.about = about;
     }
 
-    public SportsClub(int club_id, String name, String owners_name, String street, String town, int zip_code,
-            String email, String phone, String mobile, String about) {
-        this.club_id = club_id;
-        this.name = name;
+    public SportsClub(String name,  String email, String phone, String street, String town, String street_number, String zip_code, String password, String register_date,
+     String owners_name, int numofcourts, String linephone, String about) {
+        
+        super(name, email, phone, street, town, street_number, zip_code, password, register_date);
         this.owners_name = owners_name;
-        this.street = street;
-        this.town = town;
-        this.zip_code = zip_code;
-        this.email = email;
-        this.phone = phone;
-        this.mobile = mobile;
+        this.numofcourts = numofcourts;
+        this.linephone = linephone;
         this.about = about;
     }
 
-    public SportsClub(String name, String street, String town) {
-        this.name = name;
-        this.street = street;
-        this.town = town;
+    public SportsClub(String name, String street, String town){
+        super(name, street, town);
+    }
+
+    public SportsClub(int user_id, String email, String phone, String name, String street, int munic_id, String zip_code,int num_courts, String linephone, String about){
+        super(user_id, email, phone, name, street, munic_id, zip_code);
+        this.numofcourts = num_courts;
+        this.linephone = linephone;
+        this.about = about;
+    }
+
+    public SportsClub(){
+        super();
     }
     
+    public SportsClub findClub (int clubid) throws Exception {
+        DB data = new DB();
+		Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT idusers, email, phone, name, street, munic_id, zipcode, num_courts, line_phone, about FROM users , sportscl_users WHERE id=idusers AND id=?";
 
+		try {
+            
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);
+
+            // setting parameter
+            stmt.setInt(1, clubid);
+
+            rs = stmt.executeQuery();
+
+            if ( !rs.next() ) {
+                rs.close(); //closing ResultSet
+                stmt.close(); //closing PreparedStatement
+				return null;
+            }
+
+            SportsClub curClub = new SportsClub(rs.getInt("idusers"), rs.getString("email"), rs.getString("phone"), rs.getString("name"),
+            rs.getString("street"), rs.getInt("munic_id"), rs.getString("zipcode"), rs.getInt("num_courts"), rs.getString("line_phone"), 
+            rs.getString("about"));
+
+            // User usr = new User( rs.getInt("idusers"), rs.getString("email"), rs.getString("phone"), rs.getString("name"),
+            // rs.getString("street"), rs.getInt("munic_id"), rs.getString("zipcode") );
+
+            rs.close(); //closing ResultSet
+            stmt.close(); //closing PreparedStatement
+            data.closeConnection(); //closing Connection
+
+            return curClub;
+
+        } catch (Exception e) {
+
+            throw new Exception(e.getMessage());
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
+		
+	}
 
 
 
