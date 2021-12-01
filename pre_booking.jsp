@@ -21,12 +21,17 @@ try {
 
 Slot slt = new Slot();
 List<Slot> slot_list = slt.getSlots(0, "",0,slot_id);
-Slot slot = slot_list.get(0);
+    if (slot_list.size()== 0){
+        %>
+        <jsp:forward page="results.jsp" />
+        <%
+    }
+
 // call a get_details method from the Club class 
 
 
 
-
+Slot slot = slot_list.get(0);
 
 %>
 
