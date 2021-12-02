@@ -1,7 +1,7 @@
 package ecourts_java;
 import java.sql.*;
 
-class User{
+public class User{
     private int user_id;
     private String name;   
     private String email;
