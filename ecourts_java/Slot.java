@@ -68,7 +68,7 @@ public class Slot {
     }
 
 
-    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param) {
+    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param, int club_id_param) {
         
 
             List<Slot> slot_list = new ArrayList<Slot>();
@@ -83,7 +83,7 @@ public class Slot {
 
 
             
-            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, municipality.mun_name  from slot, court, sport, surface, municipality, sportscl_users, users where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id ";
+            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name  from slot, court, sport, surface, municipality, sportscl_users, users where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id ";
 
             if(sport != 0){
                 query = query + "and court.sport_id = ?";
@@ -97,6 +97,9 @@ public class Slot {
             }
             if (slot_id_param != 0){
                 query = query + " and slot.slot_id  = ?";
+            }
+            if (club_id_param != 0){
+                query = query + " and users.idusers  = ?";
             }
             System.out.println(query);
 
@@ -119,6 +122,10 @@ public class Slot {
             }
             if (slot_id_param != 0){
                 pstmt.setInt(param_num,slot_id_param);
+                param_num = param_num +1;
+            }
+            if (club_id_param != 0){
+                pstmt.setInt(param_num,club_id_param);
             }
             
         
@@ -130,7 +137,7 @@ public class Slot {
             {
                 
                 
-    
+                int club_id  = rs.getInt("idusers");
                 int slot_id =rs.getInt("slot_id");
                 Date date_slot = rs.getDate("date");
                 Time time = rs.getTime("time_start");
@@ -152,7 +159,7 @@ public class Slot {
 
 
                 //Construct the club object first
-                SportsClub club = new SportsClub(club_name,street,town);
+                SportsClub club = new SportsClub(club_id,club_name,street,town);
                 Court court = new Court(court_name, sport_name,surface_name,club);
 
                 Slot slot = new Slot(slot_id,date_as_string,new_time,price,court);

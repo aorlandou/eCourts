@@ -7,18 +7,45 @@
   <head>
 <% 
     
-    //User user = (User)session.getAttribute("sportsUser");
+//User user = (User)session.getAttribute("sportsUser");
 
-    //int sportId = request.getParameter("spId");
+
+int spid;
+try {
+    
+  spid = Integer.parseInt(request.getParameter("spid"));    
+}
+catch (NumberFormatException e)
+{
+  %>
+  <jsp:forward page="home.html" />
+  <%
+}
+
+
+
+    
+
+    
     SportsClub allclubs = new SportsClub();
     SportsClub curClub = null;
 
-    try{
-        int id = 2;
-        curClub = allclubs.findClub(id);
-        String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
+ 
+curClub = allclubs.findClub(spid);
+if (curClub== null){
+  %>
+        <jsp:forward page="home.html" />
+  <%
+}
+
+String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
     
+        
+        
+
 %>
+    
+
     
     
   <title><%=curClub.getName()%></title>
@@ -207,12 +234,41 @@
         }
       }
     </style>
+  
+  <script>
+
+
+      function getSlots(page_num,club_id) {
+        
+        var sport= $('#sport').val();
+        var date= $('#date').val();
+        
+        console.log("I've been called");
+        console.log(page_num);
+        
+  
+  
+        $.ajax({
+        url: "getslots.jsp",
+        type: 'POST',
+        data: {sport: sport, date: date, p:page_num, club_id: club_id},
+        success: function(data) {
+        
+        document.getElementById("res").innerHTML = data;
+  
+        
+        }
+        });
+        }
+
+
+    </script>
 
     <!-- Custom styles for this template -->
     <link href="css/carousel.css" rel="stylesheet">
   </head>
 
-  <body style="padding-top: 0rem; padding-bottom: 0px; background-color: #f3f3f3;">
+  <body style="padding-top: 0rem; padding-bottom: 0px; background-color: #f3f3f3;" onload="getSlots(1,'<%=spid%>')" >
 
 
     
@@ -402,15 +458,16 @@
 											<div class="row no-gutters">
 
 
-                                                <div class="col-md d-flex">
+                        <div class="col-md d-flex">
 													<div class="form-group p-4">
 														<label for="#">Sport</label>
 														<div class="form-field">
 															<div class="select-wrap">
 																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="" id="" class="form-control">
-																	<option value="">Tennis</option>
-																	<option value="">Padel</option>
+																<select name="" id="sport" class="form-control" onchange="getSlots(1, '<%=spid%>')">
+                                  <option value="1">Tennis</option>
+                                  <option value="2">Football</option>
+                                  <option value="3">Padel</option>
 																	
 																
 																</select>
@@ -420,7 +477,7 @@
 												</div>
 
 
-                                                <div class="col-md d-flex">
+                        <div class="col-md d-flex">
 													<div class="form-group p-4">
 														<label for="#">Court</label>
 														<div class="form-field">
@@ -429,7 +486,7 @@
 																<select name="" id="" class="form-control">
 																	<option value="">Court 1 </option>
 																	<option value="">Court 2</option>
-                                                                    <option value="">Court 3 </option>
+                                  <option value="">Court 3 </option>
 																	<option value="">Court 4</option>
 																	
 																
@@ -453,7 +510,7 @@
 														<label for="#">Date</label>
 														<div class="form-field">
 															<div class="icon"><span class="fa fa-calendar"></span></div>
-															<input type="text" class="form-control checkin_date" placeholder="Check In Date">
+                              <input type="date" id = "date" class="form-control " placeholder="Choose Date" value="" onchange="getSlots(1,'<%=spid%>')">
 														</div>
 													</div>
 												</div>
@@ -463,23 +520,7 @@
 														<input type="time" id="appt" name="appt">
 													</div>		
 												</div>
-												<div class="col-md d-flex">
-													<div class="form-group p-4">
-														<label for="#"> Duration</label>
-														<div class="form-field">
-															<div class="select-wrap">
-																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="" id="" class="form-control">
-																	<option value="">1 hour</option>
-																	<option value="">2 hours</option>
-																	<option value="">3 hours</option>
-																	
-																
-																</select>
-															</div>
-														</div>
-													</div>
-												</div>
+												
 												<div class="col-md d-flex">
 													<div class="form-group d-flex w-100 border-0">
 														<div class="form-field w-100 align-items-center d-flex">
@@ -576,92 +617,18 @@
 
 
 
-
+    <div id = "here"></div>
 
     <section class="ftco-section">
 			<div class="container">
 				<div class="row justify-content-center pb-4">
 					
 				</div>
-				<div class="row">
+				<div class="row" id ="res">
 
 
-
-                        <div class="col-md-4 ftco-animate" id = "first_choice">
-                        <div class="project-wrap">
-                            <a href="pre_booking.html#Slot"  class="img" style="background-image: url(photos/AceSportsClub/Court1.jpg);" >
-                            <span class="price">20 € hour</span>
-                            </a>
-                            <div class="text p-4">
-                            <span class="days">Tennis</span>
-                            <h3><a href="#">Court 1 Indoor</a></h3>
-                            
-                                
-                                <p class="location"><span class="fa fa-calendar"></span> 13/11/2021 </p>
-                                <p class="location"><span class="fa fa-clock-o"></span> 11:00</p>
-                                <p class="location"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                            
-                            </div>
-                        </div>
-                        </div>
 
                         
-                        <div class="col-md-4 ftco-animate" id = "first_choice">
-                            <div class="project-wrap">
-                                <a href="pre_booking.html#Slot"  class="img" style="background-image: url(photos/AceSportsClub/Court2.jpg);" >
-                                <span class="price">15 € hour</span>
-                                </a>
-                                <div class="text p-4">
-                                <span class="days">Tennis</span>
-                                <h3><a href="#">Court 2 Outdoor</a></h3>
-                                
-                                    
-                                    <p class="location"><span class="fa fa-calendar"></span> 13/11/2021 </p>
-                                    <p class="location"><span class="fa fa-clock-o"></span> 16:00</p>
-                                    <p class="location"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                                
-                                </div>
-                            </div>
-                            </div>
-
-                            <div class="col-md-4 ftco-animate" id = "first_choice">
-                                <div class="project-wrap">
-                                    <a href="pre_booking.html#Slot"  class="img" style="background-image: url(photos/AceSportsClub/Court2.jpg);" >
-                                    <span class="price">15 € hour</span>
-                                    </a>
-                                    <div class="text p-4">
-                                    <span class="days">Tennis</span>
-                                    <h3><a href="#">Court 2 Outdoor</a></h3>
-                                    
-                                        
-                                        <p class="location"><span class="fa fa-calendar"></span> 13/11/2021 </p>
-                                        <p class="location"><span class="fa fa-clock-o"></span> 18:00</p>
-                                        <p class="location"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                                    
-                                    </div>
-                                </div>
-                                </div>
-
-
-                                <div class="col-md-4 ftco-animate" id = "first_choice">
-                                    <div class="project-wrap">
-                                        <a href="pre_booking.html#Slot"  class="img" style="background-image: url(photos/AceSportsClub/ace-padel1.jpg);" >
-                                        <span class="price">15 € hour</span>
-                                        </a>
-                                        <div class="text p-4">
-                                        <span class="days">padel</span>
-                                        <h3><a href="#">Court 2 Outdoor</a></h3>
-                                        
-                                            
-                                            <p class="location"><span class="fa fa-calendar"></span> 13/11/2021 </p>
-                                            <p class="location"><span class="fa fa-clock-o"></span> 16:00</p>
-                                            <p class="location"><span class="fa fa-credit-card-alt"></span> Artificiall Grass</p>
-                                        
-                                        </div>
-                                    </div>
-                                    </div>
-
-
 				</div>
 			</div>
 		</section>
@@ -674,14 +641,7 @@
     
 
 
-    <%
-    } catch (Exception e){
-        request.setAttribute("message", e.getMessage());
-        %>
-        <div class="alert alert-danger text-center" role="alert">
-            <%=(String)request.getAttribute("message") %>
-        </div>
-    <% }%>
+  
 
 
 
@@ -753,20 +713,20 @@
   </body>
    
   <script src="js/jquery.min.js"></script>
-			<script src="js/jquery-migrate-3.0.1.min.js"></script>
-			<script src="js/popper.min.js"></script>
-			<script src="js/bootstrap.min.js"></script>
-			<script src="js/jquery.easing.1.3.js"></script>
-			<script src="js/jquery.waypoints.min.js"></script>
-			<script src="js/jquery.stellar.min.js"></script>
-			<script src="js/owl.carousel.min.js"></script>
-			<script src="js/jquery.magnific-popup.min.js"></script>
-			<script src="js/jquery.animateNumber.min.js"></script>
-			<script src="js/bootstrap-datepicker.js"></script>
-			<script src="js/scrollax.min.js"></script>
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-			<script src="js/google-map.js"></script>
-			<script src="js/main.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
 
 
 
@@ -774,6 +734,5 @@
 
 
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="js/bootstrap.bundle.min.js"></script>
+ 
 </html>

@@ -9,13 +9,19 @@
 
 <%
 int sport;
-
-
 String date;
 int municipality;
 int p; 
+int club_id ; 
 
-
+try {
+    
+    club_id = Integer.parseInt(request.getParameter("club_id"));
+ }
+ catch (NumberFormatException e)
+ {
+    club_id = 0;
+ }
 try {
     
     p = Integer.parseInt(request.getParameter("p"));    
@@ -56,7 +62,7 @@ try {
 
 
 Slot slot = new Slot();
-List<Slot> slot_list = slot.getSlots(sport,date, municipality,0);
+List<Slot> slot_list = slot.getSlots(sport,date, municipality,0,club_id);
 
 int start;
 int stop;
@@ -146,7 +152,7 @@ if (slot_list.size()!= 0 ){
 
 
 %>
-            <li class="<%=cl%>"><a href="#here" onclick="getSlots('<%=i+1%>')"><%= i +1%></a></li>
+            <li class="<%=cl%>"><a href="#here" onclick="getSlots('<%=i+1%>','<%=club_id%>')"><%= i +1%></a></li>
 <%              
             }
 %>

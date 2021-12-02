@@ -58,7 +58,7 @@
         $.ajax({
         url: "getslots.jsp",
         type: 'POST',
-        data: {sport: sport, date: date, municipality: municipality, p:page_num},
+        data: {sport: sport, date: date, municipality: municipality, p:page_num,club_id:0},
         success: function(data) {
         
         document.getElementById("res").innerHTML = data;

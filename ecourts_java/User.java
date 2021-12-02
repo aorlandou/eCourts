@@ -226,6 +226,13 @@ public class User{
         this.register_date = register_date;
     }
 
+    public User(int user_id, String name, String street, String town) {
+        this.user_id = user_id;
+        this.name = name;
+        this.street = street;
+        this.town = town;
+    }
+
 
 
 

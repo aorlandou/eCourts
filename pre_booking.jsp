@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="java.lang.*"%>
 <%@page import="ecourts_java.*"%>
@@ -19,19 +20,24 @@ try {
     <%
  }
 
+ 
+
 Slot slt = new Slot();
-List<Slot> slot_list = slt.getSlots(0, "",0,slot_id);
+List<Slot> slot_list = slt.getSlots(0, "",0,slot_id,0);
     if (slot_list.size()== 0){
         %>
         <jsp:forward page="results.jsp" />
         <%
     }
 
-// call a get_details method from the Club class 
-
-
 
 Slot slot = slot_list.get(0);
+// call a get_details method from the Club class 
+SportsClub clb = new SportsClub();
+SportsClub club = clb.findClub(slot.getCourt().getClub().getUser_id());
+String munName = clb.getMunicipalityName(club.getMunic_id());
+
+
 
 %>
 
@@ -85,6 +91,8 @@ Slot slot = slot_list.get(0);
     <link rel="stylesheet" href="css/min_new.css">
 
     <link rel="stylesheet" href="css/style.css">
+
+    
 
 
   
@@ -286,15 +294,15 @@ Slot slot = slot_list.get(0);
 		</div>
 	</nav>
     <!-- END nav -->
-	<div class="hero-image " style="background-image: url('photos/ace_main.jpg');">
+	<div class="hero-image " style="background-image: url('images/sportsclub/<%=club.getUser_id()%>/background.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
 				<div class="col-md-7 ftco-animate">
 					
                 
-					<h1 class="mb-4" style="margin-left: 5%;">Ace Sports Club </h1>
-                    <h2 class="mb-4" style="margin-left: 5%; color: #fff ;font-family: Poppins, Arial, sans-serif;">Pallini </h2>
+					<h1 class="mb-4" style="margin-left: 5%;"><%=club.getName()%></h1>
+                    <h2 class="mb-4" style="margin-left: 5%; color: #fff ;font-family: Poppins, Arial, sans-serif;"><%=munName%> </h2>
 					<p class="caps"></p>
 				</div>
 				
@@ -339,12 +347,15 @@ Slot slot = slot_list.get(0);
           
         
         
-        <p style="font-size: large; margin-top: 5%;" >  Ετοιμαστείτε για μία πρωτόγνωρη εμπειρία που θα πάει το τένις σε άλλο επίπεδο. Το ACE club4tennis είναι ένας από τα ελάχιστα Club στην Ελλάδα που διαθέτει στεγασμένα γήπεδα τένις. Και μάλιστα όχι ένα αλλά 3 στεγασμένα γήπεδα υψηλών προδιαγραφών. Αυτό  σημαίνει ότι ανεξαρτήτως εποχής και καιρού, εσείς θα είστε σε θέση να παίξετε το παιχνίδι σας όποτε το θελήσετε. Σε μία έκταση 14 στρεμμάτων λίγο έξω από τα όρια της Αθήνας, στην Παλλήνη-Ανθούσα και με εύκολη πρόσβαση (Μετρό-Αττική οδός – Λ.Μαραθώνος), το ACE  club4tennis έχει μετατραπεί πλέον σε έναν πλήρη αθλητικό πολυχώρο για τους φίλους του τένις  αλλά και για όλη την οικογένεια. Αποτελεί τον τέλειο προορισμό για όλο το χρόνο καθώς η άθληση, η χαλάρωση και η διασκέδαση συνδυάζονται αρμονικά σε έναν προσεγμένο και ευχάριστο χώρο.</p>
+        <p style="font-size: large; margin-top: 5%;" > <%= club.getAbout()%> </p>
         
         <ul style="margin-top: 10%;">
-          <li>Location: Anthousas 9, Pallini </li>
-          <li>Email: info@ace.gr</li>
-          <li>Phone: 2106666725   </li>
+          <li><b>Location:</b> <%=club.getStreet()%>, <%=munName%> </li>
+          <li><b>Email:</b> <%=club.getEmail()%></li>
+          <li><b>Phone:</b> <%=club.getLinephone()%>  </li>
+          
+          
+          
         </ul>
       </div>
       
@@ -352,7 +363,7 @@ Slot slot = slot_list.get(0);
 
       <div class="col-md-5">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" style="margin-top: 20%;" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#f3f3f3"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-          <image  href = "photos/Ace Sports Club/side.jpg" style="width: 400px;height: 500px"></image>
+          <image  href = "images/sportsclub/<%=club.getUser_id()%>/logo.jpg" style="width: 400px;height: 500px"></image>
         </svg>
             
       </div>

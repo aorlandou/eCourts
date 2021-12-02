@@ -162,6 +162,10 @@ public class SportsClub extends User{
         }
     }
 
+    public SportsClub(int user_id, String name, String street, String town) {
+        super(user_id, name, street, town);
+    }
+
 
 
 }
