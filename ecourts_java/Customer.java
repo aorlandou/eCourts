@@ -91,7 +91,7 @@ public class Customer extends User{
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
                 PreparedStatement pstmt=null;    
-                pstmt=con.prepareStatement("INSERT INTO users(email,phone,password,name,street,munic_id,zipcode,date_registered,type)VALUES(?,?,?,?,?,?,?,?,?);");
+                pstmt=con.prepareStatement("INSERT INTO users(email,phone,password,name,street,munic_id,zipcode,date_registered,type) VALUES (?,?,?,?,?,?,?,?,?);");
                 pstmt.setString(1,super.getEmail());  
                 pstmt.setString(2,super.getPhone());  
                 pstmt.setString(3,super.getPassword());  
