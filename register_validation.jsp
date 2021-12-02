@@ -23,8 +23,10 @@
 		Customer customer= new Customer(name,username,surname,email,phone,street,town,street_number,zip,password,register_date,birth_date);
 		if (customer.checkEmail(email) && customer.checkPhone(phone)){ 
 			try{			
-			user_id=customer.register(); %>
-			<jsp:forward page="confirm_register.jsp" /> 
+			user_id=customer.register();
+			boolean register=true;
+			session.setAttribute("register", register); %>
+			<jsp:forward page="home.html" /> 
 			
 		<%}catch (Exception e){
 			System.out.print("error");
