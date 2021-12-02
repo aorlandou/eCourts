@@ -83,7 +83,7 @@ public class Slot {
 
 
             
-            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, court.name as court_name, sport.name as sport_name, surface.name as surface_name, sportsclub.name as club_name, sportsclub.street, municipality.mun_name from slot, court, sportsclub, sport, surface, municipality where slot.court_id = court.court_id and court.sportsclub_id = sportsclub.sportsclub_id and court.surface_id = surface.surface_id and sportsclub.municipality_id = municipality.mun_id and court.sport_id = sport.sport_id ";
+            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, municipality.mun_name  from slot, court, sport, surface, municipality, sportscl_users, users where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id ";
 
             if(sport != 0){
                 query = query + "and court.sport_id = ?";
@@ -93,7 +93,7 @@ public class Slot {
                 query = query + " and slot.date = ?";
             }
             if (municipality != 0){
-                query = query + " and sportsclub.municipality_id  = ?";
+                query = query + " and users.munic_id  = ?";
             }
             if (slot_id_param != 0){
                 query = query + " and slot.slot_id  = ?";

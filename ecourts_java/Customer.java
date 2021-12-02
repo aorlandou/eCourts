@@ -85,13 +85,15 @@ public class Customer extends User{
         }
 
 
-        public void register(){
+        public int register(){
             try
-            {   
+
+            {  
+                ResultSet rs=null;
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
                 PreparedStatement pstmt=null;    
-                pstmt=con.prepareStatement("INSERT INTO users(email,phone,password,name,street,munic_id,zipcode,date_registered,type)VALUES(?,?,?,?,?,?,?,?,?);");
+                pstmt=con.prepareStatement("INSERT INTO users(email,phone,password,name,street,munic_id,zipcode,date_registered,type) VALUES (?,?,?,?,?,?,?,?,?);");
                 pstmt.setString(1,super.getEmail());  
                 pstmt.setString(2,super.getPhone());  
                 pstmt.setString(3,super.getPassword());  
@@ -101,13 +103,31 @@ public class Customer extends User{
                 pstmt.setString(7,super.getZip_code()); 
                 pstmt.setString(8,super.getRegister_date());                 
                 pstmt.setInt(9,0);    
-                pstmt.executeUpdate();                               
-                con.close();         
+                pstmt.executeUpdate();  
+                pstmt=con.prepareStatement("select * from users where phone=? ;");
+                pstmt.setString(1,super.getPhone()); 
+                  
+                rs=pstmt.executeQuery();
+                
+                while(rs.next()){              
+                pstmt=con.prepareStatement("INSERT INTO client_users(id,surname,birthdate,username) VALUES (?,?,?,?);");
+                pstmt.setInt(1,rs.getInt("idusers"));  
+                pstmt.setString(2,this.getSurname());  
+                pstmt.setString(3,this.getDate_birth());  
+                pstmt.setString(4,this.getUsername());
+                pstmt.executeUpdate();   
+                } 
+                con.close(); 
+                return  rs.getInt("idusers");      
             }
             catch(Exception e)
             {
-            System.out.println(e.getMessage());            
+               
+            System.out.println(e.getMessage());  
+            return -1; 
+                   
             }
+  
         }
    
 

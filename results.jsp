@@ -74,7 +74,7 @@
 </head>
 
 
-<body>
+<body onload="getSlots()">
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
 		<div class="container">
 			<a class="navbar-brand" href="home.html"><img class="logo" src="images/LOGO2-01.png" > </a>
@@ -126,7 +126,7 @@
                                  <div class="select-wrap">
                                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
                                      <select name="" id="municipality" class="form-control" onchange="getSlots(1)">
-                                         <option value="1">Ekali</option>
+                                         <option value="3">Ekali</option>
                                          <option value="2">Pallini</option>
                                          
                                          
@@ -167,13 +167,7 @@
                         <input type="time" id="appt" name="appt" value="12:00">
                     </div>
                 </div>
-         <div class="col-lg d-flex">
-           <div class="form-group d-flex w-100 border-0">
-              <div class="form-field w-100 align-items-center d-flex">
-                 <input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary">
-             </div>
-         </div>
-         </div>
+         
          </div>
          </form>
          </div>
