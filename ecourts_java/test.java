@@ -8,9 +8,12 @@ import java.util.List;
 public class test {
     public static void main(String[] args) throws ParseException {
         
-        Slot slot = new Slot();
-        List<Slot> slot_list = slot.getSlots(0, "",0,4);
-        System.out.print(slot_list.size());
+        //Slot slot = new Slot();
+        //List<Slot> slot_list = slot.getSlots(0, "",0,4);
+        //System.out.print(slot_list.size());
+        Customer customer= new Customer("konstantina","kzouni","zouni","koukou@gmail.com","6984811531","aristeiou","chalandri","8","15234","123","1/1/2021","9/5/2001");
+        customer.register();
+
         
         
 

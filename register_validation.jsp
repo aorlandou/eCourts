@@ -15,18 +15,20 @@
         String zip=request.getParameter("zip"); 
         String town=request.getParameter("town");
         String phone=request.getParameter("phone"); 
-		String email=request.getParameter("email");		 
-
+		String email=request.getParameter("email");
 		Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
         String register_date = formatter.format(date);
-		Customer customer= new Customer(name,username,surname,email,phone,street,
-		town,street_number,zip,password,register_date,birth_date);
-		if (customer.checkEmail(email) && customer.checkPhone(phone)){ %>
-			customer.register(customer);
+		int user_id;
+		Customer customer= new Customer(name,username,surname,email,phone,street,town,street_number,zip,password,register_date,birth_date);
+		if (customer.checkEmail(email) && customer.checkPhone(phone)){ 
+			try{			
+			user_id=customer.register(); %>
 			<jsp:forward page="confirm_register.jsp" /> 
 			
-		<%}
+		<%}catch (Exception e){
+			System.out.print("error");
+		}}
 
 		
 %>
