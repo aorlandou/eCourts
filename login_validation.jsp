@@ -4,7 +4,9 @@
 
 <%String email=request.getParameter("email");
 String password=request.getParameter("password");
-User user=new User();
+Customer customer;
+User user;
+
 if ( user.checkPassword(email,phone,password) ){ %>
    
     <jsp:forward page="confirm_register.jsp" /> 

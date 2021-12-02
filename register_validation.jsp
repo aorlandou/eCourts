@@ -19,7 +19,7 @@
 		Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
         String register_date = formatter.format(date);
-		int user_id;
+		int user_id;		
 		Customer customer= new Customer(name,username,surname,email,phone,street,town,street_number,zip,password,register_date,birth_date);
 		if (customer.checkEmail(email) && customer.checkPhone(phone)){ 
 			try{			

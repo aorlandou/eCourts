@@ -1,7 +1,7 @@
 package ecourts_java;
 import java.sql.*;
 
-class User{
+public class User{
     private int user_id;
     private String name;   
     private String email;
@@ -49,14 +49,18 @@ class User{
     public User(){
     }
 
+    public User(String email, String password){
+        this.email=email;
+        this.password=password;
+    }
+
     public boolean checkEmail(String email){
         try
         {   ResultSet rs=null;
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6"); 
 
-            PreparedStatement pstmt=null;
-    
+            PreparedStatement pstmt=null;    
             pstmt=con.prepareStatement("select idusers from users where email=? ;");
             pstmt.setString(1,email);    
             rs=pstmt.executeQuery();
