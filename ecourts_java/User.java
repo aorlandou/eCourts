@@ -109,33 +109,28 @@ public class User{
         }
 
 
-        public boolean checkPassword(String password, String phone, String email){
+        public int checkPassword(String password, String email){
             try
             {   ResultSet rs=null;
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
                 PreparedStatement pstmt=null;    
-                pstmt=con.prepareStatement("select idusers from users where (phone=? or email=?) and password=?;");
-                pstmt.setString(1,phone);  
+                pstmt=con.prepareStatement("select * from users where (phone=? or email=?) and password=?;");
+                pstmt.setString(1,email);  
                 pstmt.setString(2,email);
                 pstmt.setString(3,password);
                 rs=pstmt.executeQuery();
-                int i=0;
-                while (rs.next()){
-                    i=i+1;
-                }
-                con.close();
-                if (i==0){
-                    
-                    return true;}               
-                            
+                while (rs.next()){                              
+                    return rs.getInt("idusers");
+                }               
+                con.close();             
             }catch(Exception e)
                 {
                 System.out.println(e.getMessage());
                 
-                return false;
+                return -1;
                 }
-                return false;
+               return -1;
             }
     
     

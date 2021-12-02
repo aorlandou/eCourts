@@ -4,13 +4,12 @@
 
 <%String email=request.getParameter("email");
 String password=request.getParameter("password");
-Customer customer;
-User user;
-
-if ( user.checkPassword(email,phone,password) ){ %>
-   
-    <jsp:forward page="confirm_register.jsp" /> 
-    
+User user=new User();
+int user_id;
+user_id=user.checkPassword(password,email);
+if ( user_id!=-1 ){  
+    session.setAttribute("user_id", user_id); %> 
+    <jsp:forward page="home.html" />    
 <%}
 %>
 
@@ -94,6 +93,16 @@ var check = function() {
                     <input type="password" name="password" id="password" value="<%=password%>" oninput="check2()" class="form-login" placeholder="Password">
                     <span id='message_pass1'></span>	
                   </div>
+                  <% if (user.checkEmail(email) && user.checkPhone(email)){ %>
+                  <div class="form-group">
+                    <p style="color: #FF0000;">Email or phone doesn't exists.</p>
+                  </div>
+                 
+                   <% }else if (user_id==-1){ %>
+                  <div class="form-group">
+                    <p style="color: #FF0000;">Wrong password.</p>
+                  </div>
+                  <% } %>
                   <input name="login"  id="login"  class="btn btn-block login-btn mb-4" type="submit" value="Login" >
 
                   <script>					
