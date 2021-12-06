@@ -1,4 +1,6 @@
 package ecourts_java;
+import java.util.*;
+import java.sql.*;
 
 public class Court {
     private int court_id;
@@ -53,6 +55,76 @@ public class Court {
         this.surface = surface;
         this.club = club;
     }
+    public Court(int court_id, String name) {
+        this.court_id = court_id;
+        this.name = name;
+    }
+    public Court() {
+    }
+
+    public List<Court> getCourts_of_club(int club_id,int sport_id) {
+        List<Court> court_list  = new ArrayList<Court>();
+        try
+            {
+            Class.forName("com.mysql.jdbc.Driver"); //load driver
+            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+            
+    
+            PreparedStatement pstmt=null; //create statement
+
+
+            
+            String query = "select distinct court.court_id, court.name from court, sportscl_users where court.sportsclub_id= ? ";
+            
+            if (sport_id!=0){
+                query = query + " and court.sport_id  = ?";
+            }
+
+            pstmt=con.prepareStatement(query); //sql select query 
+            pstmt.setInt(1, club_id);
+            
+            if (sport_id!=0){
+                pstmt.setInt(2, sport_id);
+            } 
+            
+        
+            
+            ResultSet rs=pstmt.executeQuery(); //execute query and store in resultset object rs.
+              
+            
+            while(rs.next())
+            {
+                
+                
+                int crt_id = rs.getInt("court_id");
+                String court_name = rs.getString("name");
+
+                Court crt = new Court(crt_id,court_name);
+                court_list.add(crt);
+    
+    
+    
+            }
+            
+            pstmt.close();
+            con.close(); //close connection	
+            
+        
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+                System.out.println("eroorrr");
+            }
+    
+            return court_list;
+    
+        }
+
+        
+
+        
+    
 
 
     

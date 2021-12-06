@@ -12,7 +12,8 @@ int sport;
 String date;
 int municipality;
 int p; 
-int club_id ; 
+int club_id;
+int court_id;
 
 try {
     
@@ -21,6 +22,15 @@ try {
  catch (NumberFormatException e)
  {
     club_id = 0;
+ }
+ 
+try {
+    
+    court_id = Integer.parseInt(request.getParameter("court"));
+ }
+ catch (NumberFormatException e)
+ {
+    court_id = 0;
  }
 try {
     
@@ -62,7 +72,7 @@ try {
 
 
 Slot slot = new Slot();
-List<Slot> slot_list = slot.getSlots(sport,date, municipality,0,club_id);
+List<Slot> slot_list = slot.getSlots(sport,date, municipality,0,club_id,court_id);
 
 int start;
 int stop;

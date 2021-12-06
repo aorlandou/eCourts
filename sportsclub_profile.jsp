@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage=""%>
 <%@ page import ="ecourts_java.*"%>
+<%@ page import ="java.util.*"%>
 
 <!doctype html>
 <html lang="en">
@@ -27,8 +28,10 @@ catch (NumberFormatException e)
     
 
     
-    SportsClub allclubs = new SportsClub();
-    SportsClub curClub = null;
+  SportsClub allclubs = new SportsClub();
+  Sport sprt = new Sport();
+  SportsClub curClub = null;
+  Court crt = new Court();
 
  
 curClub = allclubs.findClub(spid);
@@ -39,6 +42,9 @@ if (curClub== null){
 }
 
 String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
+List<Sport> sports_list = sprt.getSports_of_club(spid);
+List<Court> courts_list = crt.getCourts_of_club(spid,0);
+
     
         
         
@@ -238,20 +244,38 @@ String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
   <script>
 
 
-      function getSlots(page_num,club_id) {
+      function getSlots(page_num,club_id,change_court) {
         
         var sport= $('#sport').val();
         var date= $('#date').val();
+        var court= $('#courts').val();
         
+        console.log(change_court);
         console.log("I've been called");
         console.log(page_num);
+        console.log(court);
+
         
+        if (change_court==1){
+          court = 0;
+          console.log("the second jsp is being called");
+          $.ajax({
+          url: "getCourt_filters.jsp",
+          type: 'POST',
+          data: {sport: sport, club_id: club_id},
+          success: function(data) {
+          
+          document.getElementById("courts").innerHTML = data;
   
+        
+        }
+        });
+        }
   
         $.ajax({
         url: "getslots.jsp",
         type: 'POST',
-        data: {sport: sport, date: date, p:page_num, club_id: club_id},
+        data: {sport: sport, date: date, p:page_num, club_id: club_id, court: court},
         success: function(data) {
         
         document.getElementById("res").innerHTML = data;
@@ -268,7 +292,7 @@ String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
     <link href="css/carousel.css" rel="stylesheet">
   </head>
 
-  <body style="padding-top: 0rem; padding-bottom: 0px; background-color: #f3f3f3;" onload="getSlots(1,'<%=spid%>')" >
+  <body style="padding-top: 0rem; padding-bottom: 0px; background-color: #f3f3f3;" onload="getSlots(1,'<%=spid%>',1 )" >
 
 
     
@@ -464,10 +488,19 @@ String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
 														<div class="form-field">
 															<div class="select-wrap">
 																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="" id="sport" class="form-control" onchange="getSlots(1, '<%=spid%>')">
-                                  <option value="1">Tennis</option>
-                                  <option value="2">Football</option>
-                                  <option value="3">Padel</option>
+																<select name="" id="sport" class="form-control" onchange="getSlots(1, '<%=spid%>',1)">
+                                  <%
+                                  
+                                  for (Sport sport: sports_list){
+                                  %>
+                                    <option value="<%=sport.getSport_id()%>"><%=sport.getSport_name()%></option>
+                                  <%
+                                  }
+                                  
+                                  %>
+
+                                  
+                                  
 																	
 																
 																</select>
@@ -483,11 +516,11 @@ String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
 														<div class="form-field">
 															<div class="select-wrap">
 																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="" id="" class="form-control">
-																	<option value="">Court 1 </option>
-																	<option value="">Court 2</option>
-                                  <option value="">Court 3 </option>
-																	<option value="">Court 4</option>
+																<select name="" id="courts" class="form-control" onchange="getSlots(1, '<%=spid%>',0)">
+                                  
+
+                                  
+
 																	
 																
 																</select>
@@ -510,7 +543,7 @@ String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
 														<label for="#">Date</label>
 														<div class="form-field">
 															<div class="icon"><span class="fa fa-calendar"></span></div>
-                              <input type="date" id = "date" class="form-control " placeholder="Choose Date" value="" onchange="getSlots(1,'<%=spid%>')">
+                              <input type="date" id = "date" class="form-control " placeholder="Choose Date" value="" onchange="getSlots(1,'<%=spid%>',0)">
 														</div>
 													</div>
 												</div>

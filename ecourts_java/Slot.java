@@ -68,7 +68,7 @@ public class Slot {
     }
 
 
-    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param, int club_id_param) {
+    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param, int club_id_param, int court_id) {
         
 
             List<Slot> slot_list = new ArrayList<Slot>();
@@ -101,7 +101,10 @@ public class Slot {
             if (club_id_param != 0){
                 query = query + " and users.idusers  = ?";
             }
-            System.out.println(query);
+            if (court_id != 0){
+                query = query + " and court.court_id  = ?";
+            }
+            
 
 
             
@@ -126,6 +129,10 @@ public class Slot {
             }
             if (club_id_param != 0){
                 pstmt.setInt(param_num,club_id_param);
+                param_num = param_num +1;
+            }
+            if (court_id != 0){
+                pstmt.setInt(param_num,court_id);
             }
             
         
