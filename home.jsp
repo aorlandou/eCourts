@@ -3,7 +3,9 @@
 <%@ page import ="ecourts_java.*"%>
 
 <%
-int user_id=-1;
+	User curUser = (User)session.getAttribute("user_id");
+	//int user_id=-1;
+
 
 
 %>
@@ -174,18 +176,21 @@ int user_id=-1;
 					<li class="nav-item"><a href="#Popular" class="nav-link">Popular Sportsclubs</a></li>
 					<li class="nav-item"><a href="login_form.html" class="nav-link">Login</a></li>
             </ul>
-                <!-- if logged in -->
-                <!-- <div class="nav-item dropdown">
-                    <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> Antonio Moreno <b class="caret"></b></a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                        <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
-                        <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
-                        <div class="divider dropdown-divider"></div>
-                        <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
-                    </div>
-                </div> -->
-                
+			<!-- if logged in -->
+            <% if (curUser != null){%>
+					<div class="nav-item dropdown">
+						<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="images/user.png" style="width: 37px;"> <%=curUser.getName()%> <b class="caret"></b></a>
+						<div class="dropdown-menu">
+							<a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+							<a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
+							<a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+							<div class="divider dropdown-divider"></div>
+							<a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+						</div>
+					</div>
+			<%} %>
+		
+                   
 			</div>
 		</div>
 	</nav>
