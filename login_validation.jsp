@@ -9,7 +9,7 @@ int user_id;
 user_id=user.checkPassword(password,email);
 if ( user_id!=-1 ){  
     session.setAttribute("user_id", user_id); %> 
-    <jsp:forward page="home.html" />    
+    <jsp:forward page="home.jsp" />    
 <%}
 %>
 

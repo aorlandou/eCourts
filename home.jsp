@@ -1,3 +1,14 @@
+<%@ page import ="java.util.ArrayList"%>
+<%@ page import ="java.util.List"%>
+<%@ page import ="ecourts_java.*"%>
+
+<%
+int user_id=-1;
+
+
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,8 +92,73 @@
 	}   
 
     </style>
+	  <style>
+					
+		ul.ks-cboxtags {
+			list-style: none;
+			padding: 20px;
+		}
+		ul.ks-cboxtags li{
+		  display: inline;
+		}
+		ul.ks-cboxtags li label{
+			display: inline-block;
+			background-color: rgba(255, 255, 255, .9);
+			border: 2px solid rgba(139, 139, 139, .3);
+			color: #adadad;
+			border-radius: 25px;
+			white-space: nowrap;
+			margin: 3px 0px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			-webkit-tap-highlight-color: transparent;
+			transition: all .2s;
+		}
+		
+		ul.ks-cboxtags li label {
+			padding: 8px 12px;
+		   }
+		
+		ul.ks-cboxtags li label::before {
+			display: inline-block;    
+			padding: 2px 6px 2px 2px;  
+			transition: transform .3s ease-in-out;
+		}
+		
+		ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+			
+			transform: rotate(-360deg);
+			transition: transform .3s ease-in-out;
+		}
+		
+		ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+			border: 2px solid #fd7e14;
+			background-color: #fd7e14;
+			color: #fff;
+			transition: all .2s;
+		}
+		
+		ul.ks-cboxtags li input[type="checkbox"] {
+		  display: absolute;
+		}
+		ul.ks-cboxtags li input[type="checkbox"] {
+		  position: absolute;
+		  opacity: 0;
+		}
+		ul.ks-cboxtags li input[type="checkbox"]:focus + label {
+		  border: 2px solid #fd7e14;
+		}
+						  </style>
 </head>
 <body>
+
+
+	
+
+
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
 		<div class="container">
 			<a class="navbar-brand" href="home.html"><img class="logo" src="images/LOGO2-01.png" > </a>
@@ -128,10 +204,13 @@
 		</div>
 	</div>
 
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-		Launch demo modal
-	  </button>
-	  
+	
+	  <% if(session.getAttribute("register_id")!=null){%>
+		<script>
+			$(document).ready(function(){
+				$("#exampleModalCenter").modal('show');
+			});
+		</script>
 	  <!-- Modal -->
 	  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -149,68 +228,6 @@
 				<h4 style="text-align: center;color:rgb(68, 68, 68)">Successfull registration. A verification link has been sent to your email.</h4>
 				<h5 style="text-align: center;color:rgb(68, 68, 68)">Before you get started choose some of your favorite sports.</h5>
 				  </div>
-
-				  <style>
-					
-ul.ks-cboxtags {
-    list-style: none;
-    padding: 20px;
-}
-ul.ks-cboxtags li{
-  display: inline;
-}
-ul.ks-cboxtags li label{
-    display: inline-block;
-    background-color: rgba(255, 255, 255, .9);
-    border: 2px solid rgba(139, 139, 139, .3);
-    color: #adadad;
-    border-radius: 25px;
-    white-space: nowrap;
-    margin: 3px 0px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    transition: all .2s;
-}
-
-ul.ks-cboxtags li label {
-    padding: 8px 12px;
-   }
-
-ul.ks-cboxtags li label::before {
-    display: inline-block;    
-    padding: 2px 6px 2px 2px;  
-    transition: transform .3s ease-in-out;
-}
-
-ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
-    
-    transform: rotate(-360deg);
-    transition: transform .3s ease-in-out;
-}
-
-ul.ks-cboxtags li input[type="checkbox"]:checked + label {
-    border: 2px solid #fd7e14;
-    background-color: #fd7e14;
-    color: #fff;
-    transition: all .2s;
-}
-
-ul.ks-cboxtags li input[type="checkbox"] {
-  display: absolute;
-}
-ul.ks-cboxtags li input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-}
-ul.ks-cboxtags li input[type="checkbox"]:focus + label {
-  border: 2px solid #fd7e14;
-}
-				  </style>
-
 				  <div class="container-second">
 					<ul class="ks-cboxtags">
 					  <li><input type="checkbox" id="checkboxOne" value="Rainbow Dash"><label for="checkboxOne">Football</label></li>
@@ -232,6 +249,7 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
 		  </div>
 		</div>
 	  </div>
+	  <%}%>
 
 	<section class="ftco-section ftco-no-pb ftco-no-pt" style="background-color: #f3f3f3;">
 		<div class="container">

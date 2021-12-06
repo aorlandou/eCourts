@@ -26,8 +26,8 @@
 			user_id=customer.register();
 			boolean register=true;
 			session.setAttribute("register", register);
-			session.setAttribute("user_id", user_id); %>
-			<jsp:forward page="home.html" /> 
+			session.setAttribute("register_id", user_id); %>
+			<jsp:forward page="home.jsp" /> 
 			
 		<%}catch (Exception e){
 			System.out.print("error");
