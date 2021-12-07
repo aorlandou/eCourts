@@ -7,8 +7,9 @@ String password=request.getParameter("password");
 User user=new User();
 int user_id;
 user_id=user.checkPassword(password,email);
-if ( user_id!=-1 ){  
-    session.setAttribute("user_id", user_id); %> 
+if ( user_id!=-1 ){
+    User curUser = user.getDetails(user_id);  
+    session.setAttribute("user_id", curUser); %> 
     <jsp:forward page="home.jsp" />    
 <%}
 %>

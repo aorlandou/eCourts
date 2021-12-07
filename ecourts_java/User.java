@@ -133,7 +133,45 @@ public class User{
                return -1;
             }
     
-    
+    public User getDetails(int userID) throws Exception{
+        DB data = new DB();
+		Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM users WHERE idusers=?";
+        try {
+            
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);
+
+            // setting parameter
+            stmt.setInt(1, userID);
+
+            rs = stmt.executeQuery();
+
+            if ( !rs.next() ) {
+                rs.close(); //closing ResultSet
+                stmt.close(); //closing PreparedStatement
+				return null;
+            }
+            User curUser = new User (rs.getInt("idusers"), rs.getString("email"), rs.getString("phone"), rs.getString("name"),
+            rs.getString("street"), rs.getInt("munic_id"), rs.getString("zipcode"));
+
+            return curUser;
+        } catch (Exception e) {
+
+            throw new Exception(e.getMessage());
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
+    }
 
 
 
