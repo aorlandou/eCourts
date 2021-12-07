@@ -84,9 +84,52 @@ public class Sport {
 
 
    
-    public void getAll_sports(){ 
+    public List<Sport> getAll_sports() {
+
+        List<Sport> sport_list  = new ArrayList<Sport>();
+        try
+            {
+            Class.forName("com.mysql.jdbc.Driver"); //load driver
+            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+            
+    
+            PreparedStatement pstmt=null; //create statement
 
 
+            
+            String query = "select distinct sport.sport_id, sport.name from sport,court where court.sport_id = sport.sport_id ";
+            pstmt=con.prepareStatement(query); //sql select query 
+
+            ResultSet rs=pstmt.executeQuery(); //execute query and store in resultset object rs.
+              
+            
+            while(rs.next())
+            {
+                
+                
+                int sport_id = rs.getInt("sport_id");
+                String sport_name = rs.getString("name");
+
+                Sport sprt = new Sport(sport_id,sport_name);
+                sport_list.add(sprt);
+    
+    
+    
+            }
+            
+            pstmt.close();
+            con.close(); //close connection	
+            
+        
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+                System.out.println("eroorrr");
+            }
+    
+            return sport_list;
+    
     }
 
     

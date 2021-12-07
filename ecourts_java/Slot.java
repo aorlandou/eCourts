@@ -11,6 +11,7 @@ public class Slot {
     private String date;
     private String time;
     private Double price;
+    private int duration;
     private Court court;
     
 
@@ -45,6 +46,14 @@ public class Slot {
     public void setPrice(Double price) {
         this.price = price;
     }
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
 
     public Court getCourt() {
         return court;
@@ -64,6 +73,16 @@ public class Slot {
         this.court = court;
         
     }
+    public Slot(int slot_id, String date, String time, Double price, int duration, Court court) {
+        this.slot_id = slot_id;
+        this.date = date;
+        this.time = time;
+        this.price = price;
+        this.duration = duration;
+        this.court = court;
+    }
+
+    
     public Slot() {
     }
 
@@ -83,7 +102,7 @@ public class Slot {
 
 
             
-            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name  from slot, court, sport, surface, municipality, sportscl_users, users where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id ";
+            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration, court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name  from slot, court, sport, surface, municipality, sportscl_users, users where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id ";
 
             if(sport != 0){
                 query = query + "and court.sport_id = ?";
@@ -145,6 +164,7 @@ public class Slot {
                 
                 
                 int club_id  = rs.getInt("idusers");
+                int duration = rs.getInt("duration");
                 int slot_id =rs.getInt("slot_id");
                 Date date_slot = rs.getDate("date");
                 Time time = rs.getTime("time_start");
@@ -169,7 +189,7 @@ public class Slot {
                 SportsClub club = new SportsClub(club_id,club_name,street,town);
                 Court court = new Court(court_name, sport_name,surface_name,club);
 
-                Slot slot = new Slot(slot_id,date_as_string,new_time,price,court);
+                Slot slot = new Slot(slot_id,date_as_string,new_time,price,duration,court);
     
                 
     
@@ -208,6 +228,9 @@ public class Slot {
             return slot_list;
     
         }
+
+        
+        
 
         
 

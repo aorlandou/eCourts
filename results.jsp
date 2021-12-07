@@ -1,3 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import ="ecourts_java.*"%>
+<%@ page import ="java.util.*"%>
+
+<%
+
+
+//get the filter content from db 
+Municipality mun_obj = new Municipality();
+List<Municipality> mun_list =  mun_obj.getMunicipalies_with_clubs();
+
+Sport sprt = new Sport();
+List<Sport> sports_list = sprt.getAll_sports();
+
+	
+
+
+
+
+
+
+
+
+
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,8 +152,13 @@
                                  <div class="select-wrap">
                                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
                                      <select name="" id="municipality" class="form-control" onchange="getSlots(1)">
-                                         <option value="3">Ekali</option>
-                                         <option value="2">Pallini</option>
+										<%
+										for (Municipality municipality: mun_list){
+										%>
+											<option value="<%= municipality.getMunic_id()%>"><%= municipality.getMun_name()%></option>
+										<%
+										}
+                                        %>
                                          
                                          
                                      </select>
@@ -142,9 +173,13 @@
                                 <div class="select-wrap">
                                     <div class="icon"><span class="fa fa-chevron-down"></span></div>
                                     <select name="" id="sport" class="form-control" onchange="getSlots(1)">
-                                        <option value="1">Tennis</option>
-                                        <option value="2">Football</option>
-                                        <option value="3">Padel</option>
+                                        <%
+										for (Sport spr: sports_list){
+										%>
+											<option value="<%= spr.getSport_id()%>"><%= spr.getSport_name()%></option>
+										<%
+										}
+                                        %>
                                         
                                     </select>
                                 </div>
