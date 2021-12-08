@@ -14,6 +14,7 @@ int municipality;
 int p; 
 int club_id;
 int court_id;
+int duration;
 
 try {
     
@@ -68,11 +69,19 @@ try {
  {
     date = null;
  }
+ try {
+    
+   duration = Integer.parseInt(request.getParameter("duration"));
+}
+catch (NumberFormatException e)
+{
+   duration = 0;
+}
  
 
 
 Slot slot = new Slot();
-List<Slot> slot_list = slot.getSlots(sport,date, municipality,0,club_id,court_id);
+List<Slot> slot_list = slot.getSlots(sport,date, municipality,0,club_id,court_id,duration);
 
 int start;
 int stop;

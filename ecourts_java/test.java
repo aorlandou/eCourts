@@ -13,13 +13,14 @@ public class test {
         //System.out.print(slot_list.size());
         //Customer customer= new Customer("konstantina","kzouni","zouni","koukou@gmail.com","6984811531","aristeiou","chalandri","8","15234","123","1/1/2021","9/5/2001");
         //customer.register();
-        User user=new User();
-        int i=0;
-        i=user.checkPassword("idnoq90", "6903281018");
-        System.out.print(i);
+        //User user=new User();
+        //int i=0;
+        //i=user.checkPassword("idnoq90", "6903281018");
+        //System.out.print(i);
 
-        
-        
+        Slot slt = new Slot();
+        List<Slot> slt_list =  slt.getSlots(1, "", 0, 0, 1, 2, 0);
+        System.out.println(slt_list.size());
 
     }
     

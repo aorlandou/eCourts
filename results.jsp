@@ -76,6 +76,7 @@ List<Sport> sports_list = sprt.getAll_sports();
         var sport= $('#sport').val();
         var date= $('#date').val();
         var municipality= $('#municipality').val();
+		var duration= $('#duration').val();
         console.log("I've been called");
         console.log(page_num);
         
@@ -84,7 +85,7 @@ List<Sport> sports_list = sprt.getAll_sports();
         $.ajax({
         url: "getslots.jsp",
         type: 'POST',
-        data: {sport: sport, date: date, municipality: municipality, p:page_num,club_id:0},
+        data: {sport: sport, date: date, municipality: municipality, p:page_num,club_id:0,duration:duration},
         success: function(data) {
         
         document.getElementById("res").innerHTML = data;
@@ -113,7 +114,7 @@ List<Sport> sports_list = sprt.getAll_sports();
 					<li class="nav-item"><a href="home.html" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="#About" class="nav-link">About</a></li>
                     <li class="nav-item active"><a href="results.html" class="nav-link">Sportsclubs</a></li>
-                    <li class="nav-item"><a href="login_form.html" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="login_form.jsp" class="nav-link">Login</a></li>
                 </ul>
                 <!-- if logged in -->
                 <!-- <div class="nav-item dropdown">
@@ -196,6 +197,23 @@ List<Sport> sports_list = sprt.getAll_sports();
                         </div>
                     </div>
                 </div>
+				<div class="col-lg d-flex">
+					<div class="form-group p-4">
+					 <label for="#">Choose Sport</label>
+					 <div class="form-field">
+						 <div class="select-wrap">
+							 <div class="icon"><span class="fa fa-chevron-down"></span></div>
+							 <select name="" id="duration" class="form-control" onchange="getSlots(1)">
+								
+									 <option value="1">1 hour</option>
+									 <option value="2">2 hours</option>
+								
+								 
+							 </select>
+						 </div>
+					 </div>
+				 </div>
+				</div>
                 <div class="col-lg d-flex">
                     <div class="form-group p-4">
                         <label for="appt">Select a time:</label>

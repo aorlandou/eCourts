@@ -249,6 +249,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
         var sport= $('#sport').val();
         var date= $('#date').val();
         var court= $('#courts').val();
+        var duration= $('#duration').val();
         
         console.log(change_court);
         console.log("I've been called");
@@ -275,7 +276,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
         $.ajax({
         url: "getslots.jsp",
         type: 'POST',
-        data: {sport: sport, date: date, p:page_num, club_id: club_id, court: court},
+        data: {sport: sport, date: date, p:page_num, club_id: club_id, court: court,duration:duration},
         success: function(data) {
         
         document.getElementById("res").innerHTML = data;
@@ -547,6 +548,23 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 														</div>
 													</div>
 												</div>
+                        <div class="col-lg d-flex">
+                          <div class="form-group p-4">
+                           <label for="#">Duration</label>
+                           <div class="form-field">
+                             <div class="select-wrap">
+                               <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                               <select name="" id="duration" class="form-control" onchange="getSlots(1)">
+                                
+                                   <option value="1">1 hour</option>
+                                   <option value="2">2 hours</option>
+                                
+                                 
+                               </select>
+                             </div>
+                           </div>
+                         </div>
+                        </div>
 												<div class="col-md d-flex">
 													<div class="form-group p-4">
 														<label for="appt">Time</label>
@@ -554,13 +572,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 													</div>		
 												</div>
 												
-												<div class="col-md d-flex">
-													<div class="form-group d-flex w-100 border-0">
-														<div class="form-field w-100 align-items-center d-flex">
-															<input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary">
-														</div>
-													</div>
-												</div>
+												
 											</div>
 										</form>
 									</div>
