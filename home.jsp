@@ -174,16 +174,17 @@
 					<li class="nav-item"><a href="#About" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="#Search-club" class="nav-link">Search for a Club</a></li>
 					<li class="nav-item"><a href="#Popular" class="nav-link">Popular Sportsclubs</a></li>
+					<% if (curUser == null){%>
 					<li class="nav-item"><a href="login_form.html" class="nav-link">Login</a></li>
+					<%} %>
             </ul>
 			<!-- if logged in -->
             <% if (curUser != null){%>
 					<div class="nav-item dropdown">
-						<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="images/user.png" style="width: 37px;"> <%=curUser.getName()%> <b class="caret"></b></a>
+						<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="images/user.png" style="width: 37px;">   <%=curUser.getName()%> <b class="caret"></b></a>
 						<div class="dropdown-menu">
-							<a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-							<a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
-							<a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+							<a href="user_profile.html" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+							<a href="edit_user_profile.html" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
 							<div class="divider dropdown-divider"></div>
 							<a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
 						</div>
