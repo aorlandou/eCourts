@@ -3,18 +3,21 @@
 <%@ page import ="ecourts_java.*"%>
 
 <%
-String id="-1";
-id=request.getParameter("id");
 
-int user_id=Integer.valueOf(id);
-User user=new User();
-User user_now;
-user_now=user.editDetails(user_id);
-Customer customer=new Customer();
-Customer customer_now;
-customer_now=customer.customerDetails(user_id);
-session.setAttribute("user_id", user_now);
-session.setAttribute("customer_id", customer_now);
+User user_now=(User)session.getAttribute("user_id");
+Customer customer_now=(Customer)session.getAttribute("customer_id");
+
+String password=request.getParameter("password");		
+String street=request.getParameter("street"); 
+String street_number=request.getParameter("street_number"); 
+String zip=request.getParameter("zip"); 
+String town=request.getParameter("town");
+String phone=request.getParameter("phone"); 
+String email=request.getParameter("email");
+
+if(user_now.checkPhone(phone) && user_now.checkEmail(email)){
+    user_now.editProfile()
+}
 
 %>
 
@@ -293,13 +296,13 @@ a:hover {
 						<div class="form-row form-row-1">
 							<label class="text-muted">Email</label>
 							<br>
-							<input  type="text" name="email" oninput='check8();' style="width: 250px;" class="email" id="email" value="<%=user_now.getEmail()%>">
+							<input  type="text" name="email" oninput='check8();' style="width: 250px;" class="email" id="email" value="<%=email%>">
 							<span id='message_email'></span>	
 						</div>
 						<div class="form-row form-row-2">
 							<label class="text-muted">Phone</label>
 							<br>
-							<input   type="text" name="phone" oninput='check7();' style="width: 250px;"  id="phone" autocomplete="off" class="phone" value="<%=user_now.getPhone()%>">
+							<input   type="text" name="phone" oninput='check7();' style="width: 250px;"  id="phone" autocomplete="off" class="phone" value="<%=phone%>">
 							<span id='message_phone'></span>                            
 						</div>
 					</div>				
@@ -307,13 +310,13 @@ a:hover {
 						<div class="form-row form-row-1">
 							<label class="text-muted">Password</label>
 						<br>
-						<input  type="password" name="password" onkeyup='check();' style="width: 250px;" class="password" id="password"  value="<%=user_now.getPassword()%>">	
+						<input  type="password" name="password" onkeyup='check();' style="width: 250px;" class="password" id="password"  value="<%=password%>">	
 						<span id='message_pass1'></span>					
 						</div>
 						<div class="form-row form-row-2">
 							<label class="text-muted">Confirm Password</label>
 						<br>
-						<input  type="password" name="confirm" style="width: 250px;" onkeyup='check();' class="confirm" id="confirm"  value="<%=user_now.getPassword()%>">	
+						<input  type="password" name="confirm" style="width: 250px;" onkeyup='check();' class="confirm" id="confirm"  value="<%=password%>">	
 						<span id='message'></span>					
 						</div>						
 					</div>					
@@ -321,13 +324,13 @@ a:hover {
 						<div class="form-row form-row-1">
 							<label class="text-muted" style="color:#fff;">Street</label>
 							<br>
-							<input type="text" name="street" oninput='check9();' style="width: 250px;" id="street" autocomplete="off" class="street"  value="<%=user_now.getStreet()%>">   
+							<input type="text" name="street" oninput='check9();' style="width: 250px;" id="street" autocomplete="off" class="street"  value="<%=street%>">   
 							<span id='message_street'></span>                         
 						</div>
 						<div class="form-row form-row-2">
 							<label class="text-muted">Number</label>
 							<br>
-							<input type="text" name="street_number" onkeyup='check10();'  style="width: 250px;" id="street_number" autocomplete="off" class="street_number"  value="<%=user_now.getStreet_number()%>"> 
+							<input type="text" name="street_number" onkeyup='check10();'  style="width: 250px;" id="street_number" autocomplete="off" class="street_number"  value="<%=street_number%>"> 
 							<span id='message_street_number'></span>                          
 						</div>						
 					</div>
@@ -335,17 +338,30 @@ a:hover {
 						<div class="form-row form-row-1">
 							<label class="text-muted" style="color:#fff;">Zipcode</label>
 							<br>
-							<input type="text" name="zip" oninput='check6();' style="width: 250px;" id="zip" autocomplete="off" class="zip" value="<%=user_now.getZip_code()%>">
+							<input type="text" name="zip" oninput='check6();' style="width: 250px;" id="zip" autocomplete="off" class="zip" value="<%=zip%>">
                             <span id='message_zip'></span>	
 						</div>
 						<div class="form-row form-row-2">
 							<label class="text-muted">Town</label>
 							<br>
-							<input type="text" name="town" oninput='check11();' style="width: 250px;" id="town" autocomplete="off" class="town" value="<%=user_now.getTown()%>">
+							<input type="text" name="town" oninput='check11();' style="width: 250px;" id="town" autocomplete="off" class="town" value="<%=town%>">
 							<span id='message_town'></span>	                        
 						</div>						
-					</div>									
-                    <div class="form-row-last">						
+					</div>		
+                    <% if (!user_now.checkPhone(phone)) {%>
+                        <div class="form-row">
+                            <p style="color: #FF0000;">Phone already exists.</p>
+                        </div>
+                    <%}%>
+
+                    <% if (!user_now.checkEmail(email)) {%>
+                        <div class="form-row">
+                            <p style="color: #FF0000;">Email already exists.</p>
+                        </div>
+                    <%}%>
+
+                    								
+                    <div class="form-row-last">                        
 						<input type="submit" name="register" id="register" class="register" value="Update">
 					</div>
 					<script>					

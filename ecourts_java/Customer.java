@@ -17,7 +17,20 @@ public class Customer extends User{
 
     }
 
+    public Customer(){
 
+    }
+
+    public Customer(String surname, String username) {
+        super();        
+        this.surname=surname;
+        this.username=username;
+
+    }
+
+
+
+    
     public String getDate_birth() {
         return this.date_birth;
     }
@@ -27,7 +40,48 @@ public class Customer extends User{
         this.date_birth = date_birth;
     }
 
+
+    public Customer customerDetails(int userID) throws Exception{
+        DB data = new DB();
+		Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM client_users WHERE id=?";
+        try {
+            
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);
+
+            // setting parameter
+            stmt.setInt(1, userID);
+
+            rs = stmt.executeQuery();
+
+            if ( !rs.next() ) {
+                rs.close(); //closing ResultSet
+                stmt.close(); //closing PreparedStatement
+				return null;
+            }
+            Customer curCustomer = new Customer ( rs.getString("surname"), rs.getString("username"));
+
+            return curCustomer;
+        } catch (Exception e) {
+
+            throw new Exception(e.getMessage());
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
+    }
+
     
+
     public boolean checkEmail(String email){
         try
         {   ResultSet rs=null;
