@@ -15,9 +15,11 @@ String town=request.getParameter("town");
 String phone=request.getParameter("phone"); 
 String email=request.getParameter("email");
 
-if(user_now.checkPhone(phone) && user_now.checkEmail(email)){
-    user_now.editProfile()
+if((user_now.checkPhone(phone) && user_now.checkEmail(email))||(!user_now.checkEmail(email) && email.equals(user_now.getEmail()) ) ||(!user_now.checkPhone(phone) && phone.equals(user_now.getPhone()) )){
+    user_now.editProfile(user_now.getUser_id(), email, phone, password, street, street_number, zip, town);
 }
+
+
 
 %>
 
@@ -348,19 +350,25 @@ a:hover {
 							<span id='message_town'></span>	                        
 						</div>						
 					</div>		
-                    <% if (!user_now.checkPhone(phone)) {%>
+                    <% if (!user_now.checkPhone(phone) && !phone.equals(user_now.getPhone())) {%>
                         <div class="form-row">
                             <p style="color: #FF0000;">Phone already exists.</p>
                         </div>
                     <%}%>
 
-                    <% if (!user_now.checkEmail(email)) {%>
+                    <% if (!user_now.checkEmail(email) && !email.equals(user_now.getEmail())) {%>
                         <div class="form-row">
                             <p style="color: #FF0000;">Email already exists.</p>
                         </div>
                     <%}%>
 
-                    								
+                    <% if ( (user_now.checkPhone(phone) && user_now.checkEmail(email))||(!user_now.checkEmail(email) && email.equals(user_now.getEmail()) ) ||(!user_now.checkPhone(phone) && phone.equals(user_now.getPhone()) )) {%>
+                        <div class="form-row">
+                            <p style="color:#00B74A;">Successful update</p>
+                        </div>
+                    <%}%>
+
+                                       								
                     <div class="form-row-last">                        
 						<input type="submit" name="register" id="register" class="register" value="Update">
 					</div>
