@@ -46,6 +46,18 @@ public class User{
         this.zip_code = zip_code;
     }
 
+    public User(int user_id, String email, String phone, String password, String street, String street_number, String zip_code, String town, String name){
+        this.user_id = user_id;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.street = street;
+        this.street_number = street_number;
+        this.zip_code = zip_code;
+        this.town=town;
+        this.name=name;
+    }
+
     public User(){
     }
 
@@ -158,6 +170,89 @@ public class User{
             rs.getString("street"), rs.getInt("munic_id"), rs.getString("zipcode"));
 
             return curUser;
+        } catch (Exception e) {
+
+            throw new Exception(e.getMessage());
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
+    }
+
+
+    public User editDetails(int userID) throws Exception{
+        DB data = new DB();
+		Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM users WHERE idusers=?";
+        try {
+            
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);
+
+            // setting parameter
+            stmt.setInt(1, userID);
+
+            rs = stmt.executeQuery();
+
+            if ( !rs.next() ) {
+                rs.close(); //closing ResultSet
+                stmt.close(); //closing PreparedStatement
+				return null;
+            }
+            User curUser = new User (rs.getInt("idusers"), rs.getString("email"), rs.getString("phone"), rs.getString("password"),
+            rs.getString("street"), rs.getString("street_number"), rs.getString("zipcode"),rs.getString("town"),rs.getString("name"));
+
+            return curUser;
+        } catch (Exception e) {
+
+            throw new Exception(e.getMessage());
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
+    }
+
+
+    public void editProfile(int userID, String email, String phone,String password, 
+    String street, String street_number, String zipcode, String town) throws Exception{
+        DB data = new DB();
+		Connection con = null;
+        PreparedStatement stmt = null;
+       
+        String sql = "UPDATE users SET email=?, phone=?, password=?, street=?, street_number=?, zipcode=?, town=? WHERE idusers=?";
+        try {
+            
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);
+
+            // setting parameter
+            stmt.setString(1, email);
+            stmt.setString(2, phone);
+            stmt.setString(3, password);
+            stmt.setString(4, street);
+            stmt.setString(5, street_number);
+            stmt.setString(6, zipcode);
+            stmt.setString(7, town);
+            stmt.setInt(8, userID);
+
+           stmt.executeUpdate();
+
+           
+          
         } catch (Exception e) {
 
             throw new Exception(e.getMessage());

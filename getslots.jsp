@@ -14,6 +14,7 @@ int municipality;
 int p; 
 int club_id;
 int court_id;
+int duration;
 
 try {
     
@@ -68,11 +69,19 @@ try {
  {
     date = null;
  }
+ try {
+    
+   duration = Integer.parseInt(request.getParameter("duration"));
+}
+catch (NumberFormatException e)
+{
+   duration = 0;
+}
  
 
 
 Slot slot = new Slot();
-List<Slot> slot_list = slot.getSlots(sport,date, municipality,0,club_id,court_id);
+List<Slot> slot_list = slot.getSlots(sport,date, municipality,0,club_id,court_id,duration);
 
 int start;
 int stop;
@@ -120,7 +129,7 @@ if (slot_list.size()!= 0 ){
                         width="24" height="24"
                         viewBox="0 0 172 172"
                         style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
-                        <%=slt.getTime()%></li>
+                        <%=slt.getTime()%> <%= ", " + slt.getDuration() + "hours"%></li>
                     <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="24" height="24"
                         viewBox="0 0 172 172"
