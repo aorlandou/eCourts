@@ -18,10 +18,11 @@ public class test {
         //i=user.checkPassword("idnoq90", "6903281018");
         //System.out.print(i);
 
-        Slot slt = new Slot();
-        List<Slot> slt_list =  slt.getSlots(1, "", 0, 0, 1, 2, 0);
-        System.out.println(slt_list.size());
-
+        //Slot slt = new Slot();
+        //List<Slot> slt_list =  slt.getSlots(1, "", 0, 0, 1, 2, 0);
+        //System.out.println(slt_list.size());
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        System.out.println(date);
     }
     
 }

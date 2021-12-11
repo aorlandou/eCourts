@@ -23,7 +23,7 @@ try {
  
 
 Slot slt = new Slot();
-List<Slot> slot_list = slt.getSlots(0, "",0,slot_id,0,0);
+List<Slot> slot_list = slt.getSlots(0, "",0,slot_id,0,0,0);
     if (slot_list.size()== 0){
         %>
         <jsp:forward page="results.jsp" />
@@ -385,7 +385,7 @@ String munName = clb.getMunicipalityName(club.getMunic_id());
           <p class="col-md-8 fs-5" style="margin-bottom: 0; margin-top: 2%;"></p>
           
           <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-calendar" style="color: #f15d30;;" ></span> <%=slot.getDate()%>  </p>
-          <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-clock-o" style="color: #f15d30;;"></span> <%=slot.getTime()%>,  2 hours</p>
+          <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-clock-o" style="color: #f15d30;;"></span> <%=slot.getTime()%>,  <%=slot.getDuration() + " hours"%> </p>
           
 
            <p class="col-md-8 fs-5"> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"

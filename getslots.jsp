@@ -99,7 +99,8 @@ if (stop>slot_list.size()){
 if (slot_list.size()!= 0 ){
 
 %>
-    <div class="row" id = "">
+   <div class="row" id = "">
+       
 <%
 
     for (int i = start; i < stop; i++) {
@@ -114,7 +115,7 @@ if (slot_list.size()!= 0 ){
 
         
 %>
-        <div class="col-md-4 ">
+        <div class="col-md-4">
             <div class="project-wrap">
                <a href="pre_booking.jsp?slot=<%=slt.getSlot_id()%>" class="img" style="background-image: url(<%=photo_path%>);">
                   <span class="price"><%= slt.getPrice().intValue()+ " €/hour" %></span>
@@ -135,8 +136,8 @@ if (slot_list.size()!= 0 ){
                         viewBox="0 0 172 172"
                         style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
                         <%=slt.getCourt().getSurface() + " Court"%></li>
-                 </ul>
-             </div>
+               </ul>
+            </div>
           </div>
         </div>
 
@@ -147,7 +148,7 @@ if (slot_list.size()!= 0 ){
 
 
   
-    }
+   }
   
 
 
