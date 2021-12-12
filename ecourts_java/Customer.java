@@ -80,63 +80,10 @@ public class Customer extends User{
         }
     }
 
+     
+
+
     
-
-    public boolean checkEmail(String email){
-        try
-        {   ResultSet rs=null;
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6"); 
-
-            PreparedStatement pstmt=null;
-    
-            pstmt=con.prepareStatement("select idusers from users where email=? ;");
-            pstmt.setString(1,email);    
-            rs=pstmt.executeQuery();
-            int i=0;
-            while (rs.next()){
-                i=i+1;
-            }
-            if (i==0){
-                con.close();
-                return true;}               
-            con.close();         
-        }
-        catch(Exception e)
-        {
-        System.out.println(e.getMessage());
-        return false;
-        }
-        return false;
-    }
-
-
-    public boolean checkPhone(String phone){
-        try
-        {   ResultSet rs=null;
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
-            PreparedStatement pstmt=null;    
-            pstmt=con.prepareStatement("select idusers from users where phone=? ;");
-            pstmt.setString(1,phone);    
-            rs=pstmt.executeQuery();
-            int i=0;
-            while (rs.next()){
-                i=i+1;
-            }
-            con.close();
-            if (i==0){
-                
-                return true;}               
-                        
-        }catch(Exception e)
-            {
-            System.out.println(e.getMessage());
-            
-            return false;
-            }
-            return false;
-        }
 
 
         public int register(){
