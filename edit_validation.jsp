@@ -5,7 +5,7 @@
 <%
 
 User user_now=(User)session.getAttribute("user_id");
-user_now=user_now.editDetails(user_now.getUser_id);
+user_now=user_now.editDetails(user_now.getUser_id());
 Customer customer_now=(Customer)session.getAttribute("customer_id");
 
 String password=request.getParameter("password");		
@@ -16,8 +16,9 @@ String town=request.getParameter("town");
 String phone=request.getParameter("phone"); 
 String email=request.getParameter("email");
 
-if((user_now.checkPhone(phone) && user_now.checkEmail(email))||(!user_now.checkEmail(email) && email.equals(user_now.getEmail()) ) ||(!user_now.checkPhone(phone) && phone.equals(user_now.getPhone()) )){
+if((user_now.checkPhone(phone) || (!user_now.checkPhone(phone) && phone.equals(user_now.getPhone()) )) && (user_now.checkEmail(email)||(!user_now.checkEmail(email) && email.equals(user_now.getEmail()) ) )){
     user_now.editProfile(user_now.getUser_id(), email, phone, password, street, street_number, zip, town);
+	user_now=user_now.editDetails(user_now.getUser_id());
 }
 
 
@@ -363,7 +364,7 @@ a:hover {
                         </div>
                     <%}%>
 
-                    <% if ( (user_now.checkPhone(phone) && user_now.checkEmail(email))||(!user_now.checkEmail(email) && email.equals(user_now.getEmail()) ) ||(!user_now.checkPhone(phone) && phone.equals(user_now.getPhone()) )) {%>
+                    <% if ((user_now.checkPhone(phone) || (!user_now.checkPhone(phone) && phone.equals(user_now.getPhone()) )) && (user_now.checkEmail(email)||(!user_now.checkEmail(email) && email.equals(user_now.getEmail()) ) )) {%>
                         <div class="form-row">
                             <p style="color:#00B74A;">Successful update</p>
                         </div>
