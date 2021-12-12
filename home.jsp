@@ -184,7 +184,7 @@
 						<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="images/user.png" style="width: 37px;">   <%=curUser.getName()%> <b class="caret"></b></a>
 						<div class="dropdown-menu">
 							<a href="user_profile.html" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-							<a href="edit_user_profile.html" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+							<a href="edit_user_profile.jsp" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
 							<div class="divider dropdown-divider"></div>
 							<a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
 						</div>

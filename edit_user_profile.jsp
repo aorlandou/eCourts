@@ -3,16 +3,11 @@
 <%@ page import ="ecourts_java.*"%>
 
 <%
-String id="-1";
-id=request.getParameter("id");
-
-int user_id=Integer.valueOf(id);
-User user=new User();
-User user_now;
-user_now=user.editDetails(user_id);
+User user_now=(User)session.getAttribute("user_id");
+user_now=user_now.editDetails(user_now.getUser_id());
 Customer customer=new Customer();
 Customer customer_now;
-customer_now=customer.customerDetails(user_id);
+customer_now=customer.customerDetails(user_now.getUser_id());
 session.setAttribute("user_id", user_now);
 session.setAttribute("customer_id", customer_now);
 
