@@ -264,15 +264,15 @@ a:hover {
                         <div class="card-body">						
                           <div class="d-flex flex-column align-items-center text-center">
 							<br>							
-							<a href="user_profile.html" class="previous"><i class="fa fa-chevron-left "  style='font-size:23px;'></i></a>
+							<a href="user_profile.jsp" class="previous"><i class="fa fa-chevron-left "  style='font-size:23px;'></i></a>
 							<br>
 							<br>
 							<br>
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
-                              <h4><%=customer_now.getUsername()%></h4>
-                              <p class="text-secondary mb-1"></p>
-                              <p class="text-muted font-size-sm"><%=user_now.getName()%> <%=customer_now.getSurname()%></p>
+								<h4><%=user_now.getName()%> <%=customer_now.getSurname()%></h4>
+								<p class="text-secondary mb-1"></p>
+								<p class="text-muted font-size-sm"><%=user_now.getStreet()%> <%=user_now.getStreet_number()%>, <%=user_now.getTown()%></p>
 							  <img style="display: block;margin-left: auto; margin-top: -25px;margin-bottom: auto; margin-right: auto;margin-bottom: -10px;width: 190px; height: 160px;" src="ecourts_logo.png">
                               
                             </div>
