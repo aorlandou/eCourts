@@ -4,6 +4,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 
 public class Slot {
@@ -99,10 +100,13 @@ public class Slot {
             
     
             PreparedStatement pstmt=null; //create statement
+            
 
 
             
-            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration, court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name  from slot, court, sport, surface, municipality, sportscl_users, users where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id ";
+            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration, court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name " +  
+                            "from slot, court, sport, surface, municipality, sportscl_users, users "+ 
+                            "where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id and slot_id in (select * from slots_today UNION  select * from slots_after)";
 
             if(sport != 0){
                 query = query + "and court.sport_id = ?";
@@ -127,7 +131,7 @@ public class Slot {
                 query = query + " and slot.duration  = ?";
             }
             
-
+            query = query + " order by slot.date, slot.time_start ";
 
             
             pstmt=con.prepareStatement(query); //sql select query 
@@ -173,7 +177,7 @@ public class Slot {
                 int club_id  = rs.getInt("idusers");
                 int duration = rs.getInt("duration");
                 int slot_id =rs.getInt("slot_id");
-                Date date_slot = rs.getDate("date");
+                java.sql.Date date_slot = rs.getDate("date");
                 Time time = rs.getTime("time_start");
                 Double price = rs.getDouble("price");
                 String court_name = rs.getString("court_name");
@@ -231,7 +235,7 @@ public class Slot {
                 System.out.println(e.getMessage());
                 System.out.println("eroorrr");
             }
-    
+            
             return slot_list;
     
         }
