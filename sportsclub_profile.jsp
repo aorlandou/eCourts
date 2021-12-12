@@ -25,7 +25,6 @@ catch (NumberFormatException e)
 
 
 
-    
 
     
   SportsClub allclubs = new SportsClub();
