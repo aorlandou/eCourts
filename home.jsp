@@ -163,19 +163,19 @@
 
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
 		<div class="container">
-			<a class="navbar-brand" href="home.html"><img class="logo" src="images/LOGO2-01.png" > </a>
+			<a class="navbar-brand" href="home.jsp"><img class="logo" src="images/LOGO2-01.png" > </a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="home.html" class="nav-link">Home</a></li>
+					<li class="nav-item active"><a href="home.jsp" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="#About" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="#Search-club" class="nav-link">Search for a Club</a></li>
 					<li class="nav-item"><a href="#Popular" class="nav-link">Popular Sportsclubs</a></li>
 					<% if (curUser == null){%>
-					<li class="nav-item"><a href="login_form.html" class="nav-link">Login</a></li>
+					<li class="nav-item"><a href="login_form.jsp" class="nav-link">Login</a></li>
 					<%} %>
             </ul>
 			<!-- if logged in -->
@@ -186,7 +186,9 @@
 							<a href="user_profile.html" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
 							<a href="edit_user_profile.html" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
 							<div class="divider dropdown-divider"></div>
-							<a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+							<a href="#" data-toggle="modal" data-target="#logoutModal" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+							
+							  
 						</div>
 					</div>
 			<%} %>
