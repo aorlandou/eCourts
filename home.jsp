@@ -4,7 +4,7 @@
 
 <%
 	User curUser = (User)session.getAttribute("user_id");
-	//int user_id=-1;
+	
 
 
 
@@ -181,12 +181,12 @@
 			<!-- if logged in -->
             <% if (curUser != null){%>
 					<div class="nav-item dropdown">
-						<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="images/user.png" style="width: 37px;">   <%=curUser.getName()%> <b class="caret"></b></a>
+						<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" style="color:rgb(223, 221, 221);"><img src="images/user.png" style="width: 37px;">   <%=curUser.getName()%> <b class="caret"></b></a>
 						<div class="dropdown-menu">
 							<a href="user_profile.html" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
 							<a href="edit_user_profile.jsp" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
 							<div class="divider dropdown-divider"></div>
-							<a href="#" data-toggle="modal" data-target="#logoutModal" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+							<a href="logout.jsp" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
 							
 							  
 						</div>
@@ -314,7 +314,7 @@
 												</div>
 												<div class="col-md d-flex">
 													<div class="form-group p-4">
-														<label for="appt">Select a time:</label>
+														<label for="appt">Select time</label>
 														<input type="time" id="appt" name="appt">
 													</div>		
 												</div>

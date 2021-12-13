@@ -111,9 +111,8 @@ List<Sport> sports_list = sprt.getAll_sports();
 
 			<div class="collapse navbar-collapse" id="ftco-nav" >
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="home.html" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="#About" class="nav-link">About</a></li>
-                    <li class="nav-item active"><a href="results.html" class="nav-link">Sportsclubs</a></li>
+					<li class="nav-item"><a href="home.jsp" class="nav-link">Home</a></li>
+                    <li class="nav-item active"><a href="results.jsp" class="nav-link">Sportsclubs</a></li>
                     <li class="nav-item"><a href="login_form.jsp" class="nav-link">Login</a></li>
                 </ul>
                 <!-- if logged in -->

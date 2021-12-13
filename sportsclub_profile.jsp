@@ -36,7 +36,7 @@ catch (NumberFormatException e)
 curClub = allclubs.findClub(spid);
 if (curClub== null){
   %>
-        <jsp:forward page="home.html" />
+        <jsp:forward page="home.jsp" />
   <%
 }
 
@@ -432,7 +432,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
           </div>
           <div class="carousel-item">
             <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            <img src= "photos/Ace Sports Club/3.jpg" >
+            <img src= "images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery3.jpg" >
             <div class="container">
               
             </div>
@@ -566,7 +566,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
                         </div>
 												<div class="col-md d-flex">
 													<div class="form-group p-4">
-														<label for="appt">Time</label>
+														<label for="appt">Select time</label>
 														<input type="time" id="appt" name="appt">
 													</div>		
 												</div>
