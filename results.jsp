@@ -77,15 +77,17 @@ List<Sport> sports_list = sprt.getAll_sports();
         var date= $('#date').val();
         var municipality= $('#municipality').val();
 		var duration= $('#duration').val();
+		var time= $('#time').val();
         console.log("I've been called");
         console.log(page_num);
+		console.log(time);
         
   
   
         $.ajax({
         url: "getslots.jsp",
         type: 'POST',
-        data: {sport: sport, date: date, municipality: municipality, p:page_num,club_id:0,duration:duration},
+        data: {sport: sport, date: date, municipality: municipality, p:page_num,club_id:0,duration:duration, time: time},
         success: function(data) {
         
         document.getElementById("res").innerHTML = data;
@@ -153,7 +155,7 @@ List<Sport> sports_list = sprt.getAll_sports();
                                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
                                      <select name="" id="municipality" class="form-control" onchange="getSlots(1)">
 										<%
-										for (Municipality municipality: mun_list){
+										for (Municipality municipality: mun_list){	
 										%>
 											<option value="<%= municipality.getMunic_id()%>"><%= municipality.getMun_name()%></option>
 										<%
@@ -198,7 +200,7 @@ List<Sport> sports_list = sprt.getAll_sports();
                 </div>
 				<div class="col-lg d-flex">
 					<div class="form-group p-4">
-					 <label for="#">Choose Sport</label>
+					 <label for="#">Duration</label>
 					 <div class="form-field">
 						 <div class="select-wrap">
 							 <div class="icon"><span class="fa fa-chevron-down"></span></div>
@@ -214,11 +216,36 @@ List<Sport> sports_list = sprt.getAll_sports();
 				 </div>
 				</div>
                 <div class="col-lg d-flex">
-                    <div class="form-group p-4">
-                        <label for="appt">Select a time:</label>
-                        <input type="time" id="appt" name="appt" value="12:00">
-                    </div>
-                </div>
+					<div class="form-group p-4">
+					 <label for="#">Time</label>
+					 <div class="form-field">
+						 <div class="select-wrap">
+							 <div class="icon"><span class="fa fa-chevron-down"></span></div>
+							 <select name="" id="time"  autocomplete="off" class="form-control" onchange="getSlots(1)">
+								
+									<option value="" selected>Choose here</option>
+									<option value="08:00"> 8:00</option>
+									<option value="09:00"> 9:00</option>
+									<option value="10:00">10:00</option>
+									<option value="11:00">11:00</option>
+									<option value="12:00">12:00</option>
+									<option value="13:00">13:00</option>
+									<option value="14:00">14:00</option>
+									<option value="15:00">15:00</option>
+									<option value="16:00">16:00</option>
+									<option value="17:00">17:00</option>
+									<option value="18:00">18:00</option>
+									<option value="19:00">19:00</option>
+									<option value="20:00">20:00</option>
+									<option value="21:00">21:00</option>
+									<option value="22:00">22:00</option>
+
+								 
+							 </select>
+						 </div>
+					 </div>
+				 </div>
+				</div>
          
          </div>
          </form>
@@ -235,7 +262,7 @@ List<Sport> sports_list = sprt.getAll_sports();
     
 <div id = "here"></div>
 
-     <section class="ftco-section" id = "">
+     <section class="ftco-section" id = ""  >
         <div class="container" id = "res">
          
      

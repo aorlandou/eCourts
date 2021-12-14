@@ -88,7 +88,7 @@ public class Slot {
     }
 
 
-    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param, int club_id_param, int court_id, int duration_param) {
+    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param, int club_id_param, int court_id, int duration_param, String time_param) {
         
 
             List<Slot> slot_list = new ArrayList<Slot>();
@@ -130,6 +130,9 @@ public class Slot {
             if (duration_param != 0){
                 query = query + " and slot.duration  = ?";
             }
+            if (time_param != ""){
+                query = query + " and hour(slot.time_start) >= hour(?)-1 and  hour(slot.time_start) <= hour(?)+3 ";
+            }
             
             query = query + " order by slot.date, slot.time_start ";
 
@@ -163,6 +166,12 @@ public class Slot {
             }
             if (duration_param != 0){
                 pstmt.setInt(param_num,duration_param);
+                param_num = param_num +1;
+            }
+            if (time_param != ""){
+                pstmt.setString(param_num,time_param);
+                param_num = param_num +1;
+                pstmt.setString(param_num,time_param);
             }
             
         

@@ -15,6 +15,7 @@ int p;
 int club_id;
 int court_id;
 int duration;
+String time;
 
 try {
     
@@ -67,8 +68,16 @@ try {
  }
  catch (NumberFormatException e)
  {
-    date = null;
+    date = "";
  }
+ try {
+    
+   time = request.getParameter("time");    
+}
+catch (NumberFormatException e)
+{
+   time = "";
+}
  try {
     
    duration = Integer.parseInt(request.getParameter("duration"));
@@ -81,7 +90,7 @@ catch (NumberFormatException e)
 
 
 Slot slot = new Slot();
-List<Slot> slot_list = slot.getSlots(sport,date, municipality,0,club_id,court_id,duration);
+List<Slot> slot_list = slot.getSlots(sport,date, municipality,0,club_id,court_id,duration,time);
 
 int start;
 int stop;
@@ -125,12 +134,12 @@ if (slot_list.size()!= 0 ){
                  <h3><a href="pre_booking.jsp?slot=<%=slt.getSlot_id()%>"><%=slt.getCourt().getClub().getName()%></a></h3>
                  <p class="location"><span class="fa fa-map-marker"></span> <%=slt.getCourt().getClub().getStreet() + ", " +slt.getCourt().getClub().getTown() %></p>
                  <ul>
-                    <li><span class="fa fa-calendar" style="width: fit-content;"></span><%=slt.getDate()%></li>
+                    <li><span class="fa fa-calendar" style="width: fit-content;"></span><%=slt.getDate()%></li> <br>
                     <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="24" height="24"
                         viewBox="0 0 172 172"
                         style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
-                        <%=slt.getTime()%> <%= ", " + slt.getDuration() + "hours"%></li>
+                        <%=slt.getTime()%> <%= ", " + slt.getDuration() + " hours"%></li> <br>
                     <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="24" height="24"
                         viewBox="0 0 172 172"

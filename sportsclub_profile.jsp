@@ -249,6 +249,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
         var date= $('#date').val();
         var court= $('#courts').val();
         var duration= $('#duration').val();
+        var time= $('#time').val();
         
         console.log(change_court);
         console.log("I've been called");
@@ -275,7 +276,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
         $.ajax({
         url: "getslots.jsp",
         type: 'POST',
-        data: {sport: sport, date: date, p:page_num, club_id: club_id, court: court,duration:duration},
+        data: {sport: sport, date: date, p:page_num, club_id: club_id, court: court,duration:duration, time:time},
         success: function(data) {
         
         document.getElementById("res").innerHTML = data;
@@ -553,7 +554,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
                            <div class="form-field">
                              <div class="select-wrap">
                                <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                               <select name="" id="duration" class="form-control" onchange="getSlots(1)">
+                               <select name="" id="duration" class="form-control" onchange="getSlots(1,'<%=spid%>',0)">
                                 
                                    <option value="1">1 hour</option>
                                    <option value="2">2 hours</option>
@@ -564,12 +565,37 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
                            </div>
                          </div>
                         </div>
-												<div class="col-md d-flex">
-													<div class="form-group p-4">
-														<label for="appt">Select time</label>
-														<input type="time" id="appt" name="appt">
-													</div>		
-												</div>
+												<div class="col-lg d-flex">
+                          <div class="form-group p-4">
+                           <label for="#">Time</label>
+                           <div class="form-field">
+                             <div class="select-wrap">
+                               <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                               <select name="" id="time"  autocomplete="off" class="form-control" onchange="getSlots(1,'<%=spid%>',0)">
+                                
+                                  <option value="" selected>Choose here</option>
+                                  <option value="08:00"> 8:00</option>
+                                  <option value="09:00"> 9:00</option>
+                                  <option value="10:00">10:00</option>
+                                  <option value="11:00">11:00</option>
+                                  <option value="12:00">12:00</option>
+                                  <option value="13:00">13:00</option>
+                                  <option value="14:00">14:00</option>
+                                  <option value="15:00">15:00</option>
+                                  <option value="16:00">16:00</option>
+                                  <option value="17:00">17:00</option>
+                                  <option value="18:00">18:00</option>
+                                  <option value="19:00">19:00</option>
+                                  <option value="20:00">20:00</option>
+                                  <option value="21:00">21:00</option>
+                                  <option value="22:00">22:00</option>
+                
+                                 
+                               </select>
+                             </div>
+                           </div>
+                         </div>
+                        </div>
 												
 												
 											</div>
@@ -584,72 +610,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 										  }
 										}
 									</script>
-									<div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
-										<form action="#" class="search-property-1">
-											<div class="row no-gutters">
-												<div class="col-lg d-flex">
-													<div class="form-group p-4 border-0">
-														<label for="#">Destination</label>
-														<div class="form-field">
-															<div class="icon"><span class="fa fa-search"></span></div>
-															<input type="text" class="form-control" placeholder="Search place">
-														</div>
-													</div>
-												</div>
-												<div class="col-lg d-flex">
-													<div class="form-group p-4">
-														<label for="#">Check-in date</label>
-														<div class="form-field">
-															<div class="icon"><span class="fa fa-calendar"></span></div>
-															<input type="text" class="form-control checkin_date" placeholder="Check In Date">
-														</div>
-													</div>
-												</div>
-												<div class="col-lg d-flex">
-													<div class="form-group p-4">
-														<label for="#">Check-out date</label>
-														<div class="form-field">
-															<div class="icon"><span class="fa fa-calendar"></span></div>
-															<input type="text" class="form-control checkout_date" placeholder="Check Out Date">
-														</div>
-													</div>
-												</div>
-												<div class="col-lg d-flex">
-													<div class="form-group p-4">
-														<label for="#">Price Limit</label>
-														<div class="form-field">
-															<div class="select-wrap">
-																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="" id="" class="form-control">
-																	<option value="">$100</option>
-																	<option value="">$10,000</option>
-																	<option value="">$50,000</option>
-																	<option value="">$100,000</option>
-																	<option value="">$200,000</option>
-																	<option value="">$300,000</option>
-																	<option value="">$400,000</option>
-																	<option value="">$500,000</option>
-																	<option value="">$600,000</option>
-																	<option value="">$700,000</option>
-																	<option value="">$800,000</option>
-																	<option value="">$900,000</option>
-																	<option value="">$1,000,000</option>
-																	<option value="">$2,000,000</option>
-																</select>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg d-flex">
-													<div class="form-group d-flex w-100 border-0">
-														<div class="form-field w-100 align-items-center d-flex">
-															<input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary p-0">
-														</div>
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
+									
 								</div>
 							</div>
 						</div>
