@@ -97,7 +97,8 @@ int stop;
 int num_pages = (int)Math.ceil(slot_list.size()/6.0);
 
 
-
+String doors = "";
+Boolean is_tennis = false;
 start = 6* (p-1);
 stop = start + 6;
 if (stop>slot_list.size()){
@@ -121,6 +122,13 @@ if (slot_list.size()!= 0 ){
         
         if (photo_path != null){
         photo_path = photo_path.replaceAll("\\s", "");
+         doors = "";
+         is_tennis = false;
+         if (slt.getCourt().getSportid() == 1 ){
+            is_tennis = true;
+            doors = slt.getCourt().getDoors();
+         }
+
       }
       
 
@@ -136,17 +144,33 @@ if (slot_list.size()!= 0 ){
                  <h3><a href="pre_booking.jsp?slot=<%=slt.getSlot_id()%>"><%=slt.getCourt().getClub().getName()%></a></h3>
                  <p class="location"><span class="fa fa-map-marker"></span> <%=slt.getCourt().getClub().getStreet() + ", " +slt.getCourt().getClub().getTown() %></p>
                  <ul>
-                    <li><span class="fa fa-calendar" style="width: fit-content;"></span><%=slt.getDate()%></li> <br>
+                    <li><span class="fa fa-calendar" style="width: fit-content;"></span><%=slt.getDate()%></li> 
                     <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="24" height="24"
                         viewBox="0 0 172 172"
                         style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
-                        <%=slt.getTime()%> <%= ", " + slt.getDuration() + " hours"%></li> <br>
+                        <%=slt.getTime()%> <%= ", " + slt.getDuration() + " hours"%></li> 
                     <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="24" height="24"
                         viewBox="0 0 172 172"
                         style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
-                        <%=slt.getCourt().getSurface() + " Court"%></li>
+                        <%=slt.getCourt().getSurface() + " Court "%> <p style="color: #f15d30;"><%= doors%></p>
+                        
+                        
+
+                     </li>
+                        <%
+                        
+                        if (slt.getCourt().getSportid()==2){
+                        %>
+                        <li><i class="far fa-futbol" style="color: #f15d30;"></i><%= " "+ slt.getCourt().getSize()%></li>
+                        <%
+                        }
+                        
+                        
+               
+                        
+                        %>
                </ul>
             </div>
           </div>

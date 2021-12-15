@@ -16,6 +16,8 @@ public class Slot {
     private Double price;
     private int duration;
     private Court court;
+
+
     
 
     public int getSlot_id() {
@@ -68,14 +70,8 @@ public class Slot {
 
     
 
-    public Slot(int slot_id, String date, String time, Double price, Court court) {
-        this.slot_id = slot_id;
-        this.date = date;
-        this.time = time;
-        this.price = price;
-        this.court = court;
-        
-    }
+
+    
     public Slot(int slot_id, String date, String time, Double price, int duration, Court court) {
         this.slot_id = slot_id;
         this.date = date;
@@ -212,19 +208,22 @@ public class Slot {
 
                 if (sid== 2)//about a football court
                 {
-                    FootballCourt fb = new FootballCourt();
-                    Court court =  fb.getFootballCourtInfo(court_id_1);
+                    Court c = new Court();
+                    Court court =  c.getFootballCourtInfo(court_id_1);
                     System.out.println(court.getName());
                     slot = new Slot(slot_id,date_as_string,new_time,price,duration,court);
-                    System.out.println(slot.getCourt().getName());
+                    System.out.println(slot.getCourt().getSize());
+
 
                 } else if (sid ==1){
 
-                    TennisCourt tn = new TennisCourt();
+                    Court tn = new Court();
                     Court court = tn.getTennisCourtInfo(court_id_1);
                     System.out.println(court.getName());
                     slot = new Slot(slot_id,date_as_string,new_time,price,duration,court);
                     System.out.println(slot.getCourt().getName());
+                    System.out.println(slot.getCourt().getDoors());
+
 
                 }else{
                     Court cr = new Court();
@@ -346,6 +345,8 @@ public class Slot {
             }
 
         }
+
+    
         
 
         
