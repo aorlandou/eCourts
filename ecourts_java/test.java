@@ -2,6 +2,7 @@ package ecourts_java;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,10 +20,29 @@ public class test {
         //System.out.print(i);
 
         Slot slt = new Slot();
-        List<Slot> slt_list =  slt.getSlots(1, "", 0, 0, 0, 0, 0,"18:00");
+        List<Slot> slt_list =  slt.getSlots(1, "", 0, 0, 0, 0, 0,"");
         System.out.println(slt_list.size());
+        for (Slot slt1 : slt_list){
+           System.out.println(slt1.getCourt().getClub().getName());
+           System.out.println(slt1.getCourt().getName());
+        }   
+        Slot slt2 = slt_list.get(4);
+        System.out.println(slt2.getCourt().getClub().getName());
+
         //String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         //System.out.println(date);
+
+        //Slot slt = new Slot();
+        //slt.generateAllSlots("10:00:00", "14:00:00","2021-12-28",11,70.0);
+        //FootballCourt fb = new FootballCourt();
+        //TennisCourt tn = new TennisCourt();
+        //Court crt = tn.getTennisCourtInfo(3);
+        //System.out.println(crt.getName());
+        //System.out.println(crt.getName());
+        //Court cr = new Court();
+        //cr.getCourtDetails(4);
+        
+                
     }
     
 }

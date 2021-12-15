@@ -1,9 +1,11 @@
 package ecourts_java;
 
 import java.sql.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.*;
 
 
@@ -104,8 +106,8 @@ public class Slot {
 
 
             
-            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration, court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name " +  
-                            "from slot, court, sport, surface, municipality, sportscl_users, users "+ 
+            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration, court.sport_id, court.court_id " +  
+                            "from slot, court, sportscl_users, municipality, users, surface, sport  " + 
                             "where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id and slot_id in (select * from slots_today UNION  select * from slots_after)";
 
             if(sport != 0){
@@ -183,18 +185,13 @@ public class Slot {
             {
                 
                 
-                int club_id  = rs.getInt("idusers");
+                int court_id_1 = rs.getInt("court_id");
+                int sid = rs.getInt("sport_id");
                 int duration = rs.getInt("duration");
                 int slot_id =rs.getInt("slot_id");
                 java.sql.Date date_slot = rs.getDate("date");
                 Time time = rs.getTime("time_start");
                 Double price = rs.getDouble("price");
-                String court_name = rs.getString("court_name");
-                String sport_name = rs.getString("sport_name");
-                String surface_name = rs.getString("surface_name");
-                String club_name = rs.getString("club_name");
-                String street = rs.getString("street");
-                String town = rs.getString("mun_name");
 
                 //format the date and time variables
                 String pattern = "dd-MM-yyyy";
@@ -205,44 +202,52 @@ public class Slot {
                 String new_time = time.toString().substring(0,5);
 
 
-                //Construct the club object first
-                SportsClub club = new SportsClub(club_id,club_name,street,town);
-                Court court = new Court(court_name, sport_name,surface_name,club);
 
-                Slot slot = new Slot(slot_id,date_as_string,new_time,price,duration,court);
-    
-                
-    
-    
-    
+
+                //check which sport and create the equivalent object 
+                //Construct the club object first
+                Slot slot = null;
+                System.out.println(sid);
+                System.out.println(court_id_1);
+
+                if (sid== 2)//about a football court
+                {
+                    FootballCourt fb = new FootballCourt();
+                    Court court =  fb.getFootballCourtInfo(court_id_1);
+                    System.out.println(court.getName());
+                    slot = new Slot(slot_id,date_as_string,new_time,price,duration,court);
+                    System.out.println(slot.getCourt().getName());
+
+                } else if (sid ==1){
+
+                    TennisCourt tn = new TennisCourt();
+                    Court court = tn.getTennisCourtInfo(court_id_1);
+                    System.out.println(court.getName());
+                    slot = new Slot(slot_id,date_as_string,new_time,price,duration,court);
+                    System.out.println(slot.getCourt().getName());
+
+                }else{
+                    Court cr = new Court();
+                    Court court = cr.getCourtDetails(court_id_1);
+                    slot = new Slot(slot_id,date_as_string,new_time,price,duration,court);
+
+                }
+
+
                 slot_list.add(slot);
-    
-    
-                
-    
-                
-    
-    
+
             }
             
             
             con.close(); //close connection	
         
-      
-       
-      
-            
-            
-          
-            
-          
-        
-        
+
             }
             catch(Exception e)
             {
-                System.out.println(e.getMessage());
                 System.out.println("eroorrr");
+                System.out.println(e.getMessage());
+                
             }
             
             return slot_list;
@@ -250,6 +255,97 @@ public class Slot {
         }
 
         
+        public void generateAllSlots(String time_from, String time_to,String date, int court_id, Double price){
+            
+
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");  
+
+            java.util.Date d1 = null;
+            java.util.Date d2 = null;
+            try {
+                d1 = format.parse(time_from);
+                d2 = format.parse(time_to);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }    
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(d1);
+
+            long diff = d2.getTime() - d1.getTime();
+            long  diffHours = diff / (60 * 60 * 1000);
+
+            for (int i = 0; i < diffHours; i++){
+
+                //add the 2h slot
+                if (i < diffHours-1){
+                    try
+                    {
+                    Class.forName("com.mysql.jdbc.Driver"); //load driver
+                    Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+                    PreparedStatement pstmt=null; //create statement
+
+                    String query = "insert into slot (date, time_start, court_id, status, date_added, price, duration) values (?,?,?, 'AVAILABLE', CURDATE(), ?, 2 )";
+                    pstmt=con.prepareStatement(query); //sql select query 
+
+                    pstmt.setString(1, date);
+                    pstmt.setString(2, time_from);
+                    pstmt.setInt(3, court_id);
+                    pstmt.setDouble(4, price);
+                    
+                    pstmt.execute(); // execute query and store in resultset object rs.
+                    con.close(); //close connection	
+
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println(e.getMessage());
+                        System.out.println("eroorrr");
+                    }
+
+                }
+
+                try
+                    {
+                    Class.forName("com.mysql.jdbc.Driver"); //load driver
+                    Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+                    PreparedStatement pstmt=null; //create statement
+
+                    String query = "insert into slot (date, time_start, court_id, status, date_added, price, duration) values (?,?,?, 'AVAILABLE', CURDATE(), ?, 1     )";
+                    pstmt=con.prepareStatement(query); //sql select query 
+
+                    pstmt.setString(1, date);
+                    pstmt.setString(2, time_from);
+                    pstmt.setInt(3, court_id);
+                    pstmt.setDouble(4, price);
+                    
+                    pstmt.execute(); // execute query and store in resultset object rs.
+                    con.close(); //close connection	
+
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println(e.getMessage());
+                        System.out.println("eroorrr");
+                    }
+
+
+
+                
+                cal.add(Calendar.HOUR, 1);
+                time_from = format.format(cal.getTime());
+                
+
+
+                
+                
+                
+                
+
+
+
+            }
+
+        }
         
 
         
