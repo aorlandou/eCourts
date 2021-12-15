@@ -58,13 +58,13 @@
   }
   
   .stepper-item.completed .step-counter {
-    background-color:#fd7e14;
+    background-color:#fd9c4d;
   }
   
   .stepper-item.completed::after {
     position: absolute;
     content: "";
-    border-bottom: 2px solid #fd7e14;
+    border-bottom: 2px solid #fd9c4d;
     width: 100%;
     top: 20px;
     left: 50%;
