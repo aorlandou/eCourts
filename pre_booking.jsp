@@ -403,7 +403,7 @@ String munName = clb.getMunicipalityName(club.getMunic_id());
           
                 
                 
-            <a  href="confirm_checkout.html">
+            <a  href="checkout.jsp?id=<%=slot_id%>">
             <button  style="width: 100%; margin-top: 5%;" class="btn btn-success btn-lg active" type="submit">Book</button>
             </a> 
 

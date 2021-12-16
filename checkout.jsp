@@ -1,3 +1,22 @@
+<%@ page import ="java.util.ArrayList"%>
+<%@ page import ="java.util.List"%>
+<%@ page import ="ecourts_java.*"%>
+
+<%
+	User curUser = (User)session.getAttribute("user_id");
+  int slot_id=Integer.parseInt(request.getParameter("id"));
+  Slot slot=new Slot();
+  Slot curSlot= slot.getSlot_by_id(slot_id);
+	
+
+
+
+%>
+
+<p><%=curSlot.getDate()%></p>
+
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -254,9 +273,19 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="home.jsp" class="nav-link"><p style="color: #000;">Home</p></a></li>
-          <li class="nav-item"><a href="home.jsp" class="nav-link"><p style="color: #000;">Logout</p></a></li>
-          
+          <li class="nav-item active"><a href="home.jsp" class="nav-link"><p style="color: #000;">Home</p></a></li>         
+        </ul>
+        <div class="nav-item dropdown" style="margin-top: -1%;">
+          <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" style="color:rgb(223, 221, 221);"><img src="images/user.png" style="width: 37px;"><%=curUser.getName()%><b class="caret"></b></a>
+          <div class="dropdown-menu">
+            <a href="user_profile.html" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+            <a href="edit_user_profile.jsp" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+            <div class="divider dropdown-divider"></div>
+            <a href="logout.jsp" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
+            
+              
+          </div>
+        </div>
 
           
               

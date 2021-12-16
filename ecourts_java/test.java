@@ -22,6 +22,11 @@ public class test {
         Slot slt = new Slot();
         List<Slot> slt_list =  slt.getSlots(1, "", 0, 0, 0, 0, 0,"");
         System.out.println(slt_list.size());
+        slt=slt.getSlot_by_id(8);
+        if (slt==null){
+            System.out.println("n");
+        }
+  
         //for (Slot slt1 : slt_list){
         //   System.out.println(slt1.getCourt().getClub().getName());
         //   System.out.println(slt1.getCourt().getName());
@@ -46,6 +51,9 @@ public class test {
         
         
                 
+
+       
+    
     }
     
 }

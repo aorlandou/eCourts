@@ -16,6 +16,7 @@ public class Slot {
     private Double price;
     private int duration;
     private Court court;
+    private int court_id;
 
 
     
@@ -81,8 +82,64 @@ public class Slot {
         this.court = court;
     }
 
+    public Slot(int slot_id, String date, String time, Double price, int duration, int court_id) {
+        this.slot_id = slot_id;
+        this.date = date;
+        this.time = time;
+        this.price = price;
+        this.duration = duration;
+        this.court_id = court_id;
+    }
+
     
     public Slot() {
+    }
+
+
+    public Slot getSlot_by_id(int id){
+        DB data = new DB();
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM slot WHERE slot_id=?";
+        Slot curSlot;
+        try {                
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);        
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            if ( !rs.next() ) {
+                rs.close(); //closing ResultSet
+                stmt.close(); //closing PreparedStatement
+                return null;
+            }
+            while(rs.next()){            
+            java.sql.Date date_slot = rs.getDate("date");
+            Time time = rs.getTime("time_start");
+            String pattern = "dd-MM-yyyy";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String date_as_string = simpleDateFormat.format(date_slot);            
+            String new_time = time.toString().substring(0,5);
+            curSlot= new Slot(rs.getInt("slot_id"), date_as_string, new_time, rs.getDouble("price"), rs.getInt("duration"), rs.getInt("court_id"));
+            rs.close(); //closing ResultSet
+            stmt.close(); //closing PreparedStatement
+            return curSlot;
+        }
+        }catch (Exception e) {
+    
+            System.out.println(e.getMessage());
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
+        return null;
     }
 
 
