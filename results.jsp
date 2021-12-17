@@ -67,6 +67,7 @@ List<Sport> sports_list = sprt.getAll_sports();
 				height: 60px;
 			}
       	}
+		
 
     </style>
 
@@ -194,7 +195,9 @@ List<Sport> sports_list = sprt.getAll_sports();
                         <label for="#">Date</label>
                         <div class="form-field">
                             <div class="icon"><span class="fa fa-calendar"></span></div>
-                            <input type="date" id = "date" class="form-control " placeholder="Choose Date" value="" onchange="getSlots(1)">
+							<input type="text" name="date"  id="date" placeholder="Choose Date"
+							onfocus="(this.type='date')" value="" onchange="getSlots(1)" style="border: none;margin-left: 12%;outline: none;">
+                            
                         </div>
                     </div>
                 </div>
