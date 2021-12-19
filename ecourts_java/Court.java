@@ -101,37 +101,48 @@ public class Court {
             stmt = con.prepareStatement(sql);        
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
-            if(!rs.next()){
-                rs.close(); //closing ResultSet
-                stmt.close(); //closing PreparedStatement
-                return null;
-            }
+            
             int sport_id=-1;
             int surface_id=-1;
             int sportsclub_id=-1;
             String sportsclub="";
+            String court_name="";
+            String sport_name="";
+            String surface_name="";
+
+           int i=0;
 
             while(rs.next()){  
             sportsclub_id=rs.getInt("sportsclub_id");
             sport_id=rs.getInt("sport_id");
-            String name=rs.getString("name");
-            surface_id=rs.getInt("surface_id");    
+            court_name=rs.getString("name");
+            surface_id=rs.getInt("surface_id");  
+            i=i+1;  
 
             }
+            if (i==0){
+                rs.close(); //closing ResultSet
+                stmt.close(); //closing PreparedStatement
+                return null;
+
+            }
+            rs=null;
             stmt = con.prepareStatement(sql2);        
             stmt.setInt(1, sport_id);
             rs = stmt.executeQuery();
             while(rs.next()){            
-            String sport=rs.getString("name");
+            sport_name=rs.getString("name");
 
             }
+            rs=null;
 
             stmt = con.prepareStatement(sql3);        
             stmt.setInt(1, surface_id);
             rs = stmt.executeQuery();
             while(rs.next()){
-            String surface=rs.getString("name");
+            surface_name=rs.getString("name");
             }
+            rs=null;
             stmt = con.prepareStatement(sql4);        
             stmt.setInt(1, sportsclub_id);
             rs = stmt.executeQuery();
@@ -139,7 +150,7 @@ public class Court {
             sportsclub=rs.getString("name");
             }
 
-            curCourt= new Court(name, sport, surface, sportsclub, court_id, sportsclub_id);
+            curCourt= new Court(court_name, sport_name, surface_name, sportsclub, court_id, sportsclub_id);
 
 
 

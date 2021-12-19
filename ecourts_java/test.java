@@ -25,7 +25,7 @@ public class test {
         if (court==null){
             System.out.println("n");
         }else{
-            System.out.println("yeahS");
+            System.out.println(court.getSurface());
         }
   
         //for (Slot slt1 : slt_list){

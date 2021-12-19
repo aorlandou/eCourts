@@ -386,7 +386,7 @@
                                             <label style="font-weight: bold;color:rgb(0, 0, 0)">Sports Club</label>
                                           </div>
                                           <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=court.getSurface()%></label>
+                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=court.getSportsclub_name()%></label>
                                           </div>
                                         </div>
                                         <div class="form-group">
