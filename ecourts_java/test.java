@@ -24,6 +24,8 @@ public class test {
         court=court.getCourt_by_id(8);
         if (court==null){
             System.out.println("n");
+        }else{
+            System.out.println("yeahS");
         }
   
         //for (Slot slt1 : slt_list){

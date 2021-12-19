@@ -12,6 +12,14 @@ import java.util.*;
 public class Slot {
     private int slot_id;
     private String date;
+
+    public int getCourt_id() {
+        return this.court_id;
+    }
+
+    public void setCourt_id(int court_id) {
+        this.court_id = court_id;
+    }
     private String time;
     private Double price;
     private int duration;

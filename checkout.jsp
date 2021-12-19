@@ -7,6 +7,8 @@
   int slot_id=Integer.parseInt(request.getParameter("id"));
   Slot slot=new Slot();
   Slot curSlot= slot.getSlot_by_id(slot_id);
+  Court court=new Court();
+  court=court.getCourt_by_id(curSlot.getCourt_id());
 	
 
 
@@ -384,7 +386,7 @@
                                             <label style="font-weight: bold;color:rgb(0, 0, 0)">Sports Club</label>
                                           </div>
                                           <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;">Ekali tennis club</label>
+                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=court.getSurface()%></label>
                                           </div>
                                         </div>
                                         <div class="form-group">

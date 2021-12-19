@@ -17,6 +17,14 @@ public class Court {
         return court_id;
     }
 
+    public String getSportsclub_name() {
+        return this.sportsclub_name;
+    }
+
+    public void setSportsclub_name(String sportsclub_name) {
+        this.sportsclub_name = sportsclub_name;
+    }
+
     public void setCourt_id(int court_id) {
         this.court_id = court_id;
     }
@@ -101,6 +109,7 @@ public class Court {
             int sport_id=-1;
             int surface_id=-1;
             int sportsclub_id=-1;
+            String sportsclub="";
 
             while(rs.next()){  
             sportsclub_id=rs.getInt("sportsclub_id");
@@ -112,15 +121,23 @@ public class Court {
             stmt = con.prepareStatement(sql2);        
             stmt.setInt(1, sport_id);
             rs = stmt.executeQuery();
+            while(rs.next()){            
             String sport=rs.getString("name");
+
+            }
+
             stmt = con.prepareStatement(sql3);        
             stmt.setInt(1, surface_id);
             rs = stmt.executeQuery();
+            while(rs.next()){
             String surface=rs.getString("name");
+            }
             stmt = con.prepareStatement(sql4);        
             stmt.setInt(1, sportsclub_id);
             rs = stmt.executeQuery();
-            String sportsclub=rs.getString("name");
+            while(rs.next()){
+            sportsclub=rs.getString("name");
+            }
 
             curCourt= new Court(name, sport, surface, sportsclub, court_id, sportsclub_id);
 
