@@ -109,11 +109,6 @@ public class Slot {
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
-            if ( !rs.next() ) {
-                rs.close(); //closing ResultSet
-                stmt.close(); //closing PreparedStatement
-                return null;
-            }
             while(rs.next()){            
             java.sql.Date date_slot = rs.getDate("date");
             Time time = rs.getTime("time_start");
@@ -126,6 +121,9 @@ public class Slot {
             stmt.close(); //closing PreparedStatement
             return curSlot;
         }
+        rs.close(); //closing ResultSet
+        stmt.close(); //closing PreparedStatement
+        return null;
         }catch (Exception e) {
     
             System.out.println(e.getMessage());

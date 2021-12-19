@@ -13,7 +13,7 @@
 
 %>
 
-<p><%=curSlot.getDate()%></p>
+
 
 
 
@@ -278,7 +278,7 @@
         <div class="nav-item dropdown" style="margin-top: -1%;">
           <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" style="color:rgb(223, 221, 221);"><img src="images/user.png" style="width: 37px;"><%=curUser.getName()%><b class="caret"></b></a>
           <div class="dropdown-menu">
-            <a href="user_profile.html" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+            <a href="user_profile.jsp" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
             <a href="edit_user_profile.jsp" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
             <div class="divider dropdown-divider"></div>
             <a href="logout.jsp" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
@@ -408,15 +408,15 @@
                                             <label style="font-weight: bold;color:rgb(0, 0, 0)">Date</label>
                                           </div>
                                           <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;">10/12/2021</label>
+                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getDate()%></label>
                                           </div>
                                         </div>		
                                         <div class="form-group">
                                           <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Time</label>
+                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Starting time</label>
                                           </div>
                                           <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;">12:00 PM - 13:00 PM</label>
+                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getTime()%></label>
                                           </div>
                                         </div>  
                                            
@@ -428,18 +428,18 @@
                                         <h2 class="bh2" style="color:rgb(0, 0, 0)">Booking Bill</h2>
                                         <div class="form-group">
                                           <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Price total</label>
+                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Price per hour</label>
                                           </div>
                                           <div class="form-row form-row-2">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;">20&euro;</label>
+                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getPrice()%>&euro;</label>
                                           </div>
                                         </div>  
                                         <div class="form-group">
                                           <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Discount</label>
+                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Hours</label>
                                           </div>
                                           <div class="form-row form-row-2">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;">-2&euro;</label>
+                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getDuration()%></label>
                                           </div>
                                         </div>
                                         <div class="form-group">
@@ -447,7 +447,7 @@
                                             <label style="font-weight: bold;color:rgb(0, 0, 0)">Total</label>
                                           </div>
                                           <div class="form-row form-row-2">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;">18&euro;</label>
+                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getDuration()*curSlot.getPrice()%>&euro;</label>
                                           </div>
                                         </div>    
                                         <div class="form-row " >

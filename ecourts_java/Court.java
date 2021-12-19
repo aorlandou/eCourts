@@ -11,6 +11,7 @@ public class Court {
     private SportsClub club;
     private String size;
     private String doors;
+    private String sportsclub_name;
 
     public int getCourt_id() {
         return court_id;
@@ -58,12 +59,94 @@ public class Court {
         this.surface = surface;
         this.club = club;
     }
+
+    public Court(String name, String sport, String surface, String sportsclub_name, int court_id, int sportsclub_id) {
+        this.name = name;
+        this.sport = sport;
+        this.surface = surface;
+        this.sportsclub_name=sportsclub_name;
+        this.court_id=court_id;
+        this.sportid=sportsclub_id;
+        
+    }
+
+
     public Court(int court_id, String name) {
         this.court_id = court_id;
         this.name = name;
     }
     public Court() {
     }
+
+    public Court getCourt_by_id(int id){
+        DB data = new DB();
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM court WHERE court_id=?";
+        String sql2 = "SELECT * FROM sport WHERE sport_id=?";
+        String sql3 = "SELECT * FROM surface WHERE surface_id=?";
+        String sql4 = "SELECT * FROM users WHERE idusers=?";
+        Court curCourt;
+        try {                
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);        
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            if(!rs.next()){
+                rs.close(); //closing ResultSet
+                stmt.close(); //closing PreparedStatement
+                return null;
+            }
+            int sport_id=-1;
+            int surface_id=-1;
+            int sportsclub_id=-1;
+
+            while(rs.next()){  
+            sportsclub_id=rs.getInt("sportsclub_id");
+            sport_id=rs.getInt("sport_id");
+            String name=rs.getString("name");
+            surface_id=rs.getInt("surface_id");    
+
+            }
+            stmt = con.prepareStatement(sql2);        
+            stmt.setInt(1, sport_id);
+            rs = stmt.executeQuery();
+            String sport=rs.getString("name");
+            stmt = con.prepareStatement(sql3);        
+            stmt.setInt(1, surface_id);
+            rs = stmt.executeQuery();
+            String surface=rs.getString("name");
+            stmt = con.prepareStatement(sql4);        
+            stmt.setInt(1, sportsclub_id);
+            rs = stmt.executeQuery();
+            String sportsclub=rs.getString("name");
+
+            curCourt= new Court(name, sport, surface, sportsclub, court_id, sportsclub_id);
+
+
+
+        
+        rs.close(); //closing ResultSet
+        stmt.close(); //closing PreparedStatement
+        return curCourt;
+        }catch (Exception e) {
+    
+            System.out.println(e.getMessage());
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
+        return null;
+    }
+
+
 
     public List<Court> getCourts_of_club(int club_id,int sport_id) {
         List<Court> court_list  = new ArrayList<Court>();

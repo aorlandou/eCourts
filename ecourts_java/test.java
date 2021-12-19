@@ -20,10 +20,9 @@ public class test {
         //System.out.print(i);
 
         Slot slt = new Slot();
-        List<Slot> slt_list =  slt.getSlots(1, "", 0, 0, 0, 0, 0,"");
-        System.out.println(slt_list.size());
-        slt=slt.getSlot_by_id(8);
-        if (slt==null){
+       Court court=new Court();
+        court=court.getCourt_by_id(8);
+        if (court==null){
             System.out.println("n");
         }
   
