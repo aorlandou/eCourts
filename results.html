@@ -43,6 +43,12 @@
       	}
 
     </style>
+    <script>
+
+     
+
+
+    </script>
 </head>
 
 
@@ -123,7 +129,7 @@
                         <label for="#">Date</label>
                         <div class="form-field">
                             <div class="icon"><span class="fa fa-calendar"></span></div>
-                            <input type="text" class="form-control checkin_date" placeholder="Choose Date" value="11/15/2021">
+                            <input type="date" id = "" class="form-control " placeholder="Choose Date" value="" onchange="getSlots(1)">
                         </div>
                     </div>
                 </div>
@@ -133,6 +139,8 @@
                         <input type="time" id="appt" name="appt" value="12:00">
                     </div>
                 </div>
+                
+                
          <div class="col-lg d-flex">
            <div class="form-group d-flex w-100 border-0">
               <div class="form-field w-100 align-items-center d-flex">
@@ -459,7 +467,7 @@
 
 			<!-- loader -->
 			<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
+            
 
 			<script src="js/jquery.min.js"></script>
 			<script src="js/jquery-migrate-3.0.1.min.js"></script>

@@ -21,12 +21,7 @@ public class Customer extends User{
 
     }
 
-    public Customer(String surname, String username) {
-        super();        
-        this.surname=surname;
-        this.username=username;
-
-    }
+    
 
 
 
@@ -138,6 +133,11 @@ public class Customer extends User{
 
     public String getUsername() {
         return this.username;
+    }
+
+    public Customer(String name, String surname) {
+        super(name);
+        this.surname = surname;
     }
     
 

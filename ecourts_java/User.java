@@ -60,6 +60,7 @@ public class User{
 
     public User(){
     }
+    
 
     public User(String email, String password){
         this.email=email;
@@ -364,6 +365,10 @@ public class User{
         this.name = name;
         this.street = street;
         this.town = town;
+    }
+
+    public User(String name) {
+        this.name = name;
     }
 
 

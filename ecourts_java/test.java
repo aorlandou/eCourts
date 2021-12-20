@@ -19,14 +19,14 @@ public class test {
         //i=user.checkPassword("idnoq90", "6903281018");
         //System.out.print(i);
 
-        Slot slt = new Slot();
-       Court court=new Court();
-        court=court.getCourt_by_id(8);
-        if (court==null){
-            System.out.println("n");
-        }else{
-            System.out.println(court.getSurface());
-        }
+        //Slot slt = new Slot();
+        //Court court=new Court();
+        //court=court.getCourt_by_id(8);
+        //if (court==null){
+        //    System.out.println("n");
+        //}else{
+        //    System.out.println(court.getSurface());
+        //}
   
         //for (Slot slt1 : slt_list){
         //   System.out.println(slt1.getCourt().getClub().getName());
@@ -48,6 +48,19 @@ public class test {
         //System.out.println(crt.getName());
         //Court cr = new Court();
         //cr.getCourtDetails(4);
+        //Booking bk = new Booking();
+        //Booking booking = bk.getBookingSlotDetails(16);
+        //System.out.println(booking.getCustomer().getName());
+        Slot slt = new Slot();
+        List<Slot> slot_list = slt.getSlotsManaging(1);
+        for (Slot slt1: slot_list){
+            System.out.println(slt1.getStatus());
+            if (slt1.getStatus().equals("BOOKED")){
+                System.out.println(slt1.getBooking().getCustomer().getName());
+            }
+            
+            
+        }
 
         
         

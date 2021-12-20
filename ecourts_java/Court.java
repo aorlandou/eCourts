@@ -500,6 +500,11 @@ public class Court {
             this.club = club;
             this.size = size;
         }
+
+        public Court(String name, String sport) {
+            this.name = name;
+            this.sport = sport;
+        }
     
 
 

@@ -12,7 +12,15 @@ import java.util.*;
 public class Slot {
     private int slot_id;
     private String date;
+    private String time;
+    private Double price;
+    private int duration;
+    private Court court;
+    private int court_id;
+    private Booking booking;
+    private String status;
 
+    
     public int getCourt_id() {
         return this.court_id;
     }
@@ -20,15 +28,6 @@ public class Slot {
     public void setCourt_id(int court_id) {
         this.court_id = court_id;
     }
-    private String time;
-    private Double price;
-    private int duration;
-    private Court court;
-    private int court_id;
-
-
-    
-
     public int getSlot_id() {
         return slot_id;
     }
@@ -269,7 +268,7 @@ public class Slot {
                 System.out.println(sid);
                 System.out.println(court_id_1);
 
-                if (sid== 2)//about a football court
+                if (sid== 2)
                 {
                     Court c = new Court();
                     Court court =  c.getFootballCourtInfo(court_id_1);
@@ -412,7 +411,121 @@ public class Slot {
     
         
 
+        public List<Slot> getSlotsManaging(int club_id){
+
+            List<Slot> slot_list = new ArrayList<Slot>();
+    
+            try
+            {
+            Class.forName("com.mysql.jdbc.Driver"); //load driver
+            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+            
+    
+            PreparedStatement pstmt=null; //create statement
+            
+
+
+            
+            String query = "select slot.slot_id, slot.date, slot.time_start ,slot.duration, slot.status, court.name as court_name, sport.name as sport_name " +  
+                            "from slot, court, sport " + 
+                            "where slot.court_id = court.court_id and court.sport_id = sport.sport_id and court.sportsclub_id = ?";
+
+            pstmt=con.prepareStatement(query); //sql select query   
+            pstmt.setInt(1, club_id);
+            ResultSet rs=pstmt.executeQuery(); //execute query and store in resultset object rs.
+              
+            
+            while(rs.next())
+            {
+                
+                
+                int slot_id = rs.getInt("slot_id");
+                java.sql.Date date_slot = rs.getDate("date");
+                Time time = rs.getTime("time_start");
+                int duration = rs.getInt("duration");
+                String status = rs.getString("status");
+                String court_name = rs.getString("court_name");
+                String sport_name = rs.getString("sport_name");
+
+
+                //format the date and time variables
+                String pattern = "dd-MM-yyyy";
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+                String date_as_string = simpleDateFormat.format(date_slot);
+                String new_time = time.toString().substring(0,5);
+
+
+                Slot slt = null;
+
+                //check which sport and create the equivalent object 
+                //Construct the club object first
+                Court crt = new Court(court_name, sport_name);
+                
+                
+                if (status.equals("BOOKED")){ //get the booking details in a booking object
+                    Booking bk = new Booking();
+                    Booking booking = bk.getBookingSlotDetails(slot_id);
+                    slt = new Slot(slot_id,date_as_string, new_time,duration,status,crt, booking);
+                }else{
+                    slt = new Slot(slot_id,date_as_string, new_time,duration,status,crt);
+                }
+                
+
+
+                slot_list.add(slt);
+
+            }
+            
+            
+            con.close(); //close connection	
         
+
+            }
+            catch(Exception e)
+            {
+                System.out.println("eroorrr");
+                System.out.println(e.getMessage());
+                
+            }
+
+            return slot_list;
+
+        }
+
+        public Slot(int slot_id, String date, String time, int duration,String status, Court court) {
+            this.slot_id = slot_id;
+            this.date = date;
+            this.time = time;
+            this.duration = duration;
+            this.status = status;
+            this.court = court;
+        }
+
+        public Slot(int slot_id, String date, String time, int duration, String status ,Court court, Booking booking) {
+            this.slot_id = slot_id;
+            this.date = date;
+            this.time = time;
+            this.duration = duration;
+            this.status = status;
+            this.court = court;
+            this.booking = booking;
+        }
+
+        public Booking getBooking() {
+            return booking;
+        }
+
+        public void setBooking(Booking booking) {
+            this.booking = booking;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
 
        
     
