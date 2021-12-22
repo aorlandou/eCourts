@@ -88,7 +88,7 @@ var check = function() {
             <div class="card-body">
               <div class="brand-wrapper">
                 <% if (session.getAttribute("not_logged")!=null){ %>
-                  <div class="alert alert-danger" role="alert" style="margin-bottom: 10%; width:max-content">
+                  <div class="alert alert-danger" role="alert" style="margin-bottom: 10%;">
                     Please login or register to complete your booking
                   </div>
                   <%}%>
