@@ -57,10 +57,21 @@ var check = function() {
           <div class="col-md-7">
             <div class="card-body">
               <div class="brand-wrapper">
+                <% if (session.getAttribute("not_logged")!=null){ %>
+                  <div class="alert alert-danger" role="alert" style="margin-bottom: 10%; width:max-content">
+                    Please login or register to complete your booking
+                  </div>
+                  <%}%>
                 <img src="images/LOGO2-01.png" alt="logo" class="logo" style="display: block;margin-left: 0px; margin-top: -25px;margin-bottom: auto; margin-right: auto;margin-bottom: -10px;width: 130px; height: 70px;">
               </div>
               <p class="login-card-description">Sign into your account</p>
-              <form action="login_validation.jsp" method="post" onsubmit="valthisform()">
+              <% if (session.getAttribute("not_logged")!=null){ 
+                int id=Integer.parseInt(request.getParameter("id"));
+                %>
+              <form action="login_validation.jsp?id=<%=id%>" method="post" onsubmit="valthisform()">
+                <%}else{ %>
+                  <form action="login_validation.jsp" method="post" onsubmit="valthisform()">
+                <%}%>
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
                     <input type="text" name="email" id="email" oninput="check()" class="form-login" placeholder="Email or Phone">

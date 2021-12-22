@@ -3,12 +3,15 @@
 <%@ page import ="ecourts_java.*"%>
 
 <%
+
 	User curUser = (User)session.getAttribute("user_id");
+  
   int slot_id=Integer.parseInt(request.getParameter("id"));
   Slot slot=new Slot();
   Slot curSlot= slot.getSlot_by_id(slot_id);
   Court court=new Court();
   court=court.getCourt_by_id(curSlot.getCourt_id());
+ 
 	
 
 
