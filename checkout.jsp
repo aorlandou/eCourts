@@ -2,13 +2,20 @@
 <%@ page import ="java.util.List"%>
 <%@ page import ="ecourts_java.*"%>
 
-<%
+<% int slot_id;
+  session.setAttribute("not_logged", null);
 	User curUser = (User)session.getAttribute("user_id");
-  int slot_id=Integer.parseInt(request.getParameter("id"));
+  try{
+  slot_id=Integer.parseInt(request.getParameter("id"));
+  }catch (NumberFormatException e){%>
+    <jsp:forward page="home.jsp" />
+  <%}
+  
   Slot slot=new Slot();
   Slot curSlot= slot.getSlot_by_id(slot_id);
   Court court=new Court();
   court=court.getCourt_by_id(curSlot.getCourt_id());
+ 
 	
 
 
@@ -389,23 +396,23 @@
                                             <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=court.getSportsclub_name()%></label>
                                           </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="margin-top: -4%;">
                                           <div class="form-row form-row-1">
                                             <label style="font-weight: bold;color:rgb(0, 0, 0)" >Court</label>
                                           </div>
                                           <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;">Tennis</label>
+                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=court.getName()%></label>
                                           </div>
                                         </div>	
-                                        <div class="form-group">
+                                        <div class="form-group" style="margin-top: -4%;">
                                           <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Doors</label>
+                                            <label style="font-weight: bold;color:rgb(0, 0, 0)"><%=court.getDetails().get(0)%></label>
                                           </div>
                                           <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;">Indoor</label>
+                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=court.getDetails().get(1)%></label>
                                           </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="margin-top: -4%;">
                                           <div class="form-row form-row-1">
                                             <label style="font-weight: bold;color:rgb(0, 0, 0)">Date</label>
                                           </div>
@@ -413,7 +420,7 @@
                                             <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getDate()%></label>
                                           </div>
                                         </div>		
-                                        <div class="form-group">
+                                        <div class="form-group" style="margin-top: -4%;">
                                           <div class="form-row form-row-1">
                                             <label style="font-weight: bold;color:rgb(0, 0, 0)">Starting time</label>
                                           </div>
@@ -436,7 +443,7 @@
                                             <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getPrice()%>&euro;</label>
                                           </div>
                                         </div>  
-                                        <div class="form-group">
+                                        <div class="form-group" style="margin-top: -4%;">
                                           <div class="form-row form-row-1">
                                             <label style="font-weight: bold;color:rgb(0, 0, 0)">Hours</label>
                                           </div>
@@ -444,7 +451,7 @@
                                             <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getDuration()%></label>
                                           </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="margin-top: -4%;">
                                           <div class="form-row form-row-1">
                                             <label style="font-weight: bold;color:rgb(0, 0, 0)">Total</label>
                                           </div>
@@ -452,7 +459,7 @@
                                             <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getDuration()*curSlot.getPrice()%>&euro;</label>
                                           </div>
                                         </div>    
-                                        <div class="form-row " >
+                                        <div class="form-row " style="margin-top: -4%;" >
                                           <label style="font-weight: bold;color:rgb(0, 0, 0)">Comments</label>
                                           <textarea class="comments"  id="subject" name="subject" placeholder="Notes for your reservation" style="height: 70px;font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"></textarea>
                                         </div>       

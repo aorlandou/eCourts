@@ -402,8 +402,17 @@ String munName = clb.getMunicipalityName(club.getMunic_id());
             
           
                 
-                
-            <a  href="checkout.jsp?id=<%=slot_id%>">
+            <%
+            if (session.getAttribute("user_id")==null){ 
+              User usr=new User();
+              session.setAttribute("not_logged", usr);
+              %>
+
+              <a  href="login_form.jsp?id=<%=slot_id%>">
+            <% }else{%>
+
+                 
+            <a  href="checkout.jsp?id=<%=slot_id%>"> <%}%>
             <button  style="width: 100%; margin-top: 5%;" class="btn btn-success btn-lg active" type="submit">Book</button>
             </a> 
 

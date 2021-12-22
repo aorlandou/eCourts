@@ -213,7 +213,9 @@
 	</div>
 
 	
-	  <% if(session.getAttribute("register_id")!=null){%>
+	  <% if(session.getAttribute("register_id")!=null){
+		session.setAttribute("register_id", null); 
+		%>
 		<script>
 			$(document).ready(function(){
 				$("#exampleModalCenter").modal('show');

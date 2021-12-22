@@ -12,6 +12,7 @@ public class Court {
     private String size;
     private String doors;
     private String sportsclub_name;
+    private List<String> details= new ArrayList<String>();
 
     public int getCourt_id() {
         return court_id;
@@ -68,14 +69,19 @@ public class Court {
         this.club = club;
     }
 
-    public Court(String name, String sport, String surface, String sportsclub_name, int court_id, int sportsclub_id) {
+    public Court(String name, String sport, String surface, String sportsclub_name, int court_id, int sportsclub_id, List<String> details) {
         this.name = name;
         this.sport = sport;
         this.surface = surface;
         this.sportsclub_name=sportsclub_name;
         this.court_id=court_id;
         this.sportid=sportsclub_id;
+        this.details=details;
         
+    }
+
+    public List<String> getDetails() {
+        return this.details;
     }
 
 
@@ -95,7 +101,13 @@ public class Court {
         String sql2 = "SELECT * FROM sport WHERE sport_id=?";
         String sql3 = "SELECT * FROM surface WHERE surface_id=?";
         String sql4 = "SELECT * FROM users WHERE idusers=?";
+        String sql5="SELECT * FROM tennis_court WHERE court_id=?";
+        String sql6="SELECT * FROM football_court WHERE court_id=?";
+        String sql7="SELECT * FROM basketball_court WHERE court_id=?";
         Court curCourt;
+        List<String> details_now= new ArrayList<String>();
+        
+
         try {                
             con = data.getConnection();
             stmt = con.prepareStatement(sql);        
@@ -150,7 +162,35 @@ public class Court {
             sportsclub=rs.getString("name");
             }
 
-            curCourt= new Court(court_name, sport_name, surface_name, sportsclub, court_id, sportsclub_id);
+            rs=null;
+            stmt = con.prepareStatement(sql5);        
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+            details_now.add("Doors");
+            details_now.add(rs.getString("doors"));           
+            }
+            rs=null;
+            stmt = con.prepareStatement(sql6);        
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+          
+           
+            details_now.add("Size");
+            details_now.add(rs.getString("size"));
+            }
+            rs=null;
+            stmt = con.prepareStatement(sql7);        
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+            
+            details_now.add("Size");
+            details_now.add(rs.getString("size"));
+            }
+
+            curCourt= new Court(court_name, sport_name, surface_name, sportsclub, court_id, sportsclub_id, details_now);
 
 
 

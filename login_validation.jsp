@@ -9,9 +9,16 @@ int user_id;
 user_id=user.checkPassword(password,email);
 if ( user_id!=-1 ){
     User curUser = user.getDetails(user_id);  
-    session.setAttribute("user_id", curUser); %> 
-    <jsp:forward page="home.jsp" />    
-<%}
+    session.setAttribute("user_id", curUser); 
+    if (session.getAttribute("not_logged")!=null){ 
+      int id=Integer.parseInt(request.getParameter("id"));
+      %>
+      
+    <jsp:forward page="checkout.jsp?id=<%=id%>" />    
+<%}else{%>
+  <jsp:forward page="home.jsp" />    
+
+<%}}
 %>
 
 
@@ -80,10 +87,21 @@ var check = function() {
           <div class="col-md-7">
             <div class="card-body">
               <div class="brand-wrapper">
+                <% if (session.getAttribute("not_logged")!=null){ %>
+                  <div class="alert alert-danger" role="alert" style="margin-bottom: 10%; width:max-content">
+                    Please login or register to complete your booking
+                  </div>
+                  <%}%>
                 <img src="images/LOGO2-01.png" alt="logo" class="logo" style="display: block;margin-left: 0px; margin-top: -25px;margin-bottom: auto; margin-right: auto;margin-bottom: -10px;width: 130px; height: 70px;">
               </div>
               <p class="login-card-description">Sign into your account</p>
-              <form action="login_validation.jsp" method="post" onsubmit="valthisform()">
+              <% if (session.getAttribute("not_logged")!=null){ 
+                int id=Integer.parseInt(request.getParameter("id"));
+                %>
+                <form action="login_validation.jsp?id=<%=id%>" method="post" onsubmit="valthisform()">
+                  <%}else{ %>
+                    <form action="login_validation.jsp" method="post" onsubmit="valthisform()">
+                  <%}%>
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
                     <input type="text" name="email" id="email" oninput="check()" value="<%=email%>" class="form-login" placeholder="Email or Phone">
@@ -129,7 +147,14 @@ var check = function() {
                   </script>
                 </form>
                 
-                <p class="login-card-footer-text">Don't have an account? <a href="register.html" class="text-reset">Register here</a></p>
+                <% if (session.getAttribute("not_logged")!=null){ 
+                  int id=Integer.parseInt(request.getParameter("id"));
+                  %>
+                  <p class="login-card-footer-text">Don't have an account? <a href="register.jsp?id=<%=id%>" class="text-reset">Register here</a></p>
+                    <%}else{ %>
+                      <p class="login-card-footer-text">Don't have an account? <a href="register.jsp" class="text-reset">Register here</a></p>
+                    <%}%>
+               
                 <nav class="login-card-footer-nav">
                   <a href="#!">Terms of use.</a>
                   <a href="#!">Privacy policy</a>

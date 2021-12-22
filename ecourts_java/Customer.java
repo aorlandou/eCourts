@@ -104,7 +104,7 @@ public class Customer extends User{
                 pstmt.setString(1,super.getPhone()); 
                   
                 rs=pstmt.executeQuery();
-                
+                int id=-1;
                 while(rs.next()){              
                 pstmt=con.prepareStatement("INSERT INTO client_users(id,surname,birthdate,username) VALUES (?,?,?,?);");
                 pstmt.setInt(1,rs.getInt("idusers"));  
@@ -112,9 +112,11 @@ public class Customer extends User{
                 pstmt.setString(3,this.getDate_birth());  
                 pstmt.setString(4,this.getUsername());
                 pstmt.executeUpdate();   
+                id=rs.getInt("idusers"); 
                 } 
                 con.close(); 
-                return  rs.getInt("idusers");      
+                return  id;
+                     
             }
             catch(Exception e)
             {
