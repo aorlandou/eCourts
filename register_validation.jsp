@@ -19,19 +19,25 @@
 		Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
         String register_date = formatter.format(date);
-		int user_id;		
+		int user_id;
+		int id;	
+		User curUser= new User();	
 		Customer customer= new Customer(name,username,surname,email,phone,street,town,street_number,zip,password,register_date,birth_date);
-		if (customer.checkEmail(email) && customer.checkPhone(phone)){ 
-			try{			
+		if (customer.checkEmail(email) && customer.checkPhone(phone)){						
 			user_id=customer.register();
-			boolean register=true;
-			session.setAttribute("register", register);
-			session.setAttribute("register_id", user_id); %>
+			curUser = curUser.getDetails(user_id);  
+            session.setAttribute("user_id", curUser);			
+			session.setAttribute("register_id", user_id);
+			if (session.getAttribute("not_logged")!=null){ 
+				id=Integer.parseInt(request.getParameter("id"));
+				%>
+				
+			  <jsp:forward page="checkout.jsp?id=<%=id%>" />    
+		  <%}else{%>
+
 			<jsp:forward page="home.jsp" /> 
 			
-		<%}catch (Exception e){
-			System.out.print("error");
-		}}
+		<%}}
 
 		
 %>
@@ -227,7 +233,13 @@
 		<div class="form-v10-content">
 
 		
-			<form class="form-detail" action="register_validation.jsp" method="post" id="myform" onsubmit="valthisform()">
+			<% if (session.getAttribute("not_logged")!=null){ 
+                id=Integer.parseInt(request.getParameter("id"));
+                %>
+				<form class="form-detail" action="register_validation.jsp?id=<%=id%>" method="post" id="myform" onsubmit="valthisform()">
+                <%}else{ %>
+					<form class="form-detail" action="register_validation.jsp" method="post" id="myform" onsubmit="valthisform()">
+                <%}%>
 				
 				<div class="form-left">				
 					<h2>General Infomation </h2>					

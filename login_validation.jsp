@@ -147,7 +147,14 @@ var check = function() {
                   </script>
                 </form>
                 
-                <p class="login-card-footer-text">Don't have an account? <a href="register.html" class="text-reset">Register here</a></p>
+                <% if (session.getAttribute("not_logged")!=null){ 
+                  int id=Integer.parseInt(request.getParameter("id"));
+                  %>
+                  <p class="login-card-footer-text">Don't have an account? <a href="register.jsp?id=<%=id%>" class="text-reset">Register here</a></p>
+                    <%}else{ %>
+                      <p class="login-card-footer-text">Don't have an account? <a href="register.jsp" class="text-reset">Register here</a></p>
+                    <%}%>
+               
                 <nav class="login-card-footer-nav">
                   <a href="#!">Terms of use.</a>
                   <a href="#!">Privacy policy</a>

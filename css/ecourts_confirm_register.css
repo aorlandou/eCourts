@@ -94,8 +94,9 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
 	font-size: 15px;
   margin: 0;
   position: absolute;
- margin-left: 16%;
- margin-top: 25px;  
+ margin-left: -10%;
+ margin-top: 10%;  
+ margin-right: -10%;
 }
 
 .container-second .register:hover {

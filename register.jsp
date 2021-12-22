@@ -187,8 +187,14 @@
 		
 		<div class="form-v10-content">
 
-		
-			<form class="form-detail" action="register_validation.jsp" method="post" id="myform" onsubmit="valthisform()">
+			<% if (session.getAttribute("not_logged")!=null){ 
+                int id=Integer.parseInt(request.getParameter("id"));
+                %>
+				<form class="form-detail" action="register_validation.jsp?id=<%=id%>" method="post" id="myform" onsubmit="valthisform()">
+                <%}else{ %>
+					<form class="form-detail" action="register_validation.jsp" method="post" id="myform" onsubmit="valthisform()">
+                <%}%>
+			
 				
 				<div class="form-left">				
 					<h2>General Infomation </h2>					
