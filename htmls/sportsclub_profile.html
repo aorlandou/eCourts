@@ -1,55 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page errorPage=""%>
-<%@ page import ="ecourts_java.*"%>
-<%@ page import ="java.util.*"%>
-
 <!doctype html>
 <html lang="en">
   <head>
-<% 
-    
-//User user = (User)session.getAttribute("sportsUser");
-
-
-int spid;
-try {
-    
-  spid = Integer.parseInt(request.getParameter("spid"));    
-}
-catch (NumberFormatException e)
-{
-  %>
-  <jsp:forward page="home.html" />
-  <%
-}
- 
-  SportsClub allclubs = new SportsClub();
-  Sport sprt = new Sport();
-  SportsClub curClub = null;
-  Court crt = new Court();
-
- 
-curClub = allclubs.findClub(spid);
-if (curClub== null){
-  %>
-        <jsp:forward page="home.jsp" />
-  <%
-}
-
-String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
-List<Sport> sports_list = sprt.getSports_of_club(spid);
-List<Court> courts_list = crt.getCourts_of_club(spid,0);
-
-    
-        
-        
-
-%>
-    
-
     
     
-  <title><%=curClub.getName()%></title>
+  <title>Ace Sports Club</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="images/LOGO2-01.png">
@@ -70,7 +24,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<link rel="stylesheet" href="css/animate.css">
 	
@@ -222,74 +176,39 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
     
     
 @media screen and (max-width: 770px ) {
+        
+  
         img.logo{
           width: 70px;
           height: 50px;
       }
+        
+      
     }
       
 @media all and (min-width: 770px) {
+        
+      
         img.logo {
             width: 120px;
             height: 60px;
         }
+        
       }
+    
+    
     </style>
-  
-  <script>
 
 
-      function getSlots(page_num,club_id,change_court) {
-        
-        var sport= $('#sport').val();
-        var date= $('#date').val();
-        var court= $('#courts').val();
-        var duration= $('#duration').val();
-        var time= $('#time').val();
-        
-        console.log(change_court);
-        console.log("I've been called");
-        console.log(page_num);
-        console.log(court);
-
-        
-        if (change_court==1){
-          court = 0;
-          console.log("the second jsp is being called");
-          $.ajax({
-          url: "getCourt_filters.jsp",
-          type: 'POST',
-          data: {sport: sport, club_id: club_id},
-          success: function(data) {
-          
-          document.getElementById("courts").innerHTML = data;
-  
-        
-        }
-        });
-        }
-  
-        $.ajax({
-        url: "getslots.jsp",
-        type: 'POST',
-        data: {sport: sport, date: date, p:page_num, club_id: club_id, court: court,duration:duration, time:time},
-        success: function(data) {
-        
-        document.getElementById("res").innerHTML = data;
-  
-        
-        }
-        });
-        }
+    
 
 
-    </script>
 
     <!-- Custom styles for this template -->
     <link href="css/carousel.css" rel="stylesheet">
   </head>
 
-  <body style="padding-top: 0rem; padding-bottom: 0px; background-color: #f3f3f3;" onload="getSlots(1,'<%=spid%>',1 )" >
+  <body style="padding-top: 0rem; padding-bottom: 0px; background-color: #f3f3f3;">
 
 
     
@@ -327,15 +246,15 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 		</div>
 	</nav>
     <!-- END nav -->
-	<div class="hero-image " style="background-image: url('images/sportsclub/<%=curClub.getUser_id()%>/background.jpg');">
+	<div class="hero-image " style="background-image: url('photos/ace_main.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
 				<div class="col-md-7 ftco-animate">
 					
                 
-					<h1 class="mb-4" style="margin-left: 5%;"><%=curClub.getName()%> </h1>
-                    <h2 class="mb-4" style="margin-left: 5%; color: #fff ;font-family: Poppins, Arial, sans-serif;"><%=munName%> </h2>
+					<h1 class="mb-4" style="margin-left: 5%;">Ace Sports Club </h1>
+                    <h2 class="mb-4" style="margin-left: 5%; color: #fff ;font-family: Poppins, Arial, sans-serif;">Pallini </h2>
 					<p class="caps"></p>
 				</div>
 				
@@ -380,12 +299,12 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
           
         
         
-        <p style="font-size: large; margin-top: 5%;" >  <%=curClub.getAbout()%></p>
+        <p style="font-size: large; margin-top: 5%;" >  Ετοιμαστείτε για μία πρωτόγνωρη εμπειρία που θα πάει το τένις σε άλλο επίπεδο. Το ACE club4tennis είναι ένας από τα ελάχιστα Club στην Ελλάδα που διαθέτει στεγασμένα γήπεδα τένις. Και μάλιστα όχι ένα αλλά 3 στεγασμένα γήπεδα υψηλών προδιαγραφών. Αυτό  σημαίνει ότι ανεξαρτήτως εποχής και καιρού, εσείς θα είστε σε θέση να παίξετε το παιχνίδι σας όποτε το θελήσετε. Σε μία έκταση 14 στρεμμάτων λίγο έξω από τα όρια της Αθήνας, στην Παλλήνη-Ανθούσα και με εύκολη πρόσβαση (Μετρό-Αττική οδός – Λ.Μαραθώνος), το ACE  club4tennis έχει μετατραπεί πλέον σε έναν πλήρη αθλητικό πολυχώρο για τους φίλους του τένις  αλλά και για όλη την οικογένεια. Αποτελεί τον τέλειο προορισμό για όλο το χρόνο καθώς η άθληση, η χαλάρωση και η διασκέδαση συνδυάζονται αρμονικά σε έναν προσεγμένο και ευχάριστο χώρο.</p>
         
         <ul style="margin-top: 10%;">
-          <li><b>Location:</b> <%=curClub.getStreet()%>, <%=munName%> </li>
-          <li><b>Email:</b> <%=curClub.getEmail()%></li>
-          <li><b>Phone:</b> <%=curClub.getLinephone()%>  </li>
+          <li>Location: Anthousas 9, Pallini </li>
+          <li>Email: info@ace.gr</li>
+          <li>Phone: 2106666725   </li>
         </ul>
       </div>
       
@@ -393,7 +312,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 
       <div class="col-md-5">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" style="margin-top: 20%;" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#f3f3f3"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-          <image  href = "images/sportsclub/<%=curClub.getUser_id()%>/logo.jpg" style="width: 400px;height: 500px"></image>
+          <image  href = "photos/Ace Sports Club/side.jpg" style="width: 400px;height: 500px"></image>
         </svg>
             
       </div>
@@ -415,21 +334,21 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 
           <div class="carousel-item active">
             <svg  class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-                <img src= "images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery1.jpg" > style= "max-width: 500px" >
+                <img src= "photos/Ace Sports Club/main.jpg" > style= "max-width: 500px" >
             <div class="container">
               
             </div>
           </div>
           <div class="carousel-item">
             <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            <img src= "images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery2.jpg" >
+            <img src= "photos/Ace Sports Club/2.jpg" >
             <div class="container">
               
             </div>
           </div>
           <div class="carousel-item">
             <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            <img src= "images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery3.jpg" >
+            <img src= "photos/Ace Sports Club/3.jpg" >
             <div class="container">
               
             </div>
@@ -479,25 +398,15 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 											<div class="row no-gutters">
 
 
-                        <div class="col-md d-flex">
+                                                <div class="col-md d-flex">
 													<div class="form-group p-4">
 														<label for="#">Sport</label>
 														<div class="form-field">
 															<div class="select-wrap">
 																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="" id="sport" class="form-control" onchange="getSlots(1, '<%=spid%>',1)">
-                                  <%
-                                  
-                                  for (Sport sport: sports_list){
-                                  %>
-                                    <option value="<%=sport.getSport_id()%>"><%=sport.getSport_name()%></option>
-                                  <%
-                                  }
-                                  
-                                  %>
-
-                                  
-                                  
+																<select name="" id="" class="form-control">
+																	<option value="">Tennis</option>
+																	<option value="">Padel</option>
 																	
 																
 																</select>
@@ -507,17 +416,17 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 												</div>
 
 
-                        <div class="col-md d-flex">
+                                                <div class="col-md d-flex">
 													<div class="form-group p-4">
 														<label for="#">Court</label>
 														<div class="form-field">
 															<div class="select-wrap">
 																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="" id="courts" class="form-control" onchange="getSlots(1, '<%=spid%>',0)">
-                                  
-
-                                  
-
+																<select name="" id="" class="form-control">
+																	<option value="">Court 1 </option>
+																	<option value="">Court 2</option>
+                                                                    <option value="">Court 3 </option>
+																	<option value="">Court 4</option>
 																	
 																
 																</select>
@@ -540,60 +449,40 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 														<label for="#">Date</label>
 														<div class="form-field">
 															<div class="icon"><span class="fa fa-calendar"></span></div>
-                              <input type="date" id = "date" class="form-control " placeholder="Choose Date" value="" onchange="getSlots(1,'<%=spid%>',0)">
+															<input type="text" class="form-control checkin_date" placeholder="Check In Date">
 														</div>
 													</div>
 												</div>
-                        <div class="col-lg d-flex">
-                          <div class="form-group p-4">
-                           <label for="#">Duration</label>
-                           <div class="form-field">
-                             <div class="select-wrap">
-                               <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                               <select name="" id="duration" class="form-control" onchange="getSlots(1,'<%=spid%>',0)">
-                                
-                                   <option value="1">1 hour</option>
-                                   <option value="2">2 hours</option>
-                                
-                                 
-                               </select>
-                             </div>
-                           </div>
-                         </div>
-                        </div>
-												<div class="col-lg d-flex">
-                          <div class="form-group p-4">
-                           <label for="#">Time</label>
-                           <div class="form-field">
-                             <div class="select-wrap">
-                               <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                               <select name="" id="time"  autocomplete="off" class="form-control" onchange="getSlots(1,'<%=spid%>',0)">
-                                
-                                  <option value="" selected>Choose here</option>
-                                  <option value="08:00"> 8:00</option>
-                                  <option value="09:00"> 9:00</option>
-                                  <option value="10:00">10:00</option>
-                                  <option value="11:00">11:00</option>
-                                  <option value="12:00">12:00</option>
-                                  <option value="13:00">13:00</option>
-                                  <option value="14:00">14:00</option>
-                                  <option value="15:00">15:00</option>
-                                  <option value="16:00">16:00</option>
-                                  <option value="17:00">17:00</option>
-                                  <option value="18:00">18:00</option>
-                                  <option value="19:00">19:00</option>
-                                  <option value="20:00">20:00</option>
-                                  <option value="21:00">21:00</option>
-                                  <option value="22:00">22:00</option>
-                
-                                 
-                               </select>
-                             </div>
-                           </div>
-                         </div>
-                        </div>
-												
-												
+												<div class="col-md d-flex">
+													<div class="form-group p-4">
+														<label for="appt">Time</label>
+														<input type="time" id="appt" name="appt">
+													</div>		
+												</div>
+												<div class="col-md d-flex">
+													<div class="form-group p-4">
+														<label for="#"> Duration</label>
+														<div class="form-field">
+															<div class="select-wrap">
+																<div class="icon"><span class="fa fa-chevron-down"></span></div>
+																<select name="" id="" class="form-control">
+																	<option value="">1 hour</option>
+																	<option value="">2 hours</option>
+																	<option value="">3 hours</option>
+																	
+																
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md d-flex">
+													<div class="form-group d-flex w-100 border-0">
+														<div class="form-field w-100 align-items-center d-flex">
+															<input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary">
+														</div>
+													</div>
+												</div>
 											</div>
 										</form>
 									</div>
@@ -606,7 +495,72 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 										  }
 										}
 									</script>
-									
+									<div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
+										<form action="#" class="search-property-1">
+											<div class="row no-gutters">
+												<div class="col-lg d-flex">
+													<div class="form-group p-4 border-0">
+														<label for="#">Destination</label>
+														<div class="form-field">
+															<div class="icon"><span class="fa fa-search"></span></div>
+															<input type="text" class="form-control" placeholder="Search place">
+														</div>
+													</div>
+												</div>
+												<div class="col-lg d-flex">
+													<div class="form-group p-4">
+														<label for="#">Check-in date</label>
+														<div class="form-field">
+															<div class="icon"><span class="fa fa-calendar"></span></div>
+															<input type="text" class="form-control checkin_date" placeholder="Check In Date">
+														</div>
+													</div>
+												</div>
+												<div class="col-lg d-flex">
+													<div class="form-group p-4">
+														<label for="#">Check-out date</label>
+														<div class="form-field">
+															<div class="icon"><span class="fa fa-calendar"></span></div>
+															<input type="text" class="form-control checkout_date" placeholder="Check Out Date">
+														</div>
+													</div>
+												</div>
+												<div class="col-lg d-flex">
+													<div class="form-group p-4">
+														<label for="#">Price Limit</label>
+														<div class="form-field">
+															<div class="select-wrap">
+																<div class="icon"><span class="fa fa-chevron-down"></span></div>
+																<select name="" id="" class="form-control">
+																	<option value="">$100</option>
+																	<option value="">$10,000</option>
+																	<option value="">$50,000</option>
+																	<option value="">$100,000</option>
+																	<option value="">$200,000</option>
+																	<option value="">$300,000</option>
+																	<option value="">$400,000</option>
+																	<option value="">$500,000</option>
+																	<option value="">$600,000</option>
+																	<option value="">$700,000</option>
+																	<option value="">$800,000</option>
+																	<option value="">$900,000</option>
+																	<option value="">$1,000,000</option>
+																	<option value="">$2,000,000</option>
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg d-flex">
+													<div class="form-group d-flex w-100 border-0">
+														<div class="form-field w-100 align-items-center d-flex">
+															<input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary p-0">
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -618,18 +572,92 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 
 
 
-    <div id = "here"></div>
+
 
     <section class="ftco-section">
 			<div class="container">
 				<div class="row justify-content-center pb-4">
 					
 				</div>
-				<div class="row" id ="res">
+				<div class="row">
 
 
+
+                        <div class="col-md-4 ftco-animate" id = "first_choice">
+                        <div class="project-wrap">
+                            <a href="pre_booking.html#Slot"  class="img" style="background-image: url(photos/AceSportsClub/Court1.jpg);" >
+                            <span class="price">20 € hour</span>
+                            </a>
+                            <div class="text p-4">
+                            <span class="days">Tennis</span>
+                            <h3><a href="#">Court 1 Indoor</a></h3>
+                            
+                                
+                                <p class="location"><span class="fa fa-calendar"></span> 13/11/2021 </p>
+                                <p class="location"><span class="fa fa-clock-o"></span> 11:00</p>
+                                <p class="location"><span class="fa fa-credit-card-alt"></span> Clay</p>
+                            
+                            </div>
+                        </div>
+                        </div>
 
                         
+                        <div class="col-md-4 ftco-animate" id = "first_choice">
+                            <div class="project-wrap">
+                                <a href="pre_booking.html#Slot"  class="img" style="background-image: url(photos/AceSportsClub/Court2.jpg);" >
+                                <span class="price">15 € hour</span>
+                                </a>
+                                <div class="text p-4">
+                                <span class="days">Tennis</span>
+                                <h3><a href="#">Court 2 Outdoor</a></h3>
+                                
+                                    
+                                    <p class="location"><span class="fa fa-calendar"></span> 13/11/2021 </p>
+                                    <p class="location"><span class="fa fa-clock-o"></span> 16:00</p>
+                                    <p class="location"><span class="fa fa-credit-card-alt"></span> Clay</p>
+                                
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="col-md-4 ftco-animate" id = "first_choice">
+                                <div class="project-wrap">
+                                    <a href="pre_booking.html#Slot"  class="img" style="background-image: url(photos/AceSportsClub/Court2.jpg);" >
+                                    <span class="price">15 € hour</span>
+                                    </a>
+                                    <div class="text p-4">
+                                    <span class="days">Tennis</span>
+                                    <h3><a href="#">Court 2 Outdoor</a></h3>
+                                    
+                                        
+                                        <p class="location"><span class="fa fa-calendar"></span> 13/11/2021 </p>
+                                        <p class="location"><span class="fa fa-clock-o"></span> 18:00</p>
+                                        <p class="location"><span class="fa fa-credit-card-alt"></span> Clay</p>
+                                    
+                                    </div>
+                                </div>
+                                </div>
+
+
+                                <div class="col-md-4 ftco-animate" id = "first_choice">
+                                    <div class="project-wrap">
+                                        <a href="pre_booking.html#Slot"  class="img" style="background-image: url(photos/AceSportsClub/ace-padel1.jpg);" >
+                                        <span class="price">15 € hour</span>
+                                        </a>
+                                        <div class="text p-4">
+                                        <span class="days">padel</span>
+                                        <h3><a href="#">Court 2 Outdoor</a></h3>
+                                        
+                                            
+                                            <p class="location"><span class="fa fa-calendar"></span> 13/11/2021 </p>
+                                            <p class="location"><span class="fa fa-clock-o"></span> 16:00</p>
+                                            <p class="location"><span class="fa fa-credit-card-alt"></span> Artificiall Grass</p>
+                                        
+                                        </div>
+                                    </div>
+                                    </div>
+
+
 				</div>
 			</div>
 		</section>
@@ -638,15 +666,9 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 
 
     </div>
-</div><!-- /.container -->
-    
+    <!-- /END THE FEATURETTES -->
 
-
-  
-
-
-
-  
+  </div><!-- /.container -->
 
 
   <!-- FOOTER -->
@@ -714,20 +736,20 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
   </body>
    
   <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
+			<script src="js/jquery-migrate-3.0.1.min.js"></script>
+			<script src="js/popper.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
+			<script src="js/jquery.easing.1.3.js"></script>
+			<script src="js/jquery.waypoints.min.js"></script>
+			<script src="js/jquery.stellar.min.js"></script>
+			<script src="js/owl.carousel.min.js"></script>
+			<script src="js/jquery.magnific-popup.min.js"></script>
+			<script src="js/jquery.animateNumber.min.js"></script>
+			<script src="js/bootstrap-datepicker.js"></script>
+			<script src="js/scrollax.min.js"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+			<script src="js/google-map.js"></script>
+			<script src="js/main.js"></script>
 
 
 
@@ -735,5 +757,6 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 
 
 
- 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="js/bootstrap.bundle.min.js"></script>
 </html>

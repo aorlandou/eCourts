@@ -176,7 +176,7 @@ public class Court {
 
 
 
-    public List<Court> getCourts_of_club(int club_id,int sport_id) {
+    public List<Court> getCourts_of_club(int club_id,int sport_id) { //method only for the filter creation in sportsclub profile, does not return court details
         List<Court> court_list  = new ArrayList<Court>();
         try
             {
@@ -188,7 +188,7 @@ public class Court {
 
 
             
-            String query = "select distinct court.court_id, court.name from court, sportscl_users where court.sportsclub_id= ? ";
+            String query = "select court.court_id, court.name from court where court.sportsclub_id= ? ";
             
             if (sport_id!=0){
                 query = query + " and court.sport_id  = ?";
@@ -208,8 +208,7 @@ public class Court {
             
             while(rs.next())
             {
-                
-                
+
                 int crt_id = rs.getInt("court_id");
                 String court_name = rs.getString("name");
 
@@ -507,6 +506,69 @@ public class Court {
         }
     
 
+        public List<Court> getCourts_of_club_with_info(int club_id) { //method only for the filter creation in sportsclub profile, does not return court details
+            List<Court> court_list  = new ArrayList<Court>();
+            try
+                {
+                Class.forName("com.mysql.jdbc.Driver"); //load driver
+                Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+                
+        
+                PreparedStatement pstmt=null; //create statement
+    
+    
+                
+                String query = "select court.court_id, court.sport_id from court where court.sportsclub_id= ? ";
 
+                pstmt=con.prepareStatement(query); //sql select query 
+                pstmt.setInt(1, club_id);
+
+                ResultSet rs=pstmt.executeQuery(); //execute query and store in resultset object rs.
+                  
+                
+                while(rs.next())
+                {
+                    Court court = null;                
+                    int crt_id = rs.getInt("court_id");
+                    int  sport_id = rs.getInt("sport_id");
+
+                    if (sport_id== 2)
+                    {
+                    Court c = new Court();
+                    court =  c.getFootballCourtInfo(crt_id);
+                    
+
+
+                    } else if (sport_id ==1){
+
+                    Court tn = new Court();
+                    court = tn.getTennisCourtInfo(crt_id);
+
+                    }else{
+                    Court cr = new Court();
+                    court = cr.getCourtDetails(crt_id);
+                    
+
+                    }
+
+        
+                    court_list.add(court);
+        
+                }
+                
+                pstmt.close();
+                con.close(); //close connection	
+                
+            
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.getMessage());
+                    System.out.println("eroorrr");
+                }
+        
+                return court_list;
+        
+            }
     
 }

@@ -429,7 +429,8 @@ public class Slot {
             String query = "select slot.slot_id, slot.date, slot.time_start ,slot.duration, slot.status, court.name as court_name, sport.name as sport_name " +  
                             "from slot, court, sport " + 
                             "where slot.court_id = court.court_id and court.sport_id = sport.sport_id and court.sportsclub_id = ?";
-
+            
+            query = query + " order by slot.date, slot.time_start ";
             pstmt=con.prepareStatement(query); //sql select query   
             pstmt.setInt(1, club_id);
             ResultSet rs=pstmt.executeQuery(); //execute query and store in resultset object rs.
@@ -525,6 +526,173 @@ public class Slot {
 
         public void setStatus(String status) {
             this.status = status;
+        }
+
+
+
+        public List<Slot> getSlotsCalendar(int sport, String date, int municipality, int slot_id_param, int club_id_param, int court_id, int duration_param, String time_param) {
+        
+
+            List<Slot> slot_list = new ArrayList<Slot>();
+    
+            try
+            {
+            Class.forName("com.mysql.jdbc.Driver"); //load driver
+            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+            
+    
+            PreparedStatement pstmt=null; //create statement
+            
+
+
+            
+            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration, court.sport_id, court.court_id " +  
+                            "from slot, court, sportscl_users, municipality, users, surface, sport  " + 
+                            "where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id and slot_id in (select * from slots_today UNION  select * from slots_after)";
+
+            if(sport != 0){
+                query = query + "and court.sport_id = ?";
+            }
+            
+            if (date != ""){
+                query = query + " and slot.date = ?";
+            }
+            if (municipality != 0){
+                query = query + " and users.munic_id  = ?";
+            }
+            if (slot_id_param != 0){
+                query = query + " and slot.slot_id  = ?";
+            }
+            if (club_id_param != 0){
+                query = query + " and users.idusers  = ?";
+            }
+            if (court_id != 0){
+                query = query + " and court.court_id  = ?";
+            }
+            if (duration_param != 0){
+                query = query + " and slot.duration  = ?";
+            }
+            if (time_param != ""){
+                query = query + " and hour(slot.time_start) >= hour(?)-1 and  hour(slot.time_start) <= hour(?)+3 ";
+            }
+            
+            query = query + " order by slot.date, slot.time_start ";
+
+            
+            pstmt=con.prepareStatement(query); //sql select query 
+            
+            int param_num = 1;
+            if(sport != 0){
+                pstmt.setInt(param_num,sport);
+                param_num = param_num +1;
+            }
+            if (date !=""){
+                pstmt.setString(param_num,date);
+                param_num = param_num +1;
+            }
+            if (municipality != 0){
+                pstmt.setInt(param_num,municipality);
+                param_num = param_num +1;
+            }
+            if (slot_id_param != 0){
+                pstmt.setInt(param_num,slot_id_param);
+                param_num = param_num +1;
+            }
+            if (club_id_param != 0){
+                pstmt.setInt(param_num,club_id_param);
+                param_num = param_num +1;
+            }
+            if (court_id != 0){
+                pstmt.setInt(param_num,court_id);
+                param_num = param_num +1;
+            }
+            if (duration_param != 0){
+                pstmt.setInt(param_num,duration_param);
+                param_num = param_num +1;
+            }
+            if (time_param != ""){
+                pstmt.setString(param_num,time_param);
+                param_num = param_num +1;
+                pstmt.setString(param_num,time_param);
+            }
+            
+        
+            
+            ResultSet rs=pstmt.executeQuery(); //execute query and store in resultset object rs.
+              
+            
+            while(rs.next())
+            {
+                
+                
+                int court_id_1 = rs.getInt("court_id");
+                int sid = rs.getInt("sport_id");
+                int duration = rs.getInt("duration");
+                int slot_id =rs.getInt("slot_id");
+                java.sql.Date date_slot = rs.getDate("date");
+                Time time = rs.getTime("time_start");
+                Double price = rs.getDouble("price");
+
+                //format the date and time variables
+               
+                
+                
+
+
+
+
+
+                //check which sport and create the equivalent object 
+                //Construct the club object first
+                Slot slot = null;
+                System.out.println(sid);
+                System.out.println(court_id_1);
+
+                if (sid== 2)
+                {
+                    Court c = new Court();
+                    Court court =  c.getFootballCourtInfo(court_id_1);
+                    System.out.println(court.getName());
+                    slot = new Slot(slot_id,date_slot.toString(),time.toString(),price,duration,court);
+                    System.out.println(slot.getCourt().getSize());
+
+
+                } else if (sid ==1){
+
+                    Court tn = new Court();
+                    Court court = tn.getTennisCourtInfo(court_id_1);
+                    System.out.println(court.getName());
+                    slot = new Slot(slot_id,date_slot.toString(),time.toString(),price,duration,court);
+                    System.out.println(slot.getCourt().getName());
+                    System.out.println(slot.getCourt().getDoors());
+
+
+                }else{
+                    Court cr = new Court();
+                    Court court = cr.getCourtDetails(court_id_1);
+                    slot = new Slot(slot_id,date_slot.toString(),time.toString(),price,duration,court);
+
+                }
+
+
+                slot_list.add(slot);
+
+            }
+            
+            
+            con.close(); //close connection	
+        
+
+            }
+            catch(Exception e)
+            {
+                System.out.println("eroorrr");
+                System.out.println(e.getMessage());
+                
+            }
+            
+            return slot_list;
+    
         }
 
        

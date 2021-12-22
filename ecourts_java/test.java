@@ -51,15 +51,33 @@ public class test {
         //Booking bk = new Booking();
         //Booking booking = bk.getBookingSlotDetails(16);
         //System.out.println(booking.getCustomer().getName());
-        Slot slt = new Slot();
-        List<Slot> slot_list = slt.getSlotsManaging(1);
-        for (Slot slt1: slot_list){
-            System.out.println(slt1.getStatus());
-            if (slt1.getStatus().equals("BOOKED")){
-                System.out.println(slt1.getBooking().getCustomer().getName());
-            }
-            
-            
+        //Slot slt = new Slot();
+        //List<Slot> slot_list = slt.getSlotsManaging(1);
+        //for (Slot slt1: slot_list){
+        //   System.out.println(slt1.getStatus());
+        //    if (slt1.getStatus().equals("BOOKED")){
+        //        System.out.println(slt1.getBooking().getCustomer().getName());
+        //    }
+        //    
+        //Court crt = new Court();
+        //List<Court>  court_list = crt.getCourts_of_club_with_info(24); 
+        //for (Court cr : court_list){
+        //    System.out.println(cr.getName());
+        //    if (cr.getSportid() == 2){
+        //        System.out.println(cr.getSize());
+        //    }
+        //}
+
+
+
+        json_file.write_json();
+        //Slot slt = new Slot();
+        //List<Slot> slot_list =  slt.getSlots(0, "", 0, 0, 0, 2, 0, "");
+        //System.out.println(slot_list.size());
+
+
+
+
         }
 
         
@@ -70,4 +88,3 @@ public class test {
     
     }
     
-}

@@ -1,8 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page errorPage=""%>
+<%@ page import ="ecourts_java.*"%>
+<%@ page import ="java.util.*"%>
+<%
+
+int spid;
+try {
+    
+  spid = Integer.parseInt(request.getParameter("spid"));    
+}
+catch (NumberFormatException e)
+{
+  %>
+  <jsp:forward page="home.jsp" />
+  <%
+}
+
+SportsClub allclubs = new SportsClub();
+
+SportsClub curClub = allclubs.findClub(spid);
+
+if (curClub== null){
+  %>
+        <jsp:forward page="home.jsp" />
+  <%
+}
+String munName = allclubs.getMunicipalityName(curClub.getMunic_id());
+String photo_path_background = "images/sportsclub/"+ curClub.getName()+ "/background.jpg";
+if (photo_path_background != null){
+    photo_path_background = photo_path_background.replaceAll("\\s", "");
+}
+
+%>
+
+
+
+
+
+
+
+
+
 <!doctype html>
 <html lang="en">
   <head>
     
-    <title>Club Managing - North Point</title>
+    <title><%= curClub.getName()%></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="images/LOGO2-01.png">
@@ -22,7 +65,7 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 	<link rel="stylesheet" href="css/animate.css">
 	
@@ -45,11 +88,17 @@
     <link rel="stylesheet" href="css/style.css">
 
 
+    <!-- Css and js files for the calendar -->
+    <link href="helpers/v2/main.css?v=2021.2.261" type="text/css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"/>
+    <script src="js/daypilot-all.min.js?v=2021.2.261"></script>
+
+
   
  
 
 
- <!-- Latest compiled and minified CSS -->
+ 
 
 
 
@@ -208,6 +257,44 @@
     
     </style>
 
+<script type="text/javascript">
+        
+
+    var dp = new DayPilot.Calendar("dp");
+    
+    // view
+    dp.startDate = "2021-12-25";
+    dp.viewType = "Week";
+
+    
+    
+
+    dp.onEventClick = function (args) {
+        alert("clicked: " + args.e.id());
+    };
+
+    dp.init();
+
+    var e = new DayPilot.Event({
+        start: new DayPilot.Date("2021-12-23T12:00:00"),
+        end: new DayPilot.Date("2021-12-23T12:00:00").addHours(3),
+        id: DayPilot.guid(),
+        text: "Pao"
+    });
+    
+    dp.events.add(e);
+
+    function getData(){
+        dp.events.load("employees.json");
+    }
+    
+
+
+
+    
+
+</script>
+
 
     
 
@@ -254,15 +341,15 @@
 		</div>
 	</nav>
     <!-- END nav -->
-	<div class="hero-image js-fullheight" style=" background-image: url('photos/anoixi_north_point.jpg');">
+	<div class="hero-image js-fullheight" style=" background-image: url('images/sportsclub/<%=curClub.getUser_id()%>/background.jpg');">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
 				<div class="col-md-7 ftco-animate">
 					
                 
-					<h1 class="mb-4" style="margin-left: 5%;">North Point </h1>
-                    <h2 class="mb-4" style="margin-left: 5%; color: #fff ;font-family: Poppins, Arial, sans-serif;">Anoixi </h2>
+					<h1 class="mb-4" style="margin-left: 5%;"><%= curClub.getName()%> </h1>
+                    <h2 class="mb-4" style="margin-left: 5%; color: #fff ;font-family: Poppins, Arial, sans-serif;"><%=munName%> </h2>
 					<p class="caps"></p>
 				</div>
 				
@@ -303,233 +390,366 @@
 
     <div class="row featurette" id = "Timetable">
       <div class="col-md-12" style="margin-top: 7%;">
-        <h1 class="mb-4">Timetable <span class="text-muted"></span></h1>
+        <h2 class="featurette-heading">Courts <span class="text-muted"></span></h2>
           
         
 
 
     
 
-    
-
-
-
-        <section class="ftco-section ftco-no-pb ftco-no-pt">
+        <section class="ftco-section" style="padding-bottom: 40px;">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="ftco-search d-flex justify-content-center" style="margin-top: 5%; margin-bottom: 5%;">
-                            <div class="row">
-                                <div class="col-md-12 ">
-                                    <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                        
+              <div class="justify-content-center pb-4">
+                
+              </div>
+              <div class="row">
     
-                                        
     
-                                    </div>
-                                </div>
-                                <div class="col-md-12 ">
-                                    
-                                    <div class="tab-content" id="v-pills-tabContent">
+                <%
+                
+                Court crt = new Court();
+                List<Court> court_list = crt.getCourts_of_club_with_info(spid);
+                for (Court court: court_list){
+
+                    String photo_path = "photos/"+court.getClub().getName()+"/"+court.getName()+".jpg";
+                    String doors = ""; 
+                    Boolean is_tennis;
+                    if (photo_path != null){
+                        photo_path = photo_path.replaceAll("\\s", "");
+                    }
+                    if (court.getSportid() == 1 ){
+                        is_tennis = true;
+                        doors = court.getDoors();
+                    }
+
+                %>
+
+
+                <div class="col-md-4 ftco-animate" id = "first_choice" >
+                    <div class="project-wrap">
+                        <a href="add_slot.jsp"  class="img" style="background-image: url(<%=photo_path%>);">
+                        
+                        </a>
+                      <div class="text p-4">
+                        <span class="days"><%= court.getSport()%></span>
+                        <h3><a href="#"><%= court.getName()%></a></h3>
+                        <div class="attributes_court "   >
+                          
+                          <ul>
+                            
+                            
+                            <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                width="24" height="24"
+                                viewBox="0 0 172 172"
+                                style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                                <%=court.getSurface() + " Court " + doors%> </li><br>
+                             
+                                <%
+                                
+                                if (court.getSportid()==2){
+                                %>
+                                <li><i class="far fa-futbol" style="color: #f15d30;"></i><%= " "+ court.getSize()%></li>
+                                <%
+                                }
+        
+                                
+                                %>
+                       </ul>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                <%
+                }
+
+                %>
+
     
-                                        <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-                                            <form action="#" class="search-property-1">
-                                                <div class="row no-gutters">
-                                                    
-                                                    <div class="col-md d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Sport</label>
-                                                            <div class="form-field">
-                                                                <div class="select-wrap">
-                                                                    <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                                                    <select name="" id="" class="form-control">
-                                                                        <option value="">All</option>
-                                                                        <option value="">Tennis</option>
-                                                                        <option value="">Padel</option>
-                                                                        
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                            
-                            
-                            
-                            
-                            
-                            
-                                                    <div class="col-md d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Court</label>
-                                                            <div class="form-field">
-                                                                <div class="select-wrap">
-                                                                    <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                                                    <select name="" id="" class="form-control">
-                                                                        <option value="">All</option>
-                                                                        <option value="">Court 1</option>
-                                                                        <option value="">Court 2</option>
-                                                                        <option value="">Court 3</option>
-                                                                        <option value="">Court 5</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                
+              </div>
+            </div>
+          </section>
     
-                                                    <div class="col-md d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Status</label>
-                                                            <div class="form-field">
-                                                                <div class="select-wrap">
-                                                                    <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                                                    <select name="" id="" class="form-control">
-                                                                        <option value="">All</option>
-                                                                        <option value="">Booked</option>
-                                                                        <option value="">Availabale</option>
-                                                                        
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                            
-                            
-                                                    <div class="col-md d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Date</label>
-                                                            <div class="form-field">
-                                                                <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                                <input type="text" class="form-control checkin_date" placeholder="Date">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="appt">Time</label>
-                                                            <input type="time" id="appt" name="appt">
-                                                        </div>		
-                                                    </div>
-                                                    
-                                                    <div class="col-md d-flex">
-                                                        <div class="form-group d-flex w-100 border-0">
-                                                            <div class="form-field w-100 align-items-center d-flex">
-                                                                <input type="submit" value="Apply" class="align-self-stretch form-control btn btn-primary">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
+
+
+
+        
+            
+            
+            <hr class="featurette-divider" id ="Courts">
+
+
+
+            <div class="col-md-12" style="margin-bottom: 50px;">
+                <h2 class="featurette-heading">Timetable <span class="text-muted"></span></h2>
+
+                <section class="ftco-section ftco-no-pb ftco-no-pt">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="ftco-search d-flex justify-content-center" style="margin-top: 5%; margin-bottom: 5%;">
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                
+            
+                                                
+            
+                                            </div>
                                         </div>
-                                        <script>
-                                            export default {
-                                              data() {
-                                                return {
-                                                  value: ''
-                                                }
-                                              }
-                                            }
-                                        </script>
-                                        <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
-                                            <form action="#" class="search-property-1">
-                                                <div class="row no-gutters">
-                                                    <div class="col-lg d-flex">
-                                                        <div class="form-group p-4 border-0">
-                                                            <label for="#">Destination</label>
-                                                            <div class="form-field">
-                                                                <div class="icon"><span class="fa fa-search"></span></div>
-                                                                <input type="text" class="form-control" placeholder="Search place">
+                                        <div class="col-md-12 ">
+                                            
+                                            <div class="tab-content" id="v-pills-tabContent">
+            
+                                                <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
+                                                    <form action="#" class="search-property-1">
+                                                        <div class="row no-gutters">
+                                                            
+                                                            <div class="col-md d-flex">
+                                                                <div class="form-group p-4">
+                                                                    <label for="#">Sport</label>
+                                                                    <div class="form-field">
+                                                                        <div class="select-wrap">
+                                                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                                                            <select name="" id="" class="form-control">
+                                                                                <option value="">All</option>
+                                                                                <option value="">Tennis</option>
+                                                                                <option value="">Padel</option>
+                                                                                
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Date</label>
-                                                            <div class="form-field">
-                                                                <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                                <input type="text" class="form-control checkin_date" placeholder="Date">
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                                            <div class="col-md d-flex">
+                                                                <div class="form-group p-4">
+                                                                    <label for="#">Court</label>
+                                                                    <div class="form-field">
+                                                                        <div class="select-wrap">
+                                                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                                                            <select name="" id="" class="form-control">
+                                                                                <option value="">All</option>
+                                                                                <option value="">Court 1</option>
+                                                                                <option value="">Court 2</option>
+                                                                                <option value="">Court 3</option>
+                                                                                <option value="">Court 5</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Check-out date</label>
-                                                            <div class="form-field">
-                                                                <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                                <input type="text" class="form-control checkout_date" placeholder="Check Out Date">
+            
+                                                            <div class="col-md d-flex">
+                                                                <div class="form-group p-4">
+                                                                    <label for="#">Status</label>
+                                                                    <div class="form-field">
+                                                                        <div class="select-wrap">
+                                                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                                                            <select name="" id="" class="form-control">
+                                                                                <option value="">All</option>
+                                                                                <option value="">Booked</option>
+                                                                                <option value="">Availabale</option>
+                                                                                
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Price Limit</label>
-                                                            <div class="form-field">
-                                                                <div class="select-wrap">
-                                                                    <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                                                    <select name="" id="" class="form-control">
-                                                                        <option value="">$100</option>
-                                                                        <option value="">$10,000</option>
-                                                                        <option value="">$50,000</option>
-                                                                        <option value="">$100,000</option>
-                                                                        <option value="">$200,000</option>
-                                                                        <option value="">$300,000</option>
-                                                                        <option value="">$400,000</option>
-                                                                        <option value="">$500,000</option>
-                                                                        <option value="">$600,000</option>
-                                                                        <option value="">$700,000</option>
-                                                                        <option value="">$800,000</option>
-                                                                        <option value="">$900,000</option>
-                                                                        <option value="">$1,000,000</option>
-                                                                        <option value="">$2,000,000</option>
-                                                                    </select>
+                                    
+                                    
+                                                            <div class="col-md d-flex">
+                                                                <div class="form-group p-4">
+                                                                    <label for="#">Date</label>
+                                                                    <div class="form-field">
+                                                                        <div class="icon"><span class="fa fa-calendar"></span></div>
+                                                                        <input type="text" class="form-control checkin_date" placeholder="Date">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md d-flex">
+                                                                <div class="form-group p-4">
+                                                                    <label for="appt">Time</label>
+                                                                    <input type="time" id="appt" name="appt">
+                                                                </div>		
+                                                            </div>
+                                                            
+                                                            <div class="col-md d-flex">
+                                                                <div class="form-group d-flex w-100 border-0">
+                                                                    <div class="form-field w-100 align-items-center d-flex">
+                                                                        <input type="submit" value="Apply" class="align-self-stretch form-control btn btn-primary">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg d-flex">
-                                                        <div class="form-group d-flex w-100 border-0">
-                                                            <div class="form-field w-100 align-items-center d-flex">
-                                                                <input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary p-0">
+                                                    </form>
+                                                </div>
+                                                <script>
+                                                    export default {
+                                                      data() {
+                                                        return {
+                                                          value: ''
+                                                        }
+                                                      }
+                                                    }
+                                                </script>
+                                                <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
+                                                    <form action="#" class="search-property-1">
+                                                        <div class="row no-gutters">
+                                                            <div class="col-lg d-flex">
+                                                                <div class="form-group p-4 border-0">
+                                                                    <label for="#">Destination</label>
+                                                                    <div class="form-field">
+                                                                        <div class="icon"><span class="fa fa-search"></span></div>
+                                                                        <input type="text" class="form-control" placeholder="Search place">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg d-flex">
+                                                                <div class="form-group p-4">
+                                                                    <label for="#">Date</label>
+                                                                    <div class="form-field">
+                                                                        <div class="icon"><span class="fa fa-calendar"></span></div>
+                                                                        <input type="text" class="form-control checkin_date" placeholder="Date">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg d-flex">
+                                                                <div class="form-group p-4">
+                                                                    <label for="#">Check-out date</label>
+                                                                    <div class="form-field">
+                                                                        <div class="icon"><span class="fa fa-calendar"></span></div>
+                                                                        <input type="text" class="form-control checkout_date" placeholder="Check Out Date">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg d-flex">
+                                                                <div class="form-group p-4">
+                                                                    <label for="#">Price Limit</label>
+                                                                    <div class="form-field">
+                                                                        <div class="select-wrap">
+                                                                            <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                                                            <select name="" id="" class="form-control">
+                                                                                <option value="">$100</option>
+                                                                                <option value="">$10,000</option>
+                                                                                <option value="">$50,000</option>
+                                                                                <option value="">$100,000</option>
+                                                                                <option value="">$200,000</option>
+                                                                                <option value="">$300,000</option>
+                                                                                <option value="">$400,000</option>
+                                                                                <option value="">$500,000</option>
+                                                                                <option value="">$600,000</option>
+                                                                                <option value="">$700,000</option>
+                                                                                <option value="">$800,000</option>
+                                                                                <option value="">$900,000</option>
+                                                                                <option value="">$1,000,000</option>
+                                                                                <option value="">$2,000,000</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg d-flex">
+                                                                <div class="form-group d-flex w-100 border-0">
+                                                                    <div class="form-field w-100 align-items-center d-flex">
+                                                                        <input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary p-0">
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-    
-            <section class="ftco-section col-md-12 scroll" style=" margin-top: 0%; margin-bottom: 0%; padding-top: 0px;"  >
+                    </section>
+
+                    <section class="ftco-section col-md-12 scroll" style=" margin-top: 0%; margin-bottom: 0%; padding-top: 0px;"  >
                       
-                <div class="container" >
-                    <div class="row justify-content-center pb-4"></div>
-                  
-                
-                    <div class="column" style="align-items: center;">
-    
-    
-    
-    
-                        <div class="col-md-12 ftco-animate" id = "first_choice" >
-                            <div class="project-wrap" style=" width: 100%; ">
+                        <div class="container" >
+                            <div class="row justify-content-center pb-4"></div>
+                          
                         
-                        
-                        
+                            <div class="column" style="align-items: center;">
+            
+            
+            
+            
+                                <div class="col-md-12 ftco-animate" id = "first_choice" >
+                                    <div class="project-wrap" style=" width: 100%; ">
+                                
+                                
+                                
+                                    <div class="text p-4 row" style="background-color: antiquewhite; margin-bottom: 3.5rem;" >
+                                        <span class="days">Tennis</span>
+                                        <h3><a href="#">Court 3</a></h3>
+                                        <div class="book_info"   >
+                                        <p class="date" style="margin: auto;"><span class="fa fa-calendar"></span> 5/11/2021</p>
+                                        <p class="time" style="margin: auto;"><span class="fa fa-clock-o"></span> 11:00</p>
+                                        <p class="duration" style="margin: auto;"><span class="fa fa-clock-o"></span> 2 hours</p>
+                                        <p class="user_name" style="margin: auto;"><span class="fa fa-user"></span> Dimitris Bouris</p>
+                                        <p class="Paid" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Paid</p>
+                                            </div>
+            
+                                                <a  href="booking_details.html">
+                                                <button  style="width: 100%; margin-top: 5%;" class="btn btn-success btn-lg active" type="submit">Booking Details</button>
+                                                </a> 
+                                        
+                                            </div>                  
+                                    </div>
+                                </div>
+        
+                                <div class="col-md-12 ftco-animate" id = "first_choice" >
+                                    <div class="project-wrap" style=" width: 100%; ">
+                                
+            
+                                <div class="text p-4 row" style="background-color: antiquewhite; margin-bottom: 3.5rem;" >
+                                    <span class="days">Tennis</span>
+                                    <h3><a href="#">Court 1</a></h3>
+                                    <div class="book_info"   >
+                                    <p class="date" style="margin: auto;"><span class="fa fa-calendar"></span> 7/11/2021</p>
+                                    <p class="time" style="margin: auto;"><span class="fa fa-clock-o"></span> 15:00</p>
+                                    <p class="duration" style="margin: auto;"><span class="fa fa-clock-o"></span> 1 hour</p>
+                                    <p class="user_name" style="margin: auto;"><span class="fa fa-user"></span> Aliki Orlandou</p>
+                                    <p class="Paid" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Paid</p>
+                                        </div>
+        
+                                            <a  href="booking_details.html">
+                                            <button  style="width: 100%; margin-top: 5%;" class="btn btn-success btn-lg active" type="submit">Booking Details</button>
+                                            </a> 
+                                    
+                                        </div>                  
+                                </div>
+                            </div>
+        
+                            <div class="col-md-12 ftco-animate" id = "first_choice" >
+                                <div class="project-wrap" style=" width: 100%; ">
+                            
+        
                             <div class="text p-4 row" style="background-color: antiquewhite; margin-bottom: 3.5rem;" >
-                                <span class="days">Tennis</span>
-                                <h3><a href="#">Court 3</a></h3>
+                                <span class="days">Padel</span>
+                                <h3><a href="#">Court 1</a></h3>
                                 <div class="book_info"   >
-                                <p class="date" style="margin: auto;"><span class="fa fa-calendar"></span> 5/11/2021</p>
-                                <p class="time" style="margin: auto;"><span class="fa fa-clock-o"></span> 11:00</p>
-                                <p class="duration" style="margin: auto;"><span class="fa fa-clock-o"></span> 2 hours</p>
-                                <p class="user_name" style="margin: auto;"><span class="fa fa-user"></span> Dimitris Bouris</p>
+                                <p class="date" style="margin: auto;"><span class="fa fa-calendar"></span> 6/11/2021</p>
+                                <p class="time" style="margin: auto;"><span class="fa fa-clock-o"></span> 19:00</p>
+                                <p class="duration" style="margin: auto;"><span class="fa fa-clock-o"></span> 1 hour</p>
+                                <p class="user_name" style="margin: auto;"><span class="fa fa-user"></span> Konstantina Zouni</p>
                                 <p class="Paid" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Paid</p>
                                     </div>
-    
+        
                                         <a  href="booking_details.html">
                                         <button  style="width: 100%; margin-top: 5%;" class="btn btn-success btn-lg active" type="submit">Booking Details</button>
                                         </a> 
@@ -537,22 +757,22 @@
                                     </div>                  
                             </div>
                         </div>
-
+        
                         <div class="col-md-12 ftco-animate" id = "first_choice" >
                             <div class="project-wrap" style=" width: 100%; ">
                         
-    
+        
                         <div class="text p-4 row" style="background-color: antiquewhite; margin-bottom: 3.5rem;" >
                             <span class="days">Tennis</span>
-                            <h3><a href="#">Court 1</a></h3>
+                            <h3><a href="#">Court 3</a></h3>
                             <div class="book_info"   >
-                            <p class="date" style="margin: auto;"><span class="fa fa-calendar"></span> 7/11/2021</p>
-                            <p class="time" style="margin: auto;"><span class="fa fa-clock-o"></span> 15:00</p>
-                            <p class="duration" style="margin: auto;"><span class="fa fa-clock-o"></span> 1 hour</p>
-                            <p class="user_name" style="margin: auto;"><span class="fa fa-user"></span> Aliki Orlandou</p>
+                            <p class="date" style="margin: auto;"><span class="fa fa-calendar"></span> 5/11/2021</p>
+                            <p class="time" style="margin: auto;"><span class="fa fa-clock-o"></span> 11:00</p>
+                            <p class="duration" style="margin: auto;"><span class="fa fa-clock-o"></span> 2 hours</p>
+                            <p class="user_name" style="margin: auto;"><span class="fa fa-user"></span> Dimitris Bouris</p>
                             <p class="Paid" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Paid</p>
                                 </div>
-
+        
                                     <a  href="booking_details.html">
                                     <button  style="width: 100%; margin-top: 5%;" class="btn btn-success btn-lg active" type="submit">Booking Details</button>
                                     </a> 
@@ -560,177 +780,20 @@
                                 </div>                  
                         </div>
                     </div>
-
-                    <div class="col-md-12 ftco-animate" id = "first_choice" >
-                        <div class="project-wrap" style=" width: 100%; ">
-                    
-
-                    <div class="text p-4 row" style="background-color: antiquewhite; margin-bottom: 3.5rem;" >
-                        <span class="days">Padel</span>
-                        <h3><a href="#">Court 1</a></h3>
-                        <div class="book_info"   >
-                        <p class="date" style="margin: auto;"><span class="fa fa-calendar"></span> 6/11/2021</p>
-                        <p class="time" style="margin: auto;"><span class="fa fa-clock-o"></span> 19:00</p>
-                        <p class="duration" style="margin: auto;"><span class="fa fa-clock-o"></span> 1 hour</p>
-                        <p class="user_name" style="margin: auto;"><span class="fa fa-user"></span> Konstantina Zouni</p>
-                        <p class="Paid" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Paid</p>
+            
+            
+            
+            
                             </div>
-
-                                <a  href="booking_details.html">
-                                <button  style="width: 100%; margin-top: 5%;" class="btn btn-success btn-lg active" type="submit">Booking Details</button>
-                                </a> 
-                        
-                            </div>                  
-                    </div>
-                </div>
-
-                <div class="col-md-12 ftco-animate" id = "first_choice" >
-                    <div class="project-wrap" style=" width: 100%; ">
-                
-
-                <div class="text p-4 row" style="background-color: antiquewhite; margin-bottom: 3.5rem;" >
-                    <span class="days">Tennis</span>
-                    <h3><a href="#">Court 3</a></h3>
-                    <div class="book_info"   >
-                    <p class="date" style="margin: auto;"><span class="fa fa-calendar"></span> 5/11/2021</p>
-                    <p class="time" style="margin: auto;"><span class="fa fa-clock-o"></span> 11:00</p>
-                    <p class="duration" style="margin: auto;"><span class="fa fa-clock-o"></span> 2 hours</p>
-                    <p class="user_name" style="margin: auto;"><span class="fa fa-user"></span> Dimitris Bouris</p>
-                    <p class="Paid" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Paid</p>
-                        </div>
-
-                            <a  href="booking_details.html">
-                            <button  style="width: 100%; margin-top: 5%;" class="btn btn-success btn-lg active" type="submit">Booking Details</button>
-                            </a> 
-                    
-                        </div>                  
-                </div>
-            </div>
-    
-    
-    
-    
-                    </div>
-    
-                  
-                </div>
-              
-            </section>
-    
             
-            <hr class="featurette-divider" id ="Courts">
-
-
-
-            <div class="col-md-12">
-                <h2 class="featurette-heading">Courts <span class="text-muted"></span></h2>
-          
-              
+                          
+                        </div>
+                      
+                    </section>
+            
             
           
-          
-          
-          
-              <section class="ftco-section">
-                <div class="container">
-                  <div class="justify-content-center pb-4">
-                    
-                  </div>
-                  <div class="row">
-        
-        
-                    <div class="col-md-4 ftco-animate" id = "first_choice" >
-                      <div class="project-wrap">
-                        <a href="add_slot.html"  class="img" style="background-image: url(photos/AceSportsClub/Court1.jpg);">
-                          
-                        </a>
-                        <div class="text p-4">
-                          <span class="days">Tennis</span>
-                          <h3><a href="#">Court 1</a></h3>
-                          <div class="attributes_court "   >
-                            <p class="location court_attribute"><span class="fa fa-map-marker"></span> Clay</p>
-                            <p class="location court_attribute"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                            <p class="location court_attribute"> Outdoor</p>
-                          </div>
-                          
-                        </div>
-                      </div>
-                    </div>
-        
-                    <div class="col-md-4 ftco-animate" id = "first_choice" >
-                      <div class="project-wrap">
-                        <a href="add_slot.html"  class="img" style="background-image: url(photos/ace_7.jpg);">
-                          
-                        </a>
-                        <div class="text p-4">
-                          <span class="days">Tennis</span>
-                          <h3><a href="#">Court 2</a></h3>
-                          <div class="attributes_court "   >
-                            <p class="location court_attribute"><span class="fa fa-map-marker"></span> Clay</p>
-                            <p class="location court_attribute"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                            <p class="location court_attribute"> Outdoor</p>
-                          </div>
-                          
-                        </div>
-                      </div>
-                    </div>
-        
-                    <div class="col-md-4 ftco-animate" id = "first_choice" >
-                      <div class="project-wrap">
-                        <a href="add_slot.html"  class="img" style="background-image: url(photos/padel.jpg);">
-                          
-                        </a>
-                        <div class="text p-4">
-                          <span class="days">padel</span>
-                          <h3><a href="#">Court 3</a></h3>
-                          <div class="attributes_court "   >
-                            <p class="location court_attribute"><span class="fa fa-map-marker"></span> Clay</p>
-                            <p class="location court_attribute"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                            <p class="location court_attribute"> Indoor</p>
-                          </div>
-                          
-                        </div>
-                      </div>
-                    </div>
-        
-                    <div class="col-md-4 ftco-animate" id = "first_choice" >
-                      <div class="project-wrap">
-                        <a href="add_slot.html"  class="img" style="background-image: url(photos/soccer.jpg);">
-                          
-                        </a>
-                        <div class="text p-4">
-                          <span class="days">Football</span>
-                          <h3><a href="#">Court 1</a></h3>
-                          <div class="attributes_court " >
-                            <p class="location court_attribute"><span class="fa fa-map-marker"></span> Artificiall Grass</p>
-                            <p class="location court_attribute"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                            <p class="location court_attribute"> Outdoor</p>
-                          </div>
-                          
-                        </div>
-                      </div>
-                    </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-                    
-                  </div>
-                </div>
-              </section>
-        
+              
               
               
         
@@ -741,6 +804,27 @@
         
         
             </div>
+
+            <div class="space">
+                Week:
+                <a href="javascript:dp.startDate = dp.startDate.addDays(-7); dp.update();">Previous</a>
+                |
+                <a href="javascript:dp.startDate = dp.startDate.addDays(7); dp.update();">Next</a>
+            </div>
+        
+            <select name="cars" id="cars" onchange="getData()">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </select>
+        
+        
+        
+            <div id="dp"></div>
+        
+            <div id="print"></div>
+        
 		
 
 
