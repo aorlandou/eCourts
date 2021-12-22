@@ -2,11 +2,15 @@
 <%@ page import ="java.util.List"%>
 <%@ page import ="ecourts_java.*"%>
 
-<%
-
+<% int slot_id;
+  session.setAttribute("not_logged", null);
 	User curUser = (User)session.getAttribute("user_id");
+  try{
+  slot_id=Integer.parseInt(request.getParameter("id"));
+  }catch (NumberFormatException e){%>
+    <jsp:forward page="home.jsp" />
+  <%}
   
-  int slot_id=Integer.parseInt(request.getParameter("id"));
   Slot slot=new Slot();
   Slot curSlot= slot.getSlot_by_id(slot_id);
   Court court=new Court();
