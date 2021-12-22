@@ -257,43 +257,7 @@ if (photo_path_background != null){
     
     </style>
 
-<script type="text/javascript">
-        
 
-    var dp = new DayPilot.Calendar("dp");
-    
-    // view
-    dp.startDate = "2021-12-25";
-    dp.viewType = "Week";
-
-    
-    
-
-    dp.onEventClick = function (args) {
-        alert("clicked: " + args.e.id());
-    };
-
-    dp.init();
-
-    var e = new DayPilot.Event({
-        start: new DayPilot.Date("2021-12-23T12:00:00"),
-        end: new DayPilot.Date("2021-12-23T12:00:00").addHours(3),
-        id: DayPilot.guid(),
-        text: "Pao"
-    });
-    
-    dp.events.add(e);
-
-    function getData(){
-        dp.events.load("employees.json");
-    }
-    
-
-
-
-    
-
-</script>
 
 
     
@@ -805,31 +769,69 @@ if (photo_path_background != null){
         
             </div>
 
-            <div class="space">
-                Week:
-                <a href="javascript:dp.startDate = dp.startDate.addDays(-7); dp.update();">Previous</a>
-                |
-                <a href="javascript:dp.startDate = dp.startDate.addDays(7); dp.update();">Next</a>
-            </div>
-        
-            <select name="cars" id="cars" onchange="getData()">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
-            </select>
-        
-        
-        
-            <div id="dp"></div>
-        
-            <div id="print"></div>
-        
+            
 		
 
 
       </div>
     </div>
+    
+    <div class="space">
+        Week:
+        <a href="javascript:dp.startDate = dp.startDate.addDays(-7); dp.update();">Previous</a>
+        |
+        <a href="javascript:dp.startDate = dp.startDate.addDays(7); dp.update();">Next</a>
+    </div>
+
+    <select name="cars" id="cars" onchange="getData()">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+    </select>
+
+
+
+    <div id="dp" style="margin-bottom: 10%;" ></div>
+
+    <div id="print"></div>
+    <script type="text/javascript">
+        
+
+        var dp = new DayPilot.Calendar("dp");
+        
+        // view
+        dp.startDate = "2021-12-25";
+        dp.viewType = "Week";
+    
+        
+        
+    
+        dp.onEventClick = function (args) {
+            alert("clicked: " + args.e.id());
+        };
+    
+        dp.init();
+    
+        var e = new DayPilot.Event({
+            start: new DayPilot.Date("2021-12-23T12:00:00"),
+            end: new DayPilot.Date("2021-12-23T12:00:00").addHours(3),
+            id: DayPilot.guid(),
+            text: "Pao"
+        });
+        
+        dp.events.add(e);
+    
+        function getData(){
+            dp.events.load("employees.json");
+        }
+        
+    
+    
+    
+        
+    
+    </script>
 
     <!-- /END THE FEATURETTES -->
 
@@ -921,6 +923,7 @@ if (photo_path_background != null){
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 			<script src="js/google-map.js"></script>
 			<script src="js/main.js"></script>
+            <script src="helpers/v2/app.js?v=2021.2.261"></script>
 
 
 
