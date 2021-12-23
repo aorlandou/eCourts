@@ -3,19 +3,11 @@
 <%@ page import ="ecourts_java.*"%>
 
 <% int slot_id;
-  session.setAttribute("not_logged", null);
-	User curUser = (User)session.getAttribute("user_id");
-  try{
-  slot_id=Integer.parseInt(request.getParameter("id"));
-  }catch (NumberFormatException e){%>
-    <jsp:forward page="home.jsp" />
-  <%}
   
-  Slot slot=new Slot();
-  Slot curSlot= slot.getSlot_by_id(slot_id);
-  Court court=new Court();
-  court=court.getCourt_by_id(curSlot.getCourt_id());
-
+	User curUser = (User)session.getAttribute("user_id");
+  
+  
+  
   String comments= request.getParameter("subject");
   if(session.getAttribute("book")!=null){
   Booking book=(Booking)session.getAttribute("book");
@@ -264,6 +256,10 @@
       font-size: 16px;
       resize: none;
     }
+
+    
+
+    
     </style>
 
 
@@ -280,13 +276,13 @@
       var month = document.getElementById("month");
       var year = document.getElementById("year");
       if (checkBox.checked == true){
-        name.style.display = "block";
+        
         inname.style.display = "block";
-        number.style.display = "block";
+       
         innumber.style.display = "block";
         exp.style.display = "block";
-        cvv.style.display = "block";
-        incvv.style.display = "block";
+        
+        incv.style.display = "block";
         month.style.display = "block";
         year.style.display = "block";
       } else {
@@ -296,7 +292,7 @@
          innumber.style.display = "none"; 
          exp.style.display = "none"; 
          cvv.style.display = "none";
-         incvv.style.display = "none";
+         incv.style.display = "none";
          month.style.display = "none";
          year.style.display = "none";
          
@@ -310,7 +306,7 @@
       document.getElementById("cash").checked = false; 
       document.getElementById('message_number').innerHTML = '';       
       document.getElementById('message_name').innerHTML = '';  
-      document.getElementById('message_cvv').innerHTML = '';        
+      document.getElementById('message_cv').innerHTML = '';        
      }           
       }
   </script>
@@ -343,9 +339,9 @@
                           document.getElementById('message_name').innerHTML = 'Please fill out this field';
 	                      event.preventDefault();	
                          }  
-            if (document.getElementById('incvv').value.length==0) {		
-                          document.getElementById('message_cvv').style.color = 'red';
-                          document.getElementById('message_cvv').innerHTML = 'Please fill out this field';
+            if (document.getElementById('incv').value.length==0) {		
+                          document.getElementById('message_cv').style.color = 'red';
+                          document.getElementById('message_cv').innerHTML = 'Please fill out this field';
 	                      event.preventDefault();	
                          }  
 
@@ -378,11 +374,11 @@
 
 <script>
     function val3(){
-        if(document.getElementById('incvv').value.length!=0){
-          document.getElementById('message_cvv').innerHTML = '';
+        if(document.getElementById('incv').value.length!=0){
+          document.getElementById('message_cv').innerHTML = '';
         }else{
-            document.getElementById('message_cvv').style.color = 'red';
-                          document.getElementById('message_cvv').innerHTML = 'Please fill out this field';
+            document.getElementById('message_cv').style.color = 'red';
+                          document.getElementById('message_cv').innerHTML = 'Please fill out this field';
         }
     }
 </script>
@@ -537,15 +533,17 @@
                                           <p id="number" style="display:none" class="text mb-1">Card Number</p>        
                                           <input id="innumber" placeholder="Card Number" oninput="val1()" style="display:none" class="form-control mb-3" type="text">
                                           <span id='message_number'></span>
+                                        </div>
+                                        <div class="form-row">
                                           <p id="name" style="display:none">Cardholder's name</p>
-                                          <input style="display:none" id="inname" oninput="val2()" class="form-control mb-3" type="text">
+                                          <input style="display:none" id="inname" placeholder="Cardholder's name" oninput="val2()" class="form-control mb-3" type="text">
                                           <span id='message_name'></span>
                                         </div>                   
                                         
                                       </div>
                                       <div class="form-right">
                                         <div class="form-row">
-                                          <p id="exp" class="exp" style="display:none;">Expiration date</p>
+                                          <p id="exp" class="exp" style="display:none;"></p>
                                         </div>      
                                           <div class="form-group">                 
                                             <div class="form-row form-row-1">                 
@@ -579,8 +577,8 @@
                                           
                                         <div class="form-row">
                                           <p id="cvv" style="display:none;margin-top: -20px;"  class="text mb-1">CVV/CVC</p> 
-                                          <input id="incvv" oninput="val3()" style="display:none;width: 100px;margin-left: -18%;margin-top: 5%;" class="form-control mb-3 pt-2 " type="password">
-                                          <span id='message_cvv'></span>
+                                          <input id="incv" oninput="val3()" placeholder="CVV/CVC" style="display:none;width: 110px;margin-top: 0%;" class="form-control mb-3 pt-2 " type="password">
+                                          <span id='message_cv'></span>
                                         </div>      
                                         <div class="form-row-last">
                                           <input type="submit" name="register" class="register" value="Next">

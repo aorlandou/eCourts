@@ -387,7 +387,7 @@
                               <div class="form-v10" >
                                 <div class="page-content" style="margin-top: -60px;">
                                   <div class="form-v10-content">
-                                    <form class="form-detail" action="pay.jsp?id=<%=slot_id%>" method="post" id="myform">
+                                    <form class="form-detail" action="pay.jsp" method="post" id="myform">
                                       <div class="form-left">
                                         <h2 class="bh2" style="color:rgb(0, 0, 0)">Booking Summary</h2>            
                                         <div class="form-group">
