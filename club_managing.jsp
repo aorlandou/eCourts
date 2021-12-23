@@ -31,6 +31,12 @@ if (photo_path_background != null){
     photo_path_background = photo_path_background.replaceAll("\\s", "");
 }
 
+
+
+
+
+
+
 %>
 
 
@@ -268,7 +274,7 @@ if (photo_path_background != null){
     <link href="css/carousel.css" rel="stylesheet">
   </head>
 
-  <body style="padding-top: 0rem; padding-bottom: 0px; background-color: #f3f3f3;">
+  <body style="padding-top: 0rem; padding-bottom: 0px; background-color: #f3f3f3; " onload="refreshEvents('<%=spid%>')">
 
 
     
@@ -783,11 +789,19 @@ if (photo_path_background != null){
         <a href="javascript:dp.startDate = dp.startDate.addDays(7); dp.update();">Next</a>
     </div>
 
-    <select name="cars" id="cars" onchange="getData()">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
+    <select name="cars" id="courts" onchange="refreshEvents('<%=spid%>')">
+
+
+        <%
+        for (Court court: court_list){
+        %>
+            <option value="<%=court.getCourt_id()%>"><%=court.getName()%></option>
+        <%
+        }
+
+        %>
+        
+        
     </select>
 
 
@@ -813,17 +827,22 @@ if (photo_path_background != null){
     
         dp.init();
     
-        var e = new DayPilot.Event({
-            start: new DayPilot.Date("2021-12-23T12:00:00"),
-            end: new DayPilot.Date("2021-12-23T12:00:00").addHours(3),
-            id: DayPilot.guid(),
-            text: "Pao"
-        });
-        
-        dp.events.add(e);
+
+        function clearEvents(){
+            dp.events.list = [];
+            dp.update();      
+        }
+
     
-        function getData(){
-            dp.events.load("employees.json");
+        function refreshEvents(club_id){
+            var sport= $('#courts').val();
+            console.log(sport);
+            clearEvents();
+            dp.events.load("servlet/BookingsServlet?clubid="+club_id+"&courtid="+sport);
+            
+
+            
+
         }
         
     
@@ -899,7 +918,7 @@ if (photo_path_background != null){
 
 
 
-
+    
 
 
 
@@ -931,6 +950,5 @@ if (photo_path_background != null){
 
 
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="js/bootstrap.bundle.min.js"></script>
+  
 </html>

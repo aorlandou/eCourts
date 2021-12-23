@@ -417,7 +417,7 @@ public class Court {
                 
     
                 SportsClub club = new SportsClub(club_id,club_name,street,town);
-                court = new Court(court_name, sport_name,sport_id,surface_name,club, size);
+                court = new Court(court_id,court_name, sport_name,sport_id,surface_name,club, size);
                 
     
     
@@ -486,7 +486,7 @@ public class Court {
                 //check which sport and create the equivalent object 
                 //Construct the club object first
                 SportsClub club = new SportsClub(club_id,club_name,street,town);
-                court = new Court(court_name, sport_name,sport_id, surface_name,doors,club);
+                court = new Court(court_id,court_name, sport_name,sport_id, surface_name,doors,club);
             }
             
             
@@ -521,8 +521,9 @@ public class Court {
             this.doors = doors;
         }
 
-        public Court(String name, String sport, int sportid, String surface, String doors,SportsClub club
+        public Court(int court_id,String name, String sport, int sportid, String surface, String doors,SportsClub club
                 ) {
+            this.court_id = court_id;
             this.name = name;
             this.sport = sport;
             this.sportid = sportid;
@@ -530,8 +531,9 @@ public class Court {
             this.club = club;
             this.doors = doors;
         }
-        public Court(String name, String sport, int sportid, String surface, SportsClub club, String size
+        public Court(int court_id,String name, String sport, int sportid, String surface, SportsClub club, String size
                 ) {
+            this.court_id = court_id;
             this.name = name;
             this.sport = sport;
             this.sportid = sportid;
