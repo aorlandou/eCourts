@@ -4,6 +4,7 @@
 
 <% int slot_id;
     Booking book;
+    int book_id;
 	User curUser = (User)session.getAttribute("user_id");
     if(session.getAttribute("book")!=null){
         book=(Booking)session.getAttribute("book");
@@ -16,7 +17,8 @@
           <jsp:forward page="home.jsp" />
         <%}
     
-    book.makeBooking(book.getSlot_id(),book.getUser_id(), book.getComment(), book.getOnline_payment()); 
+    book_id=book.makeBooking(book.getSlot_id(),book.getUser_id(), book.getComment(), book.getOnline_payment()); 
+    book.setNotAvailable(book.getSlot_id());
     
     
     
@@ -385,11 +387,11 @@
                               </div>
 
                               <img  style="display: block;  margin-left: auto; margin-top: 5%; margin-right: auto;  width: 100px; height: 100px;" src="images/check.png"> 
-  <h2 style="text-align: center;color:rgb(68, 68, 68);font-family: 'Poppins', Arial, sans-serif;">Booking #12879</h2>
+  <h2 style="text-align: center;color:rgb(68, 68, 68);font-family: 'Poppins', Arial, sans-serif;">Booking #<%=book_id%></h2>
   <h2 style="text-align: center;color:rgb(68, 68, 68);font-family: 'Poppins', Arial, sans-serif;">Thank you for your reservation. A verification email has been send to you.</h2>
   <a href="home.jsp" style="color:#fd7e14;"><h3 href="home.jsp" style="text-align: center;color:#fd7e14;font-family: 'Poppins', Arial, sans-serif;">Make more bookings? Click here</h3></a>
 
-                         
+  <%session.setAttribute("book", null);%>
 
    <br>
    <br>

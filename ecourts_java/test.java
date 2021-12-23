@@ -52,8 +52,8 @@ public class test {
         //Booking bk = new Booking();
         //Booking booking = bk.getBookingSlotDetails(16);
         //System.out.println(booking.getCustomer().getName());
-        Slot slt = new Slot();
-        List<Slot> slot_list = slt.getSlotsManaging(1);
+       // Slot slt = new Slot();
+        //List<Slot> slot_list = slt.getSlotsManaging(1);
         //for (Slot slt1: slot_list){
             //System.out.println(slt1.getStatus());
            // if (slt1.getStatus().equals("BOOKED")){
@@ -63,10 +63,8 @@ public class test {
             
         //}
 
-        Court court= new Court();
-        court=court.getCourt_by_id(3);
-        List<String> temp=court.getDetails();
-        System.out.println(temp.get(1));
+       Booking book=new Booking();
+       book.setNotAvailable(128);
 
 
 

@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.*;
 
 
+
+
 public class Booking {
 
     private int online_payment;
@@ -29,6 +31,79 @@ public class Booking {
     public Booking(int slot_id, int user_id){
         this.slot_id=slot_id;
         this.user_id=user_id;
+    }
+
+    public void setNotAvailable(int slot){
+        ResultSet rs=null;
+        DB data = new DB();
+		Connection con = null;
+        PreparedStatement stmt = null;       
+        String sql = "UPDATE slot SET status=? WHERE slot_id=?";
+        String sql2="SELECT * FROM slot WHERE slot_id=?";
+        try {
+            
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);
+
+            // setting parameter
+            stmt.setString(1,"BOOKED");
+            stmt.setInt(2, slot);
+           
+
+           stmt.executeUpdate();
+           stmt = con.prepareStatement(sql2);
+           stmt.setInt(1, slot);
+           rs=stmt.executeQuery();
+           while(rs.next()){
+             int court_id=rs.getInt("court_id");
+             int duration=rs.getInt("duration");
+             date_booked=rs.getDate("date");
+             time_booked=rs.getTime("time_start");
+             
+             SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+
+             if (duration==2){
+                System.out.println("hi");
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(time_booked);
+                cal.add(Calendar.HOUR,1);
+                String first = format.format(cal.getTime());               
+                String sql3="UPDATE slot SET status=? WHERE court_id=? AND date=? AND (time_start=? OR time_start=?);";
+                stmt = con.prepareStatement(sql3);
+                stmt.setString(1,"BOOKED");
+                stmt.setInt(2, court_id);
+                stmt.setDate(3,date_booked);
+                stmt.setString(4,first);
+                stmt.setTime(5,time_booked);
+                stmt.executeUpdate();
+             }else if (duration==1){
+                
+                String sql4="UPDATE slot SET status=? WHERE court_id=? AND date=? AND time_start=?;";
+                stmt = con.prepareStatement(sql4);
+                stmt.setString(1,"BOOKED");
+                stmt.setInt(2, court_id);
+                stmt.setDate(3,date_booked);
+                stmt.setTime(4,time_booked);
+                stmt.executeUpdate();
+
+             }
+           }
+
+           
+          
+        } catch (Exception e) {
+
+            
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
     }
 
     public int makeBooking(int slot, int user, String comm, int pay){
