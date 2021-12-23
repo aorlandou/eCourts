@@ -17,6 +17,12 @@
   court=court.getCourt_by_id(curSlot.getCourt_id());
 
   String comments= request.getParameter("subject");
+  if(session.getAttribute("book")!=null){
+  Booking book=(Booking)session.getAttribute("book");
+  book.setComment(comments);
+  }else{%>
+    <jsp:forward page="home.jsp" />
+  <%}
 
  
 	
@@ -499,8 +505,8 @@
                                        
                                           
                                         <div class="form-row">
-                                          <p id="cvv" style="display:none;margin-top: -7px;"  class="text mb-1">CVV/CVC</p> 
-                                          <input id="incvv" style="display:none;width: 100px;" class="form-control mb-3 pt-2 " type="password">
+                                          <p id="cvv" style="display:none;margin-top: -20px;"  class="text mb-1">CVV/CVC</p> 
+                                          <input id="incvv" style="display:none;width: 100px;margin-left: -18%;margin-top: 5%;" class="form-control mb-3 pt-2 " type="password">
                                         </div>      
                                         <div class="form-row-last">
                                           <input type="submit" name="register" class="register" value="Next">

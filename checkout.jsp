@@ -15,6 +15,8 @@
   Slot curSlot= slot.getSlot_by_id(slot_id);
   Court court=new Court();
   court=court.getCourt_by_id(curSlot.getCourt_id());
+  Booking book=new Booking(slot_id,curUser.getUser_id());
+  session.setAttribute("book", book);
  
 	
 
