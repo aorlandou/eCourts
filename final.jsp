@@ -3,20 +3,29 @@
 <%@ page import ="ecourts_java.*"%>
 
 <% int slot_id;
-  session.setAttribute("not_logged", null);
+    Booking book;
+    int book_id;
 	User curUser = (User)session.getAttribute("user_id");
-  try{
-  slot_id=Integer.parseInt(request.getParameter("id"));
-  }catch (NumberFormatException e){%>
-    <jsp:forward page="home.jsp" />
-  <%}
+    if(session.getAttribute("book")!=null){
+        book=(Booking)session.getAttribute("book");
+        if(request.getParameter("one")!=null){
+        book.setOnline_payment(0); 
+        }else{
+        book.setOnline_payment(1);
+        }       
+        }else{%>
+          <jsp:forward page="home.jsp" />
+        <%}
+    
+    book_id=book.makeBooking(book.getSlot_id(),book.getUser_id(), book.getComment(), book.getOnline_payment()); 
+    book.setNotAvailable(book.getSlot_id());
+    
+    
+    
   
-  Slot slot=new Slot();
-  Slot curSlot= slot.getSlot_by_id(slot_id);
-  Court court=new Court();
-  court=court.getCourt_by_id(curSlot.getCourt_id());
-  Booking book=new Booking(slot_id,curUser.getUser_id());
-  session.setAttribute("book", book);
+  
+  
+
  
 	
 
@@ -35,27 +44,17 @@
 
 
     <title>Checkout</title>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	  <link rel="icon" href="images/LOGO2-01.png">
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="icon" href="images/LOGO2-01.png">
+  <!-- Font-->
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/ecourts_register.css">  
+  <link rel="stylesheet" href="css/ecourts_stepper.css">
 
-    <!-- This CSS file (bootstrap-theme.min.css) is optional -->
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/ecourts_checkout_confirm.css">
-    <link rel="stylesheet" href="css/ecourts_stepper.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-  
-  
-      <link rel="stylesheet" type="text/css" href="css/montserrat-font.css">
-      <link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-      
-    
-
-    <!-- Favicons -->
+	<link rel="stylesheet" type="text/css" href="css/montserrat-font.css">
+	<link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+	<!-- Main Style Css -->  
 
 
 
@@ -242,6 +241,10 @@
         }
         
       }
+
+
+
+    
   
     
     </style>
@@ -259,11 +262,11 @@
       font-size: 16px;
       resize: none;
     }
-    </style>
-
 
     
 
+    
+    </style>
 
 
     <!-- Custom styles for this template -->
@@ -337,7 +340,6 @@
 
 
 
-
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -362,7 +364,7 @@
                 
                       <!-- Breadcrumb -->
                       
-               
+                     
             
                       <!-- /Breadcrumb -->
                 
@@ -374,114 +376,27 @@
                                   <div class="step-counter"><i class="fa fa-info" style="font-size:24px"></i></div>
                                   <div class="step-name">Summary</div>
                                 </div>
-                                <div class="stepper-item ">
+                                <div class="stepper-item active completed">
                                   <div class="step-counter "><i class="fa fa-credit-card-alt" style="font-size:24px"></i></div>
                                   <div class="step-name">Payment</div>
                                 </div>
-                                <div class="stepper-item">
+                                <div class="stepper-item active completed">
                                   <div class="step-counter"><i class="fa fa-check" style="font-size:24px"></i></div>
                                   <div class="step-name">Finish</div>
                                 </div>
                               </div>
 
-                              <div class="form-v10" >
-                                <div class="page-content" style="margin-top: -60px;">
-                                  <div class="form-v10-content">
-                                    <form class="form-detail" action="pay.jsp" method="post" id="myform">
-                                      <div class="form-left">
-                                        <h2 class="bh2" style="color:rgb(0, 0, 0)">Booking Summary</h2>            
-                                        <div class="form-group">
-                                          <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Sports Club</label>
-                                          </div>
-                                          <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=court.getSportsclub_name()%></label>
-                                          </div>
-                                        </div>
-                                        <div class="form-group" style="margin-top: -4%;">
-                                          <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)" >Court</label>
-                                          </div>
-                                          <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=court.getName()%></label>
-                                          </div>
-                                        </div>	
-                                        <div class="form-group" style="margin-top: -4%;">
-                                          <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)"><%=court.getDetails().get(0)%></label>
-                                          </div>
-                                          <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=court.getDetails().get(1)%></label>
-                                          </div>
-                                        </div>
-                                        <div class="form-group" style="margin-top: -4%;">
-                                          <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Date</label>
-                                          </div>
-                                          <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getDate()%></label>
-                                          </div>
-                                        </div>		
-                                        <div class="form-group" style="margin-top: -4%;">
-                                          <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Starting time</label>
-                                          </div>
-                                          <div class="form-row form-row-2" style="margin-right:110px">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getTime()%></label>
-                                          </div>
-                                        </div>  
-                                           
-                                        
-                                                
-                                        
-                                      </div>
-                                      <div class="form-right">
-                                        <h2 class="bh2" style="color:rgb(0, 0, 0)">Booking Bill</h2>
-                                        <div class="form-group">
-                                          <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Price per hour</label>
-                                          </div>
-                                          <div class="form-row form-row-2">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getPrice()%>&euro;</label>
-                                          </div>
-                                        </div>  
-                                        <div class="form-group" style="margin-top: -4%;">
-                                          <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Hours</label>
-                                          </div>
-                                          <div class="form-row form-row-2">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getDuration()%></label>
-                                          </div>
-                                        </div>
-                                        <div class="form-group" style="margin-top: -4%;">
-                                          <div class="form-row form-row-1">
-                                            <label style="font-weight: bold;color:rgb(0, 0, 0)">Total</label>
-                                          </div>
-                                          <div class="form-row form-row-2">
-                                            <label style="font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"><%=curSlot.getDuration()*curSlot.getPrice()%>&euro;</label>
-                                          </div>
-                                        </div>    
-                                        <div class="form-row " style="margin-top: -4%;" >
-                                          <label style="font-weight: bold;color:rgb(0, 0, 0)">Comments</label>
-                                          <textarea class="comments"  id="subject" name="subject" placeholder="Notes for your reservation" style="height: 70px;font-weight: bold;color:rgb(68, 68, 68);font-family: 'Courier New', monospace;"></textarea>
-                                        </div>       
-                                        <div class="form-row-last">
-                                          
-                                          <input type="submit" name="register" class="register" value="Next">
-                                          
-                                        </div>
-                                      </div>
-                                    </form>
-                                   
-                                  </div>
-                                  
-                                </div>
-                               
-                            </div>
+                              <img  style="display: block;  margin-left: auto; margin-top: 5%; margin-right: auto;  width: 100px; height: 100px;" src="images/check.png"> 
+  <h2 style="text-align: center;color:rgb(68, 68, 68);font-family: 'Poppins', Arial, sans-serif;">Booking #<%=book_id%></h2>
+  <h2 style="text-align: center;color:rgb(68, 68, 68);font-family: 'Poppins', Arial, sans-serif;">Thank you for your reservation. A verification email has been send to you.</h2>
+  <a href="home.jsp" style="color:#fd7e14;"><h3 href="home.jsp" style="text-align: center;color:#fd7e14;font-family: 'Poppins', Arial, sans-serif;">Make more bookings? Click here</h3></a>
 
-                         
+  <%session.setAttribute("book", null);%>
 
-            
+   <br>
+   <br>
+   <br>
+
             
                           
             
@@ -510,24 +425,11 @@
                     </div>
                 </div>
 
-    
-
-    
-
-
-
-        
-              
-        
-        
-        
-        
-        
-        
+           
         
             </div>
 		
-
+     
 
 
 

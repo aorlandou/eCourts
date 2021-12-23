@@ -276,7 +276,7 @@ a:hover {
                         <div class="card-body">						
                           <div class="d-flex flex-column align-items-center text-center">
 							<br>							
-							<a href="user_profile.jsp" class="previous"><i class="fa fa-chevron-left "  style='font-size:23px;'></i></a>
+							<a href="user_profile.jsp" class="previous"><i class="fa fa-angle-left "  style='font-size:25px;'></i></a>
 							<br>
 							<br>
 							<br>
