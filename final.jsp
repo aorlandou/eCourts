@@ -3,18 +3,26 @@
 <%@ page import ="ecourts_java.*"%>
 
 <% int slot_id;
-  
+    Booking book;
 	User curUser = (User)session.getAttribute("user_id");
+    if(session.getAttribute("book")!=null){
+        book=(Booking)session.getAttribute("book");
+        if(request.getParameter("one")!=null){
+        book.setOnline_payment(0); 
+        }else{
+        book.setOnline_payment(1);
+        }       
+        }else{%>
+          <jsp:forward page="home.jsp" />
+        <%}
+    
+    book.makeBooking(book.getSlot_id(),book.getUser_id(), book.getComment(), book.getOnline_payment()); 
+    
+    
+    
   
   
   
-  String comments= request.getParameter("subject");
-  if(session.getAttribute("book")!=null){
-  Booking book=(Booking)session.getAttribute("book");
-  book.setComment(comments);
-  }else{%>
-    <jsp:forward page="home.jsp" />
-  <%}
 
  
 	
@@ -34,21 +42,17 @@
 
 
     <title>Checkout</title>
-	  <!-- Mobile Specific Metas -->
+	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="icon" href="images/LOGO2-01.png">
   <!-- Font-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="css/ecourts_payment.css">
+  <link rel="stylesheet" href="css/ecourts_register.css">  
   <link rel="stylesheet" href="css/ecourts_stepper.css">
-  
+
 	<link rel="stylesheet" type="text/css" href="css/montserrat-font.css">
 	<link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 	<!-- Main Style Css -->  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- Favicons -->
 
 
 
@@ -263,131 +267,6 @@
     </style>
 
 
-<script>
-    function myFunction() {
-      var checkBox = document.getElementById("myCheck");
-      var name = document.getElementById("name");
-      var inname = document.getElementById("inname");
-      var number = document.getElementById("number");
-      var innumber = document.getElementById("innumber");
-      var exp = document.getElementById("exp");
-      var cvv = document.getElementById("cvv");
-      var incvv = document.getElementById("incvv");
-      var month = document.getElementById("month");
-      var year = document.getElementById("year");
-      if (checkBox.checked == true){
-        
-        inname.style.display = "block";
-       
-        innumber.style.display = "block";
-        exp.style.display = "block";
-        
-        incv.style.display = "block";
-        month.style.display = "block";
-        year.style.display = "block";
-      } else {
-         name.style.display = "none";
-         inname.style.display = "none";
-         number.style.display = "none";
-         innumber.style.display = "none"; 
-         exp.style.display = "none"; 
-         cvv.style.display = "none";
-         incv.style.display = "none";
-         month.style.display = "none";
-         year.style.display = "none";
-         
-      }
-    }
-    </script>
-  
-  <script>
-    function validate(){
-     if (document.getElementById('cash').checked){              
-      document.getElementById("cash").checked = false; 
-      document.getElementById('message_number').innerHTML = '';       
-      document.getElementById('message_name').innerHTML = '';  
-      document.getElementById('message_cv').innerHTML = '';        
-     }           
-      }
-  </script>
-  
-  <script>
-       function validate_second(){
-          if (document.getElementById('myCheck').checked){    
-               document.getElementById('myCheck').click();
-               document.getElementById("cash").checked = true; 
-                      
-          }           
-       }
-  </script>
-
-  <script>
-      function valthisform() {	
-          var first=document.getElementById('myCheck');
-          var second=document.getElementById("cash");
-          if (!first.checked && !second.checked){
-            event.preventDefault(); 
-          }
-          else if(first.checked){
-            if (document.getElementById('innumber').value.length==0) {		
-                          document.getElementById('message_number').style.color = 'red';
-                          document.getElementById('message_number').innerHTML = 'Please fill out this field';
-	                      event.preventDefault();	
-                         }  
-            if (document.getElementById('inname').value.length==0) {		
-                          document.getElementById('message_name').style.color = 'red';
-                          document.getElementById('message_name').innerHTML = 'Please fill out this field';
-	                      event.preventDefault();	
-                         }  
-            if (document.getElementById('incv').value.length==0) {		
-                          document.getElementById('message_cv').style.color = 'red';
-                          document.getElementById('message_cv').innerHTML = 'Please fill out this field';
-	                      event.preventDefault();	
-                         }  
-
-          }
-
-      }
-  </script>
-
-  <script>
-      function val1(){
-          if(document.getElementById('innumber').value.length!=0){
-            document.getElementById('message_number').innerHTML = '';
-          }else{
-            document.getElementById('message_number').style.color = 'red';
-                          document.getElementById('message_number').innerHTML = 'Please fill out this field';
-          }
-      }
-  </script>
-
-<script>
-    function val2(){
-        if(document.getElementById('inname').value.length!=0){
-          document.getElementById('message_name').innerHTML = '';
-        }else{
-            document.getElementById('message_name').style.color = 'red';
-                          document.getElementById('message_name').innerHTML = 'Please fill out this field';
-        }
-    }
-</script>
-
-<script>
-    function val3(){
-        if(document.getElementById('incv').value.length!=0){
-          document.getElementById('message_cv').innerHTML = '';
-        }else{
-            document.getElementById('message_cv').style.color = 'red';
-                          document.getElementById('message_cv').innerHTML = 'Please fill out this field';
-        }
-    }
-</script>
-
-
-  
-
-
-
     <!-- Custom styles for this template -->
     <link href="css/carousel.css" rel="stylesheet">
   </head>
@@ -459,7 +338,6 @@
 
 
 
-
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -484,7 +362,7 @@
                 
                       <!-- Breadcrumb -->
                       
-               
+                     
             
                       <!-- /Breadcrumb -->
                 
@@ -500,99 +378,23 @@
                                   <div class="step-counter "><i class="fa fa-credit-card-alt" style="font-size:24px"></i></div>
                                   <div class="step-name">Payment</div>
                                 </div>
-                                <div class="stepper-item">
+                                <div class="stepper-item active completed">
                                   <div class="step-counter"><i class="fa fa-check" style="font-size:24px"></i></div>
                                   <div class="step-name">Finish</div>
                                 </div>
                               </div>
 
-                              <div class="form-v10">
-                                <div class="page-content" style="margin-top: -60px;">
-                                  <div class="form-v10-content">
-                                    <form class="form-detail" action="final.jsp" method="post" id="myform" onsubmit="valthisform()">
-                                      <div class="form-left">
-                                        <h2>Payment Method</h2>             
-                                        <div class="form-row">
-                                          <label class="containercheck">
-                                            <i class="fa fa-money" style="font-size:24px"></i>
-                                            Cash payment
-                                            <input name="one" id="cash" onclick="validate_second()" type="checkbox">
-                                            <span class="checkmark"></span>
-                                           </label>           
-                                        </div>
-                                        <div class="form-row">
-                                          <label class="containercheck">
-                                            <i class="fa fa-credit-card" style="font-size:24px"></i>
-                                            Online payment
-                                            
-                                            <input name="two" id="myCheck" onclick="myFunction(),validate()" type="checkbox" >
-                                            <span class="checkmark"></span>
-                                          </label>         
-                                        </div> 
-                                        <div class="form-row">
-                                          <p id="number" style="display:none" class="text mb-1">Card Number</p>        
-                                          <input id="innumber" placeholder="Card Number" oninput="val1()" style="display:none" class="form-control mb-3" type="text">
-                                          <span id='message_number'></span>
-                                        </div>
-                                        <div class="form-row">
-                                          <p id="name" style="display:none">Cardholder's name</p>
-                                          <input style="display:none" id="inname" placeholder="Cardholder's name" oninput="val2()" class="form-control mb-3" type="text">
-                                          <span id='message_name'></span>
-                                        </div>                   
-                                        
-                                      </div>
-                                      <div class="form-right">
-                                        <div class="form-row">
-                                          <p id="exp" class="exp" style="display:none;"></p>
-                                        </div>      
-                                          <div class="form-group">                 
-                                            <div class="form-row form-row-1">                 
-                                              <select id="month" style="display:none; margin-top: -7px;width: 140px;" class="month">
-                                                <option value="01">January</option>
-                                                <option value="02">February </option>
-                                                <option value="03">March</option>
-                                                <option value="04">April</option>
-                                                <option value="05">May</option>
-                                                <option value="06">June</option>
-                                                <option value="07">July</option>
-                                                <option value="08">August</option>
-                                                <option value="09">September</option>
-                                                <option value="10">October</option>
-                                                <option value="11">November</option>
-                                                <option value="12">December</option>
-                                            </select>
-                                            </div>
-                                            <div class="form-row form-row-2">                  
-                                             <select id="year" style="display:none;margin-top: -7px;width: 140px;">
-                                              <option value="16"> 2022</option>
-                                              <option value="17"> 2023</option>
-                                              <option value="18"> 2024</option>
-                                              <option value="19"> 2025</option>
-                                              <option value="20"> 2026</option>
-                                              <option value="21"> 2027</option>
-                                             </select>
-                                            </div>
-                                          </div>             
-                                       
-                                          
-                                        <div class="form-row">
-                                          <p id="cvv" style="display:none;margin-top: -20px;"  class="text mb-1">CVV/CVC</p> 
-                                          <input id="incv" oninput="val3()" placeholder="CVV/CVC" style="display:none;width: 110px;margin-top: 0%;" class="form-control mb-3 pt-2 " type="password">
-                                          <span id='message_cv'></span>
-                                        </div>      
-                                        <div class="form-row-last">
-                                          <input type="submit" name="register" class="register" value="Next">
-                                        </div>
-                                      </div>
-                                    </form>
-                                    
-                                  </div>
-                                </div>
-                            </div>
+                              <img  style="display: block;  margin-left: auto; margin-top: 5%; margin-right: auto;  width: 100px; height: 100px;" src="images/check.png"> 
+  <h2 style="text-align: center;color:rgb(68, 68, 68);font-family: 'Poppins', Arial, sans-serif;">Booking #12879</h2>
+  <h2 style="text-align: center;color:rgb(68, 68, 68);font-family: 'Poppins', Arial, sans-serif;">Thank you for your reservation. A verification email has been send to you.</h2>
+  <a href="home.jsp" style="color:#fd7e14;"><h3 href="home.jsp" style="text-align: center;color:#fd7e14;font-family: 'Poppins', Arial, sans-serif;">Make more bookings? Click here</h3></a>
 
                          
 
-            
+   <br>
+   <br>
+   <br>
+
             
                           
             
@@ -621,20 +423,7 @@
                     </div>
                 </div>
 
-    
-
-    
-
-
-
-        
-              
-        
-        
-        
-        
-        
-        
+           
         
             </div>
 		
