@@ -38,7 +38,7 @@
 	<link rel="stylesheet" href="css/style.css">
 
 	<link rel="stylesheet" href="css/search.css">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 	
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -153,7 +153,8 @@
 		ul.ks-cboxtags li input[type="checkbox"]:focus + label {
 		  border: 2px solid #fd7e14;
 		}
-						  </style>
+						  
+	</style>
 </head>
 <body>
 
@@ -359,8 +360,12 @@
 							<h2>Want to search for a Sportsclub?</h2>
 							<br>
 							<div class="container-search">
-								<form class="form">
+								<form autocomplete="off">
+									<a href="" target="_blank" hidden></a>
 									<input type="text" class="form-search__field" placeholder="Name of Sportsclub" />
+									<div class="autocom-box">
+										<!-- here list are inserted from javascript -->
+									</div>
 									<button type="button" class="btn-search--primary btn--inside uppercase" onclick="location.href='sportsclub_profile.html';">Search</button>
 								</form>
 							</div>
