@@ -48,6 +48,17 @@ public class User{
         this.type=type;
     }
 
+    public User(int user_id, String email, String phone, String name, String street, int munic_id, String zip_code){
+        this.user_id = user_id;
+        this.email = email;
+        this.phone = phone;
+        this.name = name;
+        this.street = street;
+        this.munic_id = munic_id;
+        this.zip_code = zip_code;
+        
+    }
+
     public User(int user_id, String email, String phone, String password, String street, String street_number, String zip_code, String town, String name){
         this.user_id = user_id;
         this.email = email;
