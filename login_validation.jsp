@@ -9,16 +9,20 @@ int user_id;
 user_id=user.checkPassword(password,email);
 if ( user_id!=-1 ){
     User curUser = user.getDetails(user_id); 
-    session.setAttribute("user_id", curUser);   
+      
     if (session.getAttribute("not_logged")!=null){ 
+      session.setAttribute("user_id", curUser); 
       int id=Integer.parseInt(request.getParameter("id"));
       %>
       
     <jsp:forward page="checkout.jsp?id=<%=id%>" />    
 <%}else{
-  if(curUser.getType()==1){ %>
-    <jsp:forward page="club_managing.jsp" />
-    <%}else{     
+  if(curUser.getType()==1){ 
+    int club_id=curUser.getUser_id();%>
+    
+    <jsp:forward page="club_managing.jsp?spid=<%=club_id%>" />
+    <%}else{ 
+      session.setAttribute("user_id", curUser);     
      %>
   <jsp:forward page="home.jsp" />    
 
