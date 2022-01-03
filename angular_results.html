@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <link data-require="bootstrap-css@*" data-semver="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+  <script data-require="angular.js@*" data-semver="1.3.15" src="https://code.angularjs.org/1.4.8/angular.js"></script>
+  <script data-require="ui-bootstrap@*" data-semver="0.12.1" src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.0.3.js"></script>
+<body>
+
+<p>Click the table headers to change the sorting order:</p>
+
+<div ng-app="myApp" ng-controller="customersCtrl" >
+
+      <select name="" id="municipality" ng-model = "municipality">			
+        <option ng-repeat="option in filters.municipalities" value="{{option.id}}">{{option.name}}</option>
+      </select>
+
+      <select name="" id="sport" ng-model = "sport" >                             
+        <option ng-repeat="option in filters.sports" value="{{option.id}}">{{option.name}}</option>      
+      </select>
+
+      <select name="" id="duration" ng-model = "duration" >                             
+        <option value="1">1 hour</option>
+				<option value="2">2 hours</option>
+      </select>
+
+      <input type="date" name="date" min="2021-11-01"  id="date" placeholder="Choose Date" onload="(this.type='date')"
+							onfocus="(this.type='date')" value="" ng-model = "date" style="border: none;outline: none;">
+
+    <table border="1" width="100%">
+      <tr>
+        <th >Id</th>
+        <th >Date</th>
+        <th >Time</th>
+        <th >Price</th>
+        <th >SportsClub</th>
+        <th >Court</th>
+        <th >Duration</th>
+        <th >Sport</th>
+      </tr>
+      <tr ng-repeat="x in filterData = (slots | filter: {munic_id:municipality, duration:duration ,sport_id: sport, date: date === null ? undefined : date}) | limitTo:3:3*(page-1)">
+
+
+        <td>{{x.id}}</td>
+        <td>{{x.date}}</td>
+        <td>{{x.time}}</td> 
+        <td>{{x.price}}</td>
+        <td>{{x.sportsclub}}</td>
+        <td>{{x.court}}</td>
+        <td>{{x.duration}}</td>
+        <td>{{x.sport}}</td>
+      </tr>
+    </table>
+
+
+    <uib-pagination class="pagination-sm pagination" total-items="filterData.length" ng-model="page"
+			ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=3></uib-pagination>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', ['ui.bootstrap']);
+    app.controller('customersCtrl', function($scope, $http) {
+
+      $scope.municipality = '1';
+      $scope.sport = '1';
+      $scope.duration = '1';
+      $scope.page = 1;
+
+      $http.get("servlet/SlotsServlet").then(function(response) {
+          $scope.slots = response.data;
+          $scope.displayItems = $scope.slots.slice(0, 3);
+      });
+
+      $http.get("servlet/FiltersServlet").then(function(response) {
+          $scope.filters = response.data;
+      });
+
+  
+
+    $scope.pageChanged = function() {
+      var startPos = ($scope.page - 1) * 3;
+      $scope.displayItems = $scope.filterData.slice(startPos, startPos + 3);
+      console.log($scope.page);
+	  };
+
+    });
+    
+</script>
+
+</body>
+
+ 
+</html>

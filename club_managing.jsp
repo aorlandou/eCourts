@@ -289,8 +289,8 @@ if (photo_path_background != null){
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="#Timetable" class="nav-link">Timetable</a></li>
 					<li class="nav-item"><a href="#Courts" class="nav-link">Courts</a></li>
+                    <li class="nav-item"><a href="#Timetable" class="nav-link">Timetable</a></li>
 					
 				
                 
@@ -358,18 +358,15 @@ if (photo_path_background != null){
     <!-- START THE FEATURETTES -->
 
 
-    <div class="row featurette" id = "Timetable">
+    <div class="row featurette" id = "Courts">
       <div class="col-md-12" style="margin-top: 7%;">
         <h2 class="featurette-heading">Courts <span class="text-muted"></span></h2>
-          
-        
 
-
-    
 
         <section class="ftco-section" style="padding-bottom: 40px;">
             <div class="container">
               <div class="justify-content-center pb-4">
+
                 
               </div>
               <div class="row">
@@ -403,7 +400,7 @@ if (photo_path_background != null){
                       <div class="text p-4">
                         <span class="days"><%= court.getSport()%></span>
                         <h3><a href="#"><%= court.getName()%></a></h3>
-                        <div class="attributes_court "   >
+                        <div class="attributes_court">
                           
                           <ul>
                             
@@ -444,14 +441,9 @@ if (photo_path_background != null){
               </div>
             </div>
           </section>
-    
 
-
-
-        
             
-            
-            <hr class="featurette-divider" id ="Courts">
+            <hr class="featurette-divider" id ="Timetable">
 
 
 
@@ -462,10 +454,6 @@ if (photo_path_background != null){
         
         
             </div>
-
-            
-		
-
 
       </div>
     </div>
@@ -527,16 +515,11 @@ if (photo_path_background != null){
             console.log(sport);
             clearEvents();
             dp.events.load("servlet/BookingsServlet?clubid="+club_id+"&courtid="+sport);
-            
 
-            
 
         }
         
-    
-    
-    
-        
+
     
     </script>
 
@@ -597,19 +580,6 @@ if (photo_path_background != null){
         </div>
     </footer>
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
 </main>
 
 
@@ -634,9 +604,4 @@ if (photo_path_background != null){
 
 
 
-
-
-
-
-  
 </html>
