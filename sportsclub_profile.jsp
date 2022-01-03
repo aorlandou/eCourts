@@ -404,50 +404,48 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
     <div class="row featurette" >
       <h1  style="margin-top: 2%;">Gallery <span class="text-muted"></span></h1>
 
-      <div id="photo-slideshow" class="carousel slide" data-bs-ride="carousel">
-        
-        <div class="carousel-inner" style="width: 70%; margin: auto; margin-top: 5%;">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#photo-slideshow" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#photo-slideshow" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#photo-slideshow" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      
+    <div class="carousel slide" id="slider" data-ride="carousel" style="width: 70%; margin: auto; margin-top: 5%;">
+      <!--indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#slider" data-slide-to="0" class="active"></li>
+        <li data-target="#slider" data-slide-to="1"></li>
+        <li data-target="#slider" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery1.jpg">
+          <div class="carousel-caption">
+           
           </div>
-
-          <div class="carousel-item active">
-            <svg  class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-                <img src= "images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery1.jpg" > style= "max-width: 500px" >
-            <div class="container">
-              
-            </div>
-          </div>
-          <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            <img src= "images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery2.jpg" >
-            <div class="container">
-              
-            </div>
-          </div>
-          <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-            <img src= "images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery3.jpg" >
-            <div class="container">
-              
-            </div>
-          </div>
-
-          <button class="carousel-control-prev" type="button" data-bs-target="#photo-slideshow" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#photo-slideshow" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
         </div>
     
-
-      
+        <div class="carousel-item" id="slide2">
+          <img src="images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery2.jpg">
+          <div class="carousel-caption">
+           
+          </div>
+        </div>
+    
+        <div class="carousel-item" id="slide3">
+          <img src="images/sportsclub/<%=curClub.getUser_id()%>/gallery/gallery3.jpg">
+          <div class="carousel-caption">
+           
+          </div>
+        </div>
+    
+      </div>
+      <a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#slider" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
+
+    
 
     <hr class="featurette-divider" id ="Book">
 
@@ -455,7 +453,8 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 
     <h2 class="featurette-heading"> <span class="text-muted"></span></h2>
 
-    
+   
+
 	<section class="ftco-section ftco-no-pb ftco-no-pt" style="padding-bottom: 0px; padding-top: 2rem";>
 		<div class="container">
 			<div class="row">
