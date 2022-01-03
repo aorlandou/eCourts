@@ -21,6 +21,11 @@ public class Customer extends User{
 
     }
 
+public Customer(String surname, String username, String name){
+    this.surname=surname;
+    this.username=username;
+}
+
     
 
 
@@ -42,6 +47,7 @@ public class Customer extends User{
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String sql = "SELECT * FROM client_users WHERE id=?";
+        Customer curCustomer=null;
         try {
             
             con = data.getConnection();
@@ -51,13 +57,16 @@ public class Customer extends User{
             stmt.setInt(1, userID);
 
             rs = stmt.executeQuery();
+            while (rs.next()){
+                curCustomer = new Customer ( rs.getString("surname"), rs.getString("username"),"yes");
 
-            if ( !rs.next() ) {
-                rs.close(); //closing ResultSet
-                stmt.close(); //closing PreparedStatement
-				return null;
             }
-            Customer curCustomer = new Customer ( rs.getString("surname"), rs.getString("username"));
+
+           
+            rs.close(); //closing ResultSet
+            stmt.close(); //closing PreparedStatement
+			
+            
 
             return curCustomer;
         } catch (Exception e) {
