@@ -176,12 +176,12 @@
 					<li class="nav-item"><a href="#About" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="#Search-club" class="nav-link">Search for a Club</a></li>
 					<li class="nav-item"><a href="#Popular" class="nav-link">Popular Sportsclubs</a></li>
-					<% if (curUser == null){%>
+					<% if (curUser == null || curUser.getType()==1 ){%>
 					<li class="nav-item"><a href="login_form.jsp" class="nav-link">Login</a></li>
 					<%} %>
             </ul>
 			<!-- if logged in -->
-            <% if (curUser != null){%>
+            <% if (curUser != null && curUser.getType()==0){%>
 					<div class="nav-item dropdown">
 						<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" style="color:rgb(223, 221, 221);"><img src="images/user.png" style="width: 37px;">   <%=curUser.getName()%> <b class="caret"></b></a>
 						<div class="dropdown-menu">

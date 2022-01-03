@@ -5,19 +5,16 @@
 <%
 
 int spid;
-
-try {
-    
-    spid = Integer.parseInt(request.getParameter("spid"));    
-  }
-  catch (NumberFormatException e)
-  {
-    %>
+   
+if(session.getAttribute("user_id")==null){%>
     <jsp:forward page="home.jsp" />
-    <%
-  }
-
-  SportsClub allclubs = new SportsClub();
+<%}
+User user=(User)session.getAttribute("user_id");
+if(user.getType()==0){%>
+    <jsp:forward page="home.jsp" />
+<%}
+spid=user.getUser_id();  
+SportsClub allclubs = new SportsClub();
 SportsClub curClub = allclubs.findClub(spid);
 
 if (curClub== null){
@@ -281,7 +278,7 @@ if (photo_path_background != null){
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
 		<div class="container">
-			<a class="navbar-brand" href="home.html"><img class="logo" src="photos/LOGO2-01.png" > </a>
+			<a class="navbar-brand" href="home.jsp"><img class="logo" src="photos/LOGO2-01.png" > </a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
@@ -291,7 +288,7 @@ if (photo_path_background != null){
 					<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="#Timetable" class="nav-link">Timetable</a></li>
 					<li class="nav-item"><a href="#Courts" class="nav-link">Courts</a></li>
-					
+					<li class="nav-item"><a href="logout.jsp" class="nav-link">Logout</a></li>
 				
                 
             </ul>

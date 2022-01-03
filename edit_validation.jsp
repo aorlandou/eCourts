@@ -9,6 +9,9 @@
 <%
 
 User user_now=(User)session.getAttribute("user_id");
+if (user_now.getType()==1){%>
+	<jsp:forward page="home.jsp" />
+  <%}
 user_now=user_now.editDetails(user_now.getUser_id());
 Customer customer_now=(Customer)session.getAttribute("customer_id");
 
