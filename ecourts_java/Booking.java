@@ -69,22 +69,24 @@ public class Booking {
                 cal.setTime(time_booked);
                 cal.add(Calendar.HOUR,1);
                 String first = format.format(cal.getTime());               
-                String sql3="UPDATE slot SET status=? WHERE court_id=? AND date=? AND (time_start=? OR time_start=?);";
+                String sql3="UPDATE slot SET status=? WHERE court_id=? AND date=? AND (time_start=? OR time_start=?) AND NOT slot_id=? ;";
                 stmt = con.prepareStatement(sql3);
-                stmt.setString(1,"BOOKED");
+                stmt.setString(1,"NOT AVAILABLE");
                 stmt.setInt(2, court_id);
                 stmt.setDate(3,date_booked);
                 stmt.setString(4,first);
                 stmt.setTime(5,time_booked);
+                stmt.setInt(6,slot);
                 stmt.executeUpdate();
              }else if (duration==1){
                 
-                String sql4="UPDATE slot SET status=? WHERE court_id=? AND date=? AND time_start=?;";
+                String sql4="UPDATE slot SET status=? WHERE court_id=? AND date=? AND time_start=? AND NOT slot_id=?;";
                 stmt = con.prepareStatement(sql4);
-                stmt.setString(1,"BOOKED");
+                stmt.setString(1,"NOT AVAILABLE");
                 stmt.setInt(2, court_id);
                 stmt.setDate(3,date_booked);
                 stmt.setTime(4,time_booked);
+                stmt.setInt(5,slot);
                 stmt.executeUpdate();
 
              }
