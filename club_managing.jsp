@@ -358,7 +358,7 @@ if (photo_path_background != null){
             <div class="container">
               <div class="justify-content-center pb-4">
 
-                
+
               </div>
               <div class="row">
     
@@ -484,12 +484,10 @@ if (photo_path_background != null){
         // view
         dp.startDate = "2021-12-25";
         dp.viewType = "Week";
-    
+
         
-        
-    
         dp.onEventClick = function (args) {
-            alert("clicked: " + args.e.id());
+            location.href = "booking_details.jsp";
         };
     
         dp.init();
