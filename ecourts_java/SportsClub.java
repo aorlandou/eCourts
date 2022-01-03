@@ -11,6 +11,7 @@ public class SportsClub extends User{
     private int numofcourts;
     private String linephone;
     private String about;
+    private int id;
     public int getNumofcourts() {
         return numofcourts;
     }
@@ -66,6 +67,10 @@ public class SportsClub extends User{
 
     public SportsClub(){
         super();
+    }
+
+    public SportsClub(int id){
+        this.id=id;
     }
     
     public SportsClub findClub (int clubid) throws Exception {
@@ -162,8 +167,19 @@ public class SportsClub extends User{
         }
     }
 
-    public SportsClub(int user_id, String name, String street, String town) {
-        super(user_id, name, street, town);
+    public SportsClub(int user_id, String name, String street, String town, int munic_id) {
+        super(user_id, name, street, town, munic_id);
+    }
+    
+
+
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 

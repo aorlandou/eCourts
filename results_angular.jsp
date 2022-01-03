@@ -12,6 +12,15 @@ List<Municipality> mun_list =  mun_obj.getMunicipalies_with_clubs();
 Sport sprt = new Sport();
 List<Sport> sports_list = sprt.getAll_sports();
 
+	
+
+
+
+
+
+
+
+
 
 %>
 
@@ -42,6 +51,13 @@ List<Sport> sports_list = sprt.getAll_sports();
 	<link rel="stylesheet" href="css/style.css">
 
 
+
+    
+    
+    <script data-require="angular.js@*" data-semver="1.3.15" src="https://code.angularjs.org/1.4.8/angular.js"></script>
+    <script data-require="ui-bootstrap@*" data-semver="0.12.1" src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.0.3.js"></script>
+
+
     <style>
         .ftco-section{
             background-color: #f3f3f3;
@@ -59,35 +75,44 @@ List<Sport> sports_list = sprt.getAll_sports();
 			}
       	}
 		
+          .pagination{display:inline-block;padding-left:0;margin:20px 0;border-radius:4px}.pagination>li{display:inline}.pagination>li>a,.pagination>li>span{position:relative;float:left;padding:6px 12px;margin-left:-1px;line-height:1.42857143;color:#337ab7;text-decoration:none;background-color:#fff;border:1px solid #ddd}.pagination>li:first-child>a,.pagination>li:first-child>span{margin-left:0;border-top-left-radius:4px;border-bottom-left-radius:4px}.pagination>li:last-child>a,.pagination>li:last-child>span{border-top-right-radius:4px;border-bottom-right-radius:4px}.pagination>li>a:hover,.pagination>li>span:hover,.pagination>li>a:focus,.pagination>li>span:focus{color:#23527c;background-color:#eee;border-color:#ddd}.pagination>.active>a,.pagination>.active>span,.pagination>.active>a:hover,.pagination>.active>span:hover,.pagination>.active>a:focus,.pagination>.active>span:focus{z-index:2;color:#fff;cursor:default;background-color:#337ab7;border-color:#337ab7}.pagination>.disabled>span,.pagination>.disabled>span:hover,.pagination>.disabled>span:focus,.pagination>.disabled>a,.pagination>.disabled>a:hover,.pagination>.disabled>a:focus{color:#777;cursor:not-allowed;background-color:#fff;border-color:#ddd}.pagination-lg>li>a,.pagination-lg>li>span{padding:10px 16px;font-size:18px}.pagination-lg>li:first-child>a,.pagination-lg>li:first-child>span{border-top-left-radius:6px;border-bottom-left-radius:6px}.pagination-lg>li:last-child>a,.pagination-lg>li:last-child>span{border-top-right-radius:6px;border-bottom-right-radius:6px}.pagination-sm>li>a,.pagination-sm>li>span{padding:5px 10px;font-size:12px}.pagination-sm>li:first-child>a,.pagination-sm>li:first-child>span{border-top-left-radius:3px;border-bottom-left-radius:3px}.pagination-sm>li:last-child>a,.pagination-sm>li:last-child>span{border-top-right-radius:3px;border-bottom-right-radius:3px}.pager{padding-left:0;margin:20px 0;text-align:center;list-style:none}
+
+
 
     </style>
 
     <script>
-        function getSlots(page_num) {
         
-        var sport= $('#sport').val();
-        var date= $('#date').val();
-        var municipality= $('#municipality').val();
-		var duration= $('#duration').val();
-		var time= $('#time').val();
-        console.log("I've been called");
-        console.log(page_num);
-		console.log(time);
-        
-  
-  
-        $.ajax({
-        url: "getslots.jsp",
-        type: 'POST',
-        data: {sport: sport, date: date, municipality: municipality, p:page_num,club_id:0,duration:duration, time: time},
-        success: function(data) {
-        
-        document.getElementById("res").innerHTML = data;
-  
-        
-        }
+
+        var app = angular.module('myApp', ['ui.bootstrap']);
+        app.controller('customersCtrl', function($scope, $http) {
+
+        $scope.municipality = '1';
+        $scope.sport = '1';
+        $scope.duration = '1';
+        $scope.page = 1;
+
+        $http.get("servlet/SlotsServlet").then(function(response) {
+            $scope.slots = response.data;
+            $scope.displayItems = $scope.slots.slice(0, 6);
         });
-        }
+
+        
+        $http.get("servlet/FiltersServlet").then(function(response) {
+            $scope.filters = response.data;
+        });
+    
+
+        $scope.pageChanged = function() {
+        var startPos = ($scope.page - 1) *6;
+        $scope.displayItems = $scope.filterData.slice(startPos, startPos + 6);
+        console.log($scope.page);
+        };
+
+    });
+    
+
+
     </script>
 
 
@@ -95,7 +120,7 @@ List<Sport> sports_list = sprt.getAll_sports();
 </head>
 
 
-<body onload="getSlots()">
+<body ng-app="myApp" ng-controller="customersCtrl">
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
 		<div class="container">
 			<a class="navbar-brand" href="home.html"><img class="logo" src="images/LOGO2-01.png" > </a>
@@ -145,15 +170,9 @@ List<Sport> sports_list = sprt.getAll_sports();
                              <div class="form-field">
                                  <div class="select-wrap">
                                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                     <select name="" id="municipality" class="form-control" onchange="getSlots(1)">
-										<%
-										for (Municipality municipality: mun_list){	
-										%>
-											<option value="<%= municipality.getMunic_id()%>"><%= municipality.getMun_name()%></option>
-										<%
-										}
-                                        %>
-                                         
+                                     <select name="" id="municipality" class="form-control" ng-model = "municipality" >
+										
+                                        <option ng-repeat="option in filters.municipalities" value="{{option.id}}">{{option.name}}</option>
                                          
                                      </select>
                                  </div>
@@ -166,14 +185,8 @@ List<Sport> sports_list = sprt.getAll_sports();
                             <div class="form-field">
                                 <div class="select-wrap">
                                     <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                    <select name="" id="sport" class="form-control" onchange="getSlots(1)">
-                                        <%
-										for (Sport spr: sports_list){
-										%>
-											<option value="<%= spr.getSport_id()%>"><%= spr.getSport_name()%></option>
-										<%
-										}
-                                        %>
+                                    <select name="" id="sport" class="form-control" ng-model = "sport">
+                                        <option ng-repeat="option in filters.sports" value="{{option.id}}">{{option.name}}</option>
                                         
                                     </select>
                                 </div>
@@ -187,7 +200,7 @@ List<Sport> sports_list = sprt.getAll_sports();
                         <div class="form-field">
                             
 							<input type="date" name="date" min="2021-11-01"  id="date" placeholder="Choose Date" onload="(this.type='date')"
-							onfocus="(this.type='date')" value="" onchange="getSlots(1)" style="border: none;outline: none;">
+							onfocus="(this.type='date')" value=""  style="border: none;outline: none;"  ng-model = "date">
                             
                         </div>
                     </div>
@@ -198,7 +211,7 @@ List<Sport> sports_list = sprt.getAll_sports();
 					 <div class="form-field">
 						 <div class="select-wrap">
 							 <div class="icon"><span class="fa fa-chevron-down"></span></div>
-							 <select name="" id="duration" class="form-control" onchange="getSlots(1)">
+							 <select name="" id="duration" class="form-control" ng-model = "duration">
 								
 									 <option value="1">1 hour</option>
 									 <option value="2">2 hours</option>
@@ -215,7 +228,7 @@ List<Sport> sports_list = sprt.getAll_sports();
 					 <div class="form-field">
 						 <div class="select-wrap">
 							 <div class="icon"><span class="fa fa-chevron-down"></span></div>
-							 <select name="" id="time"  autocomplete="off" class="form-control" onchange="getSlots(1)">
+							 <select name="" id="time"  autocomplete="off" class="form-control" >
 								
 									<option value="" selected>Choose here</option>
 									<option value="08:00"> 8:00</option>
@@ -254,15 +267,62 @@ List<Sport> sports_list = sprt.getAll_sports();
 	</div>
 
     
-<div id = "here"></div>
 
-     <section class="ftco-section" id = ""  >
-        <div class="container" id = "res">
-         
-			
+
+     <section class="ftco-section" id = "">
+        <div class="container">
+        <div class="row" id = "">
+            
+
+                    <div class="col-md-4" ng-repeat="x in filterData = (slots | filter: {munic_id:municipality, duration:duration ,sport_id: sport, date: date === null ? undefined : date}) | limitTo:6:6*(page-1)">
+                        <div class="project-wrap">
+                        <a href="pre_booking.jsp?slot={{x.id}}" class="img" style="background-image: url({{x.photopath}});">
+                            <span class="price">{{x.price}} €/hour </span>
+                        </a>
+                        <div class="text p-4">
+                            <span class="days">{{x.sport}}</span>
+                            <h3><a href="pre_booking.jsp?slot={{x.id}}">{{x.sportsclub}}</a></h3>
+                            <p class="location"><span class="fa fa-map-marker"></span> {{x.street}}, {{x.town}}</p>
+                            <ul>
+                                <li><span class="fa fa-calendar" style="width: fit-content;"></span>{{x.date}}</li> <br> 
+                                <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                    width="24" height="24"
+                                    viewBox="0 0 172 172"
+                                    style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                                    {{x.time}} {{x.duration}} hours</li> <br>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                    width="24" height="24"
+                                    viewBox="0 0 172 172"
+                                    style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                                    {{x.surface}} Court
+                                </li><br>
+                                    
+                        </ul>
+                        </div>
+                    </div>
+                    </div>
+
+            
             
         </div>
+
+            <div class="row mt-5">
+                <div class="col text-center">
+                <div class="block-27">
+                        <uib-pagination class="pagination-sm pagination" total-items="filterData.length" ng-model="page"
+                        ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=6></uib-pagination>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+
+
      </section>
+
+     
+    
 
      <!-- footer -->
 		<footer class="ftco-footer bg-bottom ftco-no-pt" style="background-color: #e6c5bb;">

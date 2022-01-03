@@ -287,7 +287,7 @@ public class Court {
 
 
         
-        String query = "select court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name, sport.sport_id " +  
+        String query = "select court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name, sport.sport_id , users.munic_id " +  
                         "from court, sport, surface, municipality, sportscl_users, users "+ 
                         "where court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id and court.court_id = ? ";
 
@@ -305,6 +305,7 @@ public class Court {
             
             
             int club_id  = rs.getInt("idusers");
+            int munic_id  = rs.getInt("munic_id");
             int sport_id = rs.getInt("sport_id");
             String court_name = rs.getString("court_name");
             String sport_name = rs.getString("sport_name");
@@ -324,8 +325,8 @@ public class Court {
 
             
 
-            SportsClub club = new SportsClub(club_id,club_name,street,town);
-            court = new Court(court_name, sport_name,sport_id,surface_name,club);
+            SportsClub club = new SportsClub(club_id,club_name,street,town, munic_id);
+            court = new Court(court_id,court_name, sport_name,sport_id,surface_name,club);
             
 
 
@@ -378,7 +379,7 @@ public class Court {
     
     
             
-            String query = "select court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name, football_court.size, sport.sport_id " +  
+            String query = "select court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name, football_court.size, sport.sport_id, users.munic_id " +  
                             "from court, sport, surface, municipality, sportscl_users, users, football_court "+ 
                             "where court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id and  court.court_id = football_court.court_id and court.court_id = ? ";
     
@@ -396,6 +397,7 @@ public class Court {
                 
                 
                 int club_id  = rs.getInt("idusers");
+                int munic_id  = rs.getInt("munic_id");
                 int sport_id = rs.getInt("sport_id");
                 String court_name = rs.getString("court_name");
                 String sport_name = rs.getString("sport_name");
@@ -416,10 +418,10 @@ public class Court {
     
                 
     
-                SportsClub club = new SportsClub(club_id,club_name,street,town);
+                SportsClub club = new SportsClub(club_id,club_name,street,town, munic_id);
                 court = new Court(court_id,court_name, sport_name,sport_id,surface_name,club, size);
                 
-    
+
     
             }
             
@@ -455,7 +457,7 @@ public class Court {
     
     
             
-            String query = "select court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name, tennis_court.doors, sport.sport_id " +  
+            String query = "select court.name as court_name, sport.name as sport_name, surface.name as surface_name, users.name as club_name, users.street, users.idusers as idusers, municipality.mun_name, tennis_court.doors, sport.sport_id , users.munic_id " +  
                             "from court, sport, surface, municipality, sportscl_users, users, tennis_court "+ 
                             "where court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id and  court.court_id = tennis_court.court_id and court.court_id = ? ";
     
@@ -473,6 +475,7 @@ public class Court {
                 
                 
                 int club_id  = rs.getInt("idusers");
+                int munic_id   = rs.getInt("munic_id");
                 int sport_id = rs.getInt("sport_id");
                 String court_name = rs.getString("court_name");
                 String sport_name = rs.getString("sport_name");
@@ -485,7 +488,7 @@ public class Court {
     
                 //check which sport and create the equivalent object 
                 //Construct the club object first
-                SportsClub club = new SportsClub(club_id,club_name,street,town);
+                SportsClub club = new SportsClub(club_id,club_name,street,town, munic_id);
                 court = new Court(court_id,court_name, sport_name,sport_id, surface_name,doors,club);
             }
             
@@ -545,6 +548,16 @@ public class Court {
         public Court(String name, String sport) {
             this.name = name;
             this.sport = sport;
+        }
+        public Court(int court_id,String name, String sport, int sportid, String surface,SportsClub club
+                ) {
+            this.court_id = court_id;
+            this.name = name;
+            this.sport = sport;
+            this.sportid = sportid;
+            this.surface = surface;
+            this.club = club;
+
         }
     
 
