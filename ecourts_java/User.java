@@ -13,6 +13,7 @@ public class User{
     private String password;
     private String register_date;
     private int munic_id;
+    private int type;
   
 
     public User(String name,  String email, String phone, String street, String town, String street_number, String zip_code, String password, String register_date) {
@@ -36,6 +37,17 @@ public class User{
         this.town = town;
     }
     
+    public User(int user_id, String email, String phone, String name, String street, int munic_id, String zip_code, int type){
+        this.user_id = user_id;
+        this.email = email;
+        this.phone = phone;
+        this.name = name;
+        this.street = street;
+        this.munic_id = munic_id;
+        this.zip_code = zip_code;
+        this.type=type;
+    }
+
     public User(int user_id, String email, String phone, String name, String street, int munic_id, String zip_code){
         this.user_id = user_id;
         this.email = email;
@@ -44,6 +56,7 @@ public class User{
         this.street = street;
         this.munic_id = munic_id;
         this.zip_code = zip_code;
+        
     }
 
     public User(int user_id, String email, String phone, String password, String street, String street_number, String zip_code, String town, String name){
@@ -168,7 +181,7 @@ public class User{
 				return null;
             }
             User curUser = new User (rs.getInt("idusers"), rs.getString("email"), rs.getString("phone"), rs.getString("name"),
-            rs.getString("street"), rs.getInt("munic_id"), rs.getString("zipcode"));
+            rs.getString("street"), rs.getInt("munic_id"), rs.getString("zipcode"), rs.getInt("type"));
 
             return curUser;
         } catch (Exception e) {
@@ -379,6 +392,17 @@ public class User{
         this.munic_id = munic_id;
     }
 
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getType() {
+        return this.type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
 
 

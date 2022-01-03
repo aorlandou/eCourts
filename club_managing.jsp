@@ -5,19 +5,10 @@
 <%
 
 int spid;
-try {
-    
-  spid = Integer.parseInt(request.getParameter("spid"));    
-}
-catch (NumberFormatException e)
-{
-  %>
-  <jsp:forward page="home.jsp" />
-  <%
-}
 
 SportsClub allclubs = new SportsClub();
-
+User user=(User)session.getAttribute("user_id");
+spid=user.getUser_id();
 SportsClub curClub = allclubs.findClub(spid);
 
 if (curClub== null){
