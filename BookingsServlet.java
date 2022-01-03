@@ -37,7 +37,7 @@ public class BookingsServlet extends HttpServlet{
         }
 
 
-
+        
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
         PrintWriter out = new PrintWriter(response.getWriter(), true);

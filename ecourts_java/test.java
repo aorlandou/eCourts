@@ -38,8 +38,15 @@ public class test {
         //String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         //System.out.println(date);
 
-        //Slot slt = new Slot();
-        //slt.generateAllSlots("10:00:00", "14:00:00","2021-12-28",11,70.0);
+        Slot slt = new Slot();
+
+        slt.generateAllSlots("19:00:00", "21:00:00","2022-01-28",8,70.0);
+        slt.generateAllSlots("17:00:00", "20:00:00","2022-01-27",8,70.0);
+        slt.generateAllSlots("20:00:00", "23:00:00","2022-01-29",8,70.0);
+        slt.generateAllSlots("19:00:00", "22:00:00","2022-01-28",10,15.0);
+        slt.generateAllSlots("19:00:00", "21:00:00","2022-01-27",10,15.0);
+        slt.generateAllSlots("18:00:00", "21:00:00","2022-01-29",10,15.0);
+        
         //FootballCourt fb = new FootballCourt();
         //Court tn = new Court();
         //Court crt = tn.getFootballCourtInfo(9);
@@ -52,28 +59,26 @@ public class test {
         //Booking bk = new Booking();
         //Booking booking = bk.getBookingSlotDetails(16);
         //System.out.println(booking.getCustomer().getName());
-       // Slot slt = new Slot();
+        // Slot slt = new Slot();
         //List<Slot> slot_list = slt.getSlotsManaging(1);
         //for (Slot slt1: slot_list){
             //System.out.println(slt1.getStatus());
            // if (slt1.getStatus().equals("BOOKED")){
                 //System.out.println(slt1.getBooking().getCustomer().getName());
             //}
-            
-            
+
         //}
-
-       Booking book=new Booking();
-       book.setNotAvailable(128);
-
-
-
+       //Booking book=new Booking();
+       //book.setNotAvailable(128);
+           
         
-        
-                
 
-       
-    
+       //Court crt = new Court();
+       //List<Court> court_list = crt.getCourts_of_club_with_info(1);
+       //for (Court court: court_list){
+       //    System.out.print(court.getCourt_id());
+       //}
+
     }
     
 }

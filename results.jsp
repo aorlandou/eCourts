@@ -268,7 +268,7 @@ List<Sport> sports_list = sprt.getAll_sports();
      <section class="ftco-section" id = ""  >
         <div class="container" id = "res">
          
-     
+			
             
         </div>
      </section>
