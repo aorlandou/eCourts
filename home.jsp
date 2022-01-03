@@ -9,6 +9,7 @@
 
 
 %>
+<%session.setAttribute("book", null);%>
 
 
 <!DOCTYPE html>

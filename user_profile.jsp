@@ -12,7 +12,7 @@ session.setAttribute("user_id", user_now);
 session.setAttribute("customer_id", customer_now);
 
 %>
-
+<%session.setAttribute("book", null);%>
 
 <!doctype html>
 <html lang="en">
