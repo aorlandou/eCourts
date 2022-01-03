@@ -38,14 +38,14 @@ public class test {
         //String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         //System.out.println(date);
 
-        Slot slt = new Slot();
+        //Slot slt = new Slot();
 
-        slt.generateAllSlots("19:00:00", "21:00:00","2022-01-28",8,70.0);
-        slt.generateAllSlots("17:00:00", "20:00:00","2022-01-27",8,70.0);
-        slt.generateAllSlots("20:00:00", "23:00:00","2022-01-29",8,70.0);
-        slt.generateAllSlots("19:00:00", "22:00:00","2022-01-28",10,15.0);
-        slt.generateAllSlots("19:00:00", "21:00:00","2022-01-27",10,15.0);
-        slt.generateAllSlots("18:00:00", "21:00:00","2022-01-29",10,15.0);
+        //slt.generateAllSlots("19:00:00", "21:00:00","2022-01-28",8,70.0);
+        //slt.generateAllSlots("17:00:00", "20:00:00","2022-01-27",8,70.0);
+        //slt.generateAllSlots("20:00:00", "23:00:00","2022-01-29",8,70.0);
+        //slt.generateAllSlots("19:00:00", "22:00:00","2022-01-28",10,15.0);
+        //slt.generateAllSlots("19:00:00", "21:00:00","2022-01-27",10,15.0);
+        //slt.generateAllSlots("18:00:00", "21:00:00","2022-01-29",10,15.0);
         
         //FootballCourt fb = new FootballCourt();
         //Court tn = new Court();
@@ -79,6 +79,11 @@ public class test {
        //    System.out.print(court.getCourt_id());
        //}
 
+       //Booking bk = new Booking();
+       //bk.upcomingBooking(3);
+        Slot slt = new Slot();
+        List<Slot> slot_list = slt.getSlots(0, "", 0, 47, 0, 0, 0, "");
+        System.out.println(slot_list.get(0).getDate());
     }
     
 }
