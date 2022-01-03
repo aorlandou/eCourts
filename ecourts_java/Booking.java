@@ -20,6 +20,7 @@ public class Booking {
     private java.sql.Date date_booked;
     private Time time_booked;
     private int booking_id;
+    private Slot slot;
     
 
 
@@ -208,6 +209,10 @@ public class Booking {
     public Booking() {
     }
 
+ 
+
+  
+
     public int getOnline_payment() {
         return online_payment;
     }
@@ -273,5 +278,67 @@ public class Booking {
         this.booking_id = booking_id;
     }
     
+    public Booking upcomingBooking(int userid){
+
+        Booking bk = null;
+        try
+            {
+            Class.forName("com.mysql.jdbc.Driver"); //load driver
+            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+            
     
+            PreparedStatement pstmt=null; //create statement
+            
+
+
+            
+            String query = "SELECT booking.booking_id, booking.online_payment, booking.slot_id " +  
+                            "FROM booking, slot" + 
+                            "where booking.slot_id = slot.slot_id and booking.status = 'BOOKED' and booking.user_id = ?"+
+                            "order by slot.date asc, slot.time_start asc"+
+                            "LIMIT 1";
+        
+            pstmt=con.prepareStatement(query); //sql select query 
+            pstmt.setInt(1, userid);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()){
+                int booking_id = rs.getInt("booking_id");
+                int slot_id = rs.getInt("slot_id");
+                int paid = rs.getInt("online_payment");
+
+                //call the method to get the slot details
+                Slot slt = new Slot();
+                List<Slot> slot_list = slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "");
+                Slot slot = slot_list.get(0);
+
+                bk = new Booking(booking_id, paid, slot);
+
+
+            }
+
+            }catch(Exception e){
+                System.out.println("eroorrr");
+                System.out.println(e.getMessage());
+            }
+            return bk;
+    }
+
+
+    public Booking(int booking_id, int paid, Slot slot) {
+        this.booking_id = booking_id;
+        this.online_payment = paid;
+        this.slot = slot;
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

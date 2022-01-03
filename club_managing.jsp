@@ -510,7 +510,8 @@ if (photo_path_background != null){
         
     
         dp.onEventClick = function (args) {
-            location.href = 'booking_details.jsp';
+            location.href = 'booking_details.jsp?'+args.e.id();
+            
         };
     
         dp.init();
@@ -528,9 +529,6 @@ if (photo_path_background != null){
             clearEvents();
             dp.events.load("servlet/BookingsServlet?clubid="+club_id+"&courtid="+sport);
             
-
-            
-
         }
         
     
