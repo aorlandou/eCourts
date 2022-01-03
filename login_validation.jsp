@@ -4,6 +4,7 @@
 
 <%String email=request.getParameter("email");
 String password=request.getParameter("password");
+
 User user=new User();
 int user_id;
 user_id=user.checkPassword(password,email);
@@ -13,6 +14,11 @@ if ( user_id!=-1 ){
     if (session.getAttribute("not_logged")!=null){ 
       session.setAttribute("user_id", curUser); 
       int id=Integer.parseInt(request.getParameter("id"));
+      Slot slot=new Slot();
+      Slot curSlot= slot.getSlot_by_id(id);
+      if (curSlot==null){ %>
+        <jsp:forward page="home.jsp" />
+      <%}
       %>
       
     <jsp:forward page="checkout.jsp?id=<%=id%>" />    

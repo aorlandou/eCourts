@@ -13,6 +13,9 @@
   
   Slot slot=new Slot();
   Slot curSlot= slot.getSlot_by_id(slot_id);
+  if (curSlot==null){ %>
+    <jsp:forward page="home.jsp" />
+  <%}
   Court court=new Court();
   court=court.getCourt_by_id(curSlot.getCourt_id());
   Booking book=new Booking(slot_id,curUser.getUser_id());
