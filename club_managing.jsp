@@ -476,7 +476,7 @@ if (photo_path_background != null){
 
     <select name="cars" id="courts" onchange="refreshEvents('<%=spid%>')">
 
-
+        <option value="0">All</option>
         <%
         for (Court court: court_list){
         %>
@@ -489,6 +489,12 @@ if (photo_path_background != null){
         
     </select>
 
+    <select name="cars" id="type" onchange="refreshEvents('<%=spid%>')">
+
+        <option value="0">Slots</option>
+        <option value="1">Bookings</option>
+
+    </select>
 
 
     <div id="dp" style="margin-bottom: 10%;" ></div>
@@ -522,9 +528,11 @@ if (photo_path_background != null){
     
         function refreshEvents(club_id){
             var sport= $('#courts').val();
+            var type= $('#type').val();
+
             console.log(sport);
             clearEvents();
-            dp.events.load("servlet/BookingsServlet?clubid="+club_id+"&courtid="+sport);
+            dp.events.load("servlet/BookingsServlet?clubid="+club_id+"&courtid="+sport+"&type="+type);
             
         }
         

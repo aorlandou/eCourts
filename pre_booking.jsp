@@ -23,7 +23,7 @@ try {
  
 
 Slot slt = new Slot();
-List<Slot> slot_list = slt.getSlots(0, "",0,slot_id,0,0,0,"",0);
+List<Slot> slot_list = slt.getSlots(0, "",0,slot_id,0,0,0,"",0,0);
     if (slot_list.size()== 0){
         %>
         <jsp:forward page="results.jsp" />

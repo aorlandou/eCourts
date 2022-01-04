@@ -90,7 +90,7 @@ catch (NumberFormatException e)
 
 
 Slot slot = new Slot();
-List<Slot> slot_list = slot.getSlots(sport, date, municipality, 0, club_id, court_id, duration,time,0);
+List<Slot> slot_list = slot.getSlots(sport, date, municipality, 0, club_id, court_id, duration,time,0,1);
 
 int start;
 int stop;
@@ -114,12 +114,17 @@ if (slot_list.size()!= 0 ){
 <%
 
     for (int i = start; i < stop; i++) {
-        Slot slt = slot_list.get(i);
-        String photo_path = "";
       
+
+       
+      Slot slt = slot_list.get(i);
+      
+
+         String photo_path = "";
+         
          photo_path= "photos/"+slt.getCourt().getClub().getName()+"/"+slt.getCourt().getName()+".jpg";
       
-        
+      
          if (photo_path != null){
             photo_path = photo_path.replaceAll("\\s", "");
          }
@@ -166,6 +171,7 @@ if (slot_list.size()!= 0 ){
 
                         
                         %>
+                     
                </ul>
             </div>
           </div>
@@ -179,6 +185,7 @@ if (slot_list.size()!= 0 ){
 
   
    }
+
   
 
 

@@ -1,5 +1,6 @@
 package ecourts_java;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -79,7 +80,7 @@ public class test {
        //    System.out.print(court.getCourt_id());
        //}
 
-       //Booking bk = new Booking();
+       Booking bk = new Booking();
        //bk.bookingsHistory(3);
        //Booking booking = bk.upcomingBooking(3);
        // if (booking == null){
@@ -87,9 +88,33 @@ public class test {
        // }else{
        //     System.out.println(booking.getSlot().getSlot_id());
        // }
-       Slot slt = new Slot();
-       List<Slot> slot_list =  slt.getSlotsCalendar(0, "", 0, 0, 1, 1, 0, "");
-       
+       //Slot slt = new Slot();
+       //List<Slot> slot_list =  slt.getSlotsCalendar(0, "", 0, 0, 1, 1, 0, "");
+       List<Booking> bookings_list = bk.BookingsCalendar(1, 1);
+       for (Booking booking: bookings_list){
+           System.out.println(booking.getSlot().getTime());
+       }
+       SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");  
+        java.util.Date d1 = null;
+        try {
+            d1 = format.parse("19:00:00");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(d1);
+
+        String testDate = "28-12-2021";
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = formatter.parse(testDate);
+
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date_as_string = simpleDateFormat.format(date);
+        System.out.println(date_as_string);
+
+
+
     }
     
 }

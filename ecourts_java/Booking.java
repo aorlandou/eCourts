@@ -308,7 +308,7 @@ public class Booking {
 
                 //call the method to get the slot details
                 Slot slt = new Slot();
-                List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "",0);
+                List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "",0,0);
                 //throws errors
                 bk = new Booking(booking_id, paid, slot_list.get(0));
 
@@ -351,7 +351,7 @@ public class Booking {
 
 
                 Slot slt = new Slot();
-                List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "",1);
+                List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "",1,0);
                 Booking bk = new Booking(booking_id, paid, slot_list.get(0));
                 bookings_list.add(bk);      
 
@@ -365,6 +365,62 @@ public class Booking {
     }
 
 
+    public List<Booking> BookingsCalendar(int clubid, int courtid) {
+
+        List<Booking> bookings_list = new ArrayList<Booking>(); 
+        try
+            {
+            Class.forName("com.mysql.jdbc.Driver"); //load driver
+            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+            
+    
+            PreparedStatement pstmt=null; //create statement
+            
+
+
+            
+            String query = "SELECT booking.booking_id, booking.online_payment, slot.slot_id FROM booking, slot, court where booking.slot_id = slot.slot_id and slot.court_id = court.court_id";
+                           
+            if(clubid != 0){
+                query = query + " and court.sportsclub_id = ?";
+            }
+            
+            if (courtid != 0){
+                query = query + " and slot.court_id = ?";
+            }
+        
+            pstmt=con.prepareStatement(query); //sql select query 
+            if(clubid != 0){
+                pstmt.setInt(1,clubid);
+            }
+            if (courtid !=0){
+                pstmt.setInt(2,courtid);
+            }
+            System.out.println(query);
+
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+
+                int booking_id = rs.getInt("booking_id");
+                int slot_id = rs.getInt("slot_id");
+                int paid = rs.getInt("online_payment");
+
+
+                Slot slt = new Slot();
+                List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "",1,0);
+                Booking bk = new Booking(booking_id, paid, slot_list.get(0));
+                bookings_list.add(bk);      
+
+            }
+
+            }catch(Exception e){
+                System.out.println("eroorrr");
+                System.out.println(e.getMessage());
+            }
+            return bookings_list;
+    }
 
 
 

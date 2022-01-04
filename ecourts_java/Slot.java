@@ -20,6 +20,7 @@ public class Slot {
     private Booking booking;
     private String status;
 
+
     
     public int getCourt_id() {
         return this.court_id;
@@ -88,6 +89,16 @@ public class Slot {
         this.duration = duration;
         this.court = court;
     }
+    public Slot(int slot_id, String date, String time, Double price, int duration, String status,Court court) {
+        this.slot_id = slot_id;
+        this.date = date;
+        this.time = time;
+        this.price = price;
+        this.duration = duration;
+        this.status = status;
+        this.court = court;
+    }
+
 
     public Slot(int slot_id, String date, String time, Double price, int duration, int court_id) {
         this.slot_id = slot_id;
@@ -97,6 +108,7 @@ public class Slot {
         this.duration = duration;
         this.court_id = court_id;
     }
+    
 
     
     public Slot() {
@@ -148,7 +160,7 @@ public class Slot {
     }
 
 
-    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param, int club_id_param, int court_id, int duration_param, String time_param, int after) {
+    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param, int club_id_param, int court_id, int duration_param, String time_param, int after, int available) {
         
 
             List<Slot> slot_list = new ArrayList<Slot>();
@@ -164,7 +176,7 @@ public class Slot {
 
 
             
-            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration, court.sport_id, court.court_id " +  
+            String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration,slot.status ,court.sport_id, court.court_id " +  
                             "from slot, court, sportscl_users, municipality, users, surface, sport  " + 
                             "where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id ";
 
@@ -195,6 +207,9 @@ public class Slot {
             }
             if (after == 0){
                 query = query + " and slot_id in (select * from slots_today UNION  select * from slots_after) ";
+            }
+            if (available == 1){
+                query = query + " and slot.status='AVAILABLE' ";
             }
             
             
@@ -254,6 +269,7 @@ public class Slot {
                 java.sql.Date date_slot = rs.getDate("date");
                 Time time = rs.getTime("time_start");
                 Double price = rs.getDouble("price");
+                String status = rs.getString("status");
 
                 //format the date and time variables
                 String pattern = "dd-MM-yyyy";
@@ -277,7 +293,7 @@ public class Slot {
                     Court c = new Court();
                     Court court =  c.getFootballCourtInfo(court_id_1);
                     System.out.println(court.getName());
-                    slot = new Slot(slot_id,date_as_string,new_time,price,duration,court);
+                    slot = new Slot(slot_id,date_as_string,new_time,price,duration,status,court);
                     System.out.println(slot.getCourt().getSize());
 
 
@@ -286,7 +302,7 @@ public class Slot {
                     Court tn = new Court();
                     Court court = tn.getTennisCourtInfo(court_id_1);
                     System.out.println(court.getName());
-                    slot = new Slot(slot_id,date_as_string,new_time,price,duration,court);
+                    slot = new Slot(slot_id,date_as_string,new_time,price,duration,status,court);
                     System.out.println(slot.getCourt().getName());
                     System.out.println(slot.getCourt().getDoors());
 
@@ -294,7 +310,7 @@ public class Slot {
                 }else{
                     Court cr = new Court();
                     Court court = cr.getCourtDetails(court_id_1);
-                    slot = new Slot(slot_id,date_as_string,new_time,price,duration,court);
+                    slot = new Slot(slot_id,date_as_string,new_time,price,duration,status,court);
 
                 }
 
