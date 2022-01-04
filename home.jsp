@@ -326,7 +326,7 @@
 												<div class="col-md d-flex">
 													<div class="form-group d-flex w-100 border-0">
 														<div class="form-field w-100 align-items-center d-flex">
-															<input type="button" value="Search" class="align-self-stretch form-control btn btn-primary" onclick="location.href='results.html';"> 
+															<input type="button" value="Search" class="align-self-stretch form-control btn btn-primary" onclick="location.href='results.jsp';"> 
 														</div>
 													</div>
 												</div>

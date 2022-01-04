@@ -21,6 +21,8 @@ session.setAttribute("customer_id", customer_now);
 Booking bk = new Booking();
 Booking upcoming_booking = bk.upcomingBooking(user_now.getUser_id());
 
+List<Booking> bookings_list = bk.bookingsHistory(user_now.getUser_id());
+
 %>
 <%session.setAttribute("book", null);%>
 
@@ -259,7 +261,7 @@ Booking upcoming_booking = bk.upcomingBooking(user_now.getUser_id());
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
           <li class="nav-item active"><a href="home.jsp" class="nav-link"><p style="color: #000;">Home</p></a></li>
-          <li class="nav-item"><a href="home.jsp" class="nav-link"><p style="color: #000;">Logout</p></a></li>
+          <li class="nav-item"><a href="logout.jsp" class="nav-link"><p style="color: #000;">Logout</p></a></li>
           
 
           
@@ -406,6 +408,8 @@ Booking upcoming_booking = bk.upcomingBooking(user_now.getUser_id());
                                         if (upcoming_booking==null){
                                           out.print("NO BOOKING");
                                         }else{
+                                          
+
                                         %>
 
                                         <div class="container"  >
@@ -425,10 +429,20 @@ Booking upcoming_booking = bk.upcomingBooking(user_now.getUser_id());
                                                   display: flex;
                                                   flex-direction: row;
                                                   justify-content: center;"  >
-                                                    <p class="location" style="margin: auto;"><span class="fa fa-map-marker"></span> Ekali</p>
-                                                    <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                                                    <p class="location" style="margin: auto;"><span class="fa fa-calendar"></span> 3/11/2021</p>
-                                                    <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Paid</p>
+                                                    <ul>
+                                                      <li>
+                                                        <p class="location"><span class="fa fa-map-marker"></span><%=upcoming_booking.getSlot().getCourt().getClub().getStreet()%>, <%=upcoming_booking.getSlot().getCourt().getClub().getTown()%> </p>
+                                                        </li> 
+                                                      <li><span class="fa fa-calendar" style="width: fit-content;"></span><%=upcoming_booking.getSlot().getDate()%></li>  
+                        
+                                                      <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                      width="24" height="24"
+                                                      viewBox="0 0 172 172"
+                                                      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M86,14.33333c-39.49552,0 -71.66667,32.17115 -71.66667,71.66667c0,39.49552 32.17115,71.66667 71.66667,71.66667c39.49552,0 71.66667,-32.17115 71.66667,-71.66667c0,-39.49552 -32.17115,-71.66667 -71.66667,-71.66667zM86,28.66667c31.74921,0 57.33333,25.58412 57.33333,57.33333c0,31.74921 -25.58412,57.33333 -57.33333,57.33333c-31.74921,0 -57.33333,-25.58412 -57.33333,-57.33333c0,-31.74921 25.58412,-57.33333 57.33333,-57.33333zM78.83333,43v45.96744l30.76628,30.76628l10.13411,-10.13411l-26.56706,-26.56706v-40.03256z"></path></g></g></svg>
+                                                      <%=upcoming_booking.getSlot().getTime()%>, <%=upcoming_booking.getSlot().getDuration()%> hours</li>
+                                                      
+                                                 </ul>
+                                                    
                                                   </div>
                                                   <button class="btn btn-success btn-lg active" style="margin-top: 5%;" type="submit">Edit Booking</button>
                                                   
@@ -463,96 +477,54 @@ Booking upcoming_booking = bk.upcomingBooking(user_now.getUser_id());
                                     </div>
                                     <div class="column">
             
-                                      <div class="col-md-10 ftco-animate"  style="width: 100%; max-width: 100%; margin-bottom: 3rem; " >
-                                        <div class="project-wrap" style=" width: 100%; ">
-                                          
-                                          
-                                          </a>
-                                          <div class="text p-4 row" >
-                                            <span class="days">Tennis</span>
-                                            <h3><a href="#">Loubier Tennis Club</a></h3>
-                                            <div style="width: 100%;
-                                            display: flex;
-                                            flex-direction: row;
-                                            justify-content: center;"  >
-                                              <p class="location" style="margin: auto;"><span class="fa fa-map-marker"></span> Ekali</p>
-                                              <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                                              <p class="location" style="margin: auto;"><span class="fa fa-calendar"></span> 31/10/2021</p>
-                                            </div>
-                                            
-                                          </div>
-                                        </div>
-                                      </div>
-            
-                                      <div class="col-md-10 ftco-animate" style="width: 100%; max-width: 100%; margin-bottom: 3rem; ">
-                                        <div class="project-wrap" style=" width: 100%;">
-                                          
-                                          
-                                        </a>
-                                        <div class="text p-4 row" >
-                                          <span class="days">Tennis</span>
-                                          <h3><a href="#">Ace Tennis Club</a></h3>
-                                          <div style="width: 100%;
-                                          display: flex;
-                                          flex-direction: row;
-                                          justify-content: center;"  >
-                                            <p class="location" style="margin: auto;"><span class="fa fa-map-marker"></span> Pallini</p>
-                                            <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                                            <p class="location" style="margin: auto;"><span class="fa fa-calendar"></span> 19/10/2021</p>
-                                            <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Paid</p>
-                                          </div>
-                                          
-                                        </div>
-                                      </div>
-                                      </div>
-            
-                                      <div class="column">
-                                        <div class="col-md-10 ftco-animate" id = "first_choice" style="margin-bottom: 3rem; width: 100%; max-width: 100%;">
+                                    
+                                      <%
+                                      if (bookings_list.size()==0){
+                                        out.print("NO OLDER BOOKINGS");
+                                      }else{
+                                        for (Booking booking: bookings_list){
+                                        %>
+                                        <div class="col-md-10 ftco-animate"  style="width: 100%; max-width: 100%; margin-bottom: 3rem; " >
                                           <div class="project-wrap" style=" width: 100%; ">
                                             
                                             
                                             </a>
                                             <div class="text p-4 row" >
-                                              <span class="days">Padel</span>
-                                              <h3><a href="">Padel line Club</a></h3>
+                                              <span class="days"><%=booking.getSlot().getCourt().getSport()%></span>
+                                              <h3><a href="#"><%=booking.getSlot().getCourt().getClub().getName()%></a></h3>
                                               <div style="width: 100%;
                                               display: flex;
                                               flex-direction: row;
                                               justify-content: center;"  >
-                                                <p class="location" style="margin: auto;"><span class="fa fa-map-marker"></span> Anoixi</p>
-                                                <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Artificial Grass</p>
-                                                <p class="location" style="margin: auto;"><span class="fa fa-calendar"></span> 14/10/2021</p>
+                                                <ul>
+                                                  <li>
+                                                    <p class="location"><span class="fa fa-map-marker"></span><%=booking.getSlot().getCourt().getClub().getStreet()%>, <%=booking.getSlot().getCourt().getClub().getTown()%> </p>
+                                                    </li> 
+                                                  <li><span class="fa fa-calendar" style="width: fit-content;"></span><%=booking.getSlot().getDate()%></li>  
+                                                  <li><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                      width="24" height="24"
+                                                      viewBox="0 0 172 172"
+                                                      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#fd7e14"><path d="M14.33333,78.83333v14.33333h143.33333v-14.33333z"></path></g></g></svg>
+                                                      <%=booking.getSlot().getCourt().getSurface()%>
+                                                   
+                                             </ul>
                                               </div>
                                               
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="col-md-10 ftco-animate" style="width: 100%; max-width: 100%;">
-                                          <div class="project-wrap" style=" width: 100%; margin-bottom: 10%;">
-                                            
-                                            
-                                          </a>
-                                          <div class="text p-4 row" >
-                                            <span class="days">Tennis</span>
-                                            <h3><a href="#">Ace Tennis Club</a></h3>
-                                            <div style="width: 100%;
-                                            display: flex;
-                                            flex-direction: row;
-                                            justify-content: center;"  >
-                                              <p class="location" style="margin: auto;"><span class="fa fa-map-marker"></span> Pallini</p>
-                                              <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                                              <p class="location" style="margin: auto;"><span class="fa fa-calendar"></span> 19/10/2021</p>
-                                            </div>
-                                            
-                                          </div>
-                                        </div>
-                                        </div>
-            
+  
+
+                                      <%
+
+                                        }
+                                      }
+
+                                      %>
                                       
-                                    
+     
                                       
-                            
-                                      
+
                                     </div>
                                   </div>
                                 </section>

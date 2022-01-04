@@ -148,7 +148,7 @@ public class Slot {
     }
 
 
-    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param, int club_id_param, int court_id, int duration_param, String time_param) {
+    public List<Slot> getSlots(int sport, String date, int municipality, int slot_id_param, int club_id_param, int court_id, int duration_param, String time_param, int after) {
         
 
             List<Slot> slot_list = new ArrayList<Slot>();
@@ -166,7 +166,7 @@ public class Slot {
             
             String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration, court.sport_id, court.court_id " +  
                             "from slot, court, sportscl_users, municipality, users, surface, sport  " + 
-                            "where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id and slot_id in (select * from slots_today UNION  select * from slots_after)";
+                            "where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id ";
 
             if(sport != 0){
                 query = query + "and court.sport_id = ?";
@@ -193,6 +193,10 @@ public class Slot {
             if (time_param != ""){
                 query = query + " and hour(slot.time_start) >= hour(?)-1 and  hour(slot.time_start) <= hour(?)+3 ";
             }
+            if (after == 0){
+                query = query + " and slot_id in (select * from slots_today UNION  select * from slots_after) ";
+            }
+            
             
             query = query + " order by slot.date, slot.time_start ";
 
@@ -548,7 +552,7 @@ public class Slot {
             
             String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration, court.sport_id, court.court_id " +  
                             "from slot, court, sportscl_users, municipality, users, surface, sport  " + 
-                            "where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id and slot_id in (select * from slots_today UNION  select * from slots_after)";
+                            "where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id and slot_id in (select * from slots_today UNION select * from slots_after)";
 
             if(sport != 0){
                 query = query + "and court.sport_id = ?";

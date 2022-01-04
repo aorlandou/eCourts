@@ -90,7 +90,7 @@ catch (NumberFormatException e)
 
 
 Slot slot = new Slot();
-List<Slot> slot_list = slot.getSlots(sport, date, municipality, 0, club_id, court_id, duration,time);
+List<Slot> slot_list = slot.getSlots(sport, date, municipality, 0, club_id, court_id, duration,time,0);
 
 int start;
 int stop;

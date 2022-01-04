@@ -8,7 +8,7 @@
   <head>
 <% 
     
-//User user = (User)session.getAttribute("sportsUser");
+User curUser = (User)session.getAttribute("user_id");
 
 
 int spid;
@@ -307,21 +307,26 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
 					<li class="nav-item"><a href="#About" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="#Gallery" class="nav-link">Gallery</a></li>
 					<li class="nav-item"><a href="#Book" class="nav-link">Book a Court</a></li>
-				
+          <% if (curUser == null || curUser.getType()==1 ){%>
+						<li class="nav-item"><a href="login_form.jsp" class="nav-link">Login</a></li>
+					<%} %>
                 
                 
             </ul>
                 <!-- if logged in -->
-                <!-- <div class="nav-item dropdown">
-                    <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> Antonio Moreno <b class="caret"></b></a>
+                <% if (curUser != null && curUser.getType()==0){%>
+                  <div class="nav-item dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" style="color:rgb(223, 221, 221);"><img src="images/user.png" style="width: 37px;">   <%=curUser.getName()%> <b class="caret"></b></a>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                        <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
-                        <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
-                        <div class="divider dropdown-divider"></div>
-                        <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                      <a href="user_profile.jsp" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+                      <a href="edit_user_profile.jsp" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                      <div class="divider dropdown-divider"></div>
+                      <a href="logout.jsp" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
+                      
+                        
                     </div>
-                </div> -->
+                  </div>
+              <%} %>
                 
 			</div>
 		</div>

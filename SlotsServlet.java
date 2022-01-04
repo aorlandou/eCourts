@@ -44,7 +44,7 @@ public class SlotsServlet extends HttpServlet {
         PrintWriter out = new PrintWriter(response.getWriter(), true);
     
         Slot slt = new Slot();
-        List<Slot> slot_list =  slt.getSlots(0, "", 0, 0, clubid, courtid, 0, "");
+        List<Slot> slot_list =  slt.getSlots(0, "", 0, 0, clubid, courtid, 0, "",0);
         JSONArray list = new JSONArray();
 
         for (Slot slot: slot_list){

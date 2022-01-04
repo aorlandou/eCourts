@@ -79,13 +79,16 @@ public class test {
        //    System.out.print(court.getCourt_id());
        //}
 
-       Booking bk = new Booking();
-       Booking booking = bk.upcomingBooking(3);
-        if (booking == null){
-            System.out.println("NO BOOKING");
-        }else{
-            System.out.println(booking.getSlot().getSlot_id());
-        }
+       //Booking bk = new Booking();
+       //bk.bookingsHistory(3);
+       //Booking booking = bk.upcomingBooking(3);
+       // if (booking == null){
+       //     System.out.println("NO BOOKING");
+       // }else{
+       //     System.out.println(booking.getSlot().getSlot_id());
+       // }
+       Slot slt = new Slot();
+       List<Slot> slot_list =  slt.getSlotsCalendar(0, "", 0, 0, 1, 1, 0, "");
        
     }
     

@@ -308,7 +308,7 @@ public class Booking {
 
                 //call the method to get the slot details
                 Slot slt = new Slot();
-                List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "");
+                List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "",0);
                 //throws errors
                 bk = new Booking(booking_id, paid, slot_list.get(0));
 
@@ -320,6 +320,52 @@ public class Booking {
             }
             return bk;
     }
+
+
+    public List<Booking> bookingsHistory(int userid) {
+
+        List<Booking> bookings_list = new ArrayList<Booking>(); 
+        try
+            {
+            Class.forName("com.mysql.jdbc.Driver"); //load driver
+            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+            
+    
+            PreparedStatement pstmt=null; //create statement
+            
+
+
+            
+            String query = "SELECT booking.booking_id, booking.online_payment, booking.slot_id, slot.date, slot.time_start FROM booking, slot where booking.slot_id = slot.slot_id and slot.slot_id not in (select * from slots_after) and booking.user_id = ? order by slot.date desc, slot.time_start desc LIMIT 4;";
+                           
+        
+            pstmt=con.prepareStatement(query); //sql select query 
+            pstmt.setInt(1, userid);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+
+                int booking_id = rs.getInt("booking_id");
+                int slot_id = rs.getInt("slot_id");
+                int paid = rs.getInt("online_payment");
+
+
+                Slot slt = new Slot();
+                List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "",1);
+                Booking bk = new Booking(booking_id, paid, slot_list.get(0));
+                bookings_list.add(bk);      
+
+            }
+
+            }catch(Exception e){
+                System.out.println("eroorrr");
+                System.out.println(e.getMessage());
+            }
+            return bookings_list;
+    }
+
+
+
 
 
     public Booking(int booking_id, int paid, Slot slot) {
