@@ -75,6 +75,28 @@
             color: #333 !important;
             background: transparent !important;
         }
+
+		.list-group {
+			border: 1px solid #d4d4d4;
+			border-bottom: none;
+			border-top: none;
+			z-index: 99;
+			top: 100%;
+			left: 0;
+			right: 0;
+		}
+
+		.list-group div {
+			padding: 10px;
+			cursor: pointer;
+			background-color: #fff; 
+			border-bottom: 1px solid #d4d4d4; 
+		}
+
+		/*when hovering an item:*/
+		.list-group div:hover {
+			background-color: #e9e9e9; 
+		}
         
 	
 	.stylish-input-group .input-group-addon{
@@ -362,10 +384,10 @@
 							<br>
 							<div class="container-search">
 								<form autocomplete="off">
-									<a href="" target="_blank" hidden></a>
-									<input type="text" class="form-search__field" placeholder="Name of Sportsclub" />
-									<div class="autocom-box">
-										<!-- here list are inserted from javascript -->
+									<!-- form-search__field -->
+									<input type="text" class="form-search__field" id="txtSportsclub" placeholder="Name of Sportsclub" />
+									<div id="showList">
+										<ul class="list-group" style="color: #333;"></ul>
 									</div>
 									<button type="button" class="btn-search--primary btn--inside uppercase" onclick="location.href='sportsclub_profile.html';">Search</button>
 								</form>
@@ -518,5 +540,31 @@
 			<script src="js/google-map.js"></script>
 			<script src="js/main.js"></script>
 			
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$('#txtSportsclub').keyup(function() {
+					var search=$('#txtSportsclub').val();
+					if(search !=='' && search !==null)
+					{
+						$.ajax({
+							type: 'POST',
+							url: 'record.jsp',
+							data: 'key='+search,
+							success: function(data)
+							{
+								$('#showList').html(data);
+							}
+						});
+					}
+					else
+					{
+						$('#showList').html('');
+					}
+				});
+				$(document).on('click','li', function(){
+					$('#txtSportsclub').val($(this).text());
+				});
+			});
+			</script>
 		</body>
 		</html>
