@@ -2,8 +2,16 @@
 <%@ page import ="java.util.List"%>
 <%@ page import ="ecourts_java.*"%>
 
+
+<% if(session.getAttribute("user_id")==null){%>
+	<jsp:forward page="home.jsp" /> 
+  <%}%>
+
 <%
 User user_now=(User)session.getAttribute("user_id");
+if (user_now.getType()==1){%>
+	<jsp:forward page="home.jsp" />
+  <%}
 user_now=user_now.editDetails(user_now.getUser_id());
 Customer customer=new Customer();
 Customer customer_now;
@@ -12,6 +20,7 @@ session.setAttribute("user_id", user_now);
 session.setAttribute("customer_id", customer_now);
 
 %>
+<%session.setAttribute("book", null);%>
 
 
 

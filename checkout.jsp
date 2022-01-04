@@ -5,6 +5,9 @@
 <% int slot_id;
   session.setAttribute("not_logged", null);
 	User curUser = (User)session.getAttribute("user_id");
+  if (curUser.getType()==1){%>
+    <jsp:forward page="home.jsp" />
+  <%}
   try{
   slot_id=Integer.parseInt(request.getParameter("id"));
   }catch (NumberFormatException e){%>

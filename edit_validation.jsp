@@ -2,9 +2,16 @@
 <%@ page import ="java.util.List"%>
 <%@ page import ="ecourts_java.*"%>
 
+<% if(session.getAttribute("user_id")==null){%>
+	<jsp:forward page="home.jsp" /> 
+  <%}%>
+
 <%
 
 User user_now=(User)session.getAttribute("user_id");
+if (user_now.getType()==1){%>
+	<jsp:forward page="home.jsp" />
+  <%}
 user_now=user_now.editDetails(user_now.getUser_id());
 Customer customer_now=(Customer)session.getAttribute("customer_id");
 
@@ -24,6 +31,7 @@ if((user_now.checkPhone(phone) || (!user_now.checkPhone(phone) && phone.equals(u
 
 
 %>
+
 
 
 

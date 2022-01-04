@@ -24,10 +24,10 @@ if ( user_id!=-1 ){
     <jsp:forward page="checkout.jsp?id=<%=id%>" />    
 <%}else{
   if(curUser.getType()==1){ 
-        
+    session.setAttribute("user_id", curUser);  
    %>
     
-    <jsp:forward page="club_managing.jsp?spid=<%=curUser.getUser_id()%>" />
+    <jsp:forward page="club_managing.jsp" />
     <%}else{ 
       session.setAttribute("user_id", curUser);     
      %>
