@@ -11,6 +11,10 @@ customer_now=customer.customerDetails(user_now.getUser_id());
 session.setAttribute("user_id", user_now);
 session.setAttribute("customer_id", customer_now);
 
+
+Booking bk = new Booking();
+Booking upcoming_booking = bk.upcomingBooking(user_now.getUser_id());
+
 %>
 
 
@@ -389,42 +393,51 @@ session.setAttribute("customer_id", customer_now);
                                 <h1 style="margin-left: 5%;" >Upcoming Bookings</h1>
                                 <section class="ftco-section " style="margin-top: 0%; margin-bottom: 0%; padding-top: 2rem; padding-bottom: 2rem;"  >
                                   
-                                  <div class="container"  >
-                                    <div class="row justify-content-center pb-4"></div>
-                                      
-                                    </div>
-                                    <div class="column" style="align-items: center;">
-                                      <div class="col-md-10 ftco-animate" id = "first_choice" style="width: 95%; max-width: 95%;">
-                                        <div class="project-wrap" style=" width: 100%; margin-bottom: 10%;">
-                                          
-                                          
-                                          </a>
-                                          <div class="text p-4 row" >
-                                            <span class="days">Tennis</span>
-                                            <h3><a href="#">Green Tennis Club</a></h3>
-                                            <div style="width: 100%;
-                                            display: flex;
-                                            flex-direction: row;
-                                            justify-content: center;"  >
-                                              <p class="location" style="margin: auto;"><span class="fa fa-map-marker"></span> Ekali</p>
-                                              <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Clay</p>
-                                              <p class="location" style="margin: auto;"><span class="fa fa-calendar"></span> 3/11/2021</p>
-                                              <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Paid</p>
-                                            </div>
-                                            <button class="btn btn-success btn-lg active" style="margin-top: 5%;" type="submit">Edit Booking</button>
+
+                                  <%
+                                        if (upcoming_booking==null){
+                                          out.print("NO BOOKING");
+                                        }else{
+                                        %>
+
+                                        <div class="container"  >
+                                          <div class="row justify-content-center pb-4"></div>
                                             
                                           </div>
+                                          <div class="column" style="align-items: center;">
+                                            <div class="col-md-10 ftco-animate" id = "first_choice" style="width: 95%; max-width: 95%;">
+                                              <div class="project-wrap" style=" width: 100%; margin-bottom: 10%;">
+                                                
+                                                
+                                                </a>
+                                                <div class="text p-4 row" >
+                                                  <span class="days"><%=upcoming_booking.getSlot().getCourt().getSport()%></span>
+                                                  <h3><a href="#"><%=upcoming_booking.getSlot().getCourt().getClub().getName()%></a></h3>
+                                                  <div style="width: 100%;
+                                                  display: flex;
+                                                  flex-direction: row;
+                                                  justify-content: center;"  >
+                                                    <p class="location" style="margin: auto;"><span class="fa fa-map-marker"></span> Ekali</p>
+                                                    <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Clay</p>
+                                                    <p class="location" style="margin: auto;"><span class="fa fa-calendar"></span> 3/11/2021</p>
+                                                    <p class="surface" style="margin: auto;"><span class="fa fa-credit-card-alt"></span> Paid</p>
+                                                  </div>
+                                                  <button class="btn btn-success btn-lg active" style="margin-top: 5%;" type="submit">Edit Booking</button>
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
                                         </div>
-                                      </div>
-            
-                                      
-                                      
+
+                                        <%
+                                        }
+
+                                          
+                                          %>
+
+
                                     
-                                      
-                            
-                                      
-                                    </div>
-                                  </div>
                                 </section>
                                 
             

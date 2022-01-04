@@ -292,7 +292,7 @@ public class Booking {
 
 
             
-            String query = "SELECT booking.booking_id, booking.online_payment, booking.slot_id  FROM booking, slot where booking.slot_id = slot.slot_id and booking.user_id = ? order by slot.date asc, slot.time_start asc LIMIT 1";
+            String query = "SELECT booking.booking_id, booking.online_payment, booking.slot_id  FROM booking, slot where booking.slot_id = slot.slot_id and slot.slot_id in (select * from slots_today UNION  select * from slots_after) and booking.user_id = ? order by slot.date asc, slot.time_start asc LIMIT 1";
                            
         
             pstmt=con.prepareStatement(query); //sql select query 
@@ -306,11 +306,9 @@ public class Booking {
 
                 //call the method to get the slot details
                 Slot slt = new Slot();
-                
-
-
-                bk = new Booking(booking_id, paid, slot);
-
+                List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "");
+                //throws errors
+                bk = new Booking(booking_id, paid, slot_list.get(0));
 
             }
 
@@ -325,6 +323,14 @@ public class Booking {
     public Booking(int booking_id, int paid, Slot slot) {
         this.booking_id = booking_id;
         this.online_payment = paid;
+        this.slot = slot;
+    }
+
+    public Slot getSlot() {
+        return slot;
+    }
+
+    public void setSlot(Slot slot) {
         this.slot = slot;
     }
 

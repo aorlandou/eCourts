@@ -79,11 +79,14 @@ public class test {
        //    System.out.print(court.getCourt_id());
        //}
 
-       //Booking bk = new Booking();
-       //bk.upcomingBooking(3);
-        Slot slt = new Slot();
-        List<Slot> slot_list = slt.getSlots(0, "", 0, 47, 0, 0, 0, "");
-        System.out.println(slot_list.get(0).getDate());
+       Booking bk = new Booking();
+       Booking booking = bk.upcomingBooking(3);
+        if (booking == null){
+            System.out.println("NO BOOKING");
+        }else{
+            System.out.println(booking.getSlot().getSlot_id());
+        }
+       
     }
     
 }
