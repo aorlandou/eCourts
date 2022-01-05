@@ -76,8 +76,9 @@
             background: transparent !important;
         }
 
-		.list-group {
+		.list-group-item {
 			border: 1px solid #d4d4d4;
+			color: #333;
 			border-bottom: none;
 			border-top: none;
 			z-index: 99;
@@ -86,7 +87,7 @@
 			right: 0;
 		}
 
-		.list-group div {
+		.list-group-item div {
 			padding: 10px;
 			cursor: pointer;
 			background-color: #fff; 
@@ -94,7 +95,7 @@
 		}
 
 		/*when hovering an item:*/
-		.list-group div:hover {
+		.list-group-item div:hover {
 			background-color: #e9e9e9; 
 		}
         
