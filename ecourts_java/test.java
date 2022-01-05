@@ -92,26 +92,9 @@ public class test {
        //List<Slot> slot_list =  slt.getSlotsCalendar(0, "", 0, 0, 1, 1, 0, "");
        List<Booking> bookings_list = bk.BookingsCalendar(1, 1);
        for (Booking booking: bookings_list){
-           System.out.println(booking.getSlot().getTime());
+           System.out.println(booking.getCustomer().getName());
        }
-       SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");  
-        java.util.Date d1 = null;
-        try {
-            d1 = format.parse("19:00:00");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }    
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(d1);
-
-        String testDate = "28-12-2021";
-        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = formatter.parse(testDate);
-
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date_as_string = simpleDateFormat.format(date);
-        System.out.println(date_as_string);
+       
 
 
 

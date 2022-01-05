@@ -348,7 +348,7 @@ List<Booking> bookings_list = bk.bookingsHistory(user_now.getUser_id());
                                   </a> 
             
             
-                                  <a href="home.jsp">
+                                  <a href="logout.jsp">
                                     <button class="btn btn-outline-primary">Logout</button>
                                   </a> 
             

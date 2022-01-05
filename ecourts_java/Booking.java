@@ -379,7 +379,7 @@ public class Booking {
 
 
             
-            String query = "SELECT booking.booking_id, booking.online_payment, slot.slot_id FROM booking, slot, court where booking.slot_id = slot.slot_id and slot.court_id = court.court_id";
+            String query = "SELECT booking.booking_id, booking.online_payment, slot.slot_id, users.name, client_users.surname FROM booking, slot, court, users, client_users where booking.slot_id = slot.slot_id and slot.court_id = court.court_id and booking.user_id = client_users.id and client_users.id = users.idusers ";
                            
             if(clubid != 0){
                 query = query + " and court.sportsclub_id = ?";
@@ -406,11 +406,14 @@ public class Booking {
                 int booking_id = rs.getInt("booking_id");
                 int slot_id = rs.getInt("slot_id");
                 int paid = rs.getInt("online_payment");
+                String name = rs.getString("name");
+                String surname = rs.getString("surname");
 
+                Customer cr = new Customer(name, surname);
 
                 Slot slt = new Slot();
                 List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "",1,0);
-                Booking bk = new Booking(booking_id, paid, slot_list.get(0));
+                Booking bk = new Booking(booking_id, paid, slot_list.get(0), cr);
                 bookings_list.add(bk);      
 
             }
@@ -428,6 +431,12 @@ public class Booking {
         this.booking_id = booking_id;
         this.online_payment = paid;
         this.slot = slot;
+    }
+    public Booking(int booking_id, int paid, Slot slot, Customer customer) {
+        this.booking_id = booking_id;
+        this.online_payment = paid;
+        this.slot = slot;
+        this.customer = customer;
     }
 
     public Slot getSlot() {

@@ -111,9 +111,10 @@ public class BookingsServlet extends HttpServlet {
 
 
                     book_obj.put("id",booking.getBooking_id());
-                    book_obj.put("text","pao");
+                    book_obj.put("text",booking.getCustomer().getName()+ " " + booking.getCustomer().getSurname() + "<br/>" + booking.getSlot().getCourt().getName() );
                     book_obj.put("start",date_as_string +"T" + (String)booking.getSlot().getTime()+":00");
                     book_obj.put("end",date_as_string +"T"+ time_end );
+                    book_obj.put("backColor","#cccccc");
 
 
                     list.put(book_obj);

@@ -97,14 +97,6 @@ if (photo_path_background != null){
     <script src="js/daypilot-all.min.js?v=2021.2.261"></script>
 
 
-  
- 
-
-
- 
-
-
-
     <style>
       
       .navbar img {
@@ -474,6 +466,14 @@ if (photo_path_background != null){
         <a href="javascript:dp.startDate = dp.startDate.addDays(7); dp.update();">Next</a>
     </div>
 
+    <select name="cars" id="type" onchange="refreshEvents('<%=spid%>')">
+
+        <option value="0">Slots</option>
+        <option value="1">Bookings</option>
+
+    </select>
+
+
     <select name="cars" id="courts" onchange="refreshEvents('<%=spid%>')">
 
         <option value="0">All</option>
@@ -483,17 +483,8 @@ if (photo_path_background != null){
             <option value="<%=court.getCourt_id()%>"><%=court.getName()%></option>
         <%
         }
-
         %>
         
-        
-    </select>
-
-    <select name="cars" id="type" onchange="refreshEvents('<%=spid%>')">
-
-        <option value="0">Slots</option>
-        <option value="1">Bookings</option>
-
     </select>
 
 
@@ -508,6 +499,9 @@ if (photo_path_background != null){
         // view
         dp.startDate = "2021-12-25";
         dp.viewType = "Week";
+        dp.onBeforeEventRender = function(args) {
+            args.data.barColor = "#f15d30";
+        };
     
         
         

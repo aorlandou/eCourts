@@ -23,7 +23,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 	<link rel="stylesheet" href="css/animate.css">
 	
@@ -207,7 +207,7 @@
 					<div class="nav-item dropdown">
 						<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" style="color:rgb(223, 221, 221);"><img src="images/user.png" style="width: 37px;">   <%=curUser.getName()%> <b class="caret"></b></a>
 						<div class="dropdown-menu">
-							<a href="user_profile.jsp" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+							<a href="user_profile.jsp" class="dropdown-item"><i class="fa fa-user"></i> Profile</a>
 							<a href="edit_user_profile.jsp" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
 							<div class="divider dropdown-divider"></div>
 							<a href="logout.jsp" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>

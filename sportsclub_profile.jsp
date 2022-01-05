@@ -318,7 +318,7 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
                   <div class="nav-item dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action" style="color:rgb(223, 221, 221);"><img src="images/user.png" style="width: 37px;">   <%=curUser.getName()%> <b class="caret"></b></a>
                     <div class="dropdown-menu">
-                      <a href="user_profile.jsp" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+                      <a href="user_profile.jsp" class="dropdown-item"><i class="fa fa-user"></i> Profile</a>
                       <a href="edit_user_profile.jsp" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                       <div class="divider dropdown-divider"></div>
                       <a href="logout.jsp" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
