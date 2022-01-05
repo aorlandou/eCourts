@@ -411,56 +411,38 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="carousel-destination owl-carousel ftco-animate">
+							<%
+							SportsClub spr = new SportsClub();
+        					List<SportsClub> c = null;
+							try {
+								c = spr.popularClubs();
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+							for (SportsClub club: c){
+
+							%>
+
 							<div class="item">
 								<div class="project-destination">
-									<a href="sportsclub_profile.html" class="img" style="background-image: url(images/tennis3.jpg);">
+									<a href="sportsclub_profile.jsp?spid=<%=club.getUser_id()%>" class="img" style="background-image: url('images/sportsclub/<%=club.getUser_id()%>/background.jpg');">
 										<div class="text">
-											<h3>Sportone</h3>
-											<span>8 Courts</span>
+											<h3><%=club.getName()%></h3>
+											<span><%=club.getNumofcourts()%> Courts</span>
 										</div>
 									</a>
 								</div>
 							</div>
-							<div class="item">
-								<div class="project-destination">
-									<a href="sportsclub_profile.html" class="img" style="background-image: url(images/tennis4.jpg);">
-										<div class="text">
-											<h3>Ekali Club</h3>
-											<span>9 Courts</span>
-										</div>
-									</a>
-								</div>
-							</div>
-							<div class="item">
-								<div class="project-destination">
-									<a href="sportsclub_profile.html" class="img" style="background-image: url(images/football1.jpg);">
-										<div class="text">
-											<h3>Football Club</h3>
-											<span>5 Courts</span>
-										</div>
-									</a>
-								</div>
-							</div>
-							<div class="item">
-								<div class="project-destination">
-									<a href="sportsclub_profile.html" class="img" style="background-image: url(images/football2.jpg);">
-										<div class="text">
-											<h3>Ballers</h3>
-											<span>5 Courts</span>
-										</div>
-									</a>
-								</div>
-							</div>
-							<div class="item">
-								<div class="project-destination">
-									<a href="sportsclub_profile.html" class="img" style="background-image: url(images/padel1.jpg);">
-										<div class="text">
-											<h3>Anoixi Padel</h3>
-											<span>7 Courts</span>
-										</div>
-									</a>
-								</div>
-							</div>
+
+							<%
+
+							}
+
+							%>
+
+							
 						</div>
 					</div>
 				</div>
