@@ -79,6 +79,7 @@
 		.list-group-item {
 			border: 1px solid #d4d4d4;
 			color: #333;
+			position: relative;
 			border-bottom: none;
 			border-top: none;
 			z-index: 99;
@@ -98,7 +99,69 @@
 		.list-group-item div:hover {
 			background-color: #e9e9e9; 
 		}
+
+		/*when navigating through the items using the arrow keys:*/
+		.list-group-item-active {
+			background-color: DodgerBlue !important; 
+			color: #ffffff; 
+		}
         
+
+
+		.autocomplete-items {
+		position: absolute;
+		border: 1px solid #d4d4d4;
+		border-bottom: none;
+		border-top: none;
+		z-index: 99;
+		/*position the autocomplete items to be the same width as the container:*/
+		top: 100%;
+		left: 0;
+		right: 0;
+		}
+
+		.autocomplete-items div {
+		padding: 10px;
+		cursor: pointer;
+		background-color: #fff; 
+		border-bottom: 1px solid #d4d4d4; 
+		}
+
+		/*when hovering an item:*/
+		.autocomplete-items div:hover {
+		background-color: #e9e9e9; 
+		}
+
+		/*when navigating through the items using the arrow keys:*/
+		.autocomplete-active {
+		background-color: DodgerBlue !important; 
+		color: #ffffff; 
+		}
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f6f6f6;
+			min-width: 230px;
+			overflow: auto;
+			border: 1px solid #ddd;
+			z-index: 1;
+		}
+
+		.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+		}
+
+		.dropdown a:hover {background-color: #ddd;}
+
+		.show {display: block;}
 	
 	.stylish-input-group .input-group-addon{
 		background: rgb(197, 196, 196) !important; 
@@ -385,13 +448,29 @@
 							<br>
 							<div class="container-search">
 								<form autocomplete="off">
-									<!-- form-search__field -->
-									<input type="text" class="form-search__field" id="txtSportsclub" placeholder="Name of Sportsclub" />
+									<input type="text" class="form-search__field" id="txtSportsclub" name="spid" placeholder="Name of Sportsclub" />
 									<div id="showList">
 										<ul class="list-group" style="color: #333;"></ul>
 									</div>
 									<button type="button" class="btn-search--primary btn--inside uppercase" onclick="location.href='sportsclub_profile.html';">Search</button>
 								</form>
+								
+								
+								<!-- <form autocomplete="off">
+									<div class="autocomplete" style="width:300px;">
+									  <input id="txtSportsclub" type="text" name="spid" placeholder="Name of Sportsclub">
+									</div>
+									<input type="submit">
+								</form> -->
+								<!-- <form autocomplete="off">
+									 form-search__field 
+									<input type="text" class="form-search__field" id="txtSportsclub" placeholder="Name of Sportsclub" />
+									<div id="suggesstion-box"></div>
+									 <div id="showList">
+										<ul class="autocomplete"></ul>
+									</div> 
+									<button type="button" class="btn-search--primary btn--inside uppercase" onclick="location.href='sportsclub_profile.html';">Search</button>
+								</form> -->
 							</div>
 						</div>
 					</div>
@@ -551,8 +630,7 @@
 							type: 'POST',
 							url: 'record.jsp',
 							data: 'key='+search,
-							success: function(data)
-							{
+							success: function(data){
 								$('#showList').html(data);
 							}
 						});
@@ -561,11 +639,14 @@
 					{
 						$('#showList').html('');
 					}
+					  
 				});
+		
 				$(document).on('click','li', function(){
 					$('#txtSportsclub').val($(this).text());
 				});
 			});
+			
 			</script>
 		</body>
 		</html>
