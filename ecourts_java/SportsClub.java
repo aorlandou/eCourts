@@ -1,5 +1,8 @@
 package ecourts_java;
+
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.crypto.dsig.spec.ExcC14NParameterSpec;
 
@@ -181,6 +184,58 @@ public class SportsClub extends User{
     public void setId(int id) {
         this.id = id;
     }
+
+
+    public List<SportsClub> popularClubs() throws Exception {
+        
+        List<SportsClub> club_list = new ArrayList<SportsClub>();
+
+        DB data = new DB();
+		Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT idusers FROM users where type = 1 limit 5";
+
+		try {
+            
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+
+            // setting parameter
+            while(rs.next()){
+
+                int club_id = rs.getInt("idusers");
+
+                SportsClub spr = new SportsClub();
+                SportsClub club = spr.findClub(club_id);
+                club_list.add(club);
+
+            }
+
+            rs.close(); //closing ResultSet
+            stmt.close(); //closing PreparedStatement
+            data.closeConnection(); //closing Connection
+
+            return club_list;
+
+        } catch (Exception e) {
+
+            throw new Exception(e.getMessage());
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
+		
+	}
+
 
 
 
