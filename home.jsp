@@ -448,13 +448,17 @@
 							<br>
 							<div class="container-search">
 								<form autocomplete="off">
-									<input type="text" class="form-search__field" id="txtSportsclub" name="spid" placeholder="Name of Sportsclub" />
+									<input type="text" onkeyup="myfunc2()" class="form-search__field" id="txtSportsclub" name="spid" placeholder="Name of Sportsclub" />
 									<div id="showList">
 										<ul class="list-group" style="color: #333;"></ul>
 									</div>
 									<button type="button" class="btn-search--primary btn--inside uppercase" onclick="location.href='sportsclub_profile.html';">Search</button>
 								</form>
-								
+								<script>
+									function myfunc2(){
+										showList.style.display = "block";
+									}
+								</script>
 								
 								<!-- <form autocomplete="off">
 									<div class="autocomplete" style="width:300px;">

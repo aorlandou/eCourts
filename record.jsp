@@ -8,7 +8,7 @@
 
 <script>
     function myfunc(){
-        list.style.display = "none";
+        showList.style.display = "none";
     }
 </script>
 <%
