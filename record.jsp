@@ -4,6 +4,13 @@
 <%@page import="java.sql.DriverManager"%>
 <%@ page import ="ecourts_java.*"%>
 
+
+
+<script>
+    function myfunc(){
+        list.style.display = "none";
+    }
+</script>
 <%
 if(request.getParameter("key")!=null){
     String key=request.getParameter("key");
@@ -24,7 +31,7 @@ if(request.getParameter("key")!=null){
         rs = stmt.executeQuery();
         while (rs.next()){
             %> 
-                <li class="list-group-item"><%=rs.getString("name")%></li>
+                <li class="list-group-item" id="list" onclick="myfunc()"><%=rs.getString("name")%></li>
             <%
         }
         rs.close(); //closing ResultSet
