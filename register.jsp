@@ -256,7 +256,7 @@
 							<span id='message_zip'></span>
 						</div>
 						<div class="form-row form-row-2">
-							<input type="text" name="town" class="town" id="town" placeholder="Town">
+							<input type="text" name="town" class="town" id="town" placeholder="Municipality">
 							<span id='message_town'></span>
 						</div>
 					</div>					
