@@ -222,7 +222,7 @@ public class User{
 				return null;
             }
             User curUser = new User (rs.getInt("idusers"), rs.getString("email"), rs.getString("phone"), rs.getString("password"),
-            rs.getString("street"), rs.getString("street_number"), rs.getString("zipcode"),rs.getString("town"),rs.getString("name"));
+            rs.getString("street"), rs.getString("street_number"), rs.getString("zipcode"),rs.getString("municipality"),rs.getString("name"));
 
             return curUser;
         } catch (Exception e) {
@@ -247,7 +247,7 @@ public class User{
 		Connection con = null;
         PreparedStatement stmt = null;
        
-        String sql = "UPDATE users SET email=?, phone=?, password=?, street=?, street_number=?, zipcode=?, town=? WHERE idusers=?";
+        String sql = "UPDATE users SET email=?, phone=?, password=?, street=?, street_number=?, zipcode=?, municipality=? WHERE idusers=?";
         try {
             
             con = data.getConnection();
