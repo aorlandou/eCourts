@@ -5,6 +5,9 @@
 <%
 	User curUser = (User)session.getAttribute("user_id");
 	
+	Municipality mun_obj = new Municipality();
+	List<Municipality> mun_list =  mun_obj.getMunicipalies_with_clubs();
+
 
 
 
@@ -367,14 +370,33 @@
 								<div class="tab-content" id="v-pills-tabContent">
 
 									<div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-										<form action="#" class="search-property-1">
+										<form action="results.jsp" method="POST" class="search-property-1">
 											<div class="row no-gutters">
 												<div class="col-md d-flex">
 													<div class="form-group p-4 border-0">
 														<label for="#">Municipality</label>
 														<div class="form-field">
-															<div class="icon"><span class="fa fa-search"></span></div>
-															<input type="text" class="form-control" placeholder="Search place">
+															<div class="select-wrap">
+																<div class="icon"><span class="fa fa-chevron-down"></span></div>
+																<select name="municid" id="municipality" class="form-control">
+																	<%
+																		for (Municipality municipality: mun_list){	
+																		%>
+																			<option value="<%= municipality.getMunic_id()%>"><%= municipality.getMun_name()%></option>
+																		<%
+																		}
+																	%>
+																</select>
+															</div>
+															<!-- <input type="text" onkeyup="myfunc2()" class="form-control" placeholder="Search place" name="munic" id="txtMunic">
+															<div id="showListofMun">
+																<ul class="list-group" style="color: #333;"></ul>
+															</div>
+															<script>
+																function myfunc2(){
+																	showList.style.display = "block";
+																}
+															</script> -->
 														</div>
 													</div>
 												</div>
@@ -384,10 +406,10 @@
 														<div class="form-field">
 															<div class="select-wrap">
 																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="" id="" class="form-control">
-																	<option value="">Tennis</option>
-																	<option value="">Padel</option>
-																	<option value="">Football</option>
+																<select name="sport" id="" class="form-control">
+																	<option value="1">Tennis</option>
+																	<option value="2">Padel</option>
+																	<option value="3">Football</option>
 																</select>
 															</div>
 														</div>
@@ -398,7 +420,7 @@
 														<label for="#">Date</label>
 														<div class="form-field">
 															<div class="icon"><span class="fa fa-calendar"></span></div>
-															<input type="text" class="form-control checkin_date" placeholder="Choose Date">
+															<input type="text" name="date" class="form-control checkin_date" placeholder="Choose Date">
 														</div>
 													</div>
 												</div>
@@ -412,7 +434,7 @@
 												<div class="col-md d-flex">
 													<div class="form-group d-flex w-100 border-0">
 														<div class="form-field w-100 align-items-center d-flex">
-															<input type="button" value="Search" class="align-self-stretch form-control btn btn-primary" onclick="location.href='results.jsp';"> 
+															<input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary"> 
 														</div>
 													</div>
 												</div>
@@ -447,12 +469,13 @@
 							<h2>Want to search for a Sportsclub?</h2>
 							<br>
 							<div class="container-search">
-								<form autocomplete="off">
+								<form autocomplete="off" action="searchClub.jsp" method="POST">
 									<input type="text" onkeyup="myfunc2()" class="form-search__field" id="txtSportsclub" name="spid" placeholder="Name of Sportsclub" />
 									<div id="showList">
 										<ul class="list-group" style="color: #333;"></ul>
 									</div>
-									<button type="button" class="btn-search--primary btn--inside uppercase" onclick="location.href='sportsclub_profile.html';">Search</button>
+									 
+									<button type="submit" class="btn-search--primary btn--inside uppercase" >Search</button>
 								</form>
 								<script>
 									function myfunc2(){
@@ -460,21 +483,6 @@
 									}
 								</script>
 								
-								<!-- <form autocomplete="off">
-									<div class="autocomplete" style="width:300px;">
-									  <input id="txtSportsclub" type="text" name="spid" placeholder="Name of Sportsclub">
-									</div>
-									<input type="submit">
-								</form> -->
-								<!-- <form autocomplete="off">
-									 form-search__field 
-									<input type="text" class="form-search__field" id="txtSportsclub" placeholder="Name of Sportsclub" />
-									<div id="suggesstion-box"></div>
-									 <div id="showList">
-										<ul class="autocomplete"></ul>
-									</div> 
-									<button type="button" class="btn-search--primary btn--inside uppercase" onclick="location.href='sportsclub_profile.html';">Search</button>
-								</form> -->
 							</div>
 						</div>
 					</div>
@@ -630,6 +638,34 @@
 		
 				$(document).on('click','li', function(){
 					$('#txtSportsclub').val($(this).text());
+				});
+			});
+			
+			</script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$('#txtMunic').keyup(function() {
+					var search=$('#txtMunic').val();
+					if(search !=='' && search !==null)
+					{
+						$.ajax({
+							type: 'POST',
+							url: 'municipalities.jsp',
+							data: 'key='+search,
+							success: function(data){
+								$('#showListofMun').html(data);
+							}
+						});
+					}
+					else
+					{
+						$('#showListofMun').html('');
+					}
+					  
+				});
+		
+				$(document).on('click','li', function(){
+					$('#txtMunic').val($(this).text());
 				});
 			});
 			

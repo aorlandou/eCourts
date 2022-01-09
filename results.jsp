@@ -12,6 +12,10 @@ List<Municipality> mun_list =  mun_obj.getMunicipalies_with_clubs();
 Sport sprt = new Sport();
 List<Sport> sports_list = sprt.getAll_sports();
 
+String	municid = (String)request.getParameter("municid");
+String	sportid = (String)request.getParameter("sport");
+String date = (String)request.getParameter("date");
+
 
 %>
 
@@ -150,12 +154,17 @@ List<Sport> sports_list = sprt.getAll_sports();
                              <div class="form-field">
                                  <div class="select-wrap">
                                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                     <select name="" id="municipality" class="form-control" onchange="getSlots(1)">
+                                     <select name="municid" id="municipality" class="form-control" onchange="getSlots(1)">
 										<%
 										for (Municipality municipality: mun_list){	
+											if (municid != null){ %>
+												<option value="<%= municipality.getMunic_id()%>" selected><%= municipality.getMun_name()%></option>
+											<%
+											} else { %>
 										%>
 											<option value="<%= municipality.getMunic_id()%>"><%= municipality.getMun_name()%></option>
 										<%
+											}
 										}
                                         %>
                                          

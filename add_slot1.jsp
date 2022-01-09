@@ -404,7 +404,7 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
                 </div>
                 <div class="col">
                     Price of Court per hour:
-                    <input type="text" class="form-search__field" placeholder="" style="width: fit-content; margin-top: 0%; margin-left: auto; height: 4px;"/>
+                    <input type="text" class="form-search__field" placeholder="" style="width: 80%; margin-top: 0%; margin-left: auto; height: 4px;"/>
                     <button type="button" class="btn-search--primary btn--inside uppercase" style="margin-top: 90%; margin-left: auto;"onclick="location.href='';"><i class="fa fa-calendar"></i>  Add Slot</button>
                 </div>
                 </div>
