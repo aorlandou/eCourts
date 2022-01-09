@@ -370,7 +370,7 @@
 								<div class="tab-content" id="v-pills-tabContent">
 
 									<div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-										<form action="results.jsp" method="POST" class="search-property-1">
+										<form action="results.jsp" method="post" class="search-property-1">
 											<div class="row no-gutters">
 												<div class="col-md d-flex">
 													<div class="form-group p-4 border-0">
@@ -420,7 +420,7 @@
 														<label for="#">Date</label>
 														<div class="form-field">
 															<div class="icon"><span class="fa fa-calendar"></span></div>
-															<input type="text" name="date" class="form-control checkin_date" placeholder="Choose Date">
+															<input type="text" name="date" id="date" class="form-control checkin_date" placeholder="Choose Date">
 														</div>
 													</div>
 												</div>
