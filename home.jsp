@@ -419,8 +419,10 @@
 													<div class="form-group p-4">
 														<label for="#">Date</label>
 														<div class="form-field">
-															<div class="icon"><span class="fa fa-calendar"></span></div>
-															<input type="text" name="date" id="date" class="form-control checkin_date" placeholder="Choose Date">
+															 
+							<input type="date" name="date" min="2021-11-01"  id="date" placeholder="Choose Date" onload="(this.type='date')"
+							onfocus="(this.type='date')"  onchange="getSlots(1)" value="" style="border: none;outline: none;">
+                            
 														</div>
 													</div>
 												</div>
