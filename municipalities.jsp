@@ -5,8 +5,8 @@
 <%@ page import ="ecourts_java.*"%>
 
 <script>
-    function myfunc(){
-        showList.style.display = "none";
+    function myfunc7(){
+        showListofMuc.style.display = "none";
     }
 </script>
 
@@ -30,7 +30,7 @@ if(request.getParameter("key")!=null){
         rs = stmt.executeQuery();
         while (rs.next()){
             %> 
-                <li class="list-group-item" id="list" onclick="myfunc()"><%=rs.getString("name")%></li>
+                <li class="list-group-item" id="list" onclick="myfunc7()"><%=rs.getString("mun_name")%></li>
             <%
         }
         rs.close(); //closing ResultSet

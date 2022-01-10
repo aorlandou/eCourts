@@ -100,16 +100,16 @@
 
 		/*when hovering an item:*/
 		.list-group-item div:hover {
-			background-color: #e9e9e9; 
+			background-color: #d8975a; 
 		}
 
 		/*when navigating through the items using the arrow keys:*/
-		.list-group-item-active {
+		.list-group-item div:active {
 			background-color: DodgerBlue !important; 
 			color: #ffffff; 
 		}
         
-
+	
 
 		.autocomplete-items {
 		position: absolute;
@@ -376,27 +376,17 @@
 													<div class="form-group p-4 border-0">
 														<label for="#">Municipality</label>
 														<div class="form-field">
-															<div class="select-wrap">
-																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="municid" id="municipality" class="form-control">
-																	<%
-																		for (Municipality municipality: mun_list){	
-																		%>
-																			<option value="<%= municipality.getMunic_id()%>"><%= municipality.getMun_name()%></option>
-																		<%
-																		}
-																	%>
-																</select>
-															</div>
-															<!-- <input type="text" onkeyup="myfunc2()" class="form-control" placeholder="Search place" name="munic" id="txtMunic">
+															<div class="icon"><span class="fa fa-search"></span></div>
+															
+															<input type="text" onkeyup="myfunc3()" class="form-control" placeholder="Search place" name="munic" id="txtMunic">
 															<div id="showListofMun">
 																<ul class="list-group" style="color: #333;"></ul>
 															</div>
 															<script>
-																function myfunc2(){
-																	showList.style.display = "block";
+																function myfunc3(){
+																	showListofMun.style.display = "block";
 																}
-															</script> -->
+															</script>
 														</div>
 													</div>
 												</div>
@@ -642,7 +632,7 @@
 			});
 			
 			</script>
-			<script type="text/javascript">
+			<script>
 				$(document).ready(function(){
 					$('#txtMunic').keyup(function() {
 					var search=$('#txtMunic').val();
