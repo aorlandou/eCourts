@@ -618,8 +618,17 @@
 							data: 'key='+search,
 							success: function(data){
 								$('#showList').html(data);
+								$(document).on('click','li', function(){
+									$("#txtMunic").prop('disabled', true);
+					$('#txtSportsclub').val($(this).text());
+					$("#showList").hide();
+					$("#txtMunic").val("");
+					$("#txtMunic").prop('disabled', false);
+				});
 							}
+							
 						});
+						
 					}
 					else
 					{
@@ -627,10 +636,9 @@
 					}
 					  
 				});
+				
 		
-				$(document).on('click','li', function(){
-					$('#txtSportsclub').val($(this).text());
-				});
+				
 			});
 			
 			</script>
@@ -646,6 +654,13 @@
 							data: 'key='+search,
 							success: function(data){
 								$('#showListofMun').html(data);
+								$(document).on('click','li', function(){
+									$("#txtSportsclub").prop('disabled', true);
+					$('#txtMunic').val($(this).text());
+					$("#showListofMun").hide();
+					$("#txtSportsclub").val("");
+					$("#txtSportsclub").prop('disabled', false);
+				});
 							}
 						});
 					}
@@ -656,9 +671,7 @@
 					  
 				});
 		
-				$(document).on('click','li', function(){
-					$('#txtMunic').val($(this).text());
-				});
+				
 			});
 			
 			</script>

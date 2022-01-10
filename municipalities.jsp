@@ -7,6 +7,7 @@
 <script>
     function myfunc7(){
         showListofMuc.style.display = "none";
+        
     }
 </script>
 
@@ -30,7 +31,7 @@ if(request.getParameter("key")!=null){
         rs = stmt.executeQuery();
         while (rs.next()){
             %> 
-                <li class="list-group-item" id="list" onclick="myfunc7()"><%=rs.getString("mun_name")%></li>
+                <li class="list-group-item" id="list2" onclick="myfunc7(item)"><%=rs.getString("mun_name")%></li>
             <%
         }
         rs.close(); //closing ResultSet
