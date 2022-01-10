@@ -183,9 +183,15 @@ String date = (String)request.getParameter("date");
                                     <select name="" id="sport" class="form-control" onchange="getSlots(1)">
                                         <%
 										for (Sport spr: sports_list){
+											if (sportid != null){ %>
+												<option value="<%= spr.getSport_id()%>" selected><%= spr.getSport_name()%></option>
+											<% 
+											} else{ 
+
 										%>
 											<option value="<%= spr.getSport_id()%>"><%= spr.getSport_name()%></option>
 										<%
+											}
 										}
                                         %>
                                         
@@ -266,7 +272,7 @@ String date = (String)request.getParameter("date");
 			</div>
 		</div>
 	</div>
-
+	
     
 <div id = "here"></div>
 

@@ -396,10 +396,10 @@
 														<div class="form-field">
 															<div class="select-wrap">
 																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="sport" id="" class="form-control">
-																	<option value="1">Tennis</option>
-																	<option value="2">Padel</option>
-																	<option value="3">Football</option>
+																<select name="sport" id="sport" class="form-control">
+																	<option value="1" name="ten">Tennis</option>
+																	<option value="2" name="foot">Football</option>
+																	<option value="3" name="padel">Padel</option>
 																</select>
 															</div>
 														</div>
