@@ -201,7 +201,7 @@ String date = (String)request.getParameter("date");
                         <div class="form-field">
                             
 							<input type="date" name="date" min="2021-11-01"  id="date" placeholder="Choose Date" onload="(this.type='date')"
-							onfocus="(this.type='date')" value="" onchange="getSlots(1)" style="border: none;outline: none;">
+							onfocus="(this.type='date')"  onchange="getSlots(1)" value="<%=date%>" style="border: none;outline: none;">
                             
                         </div>
                     </div>
