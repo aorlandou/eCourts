@@ -349,14 +349,14 @@ String munName = clb.getMunicipalityName(club.getMunic_id());
         
         <p style="font-size: large; margin-top: 5%;" > <%= club.getAbout()%> </p>
         
-        <ul style="margin-top: 10%;">
-          <li><b>Location:</b> <%=club.getStreet()%>, <%=munName%> </li>
-          <li><b>Email:</b> <%=club.getEmail()%></li>
-          <li><b>Phone:</b> <%=club.getLinephone()%>  </li>
+        <p style="margin-top: 10%;">
+          <span class="icon fa fa-map-marker"></span>&emsp;<b>Location:</b> <%=club.getStreet()%>, <%=munName%> <br>
+          <span class="icon fa fa-phone"></span>&emsp;<b>Email:</b> <%=club.getEmail()%> <br>
+          <span class="icon fa fa-paper-plane"></span>&emsp;<b>Phone:</b> <%=club.getLinephone()%>  
           
           
           
-        </ul>
+        </p>
       </div>
       
          
