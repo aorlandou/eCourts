@@ -4,6 +4,10 @@
 
 <%String email=request.getParameter("email");
 String password=request.getParameter("password");
+if(email==null){%>
+  <jsp:forward page="login_form.jsp" />
+
+<%}
 
 User user=new User();
 int user_id;

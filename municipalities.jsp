@@ -4,19 +4,13 @@
 <%@page import="java.sql.DriverManager"%>
 <%@ page import ="ecourts_java.*"%>
 
-
-
 <script>
-    function myfunc(item){
-        showList.style.display = "none";       
-       
-        
+    function myfunc7(){
+        showListofMuc.style.display = "none";
         
     }
-   
-   
-
 </script>
+
 <%
 if(request.getParameter("key")!=null){
     String key=request.getParameter("key");
@@ -26,7 +20,7 @@ if(request.getParameter("key")!=null){
     Connection con = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
-    String sql = "SELECT name FROM users WHERE type='1' AND name LIKE ?";
+    String sql = "SELECT DISTINCT municipality.mun_name from municipality,users where users.munic_id = municipality.mun_id and users.type = 1 AND mun_name LIKE ?";
 
     try {
             
@@ -37,7 +31,7 @@ if(request.getParameter("key")!=null){
         rs = stmt.executeQuery();
         while (rs.next()){
             %> 
-                <li class="list-group-item" id="list1" onclick="myfunc(this)"><%=rs.getString("name")%></li>
+                <li class="list-group-item" id="list2" onclick="myfunc7(item)"><%=rs.getString("mun_name")%></li>
             <%
         }
         rs.close(); //closing ResultSet

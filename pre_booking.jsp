@@ -263,7 +263,7 @@ String munName = clb.getMunicipalityName(club.getMunic_id());
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
 		<div class="container">
-			<a class="navbar-brand" href="home.html"><img class="logo" src="photos/LOGO2-01.png"> </a>
+			<a class="navbar-brand" href="home.jsp"><img class="logo" src="photos/LOGO2-01.png"> </a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
@@ -349,14 +349,14 @@ String munName = clb.getMunicipalityName(club.getMunic_id());
         
         <p style="font-size: large; margin-top: 5%;" > <%= club.getAbout()%> </p>
         
-        <ul style="margin-top: 10%;">
-          <li><b>Location:</b> <%=club.getStreet()%>, <%=munName%> </li>
-          <li><b>Email:</b> <%=club.getEmail()%></li>
-          <li><b>Phone:</b> <%=club.getLinephone()%>  </li>
+        <p style="margin-top: 10%;">
+          <span class="icon fa fa-map-marker"></span>&emsp;<b>Location:</b> <%=club.getStreet()%>, <%=munName%> <br>
+          <span class="icon fa fa-phone"></span>&emsp;<b>Email:</b> <%=club.getEmail()%> <br>
+          <span class="icon fa fa-paper-plane"></span>&emsp;<b>Phone:</b> <%=club.getLinephone()%>  
           
           
           
-        </ul>
+        </p>
       </div>
       
          

@@ -125,6 +125,50 @@ public class SportsClub extends User{
 		
 	}
 
+    public int findID(String clname) throws Exception{
+        DB data = new DB();
+		Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT idusers FROM users WHERE type='1' AND name=?";
+
+        try {
+            
+            con = data.getConnection();
+            stmt = con.prepareStatement(sql);
+
+            // setting parameter
+            stmt.setString(1, clname);
+
+            rs = stmt.executeQuery();
+
+            if ( !rs.next() ) {
+                rs.close(); //closing ResultSet
+                stmt.close(); //closing PreparedStatement
+				return 0;
+            }
+            int spid = rs.getInt("idusers");
+            rs.close(); //closing ResultSet
+            stmt.close(); //closing PreparedStatement
+            data.closeConnection(); //closing Connection
+
+            return spid;
+        } catch (Exception e) {
+
+            throw new Exception(e.getMessage());
+
+        } finally {
+
+            try {
+                data.closeConnection();
+            } catch (Exception e) {
+                
+            }
+
+        }
+
+    }
+
     public String getMunicipalityName(int munic_id) throws Exception{
         DB data = new DB();
 		Connection con = null;

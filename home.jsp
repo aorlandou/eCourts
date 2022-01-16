@@ -5,6 +5,9 @@
 <%
 	User curUser = (User)session.getAttribute("user_id");
 	
+	Municipality mun_obj = new Municipality();
+	List<Municipality> mun_list =  mun_obj.getMunicipalies_with_clubs();
+
 
 
 
@@ -79,6 +82,7 @@
 		.list-group-item {
 			border: 1px solid #d4d4d4;
 			color: #333;
+			position: relative;
 			border-bottom: none;
 			border-top: none;
 			z-index: 99;
@@ -96,9 +100,71 @@
 
 		/*when hovering an item:*/
 		.list-group-item div:hover {
-			background-color: #e9e9e9; 
+			background-color: #d8975a; 
+		}
+
+		/*when navigating through the items using the arrow keys:*/
+		.list-group-item div:active {
+			background-color: DodgerBlue !important; 
+			color: #ffffff; 
 		}
         
+	
+
+		.autocomplete-items {
+		position: absolute;
+		border: 1px solid #d4d4d4;
+		border-bottom: none;
+		border-top: none;
+		z-index: 99;
+		/*position the autocomplete items to be the same width as the container:*/
+		top: 100%;
+		left: 0;
+		right: 0;
+		}
+
+		.autocomplete-items div {
+		padding: 10px;
+		cursor: pointer;
+		background-color: #fff; 
+		border-bottom: 1px solid #d4d4d4; 
+		}
+
+		/*when hovering an item:*/
+		.autocomplete-items div:hover {
+		background-color: #e9e9e9; 
+		}
+
+		/*when navigating through the items using the arrow keys:*/
+		.autocomplete-active {
+		background-color: DodgerBlue !important; 
+		color: #ffffff; 
+		}
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f6f6f6;
+			min-width: 230px;
+			overflow: auto;
+			border: 1px solid #ddd;
+			z-index: 1;
+		}
+
+		.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+		}
+
+		.dropdown a:hover {background-color: #ddd;}
+
+		.show {display: block;}
 	
 	.stylish-input-group .input-group-addon{
 		background: rgb(197, 196, 196) !important; 
@@ -304,14 +370,23 @@
 								<div class="tab-content" id="v-pills-tabContent">
 
 									<div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-										<form action="#" class="search-property-1">
+										<form action="results.jsp" method="post" class="search-property-1">
 											<div class="row no-gutters">
 												<div class="col-md d-flex">
 													<div class="form-group p-4 border-0">
 														<label for="#">Municipality</label>
 														<div class="form-field">
 															<div class="icon"><span class="fa fa-search"></span></div>
-															<input type="text" class="form-control" placeholder="Search place">
+															
+															<input type="text" onkeyup="myfunc3()" class="form-control" placeholder="Search place" name="munic" id="txtMunic">
+															<div id="showListofMun">
+																<ul class="list-group" style="color: #333;"></ul>
+															</div>
+															<script>
+																function myfunc3(){
+																	showListofMun.style.display = "block";
+																}
+															</script>
 														</div>
 													</div>
 												</div>
@@ -321,10 +396,10 @@
 														<div class="form-field">
 															<div class="select-wrap">
 																<div class="icon"><span class="fa fa-chevron-down"></span></div>
-																<select name="" id="" class="form-control">
-																	<option value="">Tennis</option>
-																	<option value="">Padel</option>
-																	<option value="">Football</option>
+																<select name="sport" id="sport" class="form-control">
+																	<option value="1" name="ten">Tennis</option>
+																	<option value="2" name="foot">Football</option>
+																	<option value="3" name="padel">Padel</option>
 																</select>
 															</div>
 														</div>
@@ -334,8 +409,10 @@
 													<div class="form-group p-4">
 														<label for="#">Date</label>
 														<div class="form-field">
-															<div class="icon"><span class="fa fa-calendar"></span></div>
-															<input type="text" class="form-control checkin_date" placeholder="Choose Date">
+															 
+							<input type="date" name="date" min="2021-11-01"  id="date" placeholder="Choose Date" onload="(this.type='date')"
+							onfocus="(this.type='date')"  onchange="getSlots(1)" value="" style="border: none;outline: none;">
+                            
 														</div>
 													</div>
 												</div>
@@ -349,7 +426,7 @@
 												<div class="col-md d-flex">
 													<div class="form-group d-flex w-100 border-0">
 														<div class="form-field w-100 align-items-center d-flex">
-															<input type="button" value="Search" class="align-self-stretch form-control btn btn-primary" onclick="location.href='results.jsp';"> 
+															<input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary"> 
 														</div>
 													</div>
 												</div>
@@ -384,14 +461,20 @@
 							<h2>Want to search for a Sportsclub?</h2>
 							<br>
 							<div class="container-search">
-								<form autocomplete="off">
-									<!-- form-search__field -->
-									<input type="text" class="form-search__field" id="txtSportsclub" placeholder="Name of Sportsclub" />
+								<form autocomplete="off" action="searchClub.jsp" method="POST">
+									<input type="text" onkeyup="myfunc2()" class="form-search__field" id="txtSportsclub" name="spid" placeholder="Name of Sportsclub" />
 									<div id="showList">
 										<ul class="list-group" style="color: #333;"></ul>
 									</div>
-									<button type="button" class="btn-search--primary btn--inside uppercase" onclick="location.href='sportsclub_profile.html';">Search</button>
+									 
+									<button type="submit" class="btn-search--primary btn--inside uppercase" >Search</button>
 								</form>
+								<script>
+									function myfunc2(){
+										showList.style.display = "block";
+									}
+								</script>
+								
 							</div>
 						</div>
 					</div>
@@ -533,21 +616,64 @@
 							type: 'POST',
 							url: 'record.jsp',
 							data: 'key='+search,
-							success: function(data)
-							{
+							success: function(data){
 								$('#showList').html(data);
+								$(document).on('click','li', function(){
+									$("#txtMunic").prop('disabled', true);
+					$('#txtSportsclub').val($(this).text());
+					$("#showList").hide();
+					$("#txtMunic").val("");
+					$("#txtMunic").prop('disabled', false);
+				});
 							}
+							
 						});
+						
 					}
 					else
 					{
 						$('#showList').html('');
 					}
+					  
 				});
-				$(document).on('click','li', function(){
-					$('#txtSportsclub').val($(this).text());
-				});
+				
+		
+				
 			});
+			
+			</script>
+			<script>
+				$(document).ready(function(){
+					$('#txtMunic').keyup(function() {
+					var search=$('#txtMunic').val();
+					if(search !=='' && search !==null)
+					{
+						$.ajax({
+							type: 'POST',
+							url: 'municipalities.jsp',
+							data: 'key='+search,
+							success: function(data){
+								$('#showListofMun').html(data);
+								$(document).on('click','li', function(){
+									$("#txtSportsclub").prop('disabled', true);
+					$('#txtMunic').val($(this).text());
+					$("#showListofMun").hide();
+					$("#txtSportsclub").val("");
+					$("#txtSportsclub").prop('disabled', false);
+				});
+							}
+						});
+					}
+					else
+					{
+						$('#showListofMun').html('');
+					}
+					  
+				});
+		
+				
+			});
+			
 			</script>
 		</body>
 		</html>

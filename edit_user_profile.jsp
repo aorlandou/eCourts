@@ -343,7 +343,7 @@ a:hover {
                             <span id='message_zip'></span>	
 						</div>
 						<div class="form-row form-row-2">
-							<label class="text-muted">Town</label>
+							<label class="text-muted">Municipality</label>
 							<br>
 							<input type="text" name="town" oninput='check11();' style="width: 250px;" id="town" autocomplete="off" class="town" value="<%=user_now.getTown()%>">
 							<span id='message_town'></span>	                        

@@ -387,11 +387,11 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
         
         <p style="font-size: large; margin-top: 5%;" >  <%=curClub.getAbout()%></p>
         
-        <ul style="margin-top: 10%;">
-          <li><b>Location:</b> <%=curClub.getStreet()%>, <%=munName%> </li>
-          <li><b>Email:</b> <%=curClub.getEmail()%></li>
-          <li><b>Phone:</b> <%=curClub.getLinephone()%>  </li>
-        </ul>
+        <p style="margin-top: 10%;">
+          <span class="icon fa fa-map-marker"></span>&emsp;<b>Location:</b> <%=curClub.getStreet()%>, <%=munName%> <br>
+          <span class="icon fa fa-phone"></span>&emsp;<b>Email:</b> <%=curClub.getEmail()%><br>
+          <span class="icon fa fa-paper-plane"></span>&emsp;<b>Phone:</b> <%=curClub.getLinephone()%>  
+        </p>
       </div>
       
          

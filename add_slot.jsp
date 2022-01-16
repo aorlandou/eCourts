@@ -44,11 +44,18 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#datepicker" ).datepicker();
+    } );
+    </script>
   
- 
-
-
+  
+    
  <!-- Latest compiled and minified CSS -->
 
 
@@ -267,6 +274,8 @@
 
 </header>
 
+
+Date: <div id="datepicker"></div>
 <main>
 
 
@@ -297,7 +306,8 @@
         <h2 style="">Each slot has 1 hour duration as standard </h2>
 
     
-
+        
+        
 
 
         <section class="ftco-section ftco-no-pb ftco-no-pt">
@@ -496,8 +506,7 @@
 
 
 </main>
-
-
+   
   </body>
    
             <script src="js/jquery.min.js"></script>
@@ -515,7 +524,8 @@
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 			<script src="js/google-map.js"></script>
 			<script src="js/main.js"></script>
-
+            <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+            <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
 
 
