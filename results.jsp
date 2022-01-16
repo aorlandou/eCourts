@@ -16,6 +16,7 @@ String	municid = (String)request.getParameter("municid");
 String	sportid = (String)request.getParameter("sport");
 String date = (String)request.getParameter("date");
 
+int spoid = Integer.parseInt(sportid); 
 
 %>
 
@@ -152,28 +153,22 @@ String date = (String)request.getParameter("date");
                             <div class="form-group p-4">
                              <label for="#">Municipality</label>
                              <div class="form-field">
-                                 <div class="select-wrap">
-                                     <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                     <select name="municid" id="municipality" class="form-control" onchange="getSlots(1)">
-										<%
-										for (Municipality municipality: mun_list){	
-											if (municid != null){ %>
-												<option value="<%= municipality.getMunic_id()%>" selected><%= municipality.getMun_name()%></option>
-											<%
-											} else { %>
-										%>
-											<option value="<%= municipality.getMunic_id()%>"><%= municipality.getMun_name()%></option>
-										<%
+                                 
+                                     <div class="icon"><span class="fa fa-search"></span></div>
+                                     <input type="text" onkeyup="myfunc3()" name="municid" id="municipality" class="form-control" onchange="getSlots(1)" placeholder="Search place" style="padding: 174 69;">
+										<div id="showListofMun">
+											<ul class="list-group" style="color: #333;"></ul>
+										</div>
+										<script>
+											function myfunc3(){
+												showListofMun.style.display = "block";
 											}
-										}
-                                        %>
-                                         
-                                         
-                                     </select>
+										</script>	
+									 
                                  </div>
                              </div>
                          </div>
-                     </div>
+                     
                         <div class="col-lg d-flex">
                            <div class="form-group p-4">
                             <label for="#">Choose Sport</label>
@@ -183,7 +178,7 @@ String date = (String)request.getParameter("date");
                                     <select name="" id="sport" class="form-control" onchange="getSlots(1)">
                                         <%
 										for (Sport spr: sports_list){
-											if (sportid != null){ %>
+											if (spr.getSport_id() == spoid){ %>
 												<option value="<%= spr.getSport_id()%>" selected><%= spr.getSport_name()%></option>
 											<% 
 											} else{ 
@@ -260,9 +255,9 @@ String date = (String)request.getParameter("date");
 					 </div>
 				 </div>
 				</div>
-         
-         </div>
          </form>
+         </div>
+         
          </div>
          </div>
          </div>
@@ -271,7 +266,7 @@ String date = (String)request.getParameter("date");
 				</div>
 			</div>
 		</div>
-	</div>
+	
 	
     
 <div id = "here"></div>
@@ -358,5 +353,38 @@ String date = (String)request.getParameter("date");
 			<script src="js/google-map.js"></script>
 			<script src="js/main.js"></script>
 			
+			<script>
+				$(document).ready(function(){
+					$('#municipality').keyup(function() {
+					var search=$('#municipality').val();
+					if(search !=='' && search !==null)
+					{
+						$.ajax({
+							type: 'POST',
+							url: 'municipalities.jsp',
+							data: 'key='+search,
+							success: function(data){
+								$('#showListofMun').html(data);
+								$(document).on('click','li', function(){
+									$("#txtSportsclub").prop('disabled', true);
+					$('#municipality').val($(this).text());
+					$("#showListofMun").hide();
+					$("#txtSportsclub").val("");
+					$("#txtSportsclub").prop('disabled', false);
+				});
+							}
+						});
+					}
+					else
+					{
+						$('#showListofMun').html('');
+					}
+					  
+				});
+		
+				
+			});
+			
+			</script>
 	</body>
 </html>
