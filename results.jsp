@@ -226,6 +226,16 @@ try {
                     </div>
                 </div>
 
+				<%
+				String s1= "selected";
+				String s2 = "";
+
+				if (duration=="2"){
+					s2 = "selected";
+					s1 = "";
+				}
+				%>
+
 
 				<div class="col-lg d-flex">
 					<div class="form-group p-4">
@@ -235,8 +245,8 @@ try {
 							 <div class="icon"><span class="fa fa-chevron-down"></span></div>
 							 <select name="" id="duration" class="form-control" onchange="getSlots(1)">
 								
-								<option value="1">1 hour</option>
-								<option value="2">2 hours</option>
+								<option value="1" <%=s1%>>1 hour</option>
+								<option value="2" <%=s1%> >2 hours</option>
 								
 								 
 							 </select>
