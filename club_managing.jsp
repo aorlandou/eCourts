@@ -497,7 +497,7 @@ if (photo_path_background != null){
         var dp = new DayPilot.Calendar("dp");
         
         // view
-        dp.startDate = "2021-12-25";
+        dp.startDate = "2022-01-18";
         dp.viewType = "Week";
         dp.onBeforeEventRender = function(args) {
             args.data.barColor = "#f15d30";
@@ -507,7 +507,11 @@ if (photo_path_background != null){
         
     
         dp.onEventClick = function (args) {
-            location.href = 'booking_details.jsp?'+args.e.id();
+            var type= $('#type').val();
+            if (type == 1){
+                location.href = 'booking_details.jsp?booking'+args.e.id();
+            }
+            
             
         };
     

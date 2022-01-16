@@ -410,17 +410,28 @@
 														<label for="#">Date</label>
 														<div class="form-field">
 															 
-							<input type="date" name="date" min="2021-11-01"  id="date" placeholder="Choose Date" onload="(this.type='date')"
-							onfocus="(this.type='date')"  onchange="getSlots(1)" value="" style="border: none;outline: none;">
+														<input type="date" name="date" min="2021-11-01"  id="date" placeholder="Choose Date" onload="(this.type='date')"
+														onfocus="(this.type='date')"  onchange="" value="" style="border: none;outline: none;">
                             
 														</div>
 													</div>
 												</div>
-												<div class="col-md d-flex">
+												<div class="col-lg d-flex">
 													<div class="form-group p-4">
-														<label for="appt">Select time</label>
-														<input type="time" id="appt" name="appt">
-													</div>		
+													 <label for="#">Duration</label>
+													 <div class="form-field">
+														 <div class="select-wrap">
+															 <div class="icon"><span class="fa fa-chevron-down"></span></div>
+															 <select name="duration" id="duration" class="form-control" onchange="">
+																
+																	 <option value="1">1 hour</option>
+																	 <option value="2">2 hours</option>
+																
+																 
+															 </select>
+														 </div>
+													 </div>
+												 </div>
 												</div>
 												
 												<div class="col-md d-flex">

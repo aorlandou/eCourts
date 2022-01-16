@@ -1,25 +1,27 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    
-    <title>Club Managing - North Point</title>
-	<meta charset="utf-8">
+<head>
+  
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="images/LOGO2-01.png">
-
+    <meta charset="utf-8">
+    <title>Club Managing - Add Slot</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script>
+    $( function() {
+        $( "#datepicker" ).datepicker();
+    } );
+    </script>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- This CSS file (bootstrap-theme.min.css) is optional -->
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    
-
-    <!-- Favicons -->
-
-
-
-<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -43,17 +45,55 @@
     <link rel="stylesheet" href="css/min_new.css">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search.css">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <link href="css/mobiscroll.javascript.min.css" rel="stylesheet" />
+    <script src="js/mobiscroll.javascript.min.js"></script>
     <script>
     $( function() {
       $( "#datepicker" ).datepicker();
     } );
     </script>
-  
+    <script>
+        mobiscroll.setOptions({
+            theme: 'ios',
+            themeVariant: 'light'
+        });
+
+        mobiscroll.datepicker('#demo-time', {
+            controls: ['time'],
+            select: 'range',
+            display: 'inline'
+        });
+
+        mobiscroll.datepicker('#demo-timegrid', {
+            controls: ['timegrid'],
+            select: 'range',
+            display: 'inline'
+        });
+
+        mobiscroll.datepicker('#demo-one-input', {
+            controls: ['time'],
+            select: 'range'
+        });
+
+        mobiscroll.datepicker('#demo-start-end', {
+            controls: ['time'],
+            select: 'range',
+            startInput: '#demo-start',
+            endInput: '#demo-end'
+        });
+
+        mobiscroll.datepicker('#picker', {
+            controls: ['timegrid'],
+            select: 'range',
+            touchUi: true
+        });
+    </script>
   
     
  <!-- Latest compiled and minified CSS -->
@@ -61,7 +101,67 @@
 
 
     <style>
-      
+
+        .mt-3, .my-3 {
+            margin-top: -0.02rem !important;
+        }
+        ul.ks-cboxtags {
+    list-style: none;
+    padding: 20px;
+}
+ul.ks-cboxtags li{
+  display: inline;
+}
+ul.ks-cboxtags li label{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: 2px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 25px;
+    white-space: nowrap;
+    margin: 3px 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li label {
+    padding: 8px 12px;
+   }
+
+ul.ks-cboxtags li label::before {
+    display: inline-block;    
+    padding: 2px 6px 2px 2px;  
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+    
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+    border: 2px solid #fd7e14;
+    background-color: #fd7e14;
+    color: #fff;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  display: absolute;
+}
+ul.ks-cboxtags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+ul.ks-cboxtags li input[type="checkbox"]:focus + label {
+  border: 2px solid #fd7e14;
+}
       .navbar img {
             border-radius: 50%;
             width: 36px;
@@ -215,301 +315,117 @@
     
     </style>
 
+    <script>
+        function add_slot(){
+            console.log("HERE")
+            var date= $('#datepicker').val();
+            var time= $('#start').val();
+            console.log(date)
+            console.log(time)
+        }
 
+    </script>
     
 
 
 
     <!-- Custom styles for this template -->
     <link href="css/carousel.css" rel="stylesheet">
-  </head>
+</head>
 
-  <body style="padding-top: 0rem; padding-bottom: 0px; background-color: #f3f3f3;">
+<body>
 
-
-    
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
-		<div class="container">
-			<a class="navbar-brand" href="home.html"><img class="logo" src="photos/LOGO2-01.png" > </a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
-
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-					<li class="nav-item"  ><a href="#Timetable" class="nav-link"> <p style="color: #000;">Timetable</p></a></li>
-					<li class="nav-item"><a href="#Courts" class="nav-link"><p style="color: #000;">Courts</p></a></li>
-					
-				
-                
-            </ul>
-                <!-- if logged in -->
-                <!-- <div class="nav-item dropdown">
-                    <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> Antonio Moreno <b class="caret"></b></a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                        <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
-                        <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
-                        <div class="divider dropdown-divider"></div>
-                        <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
-                    </div>
-                </div> -->
-                
-			</div>
-		</div>
-	</nav>
-    <!-- END nav -->
-	
-
-
-  
-
-
-
-
-
-
-
-</header>
-
-
-Date: <div id="datepicker"></div>
-<main>
-
-
-
-
-
-
-
-  <!-- Marketing messaging and featurettes
-  ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
-
-  <div class="container marketing">
-
-    <!-- Three columns of text below the carousel -->
-    
-
-    <!-- START THE FEATURETTES -->
-
-
-    <div class="row featurette" id = "Timetable">
-      <div class="col-md-12" style="margin-top: 7%;">
-        
-          
-        
-
-        <h1 style="margin-top: 5%;">Add available slots for Court 1 </h1>
-        <h2 style="">Each slot has 1 hour duration as standard </h2>
-
-    
-        
-        
-
-
-        <section class="ftco-section ftco-no-pb ftco-no-pt">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="ftco-search d-flex justify-content-center" style="margin-top: 5%; margin-bottom: 5%;">
-                            <div class="row">
-                                <div class="col-md-12 ">
-                                    <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                        
+                <a class="navbar-brand" href="home.html"><img class="logo" src="photos/LOGO2-01.png" > </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="oi oi-menu"></span> Menu
+                </button>
     
-                                        
-    
-                                    </div>
-                                </div>
-                                <div class="col-md-12 ">
-                                    
-                                    <div class="tab-content" id="v-pills-tabContent">
-    
-                                        <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-                                            <form action="#" class="search-property-1">
-                                                <div class="row no-gutters">
-                                                    
-                                                    <div class="col-md d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Date</label>
-                                                            <div class="form-field">
-                                                                <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                                <input type="text" class="form-control checkin_date" placeholder="Date">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    
-                            
-                            
-                            
-                            
-                            
-                            
-                                                    
-                                                    
-                            
-                                                    
-                                                    <div class="col-md d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="appt">Time</label>
-                                                            <input type="time" id="appt" name="appt">
-                                                        </div>		
-                                                    </div>
-
-                                                    <div class="col-md d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="appt">Price</label>
-                                                            <input type="text" id="appt" name="appt">
-                                                        </div>    		
-                                                    </div>
-                                                    
-                                                    <div class="col-md d-flex">
-                                                        <div class="form-group d-flex w-100 border-0">
-                                                            <div class="form-field w-100 align-items-center d-flex">
-                                                                <input type="submit" value="Add" class="align-self-stretch form-control btn btn-primary">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <script>
-                                            export default {
-                                              data() {
-                                                return {
-                                                  value: ''
-                                                }
-                                              }
-                                            }
-                                        </script>
-                                        <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
-                                            <form action="#" class="search-property-1">
-                                                <div class="row no-gutters">
-                                                    <div class="col-lg d-flex">
-                                                        <div class="form-group p-4 border-0">
-                                                            <label for="#">Destination</label>
-                                                            <div class="form-field">
-                                                                <div class="icon"><span class="fa fa-search"></span></div>
-                                                                <input type="text" class="form-control" placeholder="Search place">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Date</label>
-                                                            <div class="form-field">
-                                                                <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                                <input type="text" class="form-control checkin_date" placeholder="Date">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Check-out date</label>
-                                                            <div class="form-field">
-                                                                <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                                <input type="text" class="form-control checkout_date" placeholder="Check Out Date">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg d-flex">
-                                                        <div class="form-group p-4">
-                                                            <label for="#">Price Limit</label>
-                                                            <div class="form-field">
-                                                                <div class="select-wrap">
-                                                                    <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                                                    <select name="" id="" class="form-control">
-                                                                        <option value="">$100</option>
-                                                                        <option value="">$10,000</option>
-                                                                        <option value="">$50,000</option>
-                                                                        <option value="">$100,000</option>
-                                                                        <option value="">$200,000</option>
-                                                                        <option value="">$300,000</option>
-                                                                        <option value="">$400,000</option>
-                                                                        <option value="">$500,000</option>
-                                                                        <option value="">$600,000</option>
-                                                                        <option value="">$700,000</option>
-                                                                        <option value="">$800,000</option>
-                                                                        <option value="">$900,000</option>
-                                                                        <option value="">$1,000,000</option>
-                                                                        <option value="">$2,000,000</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg d-flex">
-                                                        <div class="form-group d-flex w-100 border-0">
-                                                            <div class="form-field w-100 align-items-center d-flex">
-                                                                <input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary p-0">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+                        <li class="nav-item"  ><a href="#Timetable" class="nav-link"> <p style="color: #000;">Timetable</p></a></li>
+                        <li class="nav-item"><a href="#Courts" class="nav-link"><p style="color: #000;">Courts</p></a></li>
+                        
+                    
+                    
+                </ul>
+                    <!-- if logged in -->
+                    <!-- <div class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> Antonio Moreno <b class="caret"></b></a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
+                            <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
+                            <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+                            <div class="divider dropdown-divider"></div>
+                            <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
                         </div>
+                    </div> -->
+                    
+                </div>
+            </div>
+        </nav>
+        <!-- END nav -->
+        
+    
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="row">
+              <div class="col-7" style="background-color: rgb(233, 153, 101); margin-top: 5%;">
+                <h2 style="margin-top: 20px;">Add available slots for your Courts </h2>
+            </div>
+            </div>
+        </div>
+        
+        <div class="container p-3 my-3 border" style="background-color:#e0e0e0; margin-top: -3rem;">
+            <div class="row">
+                <div class="col">
+                    Select Date: <div name= "date" id="datepicker"></div>
+                </div>
+                <div class="col">
+                    Choose one Court:
+                    <ul class="ks-cboxtags">
+                        <li><input type="checkbox" id="checkboxOne" name = "court" value="Rainbow Dash" class="chb"><label for="checkboxOne">Court 1 (Tennis)</label></li>
+                        <li><input type="checkbox" id="checkboxTwo" name = "court" value="Cotton Candy" class="chb"><label for="checkboxTwo">Court 2 (Tennis)</label></li>
+                        <li><input type="checkbox" id="checkboxThree" name = "court" value="Rarity" class="chb"><label for="checkboxThree">Court 3 (Basketball)</label></li>
+                        <li><input type="checkbox" id="checkboxFour" name = "court" value="Moondancer" class="chb"><label for="checkboxFour">Court 4 (Basketball)</label></li>
+                        <li><input type="checkbox" id="checkboxFive" name = "court" value="Surprise" class="chb"><label for="checkboxFive">Court 5 (Basketball)</label></li>				  
+                        <li><input type="checkbox" id="checkboxEight" name = "court" value="Derpy Hooves" class="chb"><label for="checkboxEight">Court 6 (Padel)</label></li>					  
+                    </ul>
+                </div>
+                <div class="col">
+                    <div mbsc-page class="demo-time-range">
+                        <div name = "time" id="demo-timegrid"></div>
                     </div>
                 </div>
-            </section>
+                <div class="col">
+                    Price of Court per hour:
+                    <input type="text" class="form-search__field" placeholder="" style="width: 80%; margin-top: 0%; margin-left: auto; height: 4px;"/>
+                    <button type="Submit" class="btn-search--primary btn--inside uppercase" style="margin-top: 90%; margin-left: auto;"onclick=add_slot()><i class="fa fa-calendar"></i>  Add Slot</button>
+                </div>
+                </div>
+              </div>
+            
+        </div>
+    </main>
     
-            
-            
-            
-          
-              
-            
-          
-          
-          
-          
-              
-              
-              
-        
-        
-        
-        
-        
-        
-        
-            </div>
-		
-
-
-      </div>
-    </div>
-
-    <!-- /END THE FEATURETTES -->
-
-  </div><!-- /.container -->
-
-
-  <!-- FOOTER -->
-  
-  
-
-
-
-
-
-
-
-
-
-
-</main>
-   
-  </body>
-   
-            <script src="js/jquery.min.js"></script>
+    
+ 
+</body>
+<script src="js/jquery.min.js"></script>
 			<script src="js/jquery-migrate-3.0.1.min.js"></script>
 			<script src="js/popper.min.js"></script>
 			<script src="js/bootstrap.min.js"></script>
@@ -527,11 +443,21 @@ Date: <div id="datepicker"></div>
             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
+            <script>
+                mobiscroll.datepicker('#demo-timegrid', {
+                    controls: ['timegrid'],       // More info about controls: https://docs.mobiscroll.com/5-13-2/javascript/range#opt-controls
+                    select: 'range',              // More info about select: https://docs.mobiscroll.com/5-13-2/javascript/range#methods-select
+                    display: 'inline'             // Specify display mode like: display: 'bottom' or omit setting to use default
+                });
+            </script>
+
+            <script>
+                $(".chb").change(function() {
+                    $(".chb").prop('checked', false);
+                    $(this).prop('checked', true);
+                });
+            </script>
 
 
-
-
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="js/bootstrap.bundle.min.js"></script>
+  
 </html>

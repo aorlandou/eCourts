@@ -12,11 +12,29 @@ List<Municipality> mun_list =  mun_obj.getMunicipalies_with_clubs();
 Sport sprt = new Sport();
 List<Sport> sports_list = sprt.getAll_sports();
 
-String	municid = (String)request.getParameter("municid");
-String	sportid = (String)request.getParameter("sport");
-String date = (String)request.getParameter("date");
+String municid;
+int spoid;
+String date;
+String duration;
 
-int spoid = Integer.parseInt(sportid); 
+try{
+	municid = (String)request.getParameter("municid");
+	date = (String)request.getParameter("date");
+	duration = (String)request.getParameter("duration");
+}catch(Exception e){
+	municid = "0";
+	duration = "1";
+	date = "";
+}
+
+try {
+    
+    spoid = Integer.parseInt(request.getParameter("sport"));    
+ }
+ catch (NumberFormatException e)
+ {
+    spoid=0;
+ }
 
 %>
 
@@ -207,6 +225,8 @@ int spoid = Integer.parseInt(sportid);
                         </div>
                     </div>
                 </div>
+
+
 				<div class="col-lg d-flex">
 					<div class="form-group p-4">
 					 <label for="#">Duration</label>
@@ -215,8 +235,8 @@ int spoid = Integer.parseInt(sportid);
 							 <div class="icon"><span class="fa fa-chevron-down"></span></div>
 							 <select name="" id="duration" class="form-control" onchange="getSlots(1)">
 								
-									 <option value="1">1 hour</option>
-									 <option value="2">2 hours</option>
+								<option value="1">1 hour</option>
+								<option value="2">2 hours</option>
 								
 								 
 							 </select>

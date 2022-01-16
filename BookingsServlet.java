@@ -65,7 +65,7 @@ public class BookingsServlet extends HttpServlet {
                 // change the time format
 
                 slt_obj.put("id", slot.getSlot_id());
-                slt_obj.put("text", "pao");
+                slt_obj.put("text", slot.getCourt().getName());
                 slt_obj.put("start", slot.getDate() + "T" + (String) slot.getTime());
                 slt_obj.put("end", (String) slot.getDate() + "T" + time_end);
 
