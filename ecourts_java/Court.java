@@ -464,6 +464,7 @@ public class Court {
             
             pstmt=con.prepareStatement(query); //sql select query
             pstmt.setInt(1, court_id);
+            System.out.println(query);
             
         
             

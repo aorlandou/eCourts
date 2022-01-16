@@ -40,9 +40,9 @@ public class test {
         // String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         // System.out.println(date);
 
-        // Slot slt = new Slot();
+        Slot slt = new Slot();
 
-        // slt.generateAllSlots("19:00:00", "21:00:00","2022-01-28",8,70.0);
+        //slt.generateAllSlots("19:00:00", "21:00:00","2022-01-30",10,18.0);
         // slt.generateAllSlots("17:00:00", "20:00:00","2022-01-27",8,70.0);
         // slt.generateAllSlots("20:00:00", "23:00:00","2022-01-29",8,70.0);
         // slt.generateAllSlots("19:00:00", "22:00:00","2022-01-28",10,15.0);
@@ -93,15 +93,19 @@ public class test {
         // for (Booking booking: bookings_list){
         // System.out.println(booking.getCustomer().getName());
         // }
-        SportsClub spr = new SportsClub();
-        List<SportsClub> c = null;
-        try {
-            c = spr.popularClubs();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        System.out.println(c.size());
+        //SportsClub spr = new SportsClub();
+        //List<SportsClub> c = null;
+        //try {
+        //    c = spr.popularClubs();
+        //} catch (Exception e) {
+        //    // TODO Auto-generated catch block
+        //    e.printStackTrace();
+        //}
+        // System.out.println(c.size());
+        //slt.getSlots(1, "", 7, 0, 0, 0, 0, "", 0, 1);
+        Court crt = new Court();
+        
+        System.out.println(crt.getTennisCourtInfo(11).getName());
 
 
 
