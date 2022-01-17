@@ -109,6 +109,13 @@ public class Slot {
         this.court_id = court_id;
     }
     
+    public Slot(String date, String time, int duration){
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+    }
+    
+    
 
     
     public Slot() {
@@ -335,11 +342,83 @@ public class Slot {
     
         }
 
-        
-        public void generateAllSlots(String time_from, String time_to,String date, int court_id, Double price){
-            
+        public boolean isSlotAdded(String time_from,String date, int duration, int court_id){
 
+            try
+                {
+                Class.forName("com.mysql.jdbc.Driver"); //load driver
+                Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+                PreparedStatement pstmt=null; //create statement
+
+                String query = "select * from slot where date = ? and time_start = ?  and duration = ? and court_id = ?";
+                pstmt=con.prepareStatement(query); //sql select query 
+
+                pstmt.setString(1, date);
+                pstmt.setString(2, time_from);
+                pstmt.setDouble(3, duration);
+                pstmt.setInt(4, court_id);
+                
+                
+                ResultSet rs =  pstmt.executeQuery(); // execute query and store in resultset object rs.
+
+                if (rs.next()){
+                    return true;
+                }
+                con.close();
+                
+                 //close connection	
+
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.getMessage());
+                    System.out.println("eroorrr");
+                }
+                return false;
+        }
+
+        
+        public List<Slot> generateAllSlots(String time_from, String time_to, String date, String court_id, String price)
+                throws Exception {
+            
+            List<Slot> alreadyAdded = new ArrayList<Slot>();
+
+
+
+            
+            // checks on data
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            dateFormat.setLenient(false);
+            try {
+                dateFormat.parse(date);
+            } catch (ParseException pe) {
+                throw new Exception("Eroor in date"); 
+            }
             SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");  
+
+            try {
+                format.parse(time_from);
+            } catch (ParseException e) {
+                throw new Exception("Error in time");
+            }
+            try {
+                format.parse(time_to);
+            } catch (ParseException e) {
+                throw new Exception("Error in time");
+            }
+            try {
+                Double.parseDouble(price);
+            } catch (NumberFormatException e) {
+                throw new Exception("Error in double");
+            }
+            try {
+                Integer.parseInt(court_id);
+            } catch (NumberFormatException e) {
+                throw new Exception("Error in double");
+            }
+
+            Double price2 = Double.parseDouble(price);
+            int court_id1 = Integer.parseInt(court_id);
 
             java.util.Date d1 = null;
             java.util.Date d2 = null;
@@ -355,37 +434,49 @@ public class Slot {
             long diff = d2.getTime() - d1.getTime();
             long  diffHours = diff / (60 * 60 * 1000);
 
+            Slot slt = new Slot();
+
             for (int i = 0; i < diffHours; i++){
 
                 //add the 2h slot
                 if (i < diffHours-1){
-                    try
-                    {
-                    Class.forName("com.mysql.jdbc.Driver"); //load driver
-                    Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
-                    PreparedStatement pstmt=null; //create statement
 
-                    String query = "insert into slot (date, time_start, court_id, status, date_added, price, duration) values (?,?,?, 'AVAILABLE', CURDATE(), ?, 2 )";
-                    pstmt=con.prepareStatement(query); //sql select query 
+                    if (slt.isSlotAdded(time_from, date,2, court_id1) == false){
+                        System.out.println(slt.isSlotAdded(time_from, date,court_id1, 2));
+                        try
+                        {
 
-                    pstmt.setString(1, date);
-                    pstmt.setString(2, time_from);
-                    pstmt.setInt(3, court_id);
-                    pstmt.setDouble(4, price);
+                        Class.forName("com.mysql.jdbc.Driver"); //load driver
+                        Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+                        PreparedStatement pstmt=null; //create statement
+
+                        String query = "insert into slot (date, time_start, court_id, status, date_added, price, duration) values (?,?,?, 'AVAILABLE', CURDATE(), ?, 2 )";
+                        pstmt=con.prepareStatement(query); //sql select query 
+
+                        pstmt.setString(1, date);
+                        pstmt.setString(2, time_from);
+                        pstmt.setInt(3, court_id1);
+                        pstmt.setDouble(4, price2);
+                        
+                        
+                        pstmt.execute(); // execute query and store in resultset object rs.
+                        con.close(); //close connection	
+
+                        }
+                        catch(Exception e)
+                        {
+                            System.out.println(e.getMessage());
+                            System.out.println("eroorrr");
+                        }
+
+                    }else{
+                        alreadyAdded.add(new Slot(date, time_from, 2));
+                    }
                     
-                    pstmt.execute(); // execute query and store in resultset object rs.
-                    con.close(); //close connection	
-
-                    }
-                    catch(Exception e)
-                    {
-                        System.out.println(e.getMessage());
-                        System.out.println("eroorrr");
-                    }
-
                 }
-
-                try
+                if (slt.isSlotAdded(time_from, date,1,court_id1) == false){
+                    System.out.println(slt.isSlotAdded(time_from, date,court_id1, 1));
+                    try
                     {
                     Class.forName("com.mysql.jdbc.Driver"); //load driver
                     Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
@@ -396,8 +487,8 @@ public class Slot {
 
                     pstmt.setString(1, date);
                     pstmt.setString(2, time_from);
-                    pstmt.setInt(3, court_id);
-                    pstmt.setDouble(4, price);
+                    pstmt.setInt(3, court_id1);
+                    pstmt.setDouble(4, price2);
                     
                     pstmt.execute(); // execute query and store in resultset object rs.
                     con.close(); //close connection	
@@ -410,28 +501,24 @@ public class Slot {
                     }
 
 
+                }else{
+                    alreadyAdded.add(new Slot(date, time_from,1));
+                }
 
-                
                 cal.add(Calendar.HOUR, 1);
                 time_from = format.format(cal.getTime());
-                
-
-
-                
-                
-                
-                
-
-
 
             }
+            return alreadyAdded;
 
         }
 
     
         
 
-        public List<Slot> getSlotsManaging(int club_id){
+        
+
+        public List<Slot> getSlotsManaging(int club_id) {
 
             List<Slot> slot_list = new ArrayList<Slot>();
     
@@ -714,6 +801,7 @@ public class Slot {
             return slot_list;
     
         }
+
 
     
 }

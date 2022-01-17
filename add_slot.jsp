@@ -1,3 +1,9 @@
+<%
+
+String message = request.getParameter("message");
+
+%>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -363,6 +369,9 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     </header>
     
     <main>
+
+    
+        
         <div class="container">
             <div class="row">
               <div class="col-7" style="background-color: rgb(233, 153, 101); margin-top: 5%;">
@@ -370,6 +379,12 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
             </div>
             </div>
         </div>
+        <%
+        if (message!= null){
+            out.println(message);
+        }
+        %>
+        
         
         <div class="container p-3 my-3 border" style="background-color:#e0e0e0; margin-top: -3rem;">
             <div class="row">
