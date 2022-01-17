@@ -236,7 +236,7 @@ try {
 				}
 				%>
 
-
+				
 				<div class="col-lg d-flex">
 					<div class="form-group p-4">
 					 <label for="#">Duration</label>

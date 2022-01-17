@@ -58,42 +58,23 @@
       $( "#datepicker" ).datepicker();
     } );
     </script>
+
+
     <script>
         mobiscroll.setOptions({
             theme: 'ios',
             themeVariant: 'light'
         });
 
-        mobiscroll.datepicker('#demo-time', {
-            controls: ['time'],
-            select: 'range',
-            display: 'inline'
-        });
-
+        
         mobiscroll.datepicker('#demo-timegrid', {
             controls: ['timegrid'],
             select: 'range',
             display: 'inline'
         });
 
-        mobiscroll.datepicker('#demo-one-input', {
-            controls: ['time'],
-            select: 'range'
-        });
-
-        mobiscroll.datepicker('#demo-start-end', {
-            controls: ['time'],
-            select: 'range',
-            startInput: '#demo-start',
-            endInput: '#demo-end'
-        });
-
-        mobiscroll.datepicker('#picker', {
-            controls: ['timegrid'],
-            select: 'range',
-            touchUi: true
-        });
-    </script>
+        
+        </script>
   
     
  <!-- Latest compiled and minified CSS -->
@@ -319,7 +300,7 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
         function add_slot(){
             console.log("HERE")
             var date= $('#datepicker').val();
-            var time= $('#start').val();
+            var time= $('#demo-timegrid')[0];
             console.log(date)
             console.log(time)
         }
