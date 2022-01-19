@@ -319,7 +319,7 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
             <div class="container">
-                <a class="navbar-brand" href="home.html"><img class="logo" src="photos/LOGO2-01.png" > </a>
+                <a class="navbar-brand" href="home.jsp"><img class="logo" src="photos/LOGO2-01.png" > </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="oi oi-menu"></span> Menu
                 </button>
@@ -388,9 +388,41 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
                     </ul>
                 </div>
                 <div class="col">
-                    <div mbsc-page class="demo-time-range">
-                        <div name = "time" id="demo-timegrid"></div>
+                    <label for="#">Select Timespan:</label>
+                    <br>
+                    <br>
+                    <label for="#">From Time:</label>
+                    <div class="form-field">
+                        <div class="select-wrap">
+                            
+                            <select name="fromtime" id="fromtime" class="form-control" placeholder="From" style="width: 80%; margin-top: 0%; height: 4px; color: #333; text-align: left; -webkit-box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); border: 0; outline: 0; padding: 0px 18px; border-radius: 50px;">
+                                
+                                    <option value="8">8:00 AM</option>
+                                    <option value="9">9:00 AM</option>
+                                    <option value="10">10:00 AM</option>
+                                    <option value="11">11:00 AM</option>
+                                    <option value="12">12:00 PM</option>
+                                
+                            </select>
+                        </div>
                     </div>
+                    <br>
+                    <br>
+                    <label for="#">Until Time:</label>
+                    <div class="form-field">
+                        <div class="select-wrap">
+                            <select name="totime" id="totime" class="form-control" placeholder="To" style="width: 80%; margin-top: 0%; height: 4px; color: #333; text-align: left; -webkit-box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); border: 0; outline: 0; padding: 0px 18px; border-radius: 50px;">
+                                
+                                <option value="11">11:00 AM</option>
+                                <option value="12">12:00 PM</option>
+                                <option value="13">13:00 PM</option>
+                                <option value="14">14:00 PM</option>
+                                <option value="15">15:00 PM</option>
+                            
+                            </select>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="col">
                     Price of Court per hour:
