@@ -10,7 +10,6 @@
 
 
 
-
 %>
 <%session.setAttribute("book", null);%>
 
@@ -376,17 +375,22 @@
 													<div class="form-group p-4 border-0">
 														<label for="#">Municipality</label>
 														<div class="form-field">
-															<div class="icon"><span class="fa fa-search"></span></div>
-															
-															<input type="text" onkeyup="myfunc3()" class="form-control" placeholder="Search place" name="munic" id="txtMunic">
-															<div id="showListofMun">
-																<ul class="list-group" style="color: #333;"></ul>
+															<div class="select-wrap">
+															   <div class="icon"><span class="fa fa-chevron-down"></span></div>
+															   <select name="municid" id="municipality" class="form-control" onchange="getSlots(1)">
+																   <%
+																   for (Municipality municipality: mun_list){	
+																	   
+																   %>
+																	   <option value="<%= municipality.getMunic_id()%>"><%= municipality.getMun_name()%></option>
+																   <%
+																	}
+																   
+																   %>
+																	 
+																	
+																  </select>
 															</div>
-															<script>
-																function myfunc3(){
-																	showListofMun.style.display = "block";
-																}
-															</script>
 														</div>
 													</div>
 												</div>
