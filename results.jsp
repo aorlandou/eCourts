@@ -12,29 +12,32 @@ List<Municipality> mun_list =  mun_obj.getMunicipalies_with_clubs();
 Sport sprt = new Sport();
 List<Sport> sports_list = sprt.getAll_sports();
 
-String municid;
+int municid;
 int spoid;
 String date;
 String duration;
 
 try{
-	municid = (String)request.getParameter("municid");
+	
 	date = (String)request.getParameter("date");
 	duration = (String)request.getParameter("duration");
 }catch(Exception e){
-	municid = "0";
+	
 	duration = "1";
 	date = "";
 }
 
 try {
-    
     spoid = Integer.parseInt(request.getParameter("sport"));    
- }
- catch (NumberFormatException e)
- {
+}catch (NumberFormatException e) {
     spoid=0;
- }
+}
+
+try {
+    municid = Integer.parseInt(request.getParameter("municid"));    
+}catch (NumberFormatException e) {
+    municid=0;
+}
 
 %>
 
@@ -171,22 +174,28 @@ try {
                             <div class="form-group p-4">
                              <label for="#">Municipality</label>
                              <div class="form-field">
-                                 
-                                     <div class="icon"><span class="fa fa-search"></span></div>
-                                     <input type="text" onkeyup="myfunc3()" name="municid" id="municipality" class="form-control" onchange="getSlots(1)" placeholder="Search place" style="padding: 174 69;">
-										<div id="showListofMun">
-											<ul class="list-group" style="color: #333;"></ul>
-										</div>
-										<script>
-											function myfunc3(){
-												showListofMun.style.display = "block";
+                                 <div class="select-wrap">
+									<div class="icon"><span class="fa fa-chevron-down"></span></div>
+                                    <select name="" id="municipality" class="form-control" onchange="getSlots(1)">
+                                    	<%
+										for (Municipality municipality: mun_list){	
+											if (municipality.getMunic_id() == municid){ %>
+												<option value="<%= municipality.getMunic_id()%>" selected><%= municipality.getMun_name()%></option>
+											<%
+											} else { %>
+										%>
+											<option value="<%= municipality.getMunic_id()%>"><%= municipality.getMun_name()%></option>
+										<%
 											}
-										</script>	
-									 
+										}
+                                        %>
+                                          
+                                         
+                                   	</select>
                                  </div>
                              </div>
                          </div>
-                     
+						</div>
                         <div class="col-lg d-flex">
                            <div class="form-group p-4">
                             <label for="#">Choose Sport</label>
