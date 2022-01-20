@@ -348,16 +348,16 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="background-color: #fff;">
             <div class="container">
-                <a class="navbar-brand" href="home.jsp"><img class="logo" src="photos/LOGO2-01.png" > </a>
+                <a class="navbar-brand" href="logout.jsp"><img class="logo" src="photos/LOGO2-01.png" > </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="oi oi-menu"></span> Menu
                 </button>
     
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-                        <li class="nav-item"  ><a href="#Timetable" class="nav-link"> <p style="color: #000;">Timetable</p></a></li>
-                        <li class="nav-item"><a href="#Courts" class="nav-link"><p style="color: #000;">Courts</p></a></li>
+                        <li class="nav-item active"><a href="club_managing.jsp" class="nav-link">Home</a></li>
+                        <li class="nav-item"  ><a href="club_managing.jsp#Timetable" class="nav-link"> <p style="color: #000;">Timetable</p></a></li>
+                        <li class="nav-item"><a href="club_managing.jsp#Courts" class="nav-link"><p style="color: #000;">Courts</p></a></li>
                         
                     
                     
@@ -521,9 +521,10 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
                 <div class="col">
                     Price of Court per hour:
                     <input type="text" name = "price" class="form-search__field" placeholder="" style="width: 80%; margin-top: 0%; margin-left: auto; height: 4px;"/>
-                    <button type="Submit" class="btn-search--primary btn--inside uppercase" style="margin-top: 90%; margin-left: auto;"><i class="fa fa-calendar"></i>  Add Slot</button>
+                    <button type="Submit" class="btn-search--primary btn--inside uppercase" style="margin-top: 70%; margin-left: 10%; "><i class="fa fa-calendar"></i>  Add Slot</button>
                 </div>
                 </div>
+            <br>
             
             </div>
             
