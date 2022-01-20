@@ -358,7 +358,7 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
                         <li class="nav-item active"><a href="club_managing.jsp" class="nav-link">Home</a></li>
                         <li class="nav-item"  ><a href="club_managing.jsp#Timetable" class="nav-link"> <p style="color: #000;">Timetable</p></a></li>
                         <li class="nav-item"><a href="club_managing.jsp#Courts" class="nav-link"><p style="color: #000;">Courts</p></a></li>
-                        
+                        <li class="nav-item"><a href="logout.jsp" class="nav-link"><p style="color: #000;">Logout</p></a></li>
                     
                     
                 </ul>

@@ -277,10 +277,10 @@ if (photo_path_background != null){
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="#Timetable" class="nav-link">Timetable</a></li>
-					<li class="nav-item"><a href="#Courts" class="nav-link">Courts</a></li>
-					<li class="nav-item"><a href="logout.jsp" class="nav-link">Logout</a></li>
+					<li class="nav-item active"><a href="#" class="nav-link" style="font-family: 'Poppins', Arial, sans-serif;">Home</a></li>
+					<li class="nav-item"><a href="#Timetable" class="nav-link" style="font-family: 'Poppins', Arial, sans-serif;">Timetable</a></li>
+					<li class="nav-item"><a href="#Courts" class="nav-link" style="font-family: 'Poppins', Arial, sans-serif;">Courts</a></li>
+					<li class="nav-item"><a href="logout.jsp" class="nav-link" style="font-family: 'Poppins', Arial, sans-serif;">Logout</a></li>
 				
                 
             </ul>
