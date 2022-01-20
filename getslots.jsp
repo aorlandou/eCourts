@@ -70,14 +70,8 @@ try {
  {
     date = "";
  }
- try {
-    
-   time = request.getParameter("time");    
-}
-catch (NumberFormatException e)
-{
-   time = "";
-}
+
+ 
  try {
     
    duration = Integer.parseInt(request.getParameter("duration"));
@@ -90,7 +84,7 @@ catch (NumberFormatException e)
 
 
 Slot slot = new Slot();
-List<Slot> slot_list = slot.getSlots(sport, date, municipality, 0, club_id, court_id, duration,time,0,1);
+List<Slot> slot_list = slot.getSlots(sport, date, municipality, 0, club_id, court_id, duration,"",0,1);
 
 int start;
 int stop;
