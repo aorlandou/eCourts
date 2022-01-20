@@ -42,7 +42,7 @@ public class test {
 
         Slot slt = new Slot();
         try {
-            slt.generateAllSlots("17:00:00", "20:00:00", "2022-01-26", "12", "22.2");
+            slt.generateAllSlots("17:00:00", "19:00:00", "2022-01-26", "12", "22.2");
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

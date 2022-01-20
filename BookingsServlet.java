@@ -68,6 +68,7 @@ public class BookingsServlet extends HttpServlet {
                 slt_obj.put("text", slot.getCourt().getName());
                 slt_obj.put("start", slot.getDate() + "T" + (String) slot.getTime());
                 slt_obj.put("end", (String) slot.getDate() + "T" + time_end);
+                slt_obj.put("backColor","#cccccc");
 
                 list.put(slt_obj);
 

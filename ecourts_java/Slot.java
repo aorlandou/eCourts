@@ -437,6 +437,13 @@ public class Slot {
 
             Slot slt = new Slot();
 
+            if (diffHours == 0){
+                throw new Exception("Make sure the time frame is at least 1 hour");
+            }
+            if (d1.after(d2)){
+                throw new Exception("The time to should be bigger than time from");
+            }
+
             for (int i = 0; i < diffHours; i++){
 
                 //add the 2h slot
