@@ -349,8 +349,13 @@ if (photo_path_background != null){
 
     <div class="row featurette" id = "Timetable">
       <div class="col-md-12" style="margin-top: 7%;">
-        <h2 class="featurette-heading">Courts <span class="text-muted"></span></h2>
-          
+            
+        <div >
+            <h2 class="featurette-heading">Courts <span class="text-muted"></span></h2>
+            <a  href="add_slot.jsp">
+                <button  style="background-color: #f15d30; width: 50%; margin: 0 auto;margin-top: 5%; margin-left: 50%;display:inline-block" class="btn btn-lg active" type="submit">Add new Slots</button>
+            </a>     
+        </div>
         
 
 

@@ -1,6 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page errorPage=""%>
+<%@ page import ="ecourts_java.*"%>
+<%@ page import ="java.util.*"%>
 <%
 
 String message = request.getParameter("message");
+
+if(session.getAttribute("user_id")==null){%>
+    <jsp:forward page="home.jsp" />
+<%}
+User user=(User)session.getAttribute("user_id");
+if(user.getType()==0){%>
+    <jsp:forward page="home.jsp" />
+<%}
+int club_id = user.getUser_id();
+Court crt = new Court();
+List<Court> court_list = crt.getCourts_of_club(club_id,0);
+
+
 
 %>
 
@@ -379,27 +396,44 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
             </div>
             </div>
         </div>
+        
         <%
         if (message!= null){
             out.println(message);
         }
         %>
         
-        
+        <form action="add_slot_process.jsp" method="post">
         <div class="container p-3 my-3 border" style="background-color:#e0e0e0; margin-top: -3rem;">
             <div class="row">
+                
                 <div class="col">
-                    Select Date: <div name= "date" id="datepicker"></div>
+                    Select Date: <input type="date" id="start" name="date"
+                    value="2022-01-20"
+                    min="2022-01-20">
                 </div>
                 <div class="col">
                     Choose one Court:
                     <ul class="ks-cboxtags">
-                        <li><input type="checkbox" id="checkboxOne" name = "court" value="Rainbow Dash" class="chb"><label for="checkboxOne">Court 1 (Tennis)</label></li>
-                        <li><input type="checkbox" id="checkboxTwo" name = "court" value="Cotton Candy" class="chb"><label for="checkboxTwo">Court 2 (Tennis)</label></li>
-                        <li><input type="checkbox" id="checkboxThree" name = "court" value="Rarity" class="chb"><label for="checkboxThree">Court 3 (Basketball)</label></li>
-                        <li><input type="checkbox" id="checkboxFour" name = "court" value="Moondancer" class="chb"><label for="checkboxFour">Court 4 (Basketball)</label></li>
-                        <li><input type="checkbox" id="checkboxFive" name = "court" value="Surprise" class="chb"><label for="checkboxFive">Court 5 (Basketball)</label></li>				  
-                        <li><input type="checkbox" id="checkboxEight" name = "court" value="Derpy Hooves" class="chb"><label for="checkboxEight">Court 6 (Padel)</label></li>					  
+
+                        <%
+                        for (Court court: court_list){
+                    
+                            %>
+                    
+                            <li><input type="checkbox" id="<%=court.getCourt_id()%>" name = "court_id" value="<%=court.getCourt_id()%>" class="chb"><label for="<%=court.getCourt_id()%>"><%=court.getName()%></label></li>
+                    
+                            <%
+
+                        }
+
+                        %>
+                        
+                        
+                        
+
+                        
+                        				  
                     </ul>
                 </div>
                 <div class="col">
@@ -410,14 +444,23 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
                     <div class="form-field">
                         <div class="select-wrap">
                             
-                            <select name="fromtime" id="fromtime" class="form-control" placeholder="From" style="width: 80%; margin-top: 0%; height: 4px; color: #333; text-align: left; -webkit-box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); border: 0; outline: 0; padding: 0px 18px; border-radius: 50px;">
+                            <select name="time_from" id="fromtime" class="form-control" placeholder="From" style="width: 80%; margin-top: 0%; height: 4px; color: #333; text-align: left; -webkit-box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); border: 0; outline: 0; padding: 0px 18px; border-radius: 50px;">
                                 
-                                    <option value="8">8:00 AM</option>
-                                    <option value="9">9:00 AM</option>
-                                    <option value="10">10:00 AM</option>
-                                    <option value="11">11:00 AM</option>
-                                    <option value="12">12:00 PM</option>
-                                
+                                    <option value="08:00:00">8:00 AM</option>
+                                    <option value="09:00:00">9:00 AM</option>
+                                    <option value="10:00:00">10:00 AM</option>
+                                    <option value="11:00:00">11:00 AM</option>
+                                    <option value="12:00:00">12:00 PM</option>
+                                    <option value="13:00:00">13:00 PM</option>
+                                    <option value="14:00:00">14:00 PM</option>
+                                    <option value="15:00:00">15:00 PM</option>
+                                    <option value="16:00:00">16:00 PM</option>
+                                    <option value="17:00:00">17:00 PM</option>
+                                    <option value="18:00:00">18:00 PM</option>
+                                    <option value="19:00:00">19:00 PM</option>
+                                    <option value="20:00:00">20:00 PM</option>
+                                    <option value="21:00:00">21:00 PM</option>
+                                    
                             </select>
                         </div>
                     </div>
@@ -426,13 +469,23 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
                     <label for="#">Until Time:</label>
                     <div class="form-field">
                         <div class="select-wrap">
-                            <select name="totime" id="totime" class="form-control" placeholder="To" style="width: 80%; margin-top: 0%; height: 4px; color: #333; text-align: left; -webkit-box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); border: 0; outline: 0; padding: 0px 18px; border-radius: 50px;">
+                            <select name="time_to" id="totime" class="form-control" placeholder="To" style="width: 80%; margin-top: 0%; height: 4px; color: #333; text-align: left; -webkit-box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%); border: 0; outline: 0; padding: 0px 18px; border-radius: 50px;">
                                 
-                                <option value="11">11:00 AM</option>
-                                <option value="12">12:00 PM</option>
-                                <option value="13">13:00 PM</option>
-                                <option value="14">14:00 PM</option>
-                                <option value="15">15:00 PM</option>
+                                    <option value="08:00:00">8:00 AM</option>
+                                    <option value="09:00:00">9:00 AM</option>
+                                    <option value="10:00:00">10:00 AM</option>
+                                    <option value="11:00:00">11:00 AM</option>
+                                    <option value="12:00:00">12:00 PM</option>
+                                    <option value="13:00:00">13:00 PM</option>
+                                    <option value="14:00:00">14:00 PM</option>
+                                    <option value="15:00:00">15:00 PM</option>
+                                    <option value="16:00:00">16:00 PM</option>
+                                    <option value="17:00:00">17:00 PM</option>
+                                    <option value="18:00:00">18:00 PM</option>
+                                    <option value="19:00:00">19:00 PM</option>
+                                    <option value="20:00:00">20:00 PM</option>
+                                    <option value="21:00:00">21:00 PM</option>
+                                    <option value="22:00:00">17:00 PM</option>
                             
                             </select>
                         </div>
@@ -441,13 +494,15 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
                 </div>
                 <div class="col">
                     Price of Court per hour:
-                    <input type="text" class="form-search__field" placeholder="" style="width: 80%; margin-top: 0%; margin-left: auto; height: 4px;"/>
-                    <button type="Submit" class="btn-search--primary btn--inside uppercase" style="margin-top: 90%; margin-left: auto;"onclick=add_slot()><i class="fa fa-calendar"></i>  Add Slot</button>
+                    <input type="text" name = "price" class="form-search__field" placeholder="" style="width: 80%; margin-top: 0%; margin-left: auto; height: 4px;"/>
+                    <button type="Submit" class="btn-search--primary btn--inside uppercase" style="margin-top: 90%; margin-left: auto;"><i class="fa fa-calendar"></i>  Add Slot</button>
                 </div>
                 </div>
-              </div>
+            
+            </div>
             
         </div>
+    </form>
     </main>
     
     
