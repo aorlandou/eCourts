@@ -239,7 +239,7 @@ try {
 				String s1= "selected";
 				String s2 = "";
 
-				if (duration=="2"){
+				if (duration.equals("2")){
 					s2 = "selected";
 					s1 = "";
 				}
@@ -248,14 +248,14 @@ try {
 				
 				<div class="col-lg d-flex">
 					<div class="form-group p-4">
-					 <label for="#">Duration</label>
+					 <label for="#">Duration </label>
 					 <div class="form-field">
 						 <div class="select-wrap">
 							 <div class="icon"><span class="fa fa-chevron-down"></span></div>
 							 <select name="" id="duration" class="form-control" onchange="getSlots(1)">
 								
 								<option value="1" <%=s1%>>1 hour</option>
-								<option value="2" <%=s1%> >2 hours</option>
+								<option value="2" <%=s2%> >2 hours</option>
 								
 								 
 							 </select>
