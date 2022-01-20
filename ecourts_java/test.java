@@ -40,13 +40,13 @@ public class test {
         // String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         // System.out.println(date);
 
-        Slot slt = new Slot();
-        try {
-            slt.generateAllSlots("16:00:00", "18:00:00", "2022-01-20", "1", "22.2");
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        // Slot slt = new Slot();
+        // try {
+        // slt.generateAllSlots("16:00:00", "18:00:00", "2022-01-20", "1", "22.2");
+        // } catch (Exception e) {
+        // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
         // slt.generateAllSlots("20:00:00", "23:00:00","2022-01-29",8,70.0);
         // slt.generateAllSlots("19:00:00", "22:00:00","2022-01-28",10,15.0);
         // slt.generateAllSlots("19:00:00", "21:00:00","2022-01-27",10,15.0);
@@ -96,22 +96,29 @@ public class test {
         // for (Booking booking: bookings_list){
         // System.out.println(booking.getCustomer().getName());
         // }
-        //SportsClub spr = new SportsClub();
-        //List<SportsClub> c = null;
-        //try {
-        //    c = spr.popularClubs();
-        //} catch (Exception e) {
-        //    // TODO Auto-generated catch block
-        //    e.printStackTrace();
-        //}
+        // SportsClub spr = new SportsClub();
+        // List<SportsClub> c = null;
+        // try {
+        // c = spr.popularClubs();
+        // } catch (Exception e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
         // System.out.println(c.size());
-        //slt.getSlots(1, "", 7, 0, 0, 0, 0, "", 0, 1);
-        //Court crt = new Court();
-        
-        //System.out.println(crt.getTennisCourtInfo(11).getName());
-        //Slot slt1 = new Slot();
-        //System.out.println(slt1.isSlotAdded("09:00:00", "2021-12-27", 1,2));
-        
+        // slt.getSlots(1, "", 7, 0, 0, 0, 0, "", 0, 1);
+        // Court crt = new Court();
+
+        // System.out.println(crt.getTennisCourtInfo(11).getName());
+        // Slot slt1 = new Slot();
+        // System.out.println(slt1.isSlotAdded("09:00:00", "2021-12-27", 1,2));
+        Booking bk1 = new Booking();
+        try {
+            bk1 = bk1.getBookingDetails(3);
+            System.out.println(bk1.getComment());
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
     }
     

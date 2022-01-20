@@ -21,6 +21,7 @@ public class Booking {
     private Time time_booked;
     private int booking_id;
     private Slot slot;
+    private User user;
     
 
 
@@ -439,12 +440,82 @@ public class Booking {
         this.customer = customer;
     }
 
+    public Booking(int booking_id, int paid, String comment ,Slot slot, User user, Customer customer) {
+        this.booking_id = booking_id;
+        this.online_payment = paid;
+        this.comment = comment;
+        this.slot = slot;
+        this.user = user;
+        this.customer = customer;
+    }
+
     public Slot getSlot() {
         return slot;
     }
 
     public void setSlot(Slot slot) {
         this.slot = slot;
+    }
+
+    public Booking getBookingDetails(int bookingid) throws Exception {
+        Booking bk = new Booking();
+        try
+            {
+            Class.forName("com.mysql.jdbc.Driver"); //load driver
+            Connection con=DriverManager.getConnection("jdbc:mysql://195.251.249.131:3306/ismgroup7","ismgroup7","he2kt6");
+            
+    
+            PreparedStatement pstmt=null; //create statement
+            
+
+
+            
+            String query = "SELECT booking.online_payment, booking.comment, slot.slot_id, users.idusers FROM booking, slot, users, client_users where booking.slot_id = slot.slot_id and booking.user_id = client_users.id and client_users.id = users.idusers and booking.booking_id = ? ";
+                           
+            
+        
+            pstmt=con.prepareStatement(query); //sql select query 
+            pstmt.setInt(1,bookingid);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()){
+
+                int slot_id = rs.getInt("slot_id");
+                int paid = rs.getInt("online_payment");
+                int userid = rs.getInt("idusers");
+                String comment = rs.getString("comment");
+
+                
+                
+                User us = new User();
+                User user = us.getDetails(userid);
+
+                Customer cr = new Customer();
+                Customer customer = cr.customerDetails(userid);
+
+                Slot slt = new Slot();
+                List<Slot> slot_list= slt.getSlots(0, "", 0, slot_id, 0, 0, 0, "",1,0);
+                bk = new Booking(bookingid, paid,comment ,slot_list.get(0), user, customer);
+                   
+
+            }else{
+                throw new Exception("No booking with that specific id");
+            }
+
+            }catch(Exception e){
+                throw new Exception(e.getMessage());
+            }
+            return bk;
+        
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 

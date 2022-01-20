@@ -278,8 +278,8 @@ if (photo_path_background != null){
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#Courts" class="nav-link">Courts</a></li>
 					<li class="nav-item"><a href="#Timetable" class="nav-link">Timetable</a></li>
-					<li class="nav-item"><a href="#Courts" class="nav-link">Courts</a></li>
 					<li class="nav-item"><a href="logout.jsp" class="nav-link">Logout</a></li>
 				
                 
@@ -347,7 +347,7 @@ if (photo_path_background != null){
     <!-- START THE FEATURETTES -->
 
 
-    <div class="row featurette" id = "Timetable">
+    <div class="row featurette" id = "Courts">
       <div class="col-md-12" style="margin-top: 7%;">
             
         <div >
@@ -445,7 +445,7 @@ if (photo_path_background != null){
         
             
             
-            <hr class="featurette-divider" id ="Courts">
+            <hr class="featurette-divider" id ="Timetable">
 
 
 
@@ -514,7 +514,7 @@ if (photo_path_background != null){
         dp.onEventClick = function (args) {
             var type= $('#type').val();
             if (type == 1){
-                location.href = 'booking_details.jsp?booking'+args.e.id();
+                location.href = 'booking_details.jsp?booking='+args.e.id();
             }
             
             

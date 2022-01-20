@@ -1,3 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page errorPage=""%>
+<%@ page import ="ecourts_java.*"%>
+<%@ page import ="java.util.*"%>
+<%
+
+int bookingid = 0;
+try {
+  bookingid = Integer.parseInt(request.getParameter("booking"));    
+}catch (NumberFormatException e) {
+  %>
+  <jsp:forward page="home.jsp" />
+  <%
+}
+Booking bk = new Booking();
+try{
+  bk = bk.getBookingDetails(bookingid);
+}catch (Exception e){
+  %>
+  <jsp:forward page="home.jsp" />
+  <%
+}
+
+
+
+%>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -250,34 +277,34 @@
         <div class="container-fluid " style="padding-top: 0px;">
 
 
-          <a  href="club_managing.html">
-            <img src="photos/download.png" width="50px" >
+          <a  href="club_managing.jsp#Timetable">
+            <img src="photos/download.png" width="50px">
             </a> 
 
           <h1 class="display-5 fw-bold" style="margin-top: 3%;">Customer Details</h1>
-          <p class="col-md-8 fs-5" style="margin-bottom: 0; margin-top: 2%;">Name: Dimitris</p>
-          <p class="col-md-8 fs-5" style="margin-bottom: 0;">Surname: Bouris</p>
-          <p class="col-md-8 fs-5" style="margin-bottom: 0;">Email: bourisd2@gmail.com</p>
-          <p class="col-md-8 fs-5" style="margin-bottom: 0;">Mobile: 6946933294</p>
-          <p class="col-md-8 fs-5" style="margin-bottom: 0;">Paid: Yes</p>
+          <p class="col-md-8 fs-5" style="margin-bottom: 0; margin-top: 2%;">Name: <%= bk.getUser().getName()%></p>
+          <p class="col-md-8 fs-5" style="margin-bottom: 0;">Surname: <%= bk.getCustomer().getSurname()%></p>
+          <p class="col-md-8 fs-5" style="margin-bottom: 0;">Email: <%= bk.getUser().getEmail()%></p>
+          <p class="col-md-8 fs-5" style="margin-bottom: 0;">Mobile: <%= bk.getUser().getPhone()%></p>
+          <p class="col-md-8 fs-5" style="margin-bottom: 0;">Paid: <%=bk.getOnline_payment()%></p>
+
         </div>
       </div>
   
       <div class="row align-items-md-stretch">
         <div class="col-md-6">
           <div class="h-100 p-5 text-white bg-dark rounded-3">
-            <h2>Court 3<span class="text-muted">Tennis</span></h2>
+            <h2><%=bk.getSlot().getCourt().getName()%><span class="text-muted">  <%=bk.getSlot().getCourt().getSport()%></span></h2>
             
-            <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-clock-o"></span> 11:00 - 13:00</p>
-            <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-calendar"></span> 5/11/2021 </p>
+            <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-clock-o"></span> <%=bk.getSlot().getTime()%>, <%=bk.getSlot().getDuration()%> hours</p>
+            <p class="col-md-8 fs-5" style="margin-bottom: 0;"><span class="fa fa-calendar"></span> <%=bk.getSlot().getDate()%> </p>
             
           </div>
         </div>
         <div class="col-md-6">
           <div class="h-100 p-5 bg-light border rounded-3">
             <h2>Comments</h2>
-            <p>Θα χρειαστούμε μπαλάκια και μια ρακέτα <br>
-                Ευχαριστώ πολύ!
+            <p> <%=bk.getComment()%>
             </p>
             
           </div>
@@ -297,8 +324,7 @@
 
   <!-- FOOTER -->
   <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-    <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p>&copy; 2017–2021 eCourts, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
   </footer>
 </main>
 

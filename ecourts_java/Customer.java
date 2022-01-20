@@ -26,6 +26,13 @@ public Customer(String surname, String username, String name){
     this.username=username;
 }
 
+    public Customer(String name, String surname, String email, String phone){
+        
+        super(email, phone);
+        this.surname=surname;
+        this.surname=surname;
+    }
+
     
 
 
@@ -59,7 +66,6 @@ public Customer(String surname, String username, String name){
             rs = stmt.executeQuery();
             while (rs.next()){
                 curCustomer = new Customer ( rs.getString("surname"), rs.getString("username"),"yes");
-
             }
 
            

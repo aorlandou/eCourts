@@ -2,6 +2,7 @@ package ecourts_java;
 import java.sql.*;
 
 public class User{
+
     private int user_id;
     private String name;   
     private String email;
@@ -15,7 +16,7 @@ public class User{
     private int munic_id;
     private int type;
   
-
+    
     public User(String name,  String email, String phone, String street, String town, String street_number, String zip_code, String password, String register_date) {
         
         this.name = name;
@@ -404,6 +405,7 @@ public class User{
         this.type = type;
     }
 
+    
 
 
 
