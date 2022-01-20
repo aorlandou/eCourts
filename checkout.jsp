@@ -2,7 +2,12 @@
 <%@ page import ="java.util.List"%>
 <%@ page import ="ecourts_java.*"%>
 
-<% int slot_id;
+<% 
+  if ((request.getParameter("id")==null) || (session.getAttribute("user_id")==null)){%>
+    <jsp:forward page="home.jsp" />
+
+  <%}
+  int slot_id;
   session.setAttribute("not_logged", null);
 	User curUser = (User)session.getAttribute("user_id");
   if (curUser.getType()==1){%>
