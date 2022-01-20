@@ -4,7 +4,8 @@
 <%@ page import ="java.util.*"%>
 <%
 
-String message = request.getParameter("message");
+String messagesuc = request.getParameter("messagesuc");
+String messagefail = request.getParameter("messagefail");
 
 if(session.getAttribute("user_id")==null){%>
     <jsp:forward page="home.jsp" />
@@ -274,6 +275,11 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     .navbar .action-buttons .dropdown-toggle::after {
         display: none;
     }
+    .alert {
+        margin-top: 4%;
+        color: green;
+        background-color: lightgreen;
+    }
 
 
     .carousel{position:relative}.carousel.pointer-event{touch-action:pan-y}.carousel-inner{position:relative;width:100%;overflow:hidden}.carousel-inner::after{display:block;clear:both;content:""}.carousel-item{position:relative;display:none;float:left;width:100%;margin-right:-100%;-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:transform .6s ease-in-out}@media (prefers-reduced-motion:reduce){.carousel-item{transition:none}}.carousel-item-next,.carousel-item-prev,.carousel-item.active{display:block}.active.carousel-item-end,.carousel-item-next:not(.carousel-item-start){transform:translateX(100%)}.active.carousel-item-start,.carousel-item-prev:not(.carousel-item-end){transform:translateX(-100%)}.carousel-fade .carousel-item{opacity:0;transition-property:opacity;transform:none}.carousel-fade .carousel-item-next.carousel-item-start,.carousel-fade .carousel-item-prev.carousel-item-end,.carousel-fade .carousel-item.active{z-index:1;opacity:1}.carousel-fade .active.carousel-item-end,.carousel-fade .active.carousel-item-start{z-index:0;opacity:0;transition:opacity 0s .6s}@media (prefers-reduced-motion:reduce){.carousel-fade .active.carousel-item-end,.carousel-fade .active.carousel-item-start{transition:none}}.carousel-control-next,.carousel-control-prev{position:absolute;top:0;bottom:0;z-index:1;display:flex;align-items:center;justify-content:center;width:15%;padding:0;color:#fff;text-align:center;background:0 0;border:0;opacity:.5;transition:opacity .15s ease}@media (prefers-reduced-motion:reduce){.carousel-control-next,.carousel-control-prev{transition:none}}.carousel-control-next:focus,.carousel-control-next:hover,.carousel-control-prev:focus,.carousel-control-prev:hover{color:#fff;text-decoration:none;outline:0;opacity:.9}.carousel-control-prev{left:0}.carousel-control-next{right:0}.carousel-control-next-icon,.carousel-control-prev-icon{display:inline-block;width:2rem;height:2rem;background-repeat:no-repeat;background-position:50%;background-size:100% 100%}.carousel-control-prev-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e")}.carousel-control-next-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")}.carousel-indicators{position:absolute;right:0;bottom:0;left:0;z-index:2;display:flex;justify-content:center;padding:0;margin-right:15%;margin-bottom:1rem;margin-left:15%;list-style:none}.carousel-indicators [data-bs-target]{box-sizing:content-box;flex:0 1 auto;width:30px;height:3px;padding:0;margin-right:3px;margin-left:3px;text-indent:-999px;cursor:pointer;background-color:#fff;background-clip:padding-box;border:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:.5;transition:opacity .6s ease}@media (prefers-reduced-motion:reduce){.carousel-indicators [data-bs-target]{transition:none}}.carousel-indicators .active{opacity:1}.carousel-caption{position:absolute;right:15%;bottom:1.25rem;left:15%;padding-top:1.25rem;padding-bottom:1.25rem;color:#fff;text-align:center}.carousel-dark .carousel-control-next-icon,.carousel-dark .carousel-control-prev-icon{filter:invert(1) grayscale(100)}.carousel-dark .carousel-indicators [data-bs-target]{background-color:#000}.carousel-dark .carousel-caption{color:#000}@-webkit-keyframes spinner-border{to{transform:rotate(360deg)}}
@@ -391,17 +397,37 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
         
         <div class="container">
             <div class="row">
-              <div class="col-7" style="background-color: rgb(233, 153, 101); margin-top: 5%;">
-                <h2 style="margin-top: 20px;">Add available slots for your Courts </h2>
+                <%
+                    if (messagesuc!= null){ %>
+                        <div class="alert alert-success" style="background-color: green;">
+
+                            <%=messagesuc %>
+
+                        </div>
+                <%    }
+                    if (messagefail!= null){ %>
+                        <div class="alert alert--danger">
+
+                            <%=messagefail %>
+
+                        </div>
+                <%    }
+                %>
             </div>
+            <div class="row">
+            <% if (messagesuc!= null || messagefail!=null){ %>
+                <div class="col-7" style="background-color: rgb(233, 153, 101); margin-top: 0%;">
+                    <h2 style="margin-top: 20px;">Add available slots for your Courts </h2>
+                </div>
+            <%} else { %>
+                <div class="col-7" style="background-color: rgb(233, 153, 101); margin-top: 5%;">
+                    <h2 style="margin-top: 20px;">Add available slots for your Courts </h2>
+                </div>
+            <% } %>
             </div>
         </div>
         
-        <%
-        if (message!= null){
-            out.println(message);
-        }
-        %>
+        
         
         <form action="add_slot_process.jsp" method="post">
         <div class="container p-3 my-3 border" style="background-color:#e0e0e0; margin-top: -3rem;">
@@ -485,7 +511,7 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
                                     <option value="19:00:00">19:00 PM</option>
                                     <option value="20:00:00">20:00 PM</option>
                                     <option value="21:00:00">21:00 PM</option>
-                                    <option value="22:00:00">17:00 PM</option>
+                                    <option value="22:00:00">22:00 PM</option>
                             
                             </select>
                         </div>
@@ -503,10 +529,13 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
             
         </div>
     </form>
+    <div class="row">
+        <a  href="club_managing.jsp">
+            <button type="" class="btn-search--primary btn--inside uppercase" style=" margin-left: 11%;"><img src="images/back.png" width="20px" ></img>  Back</button>
+        </a>
+    </div>
     </main>
     
-    
- 
 </body>
 <script src="js/jquery.min.js"></script>
 			<script src="js/jquery-migrate-3.0.1.min.js"></script>
