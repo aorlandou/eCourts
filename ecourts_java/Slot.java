@@ -392,30 +392,31 @@ public class Slot {
             try {
                 dateFormat.parse(date);
             } catch (ParseException pe) {
-                throw new Exception("Eroor in date"); 
+                throw new Exception("Eroor in date format"); 
+            }
+            try {
+                Integer.parseInt(court_id);
+            } catch (NumberFormatException e) {
+                throw new Exception("Make sure to select a court");
             }
             SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");  
 
             try {
                 format.parse(time_from);
             } catch (ParseException e) {
-                throw new Exception("Error in time");
+                throw new Exception("Error in from time format");
             }
             try {
                 format.parse(time_to);
             } catch (ParseException e) {
-                throw new Exception("Error in time");
+                throw new Exception("Error in to time format");
             }
             try {
                 Double.parseDouble(price);
             } catch (NumberFormatException e) {
-                throw new Exception("Error in double");
+                throw new Exception("Error in price, make sure it is a number");
             }
-            try {
-                Integer.parseInt(court_id);
-            } catch (NumberFormatException e) {
-                throw new Exception("Error in double");
-            }
+            
 
             Double price2 = Double.parseDouble(price);
             int court_id1 = Integer.parseInt(court_id);

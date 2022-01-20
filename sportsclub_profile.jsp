@@ -556,30 +556,27 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
                                <div class="icon"><span class="fa fa-chevron-down"></span></div>
                                <select name="" id="duration" class="form-control" onchange="getSlots(1,'<%=spid%>',0)">
                                 
-                                   <option value="1">1 hour</option>
-                                   <option value="2">2 hours</option>
-                                
-                                 
+                                  <option value="1">1 hour</option>
+                                  <option value="2">2 hours</option>
+
                                </select>
                              </div>
                            </div>
                          </div>
                         </div>
-												
-												
-												
+
 											</div>
 										</form>
 									</div>
-									<script>
-										export default {
-										  data() {
-											return {
-											  value: ''
-											}
-										  }
-										}
-									</script>
+                    <script>
+                      export default {
+                        data() {
+                        return {
+                          value: ''
+                        }
+                        }
+                      }
+                    </script>
 									
 								</div>
 							</div>

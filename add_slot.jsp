@@ -401,12 +401,12 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
                     if (messagesuc!= null){ %>
                         <div class="alert alert-success" style="background-color: green;">
 
-                            <%=messagesuc %>
+                            <%=messagesuc%>
 
                         </div>
                 <%    }
                     if (messagefail!= null){ %>
-                        <div class="alert alert--danger">
+                        <div class="alert alert-danger" style="color: #000;">
 
                             <%=messagefail %>
 

@@ -18,7 +18,7 @@ try {
     
     %>
     <jsp:forward page="add_slot.jsp">
-        <jsp:param name="messagesuc" value="Input data not in correct format" ></jsp:param>
+        <jsp:param name="messagefail" value="<%=e.getMessage()%>" ></jsp:param>
     </jsp:forward>
     <%
 }
@@ -26,7 +26,7 @@ try {
 
 %>
 <jsp:forward page="add_slot.jsp">
-   <jsp:param name="messagefail" value="Slots Added Succesfully." ></jsp:param>
+   <jsp:param name="messagesuc" value="Slots Added Succesfully." ></jsp:param>
 </jsp:forward>
 
 <%
