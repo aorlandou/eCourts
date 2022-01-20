@@ -443,11 +443,13 @@ public class Slot {
             if (d1.after(d2)){
                 throw new Exception("The time to should be bigger than time from");
             }
+            int num_slots = 0;
 
             for (int i = 0; i < diffHours; i++){
 
                 //add the 2h slot
                 if (i < diffHours-1){
+                    num_slots = num_slots +1;
 
                     if (slt.isSlotAdded(time_from, date,2, court_id1) == false){
                         System.out.println(slt.isSlotAdded(time_from, date,court_id1, 2));
@@ -476,12 +478,14 @@ public class Slot {
                             System.out.println(e.getMessage());
                             System.out.println("eroorrr");
                         }
+                        
 
                     }else{
                         alreadyAdded.add(new Slot(date, time_from, 2));
                     }
                     
                 }
+                num_slots = num_slots +1;
                 if (slt.isSlotAdded(time_from, date,1,court_id1) == false){
                     System.out.println(slt.isSlotAdded(time_from, date,court_id1, 1));
                     try
@@ -507,6 +511,7 @@ public class Slot {
                         System.out.println(e.getMessage());
                         System.out.println("eroorrr");
                     }
+                    num_slots = num_slots +1;
 
 
                 }else{
@@ -517,6 +522,14 @@ public class Slot {
                 time_from = format.format(cal.getTime());
 
             }
+            System.out.println(alreadyAdded.size());
+            
+            System.out.println(num_slots);
+            if (alreadyAdded.size() == num_slots){
+                throw new Exception("Slots are already added.");
+            }
+
+
             return alreadyAdded;
 
         }
@@ -663,7 +676,7 @@ public class Slot {
             
             String query = "select slot.slot_id, slot.date, slot.time_start, slot.price, slot.duration, court.sport_id, court.court_id " +  
                             "from slot, court, sportscl_users, municipality, users, surface, sport  " + 
-                            "where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id and slot_id in (select * from slots_today UNION select * from slots_after)";
+                            "where slot.court_id = court.court_id and court.sportsclub_id = sportscl_users.id and sportscl_users.id = users.idusers and court.surface_id = surface.surface_id and users.munic_id = municipality.mun_id and court.sport_id = sport.sport_id";
 
             if(sport != 0){
                 query = query + "and court.sport_id = ?";

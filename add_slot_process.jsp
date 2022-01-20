@@ -23,12 +23,24 @@ try {
     <%
 }
 
+if (slt_not.size()== 0){
 
+    %>
+
+    <jsp:forward page="add_slot.jsp">
+       <jsp:param name="messagesuc" value="Slots Added Succesfully." ></jsp:param>
+    </jsp:forward>
+    
+    <%
+}else {
+
+}
 %>
-<jsp:forward page="add_slot.jsp">
-   <jsp:param name="messagesuc" value="Slots Added Succesfully." ></jsp:param>
-</jsp:forward>
 
-<%
+    <jsp:forward page="add_slot.jsp">
+       <jsp:param name="messagesuc" value="Slots Added Succesfully. Some were already added and have not been changed." ></jsp:param>
+    </jsp:forward>
+    
+    <%
 
 %>
