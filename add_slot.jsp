@@ -106,6 +106,9 @@ List<Court> court_list = crt.getCourts_of_club(club_id,0);
 
 
     <style>
+        body {
+  overflow: hidden; /* Hide scrollbars */
+}
 
         .mt-3, .my-3 {
             margin-top: -0.02rem !important;
