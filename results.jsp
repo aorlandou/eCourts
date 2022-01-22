@@ -15,16 +15,21 @@ List<Sport> sports_list = sprt.getAll_sports();
 int municid;
 int spoid;
 String date;
-String duration;
+int duration = 1;
 
 try{
 	
 	date = (String)request.getParameter("date");
-	duration = (String)request.getParameter("duration");
+}catch(Exception e){
+	date = "";
+}
+
+try{
+	
+	duration = Integer.parseInt(request.getParameter("duration"));
 }catch(Exception e){
 	
-	duration = "1";
-	date = "";
+	duration = 1;
 }
 
 try {
@@ -38,6 +43,7 @@ try {
 }catch (NumberFormatException e) {
     municid=0;
 }
+
 
 %>
 
@@ -238,11 +244,13 @@ try {
 				<%
 				String s1= "selected";
 				String s2 = "";
-
-				if (duration.equals("2")){
+				
+				if (duration == 2){
 					s2 = "selected";
 					s1 = "";
 				}
+
+				
 				%>
 
 				
