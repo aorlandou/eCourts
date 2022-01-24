@@ -277,10 +277,10 @@ if (photo_path_background != null){
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#Courts" class="nav-link">Courts</a></li>
-					<li class="nav-item"><a href="#Timetable" class="nav-link">Timetable</a></li>
-					<li class="nav-item"><a href="logout.jsp" class="nav-link">Logout</a></li>
+					<li class="nav-item active"><a href="#" style="font-family: 'Poppins', Arial, sans-serif;"  class="nav-link">Home</a></li>
+                    <li class="nav-item" ><a href="#Courts" style="font-family: 'Poppins', Arial, sans-serif;" class="nav-link">Courts</a></li>
+					<li class="nav-item"><a href="#Timetable" style="font-family: 'Poppins', Arial, sans-serif;" class="nav-link">Timetable</a></li>
+					<li class="nav-item"><a href="logout.jsp" style="font-family: 'Poppins', Arial, sans-serif;" class="nav-link">Logout</a></li>
 				
                 
             </ul>
@@ -561,9 +561,9 @@ if (photo_path_background != null){
                     <h2 class="ftco-heading-2" id="About">About</h2>
                     <p>Hustle free sport court booking! With eCourts you will forget the multiple phone calls to diferrent sportsclubs. Just choose your favorite sport and leave the rest to us.</p>
                     <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-                        <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="fab fa-twitter"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="fab fa-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="fab fa-instagram"></span></a></li>
                     </ul>
                 </div>
             </div>

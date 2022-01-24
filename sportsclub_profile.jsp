@@ -630,9 +630,9 @@ List<Court> courts_list = crt.getCourts_of_club(spid,0);
             <h2 class="ftco-heading-2" id="About">About</h2>
             <p>Hustle free sport court booking! With eCourts you will forget the multiple phone calls to diferrent sportsclubs. Just choose your favorite sport and leave the rest to us.</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-              <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="fab fa-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="fab fa-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="fab fa-instagram"></span></a></li>
             </ul>
           </div>
         </div>
