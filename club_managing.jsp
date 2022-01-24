@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page errorPage=""%>
+<%@ page errorPage="error.jsp"%>
 <%@ page import ="ecourts_java.*"%>
 <%@ page import ="java.util.*"%>
 <%

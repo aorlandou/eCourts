@@ -4,6 +4,8 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.util.*"%>
 <%@page import="ecourts_java.*"%>
+<%@ page errorPage="error.jsp"%>
+
 
 
 

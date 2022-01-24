@@ -1,6 +1,8 @@
 <%@page import="java.util.*"%>
 <%@page import="ecourts_java.*"%>
 <%@page import="java.lang.*"%>
+<%@ page errorPage="error.jsp"%>
+
 
 
 

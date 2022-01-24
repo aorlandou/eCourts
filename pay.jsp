@@ -1,6 +1,8 @@
 <%@ page import ="java.util.ArrayList"%>
 <%@ page import ="java.util.List"%>
 <%@ page import ="ecourts_java.*"%>
+<%@ page errorPage="error.jsp"%>
+
 
 <% int slot_id;
   

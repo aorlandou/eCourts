@@ -1,6 +1,7 @@
 <%@ page import ="java.util.ArrayList"%>
 <%@ page import ="java.util.List"%>
 <%@ page import ="ecourts_java.*"%>
+<%@ page errorPage="error.jsp"%>
 
 <% if(session.getAttribute("user_id")==null){%>
   <jsp:forward page="home.jsp" /> 

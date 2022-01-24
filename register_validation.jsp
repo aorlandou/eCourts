@@ -4,6 +4,8 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.ParseException"%>
 <%@page import="java.util.Date"%>
+<%@ page errorPage="error.jsp"%>
+
 
 <%      String name=request.getParameter("name"); 
         String surname=request.getParameter("surname"); 

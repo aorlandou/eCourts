@@ -1,6 +1,8 @@
 <%@ page import ="java.util.ArrayList"%>
 <%@ page import ="java.util.List"%>
 <%@ page import ="ecourts_java.*"%>
+<%@ page errorPage="error.jsp"%>
+
 
 <%String email=request.getParameter("email");
 String password=request.getParameter("password");

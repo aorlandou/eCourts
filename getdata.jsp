@@ -2,6 +2,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%@ page errorPage="error.jsp"%>
+
 
 
 
