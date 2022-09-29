@@ -9,7 +9,7 @@ eCourts is a web application that simplifies and fully digitizes the process of 
 
 ## Book a court
 
-With eCourts web application you can use a dynamic search bar that enables you to browse around all the available courts that fit your needs. Ajax technique is used to asynchronously retrieve the results every time a filter is altered. 
+With eCourts web application you can use a dynamic search bar that enables you to browse through all the available courts that fit your needs. Ajax technique is used to asynchronously retrieve the results every time a filter is altered. 
 
 <img src="images/ecourts_searchbar.png" width="800"/>
 
