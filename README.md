@@ -1,6 +1,4 @@
 # eCourts
-An online sports venue booking platform written with Java
-
 <img src="photos/ecourts_logo.png" width="160" height="130" />
 
 Have you ever found yourself making the frustrating task of booking a sport venue for you and your friends? One phone call after another with no avail? Difficult to find available slots that suit you?
