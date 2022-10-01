@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Week View (AJAX Event Calendar)</title>
+
+    <!-- head -->
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer-when-downgrade"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="helpers/v2/main.css?v=2021.2.261" type="text/css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"/>
+    <script src="js/daypilot-all.min.js?v=2021.2.261"></script>
+
+    <!-- /head -->
+
+</head>
+<body>
+
+
+    <style>
+  #parent {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+  }
+</style>
+
+<!-- top -->
+
+
+    <!-- /top -->
+
+    <div class="space">
+        Week:
+        <a href="javascript:dp.startDate = dp.startDate.addDays(-7); dp.update();">Previous</a>
+        |
+        <a href="javascript:dp.startDate = dp.startDate.addDays(7); dp.update();">Next</a>
+    </div>
+
+    <select name="cars" id="cars" onchange="getData()">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+    </select>
+
+
+    <div style="height: 100%;">
+        <div id="dp"></div>
+    </div>
+
+    <div id="print"></div>
+
+    <script type="text/javascript">
+        
+
+        var dp = new DayPilot.Calendar("dp");
+        
+        // view
+
+        dp.startDate = "2021-12-25";
+        dp.viewType = "Week";
+
+        dp.setheight = 400;
+
+
+        
+        
+
+        dp.onEventClick = function (args) {
+            alert("clicked: " + args.e.id());
+        };
+
+        dp.init();
+
+        var e = new DayPilot.Event({
+            start: new DayPilot.Date("2021-12-23T12:00:00"),
+            end: new DayPilot.Date("2021-12-23T12:00:00").addHours(3),
+            id: DayPilot.guid(),
+            text: "Pao"
+        });
+        
+        dp.events.add(e);
+
+        function getData(){
+            dp.events.load("employees.json");
+        }
+        
+    
+
+
+        
+
+    </script>
+
+    <!-- bottom -->
+
+
+<script src="helpers/v2/app.js?v=2021.2.261"></script>
+
+<!-- /bottom -->
+
+</body>
+</html>
+
